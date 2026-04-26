@@ -1,0 +1,49 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+  <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>应收台账 - 律所系统</title><link rel="stylesheet" href="../../assets/styles/main.css" /></head>
+  <body data-page="receivable-ledger">
+    <div class="app-shell"><aside class="sidebar"></aside><div class="main-shell"><div class="workspace">
+      <main class="page-body compact"><div class="split-workspace">
+        <section class="split-main">
+          <section class="metrics">
+            <div class="metric"><div class="metric-label">应收总额</div><div class="metric-value">786万</div><div class="metric-note">含未开票项目</div></div>
+            <div class="metric"><div class="metric-label">本月到账</div><div class="metric-value">198万</div><div class="metric-note">到账率 83%</div></div>
+            <div class="metric"><div class="metric-label">逾期应收</div><div class="metric-value">56万</div><div class="metric-note">共 5 笔</div></div>
+          </section>
+          <section class="panel">
+            <div class="toolbar"><div><button class="button" type="button">＋ 新增应收记录</button></div><div class="toolbar-tools"><span>合同应收</span><span>逾期明细</span><span>到账情况</span></div></div>
+            <div class="table-shell tight"><table>
+              <thead><tr><th>客户</th><th>合同编号</th><th>应收金额</th><th>已收金额</th><th>未收金额</th><th>最近应收日</th><th>状态</th></tr></thead>
+              <tbody>
+                <tr><td><a class="table-link" href="#">李四</a></td><td>HT-2026-018</td><td>18 万</td><td>8 万</td><td>10 万</td><td>2026-04-30</td><td><span class="badge warning">待催收</span></td></tr>
+                <tr><td>王某企业</td><td>HT-2026-011</td><td>30 万</td><td>20 万</td><td>10 万</td><td>2026-05-08</td><td><span class="badge primary">正常</span></td></tr>
+                <tr><td>张三</td><td>HT-2026-023</td><td>22 万</td><td>12 万</td><td>10 万</td><td>2026-04-18</td><td><span class="badge danger">已逾期</span></td></tr>
+              </tbody>
+            </table></div>
+          </section>
+        </section>
+        <aside class="detail-pane" data-create-title="未命名应收记录">
+          <div class="detail-topbar"><div class="detail-topbar-actions"><span>⌃</span><span>⌄</span></div><div class="detail-topbar-actions"><span>···</span><span>×</span></div></div>
+          <div class="detail-scroll"><h2 class="detail-title">李四应收台账</h2><div class="detail-tabs"><span class="detail-tab active">详情</span><span class="detail-tab">历史</span></div>
+            <section class="detail-group" data-role="detail"><div class="detail-card">
+              <div class="detail-field"><div class="detail-label">客户</div><div class="detail-value">李四</div></div>
+              <div class="detail-field"><div class="detail-label">合同编号</div><div class="detail-value">HT-2026-018</div></div>
+              <div class="detail-field"><div class="detail-label">应收金额</div><div class="detail-value">18 万</div></div>
+              <div class="detail-field"><div class="detail-label">已收金额</div><div class="detail-value">8 万</div></div>
+              <div class="detail-field"><div class="detail-label">未收金额</div><div class="detail-value">10 万</div></div>
+              <div class="detail-field"><div class="detail-label">状态</div><div class="detail-value"><span class="badge warning">待催收</span></div></div>
+            </div></section>
+            <section class="detail-group" data-role="history"><div class="detail-card"><table class="history-table"><thead><tr><th>时间</th><th>字段</th><th>变更前</th><th></th><th>变更后</th></tr></thead><tbody><tr><td>04月23日</td><td>未收金额</td><td>18 万</td><td class="history-arrow">→</td><td>10 万</td></tr></tbody></table></div></section>
+            <section class="detail-group" data-role="create"><div class="detail-card"><form class="drawer-form">
+              <div class="drawer-form-grid"><div class="field"><label>客户</label><input class="input" value="请输入客户名称" /></div><div class="field"><label>合同编号</label><input class="input" value="请输入合同编号" /></div></div>
+              <div class="drawer-form-grid"><div class="field"><label>应收金额</label><input class="input" value="请输入金额" /></div><div class="field"><label>最近应收日</label><input class="input" value="年/月/日" /></div></div>
+              <div class="detail-footer"><button class="button" type="button">提交</button><button class="button secondary" type="button">取消</button></div>
+            </form></div></section>
+          </div>
+        </aside>
+      </div></main>
+    </div></div></div>
+    <script src="../../assets/scripts/app.js"></script>
+  </body>
+</html>
+

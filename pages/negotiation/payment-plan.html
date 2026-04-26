@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>回款计划 - 律所系统</title>
+    <link rel="stylesheet" href="../../assets/styles/main.css" />
+  </head>
+  <body data-page="payment-plan">
+    <div class="app-shell">
+      <aside class="sidebar"></aside>
+      <div class="main-shell">
+        <div class="workspace">
+          <main class="page-body compact">
+            <div class="split-workspace">
+              <section class="split-main">
+                <section class="panel">
+                  <div class="tabs submenu">
+                    <a class="tab active" href="#" data-tab="all-plans">全部计划</a>
+                    <a class="tab" href="#" data-tab="pending">待收</a>
+                    <a class="tab" href="#" data-tab="partial">部分到账</a>
+                    <a class="tab" href="#" data-tab="done">已完成</a>
+                  </div>
+
+                  <div class="toolbar">
+                    <div><button class="button" type="button">＋ 新增回款计划</button></div>
+                    <div class="toolbar-tools"><span>筛选</span><span>分组</span><span>排序</span><span>搜索</span></div>
+                  </div>
+
+                  <div class="table-shell tight">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th style="width: 32px;"><input type="checkbox" /></th>
+                          <th>计划编号</th>
+                          <th>关联合同</th>
+                          <th>客户</th>
+                          <th>关联案源</th>
+                          <th>关联案件</th>
+                          <th>应收金额</th>
+                          <th>应收日期</th>
+                          <th>回款状态</th>
+                          <th>备注</th>
+                          <th>操作</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><input type="checkbox" /></td>
+                          <td><a class="table-link" href="#">HK0001</a></td>
+                          <td><span class="badge primary">(2026)中磐 行 字第0001号</span></td>
+                          <td>李四</td>
+                          <td>李四</td>
+                          <td>李四土地征收补偿行政案件</td>
+                          <td>5,000</td>
+                          <td>2026/04/16</td>
+                          <td><span class="badge primary">待收</span></td>
+                          <td>首期回款节点</td>
+                          <td><span class="action-links"><a class="action-link" href="payment-records.html">新增回款记录</a></span></td>
+                        </tr>
+                        <tr>
+                          <td><input type="checkbox" /></td>
+                          <td><a class="table-link" href="#">HK0002</a></td>
+                          <td><span class="badge primary">(2026)中磐 刑 字第0001号</span></td>
+                          <td>张三</td>
+                          <td>张三</td>
+                          <td>张三故意伤害刑事辩护案件</td>
+                          <td>80,000</td>
+                          <td>2026/05/12</td>
+                          <td><span class="badge warning">部分</span></td>
+                          <td>补充费用节点</td>
+                          <td><span class="action-links"><a class="action-link" href="payment-records.html">新增回款记录</a></span></td>
+                        </tr>
+                        <tr>
+                          <td><input type="checkbox" /></td>
+                          <td><a class="table-link" href="#">HK0003</a></td>
+                          <td><span class="badge primary">(2026)中磐 民 字第0001号</span></td>
+                          <td>王某</td>
+                          <td>王某</td>
+                          <td>王某货款纠纷代理案件</td>
+                          <td>120,000</td>
+                          <td>2026/05/30</td>
+                          <td><span class="badge success">已完成</span></td>
+                          <td>尾款已结清</td>
+                          <td><span class="action-links"><a class="action-link" href="payment-records.html">新增回款记录</a></span></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+              </section>
+
+              <aside class="detail-pane" data-create-title="未命名回款计划">
+                <div class="detail-topbar">
+                  <div class="detail-topbar-actions"><span>⌃</span><span>⌄</span></div>
+                  <div class="detail-topbar-actions"><span>···</span><span>×</span></div>
+                </div>
+                <div class="detail-scroll">
+                  <h2 class="detail-title">HK0001</h2>
+                  <div class="detail-tabs"><span class="detail-tab active">详情</span><span class="detail-tab">历史</span></div>
+
+                  <section class="detail-group" data-role="detail">
+                    <div class="detail-card">
+                      <div class="detail-field"><div class="detail-label">计划编号</div><div class="detail-value">HK0001</div></div>
+                      <div class="detail-field"><div class="detail-label">关联合同</div><div class="detail-value">(2026)中磐 行 字第0001号 | 李四行政诉讼委托合同</div></div>
+                      <div class="detail-field"><div class="detail-label">客户</div><div class="detail-value">李四</div></div>
+                      <div class="detail-field"><div class="detail-label">关联案源</div><div class="detail-value">李四</div></div>
+                      <div class="detail-field"><div class="detail-label">关联案件</div><div class="detail-value">李四土地征收补偿行政案件</div></div>
+                      <div class="detail-field"><div class="detail-label">应收金额</div><div class="detail-value">5,000</div></div>
+                      <div class="detail-field"><div class="detail-label">应收日期</div><div class="detail-value">2026/04/16</div></div>
+                      <div class="detail-field"><div class="detail-label">回款状态</div><div class="detail-value"><span class="badge primary">待收</span></div></div>
+                      <div class="detail-field"><div class="detail-label">备注</div><div class="detail-value">首期回款节点</div></div>
+                      <div class="detail-field"><div class="detail-label">关联回款记录</div><div class="detail-value">SK0006 | 到账金额 10,000 | 2026/04/25</div></div>
+                    </div>
+                  </section>
+
+                  <section class="detail-group" data-role="history">
+                    <div class="detail-card">
+                      <table class="history-table">
+                        <thead><tr><th>时间</th><th>字段</th><th>变更前</th><th></th><th>变更后</th></tr></thead>
+                        <tbody>
+                          <tr><td>04月25日</td><td>关联回款记录</td><td>-</td><td class="history-arrow">→</td><td>SK0006</td></tr>
+                          <tr><td>04月20日</td><td>回款状态</td><td>计划中</td><td class="history-arrow">→</td><td>待收</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </section>
+
+                  <section class="detail-group" data-role="create">
+                    <div class="detail-card">
+                      <form class="drawer-form">
+                        <div class="drawer-form-grid">
+                          <div class="field"><label>计划编号</label><input class="input" value="提交后自动生成，例如 HK0004" /></div>
+                          <div class="field"><label>关联合同</label><input class="input" data-create-field="contractNo" value="请选择合同编号" /></div>
+                        </div>
+                        <div class="drawer-form-grid">
+                          <div class="field"><label>合同名称</label><input class="input" data-create-field="contractName" value="请选择合同名称" /></div>
+                          <div class="field"><label>客户</label><input class="input" data-create-field="customerName" value="请选择客户" /></div>
+                        </div>
+                        <div class="drawer-form-grid">
+                          <div class="field"><label>关联案源</label><input class="input" data-create-field="leadName" value="请选择案源" /></div>
+                          <div class="field"><label>关联案件</label><input class="input" data-create-field="caseName" value="请选择案件" /></div>
+                        </div>
+                        <div class="drawer-form-grid">
+                          <div class="field"><label>应收金额</label><input class="input" value="请输入金额" /></div>
+                          <div class="field"><label>应收日期</label><input class="input" value="年/月/日" /></div>
+                        </div>
+                        <div class="drawer-form-grid">
+                          <div class="field"><label>回款状态</label><select class="select"><option>待收</option><option>部分</option><option>已完成</option></select></div>
+                          <div class="field"><label>备注</label><input class="input" value="请输入内容" /></div>
+                        </div>
+                        <div class="detail-footer">
+                          <button class="button" type="button">提交</button>
+                          <button class="button secondary" type="button">取消</button>
+                        </div>
+                      </form>
+                    </div>
+                  </section>
+                </div>
+              </aside>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+    <script src="../../assets/scripts/app.js"></script>
+  </body>
+</html>

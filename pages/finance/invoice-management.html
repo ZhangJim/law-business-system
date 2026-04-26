@@ -1,0 +1,71 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>发票管理 - 律所系统</title>
+    <link rel="stylesheet" href="../../assets/styles/main.css" />
+  </head>
+  <body data-page="invoice-management">
+    <div class="app-shell">
+      <aside class="sidebar"></aside>
+      <div class="main-shell">
+        <div class="workspace">
+          <main class="page-body compact">
+            <div class="split-workspace">
+              <section class="split-main">
+                <section class="panel">
+                  <div class="toolbar">
+                    <div><button class="button" type="button">＋ 新增发票申请</button></div>
+                    <div class="toolbar-tools"><span>税务协同</span><span>待开具</span><span>已寄出</span></div>
+                  </div>
+                  <div class="table-shell tight">
+                    <table>
+                      <thead><tr><th>申请单号</th><th>客户</th><th>开票金额</th><th>发票类型</th><th>申请时间</th><th>状态</th></tr></thead>
+                      <tbody>
+                        <tr><td><a class="table-link" href="#">FP-20260425-01</a></td><td>王某企业</td><td>10 万</td><td>专票</td><td>2026-04-25</td><td><span class="badge warning">待开具</span></td></tr>
+                        <tr><td>FP-20260422-03</td><td>李四</td><td>8 万</td><td>普票</td><td>2026-04-22</td><td><span class="badge success">已寄出</span></td></tr>
+                        <tr><td>FP-20260418-02</td><td>张三</td><td>3 万</td><td>普票</td><td>2026-04-18</td><td><span class="badge primary">已作废重开</span></td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+              </section>
+              <aside class="detail-pane" data-create-title="未命名发票申请">
+                <div class="detail-topbar"><div class="detail-topbar-actions"><span>⌃</span><span>⌄</span></div><div class="detail-topbar-actions"><span>···</span><span>×</span></div></div>
+                <div class="detail-scroll">
+                  <h2 class="detail-title">FP-20260425-01</h2>
+                  <div class="detail-tabs"><span class="detail-tab active">详情</span><span class="detail-tab">历史</span></div>
+                  <section class="detail-group" data-role="detail"><div class="detail-card">
+                    <div class="detail-field"><div class="detail-label">客户</div><div class="detail-value">王某企业</div></div>
+                    <div class="detail-field"><div class="detail-label">开票金额</div><div class="detail-value">10 万</div></div>
+                    <div class="detail-field"><div class="detail-label">发票类型</div><div class="detail-value">专票</div></div>
+                    <div class="detail-field"><div class="detail-label">申请时间</div><div class="detail-value">2026/04/25</div></div>
+                    <div class="detail-field"><div class="detail-label">开票状态</div><div class="detail-value"><span class="badge warning">待开具</span></div></div>
+                    <div class="detail-field"><div class="detail-label">邮寄信息</div><div class="detail-value muted">待填写</div></div>
+                  </div></section>
+                  <section class="detail-group" data-role="history"><div class="detail-group-title"><span>状态历史</span><span>最近更新</span></div><div class="detail-card">
+                    <table class="history-table"><thead><tr><th>时间</th><th>字段</th><th>变更前</th><th></th><th>变更后</th></tr></thead><tbody>
+                      <tr><td>04月25日</td><td>开票状态</td><td>草稿</td><td class="history-arrow">→</td><td>待开具</td></tr>
+                      <tr><td>04月25日</td><td>发票金额</td><td>-</td><td class="history-arrow">→</td><td>10 万</td></tr>
+                    </tbody></table>
+                  </div></section>
+                  <section class="detail-group" data-role="create"><div class="detail-group-title"><span>快速新建发票</span><span>统一录入组件</span></div><div class="detail-card">
+                    <form class="drawer-form">
+                      <div class="drawer-form-grid"><div class="field"><label>客户名称</label><input class="input" value="请输入客户名称" /></div><div class="field"><label>开票金额</label><input class="input" value="请输入金额" /></div></div>
+                      <div class="drawer-form-grid"><div class="field"><label>发票类型</label><select class="select"><option>专票</option><option>普票</option></select></div><div class="field"><label>申请日期</label><input class="input" value="年/月/日" /></div></div>
+                      <div class="field"><label>备注</label><textarea class="textarea">请输入开票备注</textarea></div>
+                      <div class="detail-footer"><button class="button" type="button">提交</button><button class="button secondary" type="button">保存草稿</button></div>
+                    </form>
+                  </div></section>
+                </div>
+              </aside>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+    <script src="../../assets/scripts/app.js"></script>
+  </body>
+</html>
+

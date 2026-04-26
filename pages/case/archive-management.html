@@ -1,0 +1,37 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+  <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>档案管理 - 律所系统</title><link rel="stylesheet" href="../../assets/styles/main.css" /></head>
+  <body data-page="archive-management">
+    <div class="app-shell"><aside class="sidebar"></aside><div class="main-shell"><div class="workspace">
+      <main class="page-body compact"><div class="split-workspace">
+        <section class="split-main"><section class="panel">
+          <div class="toolbar"><div><button class="button" type="button">＋ 新增档案</button></div><div class="toolbar-tools"><span>电子卷宗</span><span>纸档位置</span><span>借阅状态</span></div></div>
+          <div class="list">
+            <div class="list-item"><div><div class="list-main"><a class="table-link" href="#">张三故意伤害案卷宗</a></div><div class="list-sub">电子档完整 | 纸档 A-03-12 架</div></div><div class="list-side"><span class="badge success">已归档</span></div></div>
+            <div class="list-item"><div><div class="list-main">李四行政复议案卷宗</div><div class="list-sub">补充证据待上传 | 纸档借阅中</div></div><div class="list-side"><span class="badge warning">待补齐</span></div></div>
+            <div class="list-item"><div><div class="list-main">王某货款纠纷案卷宗</div><div class="list-sub">结案材料待扫描</div></div><div class="list-side"><span class="badge primary">处理中</span></div></div>
+          </div>
+        </section></section>
+        <aside class="detail-pane" data-create-title="未命名档案">
+          <div class="detail-topbar"><div class="detail-topbar-actions"><span>⌃</span><span>⌄</span></div><div class="detail-topbar-actions"><span>···</span><span>×</span></div></div>
+          <div class="detail-scroll"><h2 class="detail-title">张三故意伤害案卷宗</h2><div class="detail-tabs"><span class="detail-tab active">详情</span><span class="detail-tab">历史</span></div>
+            <section class="detail-group" data-role="detail"><div class="detail-card">
+              <div class="detail-field"><div class="detail-label">档案名称</div><div class="detail-value">张三故意伤害案卷宗</div></div>
+              <div class="detail-field"><div class="detail-label">电子档状态</div><div class="detail-value">完整</div></div>
+              <div class="detail-field"><div class="detail-label">纸档位置</div><div class="detail-value">A-03-12 架</div></div>
+              <div class="detail-field"><div class="detail-label">归档状态</div><div class="detail-value"><span class="badge success">已归档</span></div></div>
+            </div></section>
+            <section class="detail-group" data-role="history"><div class="detail-card"><table class="history-table"><thead><tr><th>时间</th><th>字段</th><th>变更前</th><th></th><th>变更后</th></tr></thead><tbody><tr><td>04月20日</td><td>归档状态</td><td>处理中</td><td class="history-arrow">→</td><td>已归档</td></tr></tbody></table></div></section>
+            <section class="detail-group" data-role="create"><div class="detail-card"><form class="drawer-form">
+              <div class="drawer-form-grid"><div class="field"><label>档案名称</label><input class="input" value="请输入档案名称" /></div><div class="field"><label>纸档位置</label><input class="input" value="请输入位置" /></div></div>
+              <div class="field"><label>档案说明</label><textarea class="textarea">请输入档案说明</textarea></div>
+              <div class="detail-footer"><button class="button" type="button">提交</button><button class="button secondary" type="button">取消</button></div>
+            </form></div></section>
+          </div>
+        </aside>
+      </div></main>
+    </div></div></div>
+    <script src="../../assets/scripts/app.js"></script>
+  </body>
+</html>
+

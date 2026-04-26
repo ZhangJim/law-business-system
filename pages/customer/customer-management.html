@@ -1,0 +1,68 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>客户管理 - 律所系统</title>
+    <link rel="stylesheet" href="../../assets/styles/main.css" />
+  </head>
+  <body data-page="customer-management">
+    <div class="app-shell">
+      <aside class="sidebar"></aside>
+      <div class="main-shell">
+        <div class="workspace">
+          <main class="page-body compact">
+            <div class="split-workspace">
+              <section class="split-main">
+                <section class="panel">
+                  <div class="toolbar">
+                    <div><button class="button" type="button">＋ 新增客户</button></div>
+                    <div class="toolbar-tools"><span>客户 360</span><span>重点客户</span><span>分级管理</span></div>
+                  </div>
+                </section>
+                <section class="panel">
+                  <div class="list">
+                    <div class="list-item"><div><div class="list-main"><a class="table-link" href="#">王某企业</a></div><div class="list-sub">常法客户 | 年度预算 30 万</div></div><div class="list-side">A级</div></div>
+                    <div class="list-item"><div><div class="list-main">李四</div><div class="list-sub">行政诉讼 | 当前服务中</div></div><div class="list-side">B级</div></div>
+                    <div class="list-item"><div><div class="list-main">张三</div><div class="list-sub">刑事辩护 | 待签补充协议</div></div><div class="list-side">B级</div></div>
+                  </div>
+                </section>
+              </section>
+              <aside class="detail-pane" data-create-title="未命名客户">
+                <div class="detail-topbar"><div class="detail-topbar-actions"><span>⌃</span><span>⌄</span></div><div class="detail-topbar-actions"><span>···</span><span>×</span></div></div>
+                <div class="detail-scroll">
+                  <h2 class="detail-title">王某企业</h2>
+                  <div class="detail-tabs"><span class="detail-tab active">详情</span><span class="detail-tab">历史</span></div>
+                  <section class="detail-group" data-role="detail"><div class="detail-card">
+                    <div class="detail-field"><div class="detail-label">客户级别</div><div class="detail-value"><span class="badge success">A级</span></div></div>
+                    <div class="detail-field"><div class="detail-label">行业</div><div class="detail-value">制造业</div></div>
+                    <div class="detail-field"><div class="detail-label">主要联系人</div><div class="detail-value">王总</div></div>
+                    <div class="detail-field"><div class="detail-label">联系电话</div><div class="detail-value">13900002222</div></div>
+                    <div class="detail-field"><div class="detail-label">服务偏好</div><div class="detail-value">高响应、分期回款</div></div>
+                    <div class="detail-field"><div class="detail-label">当前服务</div><div class="detail-value">常年法律顾问、合同审查</div></div>
+                  </div></section>
+                  <section class="detail-group" data-role="history"><div class="detail-group-title"><span>客户历史</span><span>最近合作</span></div><div class="detail-card">
+                    <table class="history-table"><thead><tr><th>时间</th><th>动作</th><th>说明</th><th></th><th>结果</th></tr></thead><tbody>
+                      <tr><td>04月20日</td><td>新增服务</td><td>合同审查包月</td><td class="history-arrow">→</td><td>已生效</td></tr>
+                      <tr><td>04月10日</td><td>回款到账</td><td>第二期顾问费</td><td class="history-arrow">→</td><td>10 万</td></tr>
+                    </tbody></table>
+                  </div></section>
+                  <section class="detail-group" data-role="create"><div class="detail-group-title"><span>快速新建客户</span><span>统一录入组件</span></div><div class="detail-card">
+                    <form class="drawer-form">
+                      <div class="drawer-form-grid"><div class="field"><label>客户名称</label><input class="input" value="请输入客户名称" /></div><div class="field"><label>客户级别</label><select class="select"><option>A级</option><option>B级</option><option>C级</option></select></div></div>
+                      <div class="drawer-form-grid"><div class="field"><label>联系人</label><input class="input" value="请输入联系人" /></div><div class="field"><label>联系电话</label><input class="input" value="请输入联系电话" /></div></div>
+                      <div class="field"><label>客户标签</label><textarea class="textarea">请输入行业、来源与服务偏好</textarea></div>
+                      <div class="detail-footer"><button class="button" type="button">提交</button><button class="button secondary" type="button">继续添加</button></div>
+                    </form>
+                  </div></section>
+                </div>
+              </aside>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+    <script src="../../assets/scripts/app.js"></script>
+  </body>
+</html>
+

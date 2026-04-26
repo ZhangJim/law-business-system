@@ -1,0 +1,37 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+  <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>提成管理 - 律所系统</title><link rel="stylesheet" href="../../assets/styles/main.css" /></head>
+  <body data-page="commission-management">
+    <div class="app-shell"><aside class="sidebar"></aside><div class="main-shell"><div class="workspace">
+      <main class="page-body compact"><div class="split-workspace">
+        <section class="split-main"><section class="panel">
+          <div class="toolbar"><div><button class="button" type="button">＋ 新增提成批次</button></div><div class="toolbar-tools"><span>结算批次</span><span>复核中</span><span>待审批</span></div></div>
+          <div class="list">
+            <div class="list-item"><div><div class="list-main"><a class="table-link" href="#">2026年4月第一批提成</a></div><div class="list-sub">涉及 12 人 | 应发 28.4 万</div></div><div class="list-side"><span class="badge warning">待审批</span></div></div>
+            <div class="list-item"><div><div class="list-main">行政诉讼团队专项提成</div><div class="list-sub">李四行政诉讼案回款触发</div></div><div class="list-side"><span class="badge success">已核算</span></div></div>
+            <div class="list-item"><div><div class="list-main">家事团队协作分成</div><div class="list-sub">存在跨团队协办，需要二次确认</div></div><div class="list-side"><span class="badge primary">复核中</span></div></div>
+          </div>
+        </section></section>
+        <aside class="detail-pane" data-create-title="未命名提成批次">
+          <div class="detail-topbar"><div class="detail-topbar-actions"><span>⌃</span><span>⌄</span></div><div class="detail-topbar-actions"><span>···</span><span>×</span></div></div>
+          <div class="detail-scroll"><h2 class="detail-title">2026年4月第一批提成</h2><div class="detail-tabs"><span class="detail-tab active">详情</span><span class="detail-tab">历史</span></div>
+            <section class="detail-group" data-role="detail"><div class="detail-card">
+              <div class="detail-field"><div class="detail-label">批次名称</div><div class="detail-value">2026年4月第一批提成</div></div>
+              <div class="detail-field"><div class="detail-label">涉及人数</div><div class="detail-value">12 人</div></div>
+              <div class="detail-field"><div class="detail-label">应发金额</div><div class="detail-value">28.4 万</div></div>
+              <div class="detail-field"><div class="detail-label">状态</div><div class="detail-value"><span class="badge warning">待审批</span></div></div>
+            </div></section>
+            <section class="detail-group" data-role="history"><div class="detail-card"><table class="history-table"><thead><tr><th>时间</th><th>字段</th><th>变更前</th><th></th><th>变更后</th></tr></thead><tbody><tr><td>04月25日</td><td>状态</td><td>复核中</td><td class="history-arrow">→</td><td>待审批</td></tr></tbody></table></div></section>
+            <section class="detail-group" data-role="create"><div class="detail-card"><form class="drawer-form">
+              <div class="drawer-form-grid"><div class="field"><label>批次名称</label><input class="input" value="请输入批次名称" /></div><div class="field"><label>应发金额</label><input class="input" value="请输入金额" /></div></div>
+              <div class="field"><label>说明</label><textarea class="textarea">请输入批次说明</textarea></div>
+              <div class="detail-footer"><button class="button" type="button">提交</button><button class="button secondary" type="button">取消</button></div>
+            </form></div></section>
+          </div>
+        </aside>
+      </div></main>
+    </div></div></div>
+    <script src="../../assets/scripts/app.js"></script>
+  </body>
+</html>
+

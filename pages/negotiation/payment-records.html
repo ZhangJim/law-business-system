@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>回款记录 - 律所系统</title>
+    <link rel="stylesheet" href="../../assets/styles/main.css" />
+  </head>
+  <body data-page="payment-records">
+    <div class="app-shell">
+      <aside class="sidebar"></aside>
+      <div class="main-shell">
+        <div class="workspace">
+          <main class="page-body compact">
+            <div class="split-workspace">
+              <section class="split-main">
+                <section class="panel">
+                  <div class="toolbar">
+                    <div><button class="button" type="button">＋ 新增回款记录</button></div>
+                    <div class="toolbar-tools"><span>财务对账</span><span>到账认领</span><span>异常审核</span></div>
+                  </div>
+
+                  <div class="table-shell tight">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>记录编号</th>
+                          <th>到账日期</th>
+                          <th>客户</th>
+                          <th>合同编号</th>
+                          <th>到账金额</th>
+                          <th>收款方式</th>
+                          <th>认领状态</th>
+                          <th>备注</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><a class="table-link" href="#">SK0001</a></td>
+                          <td>2026-04-25</td>
+                          <td>李四</td>
+                          <td>(2026)中磐 行 字第0001号</td>
+                          <td>80,000</td>
+                          <td>对公转账</td>
+                          <td><span class="badge success">已认领</span></td>
+                          <td>首付款</td>
+                        </tr>
+                        <tr>
+                          <td><a class="table-link" href="#">SK0002</a></td>
+                          <td>2026-04-24</td>
+                          <td>王某企业</td>
+                          <td>(2026)中磐 民 字第0001号</td>
+                          <td>100,000</td>
+                          <td>对公转账</td>
+                          <td><span class="badge warning">待认领</span></td>
+                          <td>需确认合同回款节点</td>
+                        </tr>
+                        <tr>
+                          <td><a class="table-link" href="#">SK0003</a></td>
+                          <td>2026-04-22</td>
+                          <td>张三</td>
+                          <td>(2026)中磐 刑 字第0001号</td>
+                          <td>30,000</td>
+                          <td>微信</td>
+                          <td><span class="badge primary">待审核</span></td>
+                          <td>补充费用</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+              </section>
+
+              <aside class="detail-pane" data-create-title="未命名回款记录">
+                <div class="detail-topbar">
+                  <div class="detail-topbar-actions"><span>⌃</span><span>⌄</span></div>
+                  <div class="detail-topbar-actions"><span>···</span><span>×</span></div>
+                </div>
+                <div class="detail-scroll">
+                  <h2 class="detail-title">SK0001</h2>
+                  <div class="detail-tabs"><span class="detail-tab active">详情</span><span class="detail-tab">历史</span></div>
+
+                  <section class="detail-group" data-role="detail">
+                    <div class="detail-card">
+                      <div class="detail-field"><div class="detail-label">记录编号</div><div class="detail-value">SK0001</div></div>
+                      <div class="detail-field"><div class="detail-label">到账日期</div><div class="detail-value">2026-04-25</div></div>
+                      <div class="detail-field"><div class="detail-label">关联合同</div><div class="detail-value">(2026)中磐 行 字第0001号 | 李四行政诉讼委托合同</div></div>
+                      <div class="detail-field"><div class="detail-label">客户</div><div class="detail-value">李四</div></div>
+                      <div class="detail-field"><div class="detail-label">关联案源</div><div class="detail-value">李四</div></div>
+                      <div class="detail-field"><div class="detail-label">关联案件</div><div class="detail-value">李四土地征收补偿行政案件</div></div>
+                      <div class="detail-field"><div class="detail-label">到账金额</div><div class="detail-value">80,000</div></div>
+                      <div class="detail-field"><div class="detail-label">收款方式</div><div class="detail-value">对公转账</div></div>
+                      <div class="detail-field"><div class="detail-label">认领状态</div><div class="detail-value"><span class="badge success">已认领</span></div></div>
+                      <div class="detail-field"><div class="detail-label">备注</div><div class="detail-value">首付款</div></div>
+                    </div>
+                  </section>
+
+                  <section class="detail-group" data-role="history">
+                    <div class="detail-card">
+                      <table class="history-table">
+                        <thead><tr><th>时间</th><th>字段</th><th>变更前</th><th></th><th>变更后</th></tr></thead>
+                        <tbody>
+                          <tr><td>04月25日</td><td>认领状态</td><td>待认领</td><td class="history-arrow">→</td><td>已认领</td></tr>
+                          <tr><td>04月25日</td><td>到账金额</td><td>0</td><td class="history-arrow">→</td><td>80,000</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </section>
+
+                  <section class="detail-group" data-role="create">
+                    <div class="detail-card">
+                      <form class="drawer-form">
+                        <div class="drawer-form-grid">
+                          <div class="field"><label>记录编号</label><input class="input" value="提交后自动生成，例如 SK0004" /></div>
+                          <div class="field"><label>关联合同</label><input class="input" data-create-field="contractNo" value="请选择合同编号" /></div>
+                        </div>
+                        <div class="drawer-form-grid">
+                          <div class="field"><label>合同名称</label><input class="input" data-create-field="contractName" value="请选择合同名称" /></div>
+                          <div class="field"><label>关联合同客户</label><input class="input" data-create-field="customerName" value="请选择客户" /></div>
+                        </div>
+                        <div class="drawer-form-grid">
+                          <div class="field"><label>关联案源</label><input class="input" data-create-field="leadName" value="请选择案源" /></div>
+                          <div class="field"><label>关联案件</label><input class="input" data-create-field="caseName" value="请选择案件" /></div>
+                        </div>
+                        <div class="drawer-form-grid">
+                          <div class="field"><label>到账日期</label><input class="input" value="年/月/日" /></div>
+                          <div class="field"><label>到账金额</label><input class="input" value="请输入金额" /></div>
+                        </div>
+                        <div class="drawer-form-grid">
+                          <div class="field"><label>收款方式</label><input class="input" value="请输入收款方式" /></div>
+                          <div class="field"><label>认领状态</label><select class="select"><option>待认领</option><option>已认领</option><option>待审核</option></select></div>
+                        </div>
+                        <div class="field"><label>备注</label><input class="input" value="请输入备注" /></div>
+                        <div class="detail-footer">
+                          <button class="button" type="button">提交</button>
+                          <button class="button secondary" type="button">取消</button>
+                        </div>
+                      </form>
+                    </div>
+                  </section>
+                </div>
+              </aside>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+    <script src="../../assets/scripts/app.js"></script>
+  </body>
+</html>

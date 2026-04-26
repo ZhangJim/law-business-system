@@ -1,0 +1,388 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>案源管理 - 律所系统</title>
+    <link rel="stylesheet" href="../../assets/styles/main.css" />
+  </head>
+  <body data-page="lead-management">
+    <div class="app-shell">
+      <aside class="sidebar"></aside>
+      <div class="main-shell">
+        <div class="workspace">
+          <main class="page-body compact">
+            <div class="split-workspace">
+              <section class="split-main">
+                <div class="tabs">
+                  <a class="tab active" href="#">我的案源</a>
+                  <a class="tab" href="#">公海案源</a>
+                  <a class="tab" href="#">全部案源</a>
+                </div>
+
+                <section class="panel">
+                  <div class="filter-card">
+                    <h3>案源阶段</h3>
+                    <div class="pill-row">
+                      <span class="pill active">新案源</span>
+                      <span class="pill">跟进中</span>
+                      <span class="pill">已转商机</span>
+                      <span class="pill">已转客户</span>
+                      <span class="pill">无效</span>
+                    </div>
+                  </div>
+                </section>
+
+                <section class="panel">
+                  <div class="toolbar">
+                    <div>
+                      <button class="button" type="button">＋ 新增案源</button>
+                    </div>
+                    <div class="toolbar-tools">
+                      <span>筛选</span>
+                      <span>分组</span>
+                      <span>排序</span>
+                      <span>搜索</span>
+                    </div>
+                  </div>
+                  <div class="table-shell tight">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>案源信息</th>
+                          <th>客户类型</th>
+                          <th>案件来源</th>
+                          <th>案件类型</th>
+                          <th>案件描述</th>
+                          <th>案源阶段</th>
+                          <th>案件描述</th>
+                          <th>客户地址</th>
+                          <th>职业</th>
+                          <th>电话</th>
+                          <th>案源负责人</th>
+                          <th>邀约负责人</th>
+                          <th>谈案负责人</th>
+                          <th>操作</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <!-- shared lead rows rendered by assets/scripts/data.js -->
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="footer-row"><span>共 10 条</span><span>1 / 1</span><span>20 条/页</span></div>
+                </section>
+              </section>
+
+              <aside class="detail-pane" data-create-title="未命名记录">
+                <div class="detail-topbar">
+                  <div class="detail-topbar-actions"><span>⌃</span><span>⌄</span></div>
+                  <div class="detail-topbar-actions"><span>···</span><span>×</span></div>
+                </div>
+                <div class="detail-scroll">
+                  <h2 class="detail-title">张三（刑事诉讼）</h2>
+                  <div class="detail-header-meta">
+                    <span data-detail-field="stage" data-detail-type="stage-badge-inline"><span class="badge warning">跟进中</span></span>
+                    <span class="detail-meta-item">来源：<span data-detail-field="source" data-detail-type="source-badge-inline"><span class="badge warning">快手</span></span></span>
+                    <span class="detail-meta-item">创建时间：<span data-detail-field="createdAt">2026-04-10 10:20</span></span>
+                  </div>
+                  <div class="detail-tabs">
+                    <span class="detail-tab active">基本信息</span>
+                    <span class="detail-tab">历史</span>
+                  </div>
+
+                  <section class="detail-group" data-role="detail">
+                    <div class="detail-card">
+                      <div class="info-grid">
+                        <div class="info-item"><div class="info-label">客户名称</div><div class="info-value" data-detail-field="customerName">张三</div></div>
+                        <div class="info-item"><div class="info-label">客户类型</div><div class="info-value" data-detail-field="customerType" data-detail-type="customer-type-badge"><span class="badge primary">个人</span></div></div>
+                        <div class="info-item"><div class="info-label">电话</div><div class="info-value" data-detail-field="phone">13800001111</div></div>
+                        <div class="info-item"><div class="info-label">微信</div><div class="info-value muted" data-detail-field="wechat">zhangsan-law</div></div>
+                        <div class="info-item"><div class="info-label">邮箱</div><div class="info-value muted" data-detail-field="email">zhangsan@example.com</div></div>
+                        <div class="info-item"><div class="info-label">案源来源</div><div class="info-value" data-detail-field="source" data-detail-type="source-badge"><span class="badge warning">快手</span></div></div>
+                        <div class="info-item"><div class="info-label">案件类型</div><div class="info-value" data-detail-field="caseType">刑事诉讼</div></div>
+                        <div class="info-item"><div class="info-label">案源阶段</div><div class="info-value" data-detail-field="stage" data-detail-type="stage-badge"><span class="badge warning">跟进中</span></div></div>
+                        <div class="info-item"><div class="info-label">最后跟进日期</div><div class="info-value" data-detail-field="lastFollowDate">2026/04/25</div></div>
+                        <div class="info-item full"><div class="info-label">案件描述</div><div class="info-value" data-detail-field="description">刑事案件，客户希望尽快安排到所面谈。</div></div>
+                        <div class="info-item"><div class="info-label">案源负责人</div><div class="info-value" data-detail-field="leadOwner" data-detail-type="person"><span class="person-chip"><span class="person-avatar">海</span>海岩</span></div></div>
+                        <div class="info-item"><div class="info-label">邀约负责人</div><div class="info-value" data-detail-field="invitationOwner" data-detail-type="person"><span class="person-chip"><span class="person-avatar">王</span>王助理</span></div></div>
+                        <div class="info-item"><div class="info-label">谈案负责人</div><div class="info-value" data-detail-field="negotiationOwner" data-detail-type="person"><span class="person-chip"><span class="person-avatar">刘</span>刘律师</span></div></div>
+                        <div class="info-item"><div class="info-label">客户地址</div><div class="info-value" data-detail-field="address">北京市海淀区中关村南大街 18 号</div></div>
+                        <div class="info-item"><div class="info-label">职务</div><div class="info-value" data-detail-field="job">企业主</div></div>
+                        <div class="info-item"><div class="info-label">距公海回收时间（天）</div><div class="info-value" data-detail-field="recycleDays">12</div></div>
+                      </div>
+                    </div>
+
+                    <div class="switch-tabs">
+                      <span class="switch-tab active">跟进动态</span>
+                      <span class="switch-tab">邀约记录</span>
+                      <span class="switch-tab">谈案记录</span>
+                      <span class="switch-tab">商机</span>
+                      <span class="switch-tab">合同</span>
+                      <span class="switch-tab">案件</span>
+                      <span class="switch-tab">回款计划</span>
+                      <span class="switch-tab">回款记录</span>
+                    </div>
+
+                    <div class="detail-card compact switch-panel active">
+                      <div class="detail-panel-head">
+                        <div class="detail-action-row">
+                          <button class="detail-mini-button" type="button">新增跟进记录</button>
+                          <button class="detail-mini-button" type="button">新增邀约</button>
+                          <button class="detail-mini-button" type="button">新增谈案</button>
+                        </div>
+                      </div>
+                      <div class="activity-list">
+                        <div class="activity-item invite">
+                          <div class="activity-line"><span class="activity-dot"></span></div>
+                          <div class="activity-head"><div class="activity-time">2026-04-16 10:30</div><div class="activity-labels"><span class="activity-tag invite">邀约</span></div></div>
+                          <div class="activity-main">
+                            <div>已约周五下午到所沟通。</div>
+                          </div>
+                          <div class="activity-side"><span class="person-chip"><span class="person-avatar">海</span>海岩</span><span class="method-link"><span class="method-icon">☎</span>电话</span></div>
+                        </div>
+                        <div class="activity-item follow">
+                          <div class="activity-line"><span class="activity-dot"></span></div>
+                          <div class="activity-head"><div class="activity-time">2026-04-15 18:20</div><div class="activity-labels"><span class="activity-tag follow">跟进</span></div></div>
+                          <div class="activity-main">
+                            <div>电话沟通，客户表示下周再联系。</div>
+                          </div>
+                          <div class="activity-side"><span class="person-chip"><span class="person-avatar">王</span>王助理</span><span class="method-link"><span class="method-icon">☎</span>电话</span></div>
+                        </div>
+                        <div class="activity-item negotiation">
+                          <div class="activity-line"><span class="activity-dot"></span></div>
+                          <div class="activity-head"><div class="activity-time">2026-04-14 14:00</div><div class="activity-labels"><span class="activity-tag negotiation">谈案</span></div></div>
+                          <div class="activity-main">
+                            <div>劳动仲裁咨询，客户诉求赔偿 10 万，报价 5000 元，意向中。</div>
+                          </div>
+                          <div class="activity-side"><span class="person-chip"><span class="person-avatar">刘</span>刘律师</span><span class="method-link"><span class="method-icon">面</span>面谈</span></div>
+                        </div>
+                        <div class="activity-item follow">
+                          <div class="activity-line"><span class="activity-dot"></span></div>
+                          <div class="activity-head"><div class="activity-time">2026-04-12 11:15</div><div class="activity-labels"><span class="activity-tag follow">跟进</span></div></div>
+                          <div class="activity-main">
+                            <div>微信添加客户，初步了解需求。</div>
+                          </div>
+                          <div class="activity-side"><span class="person-chip"><span class="person-avatar">王</span>王助理</span><span class="method-link"><span class="method-icon">微</span>微信</span></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="detail-card compact switch-panel">
+                      <div class="detail-panel-head">
+                        <div class="detail-action-row">
+                          <button class="detail-mini-button" type="button">新增邀约记录</button>
+                        </div>
+                      </div>
+                      <div class="related-list">
+                        <div class="related-row">
+                          <div class="related-time">2026-04-25 09:12</div>
+                          <div class="related-main">
+                            <div class="related-title">首次电话邀约，发送定位与接待信息与到店指引。</div>
+                            <div class="related-meta"><span>关联案源：张三</span><span>到店时间：2026/04/27</span><span><span class="badge warning">已邀约</span></span></div>
+                          </div>
+                          <div class="related-side"><span class="person-chip"><span class="person-avatar">王</span>王助理</span><span class="method-link"><span class="method-icon">☎</span>电话</span></div>
+                        </div>
+                        <div class="related-row">
+                          <div class="related-time">2026-04-27 14:30</div>
+                          <div class="related-main">
+                            <div class="related-title">客户确认到所面谈，前台已完成接待准备。</div>
+                            <div class="related-meta"><span>关联案源：张三</span><span>邀约结果：到店</span></div>
+                          </div>
+                          <div class="related-side"><span class="person-chip"><span class="person-avatar">王</span>王助理</span><span class="method-link"><span class="method-icon">微</span>微信</span></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="detail-card compact switch-panel">
+                      <div class="detail-panel-head">
+                        <div class="detail-action-row">
+                          <button class="detail-mini-button" type="button">新增谈案记录</button>
+                        </div>
+                      </div>
+                      <div class="related-list">
+                        <div class="related-row">
+                          <div class="related-time">2026-04-26 10:00</div>
+                          <div class="related-main">
+                            <div class="related-title">面谈前已整理客户诉求与证据情况，现场说明服务范围与风险点。</div>
+                            <div class="related-meta"><span>关联案源：张三</span><span>初步报价：18-22 万</span><span>结果：待确认</span></div>
+                          </div>
+                          <div class="related-side"><span class="person-chip"><span class="person-avatar">刘</span>刘律师</span><span class="method-link"><span class="method-icon">面</span>面谈</span></div>
+                        </div>
+                        <div class="related-row">
+                          <div class="related-time">2026-04-28 09:45</div>
+                          <div class="related-main">
+                            <div class="related-title">补充说明取证思路与代理节奏，客户进入签约前确认阶段。</div>
+                            <div class="related-meta"><span>关联案源：张三</span><span>谈案结果：意向中</span></div>
+                          </div>
+                          <div class="related-side"><span class="person-chip"><span class="person-avatar">刘</span>刘律师</span><span class="method-link"><span class="method-icon">☎</span>电话</span></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="detail-card compact switch-panel">
+                      <div class="detail-panel-head">
+                        <div class="detail-action-row">
+                          <button class="detail-mini-button" type="button">新增商机</button>
+                        </div>
+                      </div>
+                      <div class="related-list">
+                        <div class="related-row">
+                          <div class="related-time">SJ0006</div>
+                          <div class="related-main">
+                            <div class="related-title">张三刑事辩护商机，已进入报价确认。</div>
+                            <div class="related-meta"><span>关联案源：张三</span><span>商机状态：已报价</span><span>成交意向：中</span><span>商机金额：180,000</span></div>
+                          </div>
+                          <div class="related-side"><span class="person-chip"><span class="person-avatar">海</span>海岩</span><span class="badge warning">转合同中</span></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="detail-card compact switch-panel">
+                      <div class="detail-panel-head">
+                        <div class="detail-action-row">
+                          <button class="detail-mini-button" type="button">新增合同</button>
+                        </div>
+                      </div>
+                      <div class="related-list">
+                        <div class="related-row">
+                          <div class="related-time">(2026)中磐 刑 字第0001号</div>
+                          <div class="related-main">
+                            <div class="related-title">张三刑事辩护委托合同</div>
+                            <div class="related-meta"><span>合同状态：履约中</span><span>签订日期：2026/04/28</span><span>合同金额：180,000</span></div>
+                          </div>
+                          <div class="related-side"><span class="badge info">履约中</span><span>已收：30,000</span></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="detail-card compact switch-panel">
+                      <div class="detail-panel-head">
+                        <div class="detail-action-row">
+                          <button class="detail-mini-button" type="button">新增案件</button>
+                        </div>
+                      </div>
+                      <div class="related-list">
+                        <div class="related-row">
+                          <div class="related-time">AJ20260001</div>
+                          <div class="related-main">
+                            <div class="related-title">张三故意伤害刑事辩护案件已立项。</div>
+                            <div class="related-meta"><span>案件阶段：侦查</span><span>立案日期：2026/05/03</span><span>承办律师：刘律师</span></div>
+                          </div>
+                          <div class="related-side"><span class="badge primary">办理中</span></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="detail-card compact switch-panel">
+                      <div class="detail-panel-head">
+                        <div class="detail-action-row">
+                          <button class="detail-mini-button" type="button">新增回款计划</button>
+                        </div>
+                      </div>
+                      <div class="related-list">
+                        <div class="related-row">
+                          <div class="related-time">HK0002</div>
+                          <div class="related-main">
+                            <div class="related-title">首期回款计划已建立。</div>
+                            <div class="related-meta"><span>关联合同：(2026)中磐 刑 字第0001号</span><span>应收金额：80,000</span><span>应收日期：2026/05/12</span></div>
+                          </div>
+                          <div class="related-side"><span class="badge primary">待收</span></div>
+                        </div>
+                        <div class="related-row">
+                          <div class="related-time">HK0003</div>
+                          <div class="related-main">
+                            <div class="related-title">二期尾款计划已建立。</div>
+                            <div class="related-meta"><span>关联合同：(2026)中磐 刑 字第0001号</span><span>应收金额：100,000</span><span>应收日期：2026/06/20</span></div>
+                          </div>
+                          <div class="related-side"><span class="badge warning">未到期</span></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="detail-card compact switch-panel">
+                      <div class="detail-panel-head">
+                        <div class="detail-action-row">
+                          <button class="detail-mini-button" type="button">新增回款记录</button>
+                        </div>
+                      </div>
+                      <div class="related-list">
+                        <div class="related-row">
+                          <div class="related-time">HK0006</div>
+                          <div class="related-main">
+                            <div class="related-title">首期代理费到账并完成认领。</div>
+                            <div class="related-meta"><span>关联合同：(2026)中磐 刑 字第0001号</span><span>回款金额：30,000</span><span>回款日期：2026/05/12</span></div>
+                          </div>
+                          <div class="related-side"><span class="badge success">已到账</span><span>对公转账</span></div>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="detail-group" data-role="history">
+                    <div class="detail-group-title">
+                      <span>历史记录</span>
+                      <span>最近 7 天</span>
+                    </div>
+                    <div class="detail-card">
+                      <table class="history-table">
+                        <thead>
+                          <tr><th>时间</th><th>字段</th><th>变更前</th><th></th><th>变更后</th></tr>
+                        </thead>
+                        <tbody>
+                          <tr><td>04月19日</td><td>谈案负责人</td><td>-</td><td class="history-arrow">→</td><td><span class="person-chip"><span class="person-avatar">海</span>海岩</span></td></tr>
+                          <tr><td>04月18日</td><td>邀约状态</td><td>-</td><td class="history-arrow">→</td><td><span class="badge warning">已邀约</span></td></tr>
+                          <tr><td>04月13日</td><td>案件来源</td><td>-</td><td class="history-arrow">→</td><td><span class="badge warning">快手</span></td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </section>
+
+                  <section class="detail-group" data-role="create">
+                    <div class="detail-group-title">
+                      <span>新建案源</span>
+                      <span>表字段</span>
+                    </div>
+                    <div class="detail-card">
+                      <form class="drawer-form">
+                        <div class="drawer-form-grid">
+                          <div class="field"><label>客户名称</label><input class="input" value="请输入内容" /></div>
+                          <div class="field"><label>客户类型</label><select class="select"><option>个人</option><option>企业</option></select></div>
+                        </div>
+                        <div class="drawer-form-grid">
+                          <div class="field"><label>电话</label><input class="input" value="请输入内容" /></div>
+                          <div class="field"><label>微信</label><input class="input" value="请输入内容" /></div>
+                        </div>
+                        <div class="drawer-form-grid">
+                          <div class="field"><label>邮箱</label><input class="input" value="请输入内容" /></div>
+                          <div class="field"><label>案源来源</label><select class="select"><option>请选择选项</option><option>百度</option><option>快手</option><option>领导介绍</option><option>抖音</option><option>小红书</option><option>转介绍</option><option>自有案件</option></select></div>
+                        </div>
+                        <div class="drawer-form-grid">
+                          <div class="field"><label>案件类型</label><select class="select"><option>请选择案件类型</option><optgroup label="诉讼专项"><option>民事诉讼</option><option>刑事诉讼</option><option>行政诉讼</option><option>仲裁案件</option><option>执行案件</option></optgroup><optgroup label="非诉专项"><option>常年法律顾问</option><option>文书起草</option><option>合同审核</option></optgroup></select></div>
+                          <div class="field"><label>案源阶段</label><select class="select"><option>新案源</option><option>跟进中</option><option>已转商机</option><option>已转客户</option><option>无效</option></select></div>
+                        </div>
+                        <div class="drawer-form-grid">
+                          <div class="field"><label>最后跟进日期</label><input class="input" value="2026/04/25" /></div>
+                          <div class="field"><label>距公海回收时间（天）</label><input class="input" value="请输入内容" /></div>
+                        </div>
+                        <div class="field"><label>案件描述</label><textarea class="textarea">请输入内容</textarea></div>
+                        <div class="drawer-form-grid">
+                          <div class="field"><label>案源负责人</label><input class="input" value="请选择人员" /></div>
+                          <div class="field"><label>邀约负责人</label><input class="input" value="请选择人员" /></div>
+                        </div>
+                        <div class="drawer-form-grid">
+                          <div class="field"><label>谈案负责人</label><input class="input" value="请选择人员" /></div>
+                          <div class="field"><label>职务</label><input class="input" value="请输入内容" /></div>
+                        </div>
+                        <div class="field"><label>客户地址</label><input class="input" value="请输入地址" /></div>
+                        <div class="detail-footer">
+                          <button class="button" type="button">提交</button>
+                          <button class="button secondary" type="button">提交后继续添加</button>
+                        </div>
+                      </form>
+                    </div>
+                  </section>
+                </div>
+              </aside>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+    <script src="../../assets/scripts/data.js"></script>
+    <script src="../../assets/scripts/app.js"></script>
+  </body>
+</html>

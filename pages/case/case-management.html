@@ -1,0 +1,71 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>案件管理 - 律所系统</title>
+    <link rel="stylesheet" href="../../assets/styles/main.css" />
+  </head>
+  <body data-page="case-management">
+    <div class="app-shell">
+      <aside class="sidebar"></aside>
+      <div class="main-shell">
+        <div class="workspace">
+          <main class="page-body compact">
+            <div class="split-workspace">
+              <section class="split-main">
+                <section class="panel">
+                  <div class="toolbar">
+                    <div><button class="button" type="button">＋ 新增案件</button></div>
+                    <div class="toolbar-tools"><span>案件进度</span><span>全生命周期</span><span>节点提醒</span></div>
+                  </div>
+                  <div class="table-shell tight">
+                    <table>
+                      <thead><tr><th>案件名称</th><th>案件类型</th><th>承办律师</th><th>当前阶段</th><th>最近动作</th><th>下个节点</th></tr></thead>
+                      <tbody>
+                        <tr><td><a class="table-link" href="#">张三故意伤害案</a></td><td>刑事</td><td>刘律师</td><td><span class="badge warning">侦查阶段</span></td><td>已完成会见</td><td>准备取保材料</td></tr>
+                        <tr><td>李四行政复议案</td><td>行政</td><td>周律师</td><td><span class="badge primary">立案中</span></td><td>补充主体资格材料</td><td>等待法院反馈</td></tr>
+                        <tr><td>王某货款纠纷</td><td>民商事</td><td>林律师</td><td><span class="badge success">执行中</span></td><td>已申请财产保全</td><td>推进执行和解</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+              </section>
+              <aside class="detail-pane" data-create-title="未命名案件">
+                <div class="detail-topbar"><div class="detail-topbar-actions"><span>⌃</span><span>⌄</span></div><div class="detail-topbar-actions"><span>···</span><span>×</span></div></div>
+                <div class="detail-scroll">
+                  <h2 class="detail-title">张三故意伤害案</h2>
+                  <div class="detail-tabs"><span class="detail-tab active">详情</span><span class="detail-tab">历史</span></div>
+                  <section class="detail-group" data-role="detail"><div class="detail-card">
+                    <div class="detail-field"><div class="detail-label">案件类型</div><div class="detail-value">刑事</div></div>
+                    <div class="detail-field"><div class="detail-label">当前阶段</div><div class="detail-value"><span class="badge warning">侦查阶段</span></div></div>
+                    <div class="detail-field"><div class="detail-label">承办律师</div><div class="detail-value"><span class="person-chip"><span class="person-avatar">刘</span>刘律师</span></div></div>
+                    <div class="detail-field"><div class="detail-label">立案时间</div><div class="detail-value">2026/03/12</div></div>
+                    <div class="detail-field"><div class="detail-label">最近动作</div><div class="detail-value">已完成会见，正在准备取保候审材料。</div></div>
+                    <div class="detail-field"><div class="detail-label">下一步节点</div><div class="detail-value">与家属确认担保人及财产证明。</div></div>
+                  </div></section>
+                  <section class="detail-group" data-role="history"><div class="detail-group-title"><span>案件历史</span><span>关键动作</span></div><div class="detail-card">
+                    <table class="history-table"><thead><tr><th>时间</th><th>动作</th><th>说明</th><th></th><th>结果</th></tr></thead><tbody>
+                      <tr><td>04月22日</td><td>律师会见</td><td>已完成第一次会见</td><td class="history-arrow">→</td><td>待补材料</td></tr>
+                      <tr><td>04月15日</td><td>接案受理</td><td>完成委托手续</td><td class="history-arrow">→</td><td>进入侦查阶段</td></tr>
+                    </tbody></table>
+                  </div></section>
+                  <section class="detail-group" data-role="create"><div class="detail-group-title"><span>快速新建案件</span><span>统一录入组件</span></div><div class="detail-card">
+                    <form class="drawer-form">
+                      <div class="drawer-form-grid"><div class="field"><label>案件名称</label><input class="input" value="请输入案件名称" /></div><div class="field"><label>案件类型</label><select class="select"><option>刑事</option><option>民商事</option><option>行政</option></select></div></div>
+                      <div class="drawer-form-grid"><div class="field"><label>承办律师</label><input class="input" value="请选择人员" /></div><div class="field"><label>案件阶段</label><select class="select"><option>接案受理</option><option>立案中</option></select></div></div>
+                      <div class="field"><label>案件摘要</label><textarea class="textarea">请输入案件情况</textarea></div>
+                      <div class="detail-footer"><button class="button" type="button">提交</button><button class="button secondary" type="button">保存草稿</button></div>
+                    </form>
+                  </div></section>
+                </div>
+              </aside>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+    <script src="../../assets/scripts/app.js"></script>
+  </body>
+</html>
+

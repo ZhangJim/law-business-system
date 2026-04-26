@@ -1,0 +1,40 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+  <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>邀约记录 - 律所系统</title><link rel="stylesheet" href="../../assets/styles/main.css" /></head>
+  <body data-page="invitation-records">
+    <div class="app-shell"><aside class="sidebar"></aside><div class="main-shell"><div class="workspace">
+      <main class="page-body compact"><div class="split-workspace">
+        <section class="split-main"><section class="panel">
+          <div class="toolbar"><div><button class="button" type="button">＋ 新增邀约记录</button></div><div class="toolbar-tools"><span>过程留痕</span><span>电话</span><span>微信</span></div></div>
+          <div class="list">
+            <div class="list-item"><div><div class="list-main"><a class="table-link" href="#">张三 | 电话邀约记录</a></div><div class="list-sub">2026-04-25 09:12 | 邀约人：王助理 | 约定 4 月 27 日到访</div></div><div class="list-side"><span class="badge success">有效</span></div></div>
+            <div class="list-item"><div><div class="list-main">李四 | 微信补充材料提醒</div><div class="list-sub">2026-04-24 18:05 | 已发送位置与接待律师信息</div></div><div class="list-side"><span class="badge primary">已读</span></div></div>
+            <div class="list-item"><div><div class="list-main">周某 | 未接通回访</div><div class="list-sub">2026-04-24 15:26 | 系统自动生成二次提醒</div></div><div class="list-side"><span class="badge warning">待回拨</span></div></div>
+          </div>
+        </section></section>
+        <aside class="detail-pane" data-create-title="未命名邀约记录">
+          <div class="detail-topbar"><div class="detail-topbar-actions"><span>⌃</span><span>⌄</span></div><div class="detail-topbar-actions"><span>···</span><span>×</span></div></div>
+          <div class="detail-scroll"><h2 class="detail-title">张三电话邀约记录</h2><div class="detail-tabs"><span class="detail-tab active">详情</span><span class="detail-tab">历史</span></div>
+            <section class="detail-group" data-role="detail"><div class="detail-card">
+              <div class="detail-field"><div class="detail-label">客户</div><div class="detail-value">张三</div></div>
+              <div class="detail-field"><div class="detail-label">记录类型</div><div class="detail-value">电话邀约</div></div>
+              <div class="detail-field"><div class="detail-label">记录时间</div><div class="detail-value">2026-04-25 09:12</div></div>
+              <div class="detail-field"><div class="detail-label">邀约人</div><div class="detail-value"><span class="person-chip"><span class="person-avatar">王</span>王助理</span></div></div>
+              <div class="detail-field"><div class="detail-label">结果</div><div class="detail-value"><span class="badge success">有效</span></div></div>
+            </div></section>
+            <section class="detail-group" data-role="history"><div class="detail-card"><table class="history-table"><thead><tr><th>时间</th><th>字段</th><th>变更前</th><th></th><th>变更后</th></tr></thead><tbody><tr><td>04月25日</td><td>结果</td><td>待确认</td><td class="history-arrow">→</td><td>有效</td></tr></tbody></table></div></section>
+            <section class="detail-group" data-role="create"><div class="detail-card"><form class="drawer-form">
+              <div class="drawer-form-grid"><div class="field"><label>关联的案源</label><input class="input" data-create-field="leadName" value="请选择关联的案源" /></div><div class="field"><label>跟进类型</label><select class="select"><option>邀约</option><option>谈案</option></select></div></div>
+              <div class="drawer-form-grid"><div class="field"><label>跟进人</label><input class="input" value="请选择人员" /></div><div class="field"><label>跟进日期</label><input class="input" value="2026/04/25" /></div></div>
+              <div class="drawer-form-grid"><div class="field"><label>邀约发起日期</label><input class="input" value="年/月/日" /></div><div class="field"><label>是否邀约成功</label><select class="select"><option>请选择选项</option><option>成功</option><option>失败</option></select></div></div>
+              <div class="drawer-form-grid"><div class="field"><label>邀约到店时间</label><input class="input" value="年/月/日" /></div><div class="field"><label>邀约备注</label><input class="input" value="请输入内容" /></div></div>
+              <div class="detail-footer"><button class="button" type="button">提交</button><button class="button secondary" type="button">取消</button></div>
+            </form></div></section>
+          </div>
+        </aside>
+      </div></main>
+    </div></div></div>
+    <script src="../../assets/scripts/app.js"></script>
+  </body>
+</html>
+

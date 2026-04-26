@@ -1,0 +1,973 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>案源管理 - 律所系统</title>
+    <link rel="stylesheet" href="../../assets/styles/main.css">
+  </head>
+  <body data-page="lead-management">
+    <div class="app-shell">
+      <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-main">
+        <div class="brand-badge">A</div>
+        <div class="brand-text">律所系统</div>
+      </div>
+      <button class="collapse-btn" type="button" aria-label="收起导航">«</button>
+    </div>
+    <nav class="nav">
+          <a class="nav-item " href="../home/home.html">
+            <span class="icon icon-box">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M3.5 8.8L12 2l8.5 6.8"></path><path d="M5.5 7.5V20h13V7.5"></path><path d="M9 20v-6h6v6"></path>
+    </svg>
+  </span>
+            <span class="nav-text">首页</span>
+          </a>
+        
+          <a class="nav-item active" href="../leads/lead-management.html">
+            <span class="icon icon-box">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <rect x="4" y="4" width="6" height="6" rx="1.5"></rect><rect x="14" y="4" width="6" height="6" rx="1.5"></rect><rect x="4" y="14" width="6" height="6" rx="1.5"></rect><rect x="14" y="14" width="6" height="6" rx="1.5"></rect>
+    </svg>
+  </span>
+            <span class="nav-text">案源管理</span>
+          </a>
+        
+        <div class="nav-group ">
+          <div class="nav-group-label">
+            <span class="icon icon-box">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M3 6h18"></path><path d="M8 3v6"></path><path d="M16 3v6"></path><rect x="4" y="6" width="16" height="14" rx="2"></rect><path d="M8 12h8"></path><path d="M8 16h5"></path>
+    </svg>
+  </span>
+            <span class="nav-text">邀约管理</span>
+            <span class="chevron">›</span>
+          </div>
+          <div class="nav-children">
+            
+                  <a class="nav-child " href="../invitation/invitation-management.html">
+                    <span class="icon icon-dot">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="2.2"></circle><path d="M12 3v3"></path><path d="M12 18v3"></path><path d="M3 12h3"></path><path d="M18 12h3"></path>
+    </svg>
+  </span>
+                    <span class="nav-text">邀约管理</span>
+                  </a>
+                
+                  <a class="nav-child " href="../invitation/invitation-records.html">
+                    <span class="icon icon-dot">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="2.2"></circle><path d="M12 3v3"></path><path d="M12 18v3"></path><path d="M3 12h3"></path><path d="M18 12h3"></path>
+    </svg>
+  </span>
+                    <span class="nav-text">邀约记录</span>
+                  </a>
+                
+          </div>
+        </div>
+      
+        <div class="nav-group ">
+          <div class="nav-group-label">
+            <span class="icon icon-box">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M5 6h14"></path><path d="M8 11h8"></path><path d="M10 16h4"></path><rect x="4" y="3" width="16" height="18" rx="2"></rect>
+    </svg>
+  </span>
+            <span class="nav-text">谈案与签约</span>
+            <span class="chevron">›</span>
+          </div>
+          <div class="nav-children">
+            
+                  <a class="nav-child " href="../negotiation/negotiation-management.html">
+                    <span class="icon icon-dot">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="2.2"></circle><path d="M12 3v3"></path><path d="M12 18v3"></path><path d="M3 12h3"></path><path d="M18 12h3"></path>
+    </svg>
+  </span>
+                    <span class="nav-text">谈案管理</span>
+                  </a>
+                
+                  <a class="nav-child " href="../negotiation/opportunity-management.html">
+                    <span class="icon icon-dot">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="2.2"></circle><path d="M12 3v3"></path><path d="M12 18v3"></path><path d="M3 12h3"></path><path d="M18 12h3"></path>
+    </svg>
+  </span>
+                    <span class="nav-text">商机管理</span>
+                  </a>
+                
+                  <a class="nav-child " href="../negotiation/contract-management.html">
+                    <span class="icon icon-dot">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="2.2"></circle><path d="M12 3v3"></path><path d="M12 18v3"></path><path d="M3 12h3"></path><path d="M18 12h3"></path>
+    </svg>
+  </span>
+                    <span class="nav-text">合同管理</span>
+                  </a>
+                
+                  <a class="nav-child " href="../negotiation/payment-plan.html">
+                    <span class="icon icon-dot">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="2.2"></circle><path d="M12 3v3"></path><path d="M12 18v3"></path><path d="M3 12h3"></path><path d="M18 12h3"></path>
+    </svg>
+  </span>
+                    <span class="nav-text">回款计划</span>
+                  </a>
+                
+                  <a class="nav-child " href="../negotiation/payment-records.html">
+                    <span class="icon icon-dot">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="2.2"></circle><path d="M12 3v3"></path><path d="M12 18v3"></path><path d="M3 12h3"></path><path d="M18 12h3"></path>
+    </svg>
+  </span>
+                    <span class="nav-text">回款记录</span>
+                  </a>
+                
+          </div>
+        </div>
+      
+          <a class="nav-item " href="../customer/customer-management.html">
+            <span class="icon icon-box">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"></path><path d="M4 20a8 8 0 0 1 16 0"></path>
+    </svg>
+  </span>
+            <span class="nav-text">客户管理</span>
+          </a>
+        
+        <div class="nav-group ">
+          <div class="nav-group-label">
+            <span class="icon icon-box">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <rect x="4" y="4" width="16" height="16" rx="2"></rect><path d="M8 8h8"></path><path d="M8 12h8"></path><path d="M8 16h5"></path>
+    </svg>
+  </span>
+            <span class="nav-text">案件管理</span>
+            <span class="chevron">›</span>
+          </div>
+          <div class="nav-children">
+            
+                  <a class="nav-child " href="../case/case-management.html">
+                    <span class="icon icon-dot">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="2.2"></circle><path d="M12 3v3"></path><path d="M12 18v3"></path><path d="M3 12h3"></path><path d="M18 12h3"></path>
+    </svg>
+  </span>
+                    <span class="nav-text">案件管理</span>
+                  </a>
+                
+                  <a class="nav-child " href="../case/archive-management.html">
+                    <span class="icon icon-dot">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="2.2"></circle><path d="M12 3v3"></path><path d="M12 18v3"></path><path d="M3 12h3"></path><path d="M18 12h3"></path>
+    </svg>
+  </span>
+                    <span class="nav-text">档案管理</span>
+                  </a>
+                
+                  <a class="nav-child " href="../case/case-stage-config.html">
+                    <span class="icon icon-dot">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="2.2"></circle><path d="M12 3v3"></path><path d="M12 18v3"></path><path d="M3 12h3"></path><path d="M18 12h3"></path>
+    </svg>
+  </span>
+                    <span class="nav-text">案件阶段配置</span>
+                  </a>
+                
+          </div>
+        </div>
+      
+        <div class="nav-group ">
+          <div class="nav-group-label">
+            <span class="icon icon-box">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 3v18"></path><path d="M17 7.5c0-1.9-2.2-3.5-5-3.5s-5 1.6-5 3.5 2.2 3.5 5 3.5 5 1.6 5 3.5-2.2 3.5-5 3.5-5-1.6-5-3.5"></path>
+    </svg>
+  </span>
+            <span class="nav-text">财务管理</span>
+            <span class="chevron">›</span>
+          </div>
+          <div class="nav-children">
+            
+                  <a class="nav-child " href="../finance/receivable-ledger.html">
+                    <span class="icon icon-dot">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="2.2"></circle><path d="M12 3v3"></path><path d="M12 18v3"></path><path d="M3 12h3"></path><path d="M18 12h3"></path>
+    </svg>
+  </span>
+                    <span class="nav-text">应收台账</span>
+                  </a>
+                
+                  <a class="nav-child " href="../finance/payable-ledger.html">
+                    <span class="icon icon-dot">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="2.2"></circle><path d="M12 3v3"></path><path d="M12 18v3"></path><path d="M3 12h3"></path><path d="M18 12h3"></path>
+    </svg>
+  </span>
+                    <span class="nav-text">应付台账</span>
+                  </a>
+                
+                  <a class="nav-child " href="../finance/commission-management.html">
+                    <span class="icon icon-dot">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="2.2"></circle><path d="M12 3v3"></path><path d="M12 18v3"></path><path d="M3 12h3"></path><path d="M18 12h3"></path>
+    </svg>
+  </span>
+                    <span class="nav-text">提成管理</span>
+                  </a>
+                
+                  <a class="nav-child " href="../finance/invoice-management.html">
+                    <span class="icon icon-dot">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="2.2"></circle><path d="M12 3v3"></path><path d="M12 18v3"></path><path d="M3 12h3"></path><path d="M18 12h3"></path>
+    </svg>
+  </span>
+                    <span class="nav-text">发票管理</span>
+                  </a>
+                
+          </div>
+        </div>
+      
+          <a class="nav-item " href="../team/team-management.html">
+            <span class="icon icon-box">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path><path d="M16.5 12a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"></path><path d="M3.5 20a5 5 0 0 1 9 0"></path><path d="M13 20a4 4 0 0 1 7 0"></path>
+    </svg>
+  </span>
+            <span class="nav-text">团队管理</span>
+          </a>
+        
+        <div class="nav-group ">
+          <div class="nav-group-label">
+            <span class="icon icon-box">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M5 18V9"></path><path d="M12 18V5"></path><path d="M19 18v-7"></path><path d="M3 20h18"></path>
+    </svg>
+  </span>
+            <span class="nav-text">分析中心</span>
+            <span class="chevron">›</span>
+          </div>
+          <div class="nav-children">
+            
+                  <a class="nav-child " href="../analysis/lead-analysis.html">
+                    <span class="icon icon-dot">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="2.2"></circle><path d="M12 3v3"></path><path d="M12 18v3"></path><path d="M3 12h3"></path><path d="M18 12h3"></path>
+    </svg>
+  </span>
+                    <span class="nav-text">线索分析</span>
+                  </a>
+                
+                  <a class="nav-child " href="../analysis/invitation-analysis.html">
+                    <span class="icon icon-dot">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="2.2"></circle><path d="M12 3v3"></path><path d="M12 18v3"></path><path d="M3 12h3"></path><path d="M18 12h3"></path>
+    </svg>
+  </span>
+                    <span class="nav-text">邀约分析</span>
+                  </a>
+                
+                  <a class="nav-child " href="../analysis/negotiation-analysis.html">
+                    <span class="icon icon-dot">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="2.2"></circle><path d="M12 3v3"></path><path d="M12 18v3"></path><path d="M3 12h3"></path><path d="M18 12h3"></path>
+    </svg>
+  </span>
+                    <span class="nav-text">谈案分析</span>
+                  </a>
+                
+                  <a class="nav-child " href="../analysis/signing-analysis.html">
+                    <span class="icon icon-dot">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="2.2"></circle><path d="M12 3v3"></path><path d="M12 18v3"></path><path d="M3 12h3"></path><path d="M18 12h3"></path>
+    </svg>
+  </span>
+                    <span class="nav-text">签约分析</span>
+                  </a>
+                
+          </div>
+        </div>
+      </nav>
+    
+    <div class="sidebar-card">
+      <div class="sidebar-card-title">本周签约进度</div>
+      <div class="sidebar-mini-chart">
+        <span style="height: 46%"></span>
+        <span style="height: 70%"></span>
+        <span style="height: 58%"></span>
+        <span style="height: 86%"></span>
+      </div>
+      <div class="sidebar-card-foot">
+        <strong>72%</strong>
+        <span>距目标还差 3 单</span>
+      </div>
+    </div>
+  
+  </aside>
+      <div class="main-shell">
+        <div class="workspace">
+          <main class="page-body compact">
+            <div class="split-workspace">
+              <section class="split-main">
+                <div class="tabs">
+                  <a class="tab active" href="#">我的案源</a>
+                  <a class="tab" href="#">公海案源</a>
+                  <a class="tab" href="#">全部案源</a>
+                </div>
+
+                <section class="panel">
+                  <div class="filter-card">
+                    <h3>案源阶段</h3>
+                    <div class="pill-row">
+                      <span class="pill active" style="cursor: pointer;">新案源</span>
+                      <span class="pill" style="cursor: pointer;">跟进中</span>
+                      <span class="pill" style="cursor: pointer;">已转商机</span>
+                      <span class="pill" style="cursor: pointer;">已转客户</span>
+                      <span class="pill" style="cursor: pointer;">无效</span>
+                    </div>
+                  </div>
+                </section>
+
+                <section class="panel">
+                  <div class="toolbar">
+                    <div>
+                      <button class="button" type="button">＋ 新增案源</button>
+                    </div>
+                    <div class="toolbar-tools">
+                      <span>筛选</span>
+                      <span>分组</span>
+                      <span>排序</span>
+                      <span>搜索</span>
+                    </div>
+                  </div>
+                  <div class="table-shell tight">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>案源信息</th>
+                          <th>客户类型</th>
+                          <th>案件来源</th>
+                          <th>案件类型</th>
+                          <th>案件描述</th>
+                          <th>案源阶段</th>
+                          <th>案件描述</th>
+                          <th>客户地址</th>
+                          <th>职业</th>
+                          <th>电话</th>
+                          <th>案源负责人</th>
+                          <th>邀约负责人</th>
+                          <th>谈案负责人</th>
+                          <th>操作</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+        <tr data-id="LD0001" data-customer-name="张三" data-lead-name="张三" data-customer-type="个人" data-phone="13800001111" data-wechat="zhangsan-law" data-email="zhangsan@example.com" data-source="快手" data-stage="跟进中" data-case-type="刑事诉讼" data-created-at="2026-04-10 10:20" data-last-follow-date="2026/04/25" data-lead-summary="短视频私信咨询刑事辩护" data-description="涉嫌故意伤害，家属希望尽快安排律师面见。" data-lead-owner="海岩" data-invitation-owner="王助理" data-negotiation-owner="刘律师" data-address="北京海淀" data-job="餐饮老板" data-recycle-days="12" class="drawer-trigger">
+          <td>
+    <div class="lead-info-cell">
+      <div class="lead-info-main">
+        <a class="table-link lead-info-title" href="#">张三</a>
+        <span class="lead-info-case">（刑事诉讼）</span>
+      </div>
+      <div class="lead-info-meta">
+        <span class="badge warning">快手</span>
+        <span class="badge warning">跟进中</span>
+        <span>北京海淀</span>
+      </div>
+    </div>
+  </td>
+          <td><span class="badge primary">个人</span></td>
+          <td><span class="badge warning">快手</span></td>
+          <td>刑事诉讼</td>
+          <td>短视频私信咨询刑事辩护</td>
+          <td><span class="badge warning">跟进中</span></td>
+          <td>涉嫌故意伤害，家属希望尽快安排律师面见。</td>
+          <td>北京海淀</td>
+          <td>餐饮老板</td>
+          <td>13800001111</td>
+          <td><span class="person-chip"><span class="person-avatar">海</span>海岩</span></td>
+          <td><span class="person-chip"><span class="person-avatar">王</span>王助理</span></td>
+          <td><span class="person-chip"><span class="person-avatar">刘</span>刘律师</span></td>
+          <td><span class="action-links"><a class="action-link" href="#">分配邀约负责人</a><a class="action-link" href="#">分配谈案负责人</a></span></td>
+        </tr>
+      
+        <tr data-id="LD0002" data-customer-name="李明" data-lead-name="李明" data-customer-type="个人" data-phone="13900008321" data-wechat="liming-law" data-email="liming@example.com" data-source="百度" data-stage="新案源" data-case-type="行政诉讼" data-created-at="2026-04-11 15:40" data-last-follow-date="2026/04/23" data-lead-summary="搜索行政诉讼律师后留电" data-description="区政府行政处罚争议，咨询复议与起诉路径。" data-lead-owner="海岩" data-invitation-owner="" data-negotiation-owner="" data-address="北京朝阳" data-job="产品总监" data-recycle-days="15" class="drawer-trigger">
+          <td>
+    <div class="lead-info-cell">
+      <div class="lead-info-main">
+        <a class="table-link lead-info-title" href="#">李明</a>
+        <span class="lead-info-case">（行政诉讼）</span>
+      </div>
+      <div class="lead-info-meta">
+        <span class="badge primary">百度</span>
+        <span class="badge primary">新案源</span>
+        <span>北京朝阳</span>
+      </div>
+    </div>
+  </td>
+          <td><span class="badge primary">个人</span></td>
+          <td><span class="badge primary">百度</span></td>
+          <td>行政诉讼</td>
+          <td>搜索行政诉讼律师后留电</td>
+          <td><span class="badge primary">新案源</span></td>
+          <td>区政府行政处罚争议，咨询复议与起诉路径。</td>
+          <td>北京朝阳</td>
+          <td>产品总监</td>
+          <td>13900008321</td>
+          <td><span class="person-chip"><span class="person-avatar">海</span>海岩</span></td>
+          <td>-</td>
+          <td>-</td>
+          <td><span class="action-links"><a class="action-link" href="#">分配邀约负责人</a><a class="action-link" href="#">分配谈案负责人</a></span></td>
+        </tr>
+      
+        <tr data-id="LD0003" data-customer-name="王雪" data-lead-name="王雪" data-customer-type="个人" data-phone="13700004567" data-wechat="wangxue-family" data-email="wangxue@example.com" data-source="百度" data-stage="新案源" data-case-type="民事诉讼" data-created-at="2026-04-10 14:00" data-last-follow-date="2026/04/22" data-lead-summary="搜索婚姻纠纷律师咨询" data-description="离婚财产分割与孩子抚养权争议。" data-lead-owner="海岩" data-invitation-owner="" data-negotiation-owner="" data-address="天津" data-job="主厨" data-recycle-days="18" class="drawer-trigger">
+          <td>
+    <div class="lead-info-cell">
+      <div class="lead-info-main">
+        <a class="table-link lead-info-title" href="#">王雪</a>
+        <span class="lead-info-case">（民事诉讼）</span>
+      </div>
+      <div class="lead-info-meta">
+        <span class="badge primary">百度</span>
+        <span class="badge primary">新案源</span>
+        <span>天津</span>
+      </div>
+    </div>
+  </td>
+          <td><span class="badge primary">个人</span></td>
+          <td><span class="badge primary">百度</span></td>
+          <td>民事诉讼</td>
+          <td>搜索婚姻纠纷律师咨询</td>
+          <td><span class="badge primary">新案源</span></td>
+          <td>离婚财产分割与孩子抚养权争议。</td>
+          <td>天津</td>
+          <td>主厨</td>
+          <td>13700004567</td>
+          <td><span class="person-chip"><span class="person-avatar">海</span>海岩</span></td>
+          <td>-</td>
+          <td>-</td>
+          <td><span class="action-links"><a class="action-link" href="#">分配邀约负责人</a><a class="action-link" href="#">分配谈案负责人</a></span></td>
+        </tr>
+      
+        <tr data-id="LD0004" data-customer-name="周建国" data-lead-name="周建国" data-customer-type="个人" data-phone="13600006789" data-wechat="zhoujianguo88" data-email="zhou@example.com" data-source="百度" data-stage="新案源" data-case-type="执行案件" data-created-at="2026-04-09 11:15" data-last-follow-date="2026/04/21" data-lead-summary="搜索交通事故赔偿标准" data-description="三车追尾事故，涉及伤残鉴定与保险赔付执行。" data-lead-owner="海岩" data-invitation-owner="" data-negotiation-owner="" data-address="石家庄" data-job="个体经营" data-recycle-days="20" class="drawer-trigger">
+          <td>
+    <div class="lead-info-cell">
+      <div class="lead-info-main">
+        <a class="table-link lead-info-title" href="#">周建国</a>
+        <span class="lead-info-case">（执行案件）</span>
+      </div>
+      <div class="lead-info-meta">
+        <span class="badge primary">百度</span>
+        <span class="badge primary">新案源</span>
+        <span>石家庄</span>
+      </div>
+    </div>
+  </td>
+          <td><span class="badge primary">个人</span></td>
+          <td><span class="badge primary">百度</span></td>
+          <td>执行案件</td>
+          <td>搜索交通事故赔偿标准</td>
+          <td><span class="badge primary">新案源</span></td>
+          <td>三车追尾事故，涉及伤残鉴定与保险赔付执行。</td>
+          <td>石家庄</td>
+          <td>个体经营</td>
+          <td>13600006789</td>
+          <td><span class="person-chip"><span class="person-avatar">海</span>海岩</span></td>
+          <td>-</td>
+          <td>-</td>
+          <td><span class="action-links"><a class="action-link" href="#">分配邀约负责人</a><a class="action-link" href="#">分配谈案负责人</a></span></td>
+        </tr>
+      
+        <tr data-id="LD0005" data-customer-name="李四" data-lead-name="李四" data-customer-type="企业" data-phone="02151125" data-wechat="lisi.project" data-email="lisi@example.com" data-source="领导介绍" data-stage="跟进中" data-case-type="行政诉讼" data-created-at="2026-04-12 09:50" data-last-follow-date="2026/04/24" data-lead-summary="内部转介绍行政案件" data-description="土地征收补偿争议，客户已准备完整材料。" data-lead-owner="海岩" data-invitation-owner="王助理" data-negotiation-owner="刘律师" data-address="北京西城" data-job="地产项目经理" data-recycle-days="10" class="drawer-trigger">
+          <td>
+    <div class="lead-info-cell">
+      <div class="lead-info-main">
+        <a class="table-link lead-info-title" href="#">李四</a>
+        <span class="lead-info-case">（行政诉讼）</span>
+      </div>
+      <div class="lead-info-meta">
+        <span class="badge warning">领导介绍</span>
+        <span class="badge warning">跟进中</span>
+        <span>北京西城</span>
+      </div>
+    </div>
+  </td>
+          <td><span class="badge info">企业</span></td>
+          <td><span class="badge warning">领导介绍</span></td>
+          <td>行政诉讼</td>
+          <td>内部转介绍行政案件</td>
+          <td><span class="badge warning">跟进中</span></td>
+          <td>土地征收补偿争议，客户已准备完整材料。</td>
+          <td>北京西城</td>
+          <td>地产项目经理</td>
+          <td>02151125</td>
+          <td><span class="person-chip"><span class="person-avatar">海</span>海岩</span></td>
+          <td><span class="person-chip"><span class="person-avatar">王</span>王助理</span></td>
+          <td><span class="person-chip"><span class="person-avatar">刘</span>刘律师</span></td>
+          <td><span class="action-links"><a class="action-link" href="#">分配邀约负责人</a><a class="action-link" href="#">分配谈案负责人</a></span></td>
+        </tr>
+      
+        <tr data-id="LD0006" data-customer-name="赵海峰" data-lead-name="赵海峰" data-customer-type="企业" data-phone="13500007890" data-wechat="haifeng-zhao" data-email="zhao@example.com" data-source="自有案件" data-stage="跟进中" data-case-type="民事诉讼" data-created-at="2026-04-08 16:20" data-last-follow-date="2026/04/20" data-lead-summary="老客户转介绍民商事纠纷" data-description="合作方拖欠货款，准备起诉并申请保全。" data-lead-owner="海岩" data-invitation-owner="王助理" data-negotiation-owner="" data-address="杭州" data-job="服装加工厂老板" data-recycle-days="9" class="drawer-trigger">
+          <td>
+    <div class="lead-info-cell">
+      <div class="lead-info-main">
+        <a class="table-link lead-info-title" href="#">赵海峰</a>
+        <span class="lead-info-case">（民事诉讼）</span>
+      </div>
+      <div class="lead-info-meta">
+        <span class="badge success">自有案件</span>
+        <span class="badge warning">跟进中</span>
+        <span>杭州</span>
+      </div>
+    </div>
+  </td>
+          <td><span class="badge info">企业</span></td>
+          <td><span class="badge success">自有案件</span></td>
+          <td>民事诉讼</td>
+          <td>老客户转介绍民商事纠纷</td>
+          <td><span class="badge warning">跟进中</span></td>
+          <td>合作方拖欠货款，准备起诉并申请保全。</td>
+          <td>杭州</td>
+          <td>服装加工厂老板</td>
+          <td>13500007890</td>
+          <td><span class="person-chip"><span class="person-avatar">海</span>海岩</span></td>
+          <td><span class="person-chip"><span class="person-avatar">王</span>王助理</span></td>
+          <td>-</td>
+          <td><span class="action-links"><a class="action-link" href="#">分配邀约负责人</a><a class="action-link" href="#">分配谈案负责人</a></span></td>
+        </tr>
+      
+        <tr data-id="LD0007" data-customer-name="陈雨桐" data-lead-name="陈雨桐" data-customer-type="企业" data-phone="13400005672" data-wechat="yutong-consult" data-email="yutong@example.com" data-source="百度" data-stage="已转商机" data-case-type="合同审核" data-created-at="2026-04-13 13:10" data-last-follow-date="2026/04/26" data-lead-summary="搜索合同纠纷律师后在线咨询" data-description="品牌合作合同违约，客户希望尽快确定索赔方案。" data-lead-owner="海岩" data-invitation-owner="王助理" data-negotiation-owner="刘律师" data-address="上海徐汇" data-job="品牌运营总监" data-recycle-days="7" class="drawer-trigger">
+          <td>
+    <div class="lead-info-cell">
+      <div class="lead-info-main">
+        <a class="table-link lead-info-title" href="#">陈雨桐</a>
+        <span class="lead-info-case">（合同审核）</span>
+      </div>
+      <div class="lead-info-meta">
+        <span class="badge primary">百度</span>
+        <span class="badge info">已转商机</span>
+        <span>上海徐汇</span>
+      </div>
+    </div>
+  </td>
+          <td><span class="badge info">企业</span></td>
+          <td><span class="badge primary">百度</span></td>
+          <td>合同审核</td>
+          <td>搜索合同纠纷律师后在线咨询</td>
+          <td><span class="badge info">已转商机</span></td>
+          <td>品牌合作合同违约，客户希望尽快确定索赔方案。</td>
+          <td>上海徐汇</td>
+          <td>品牌运营总监</td>
+          <td>13400005672</td>
+          <td><span class="person-chip"><span class="person-avatar">海</span>海岩</span></td>
+          <td><span class="person-chip"><span class="person-avatar">王</span>王助理</span></td>
+          <td><span class="person-chip"><span class="person-avatar">刘</span>刘律师</span></td>
+          <td><span class="action-links"><a class="action-link" href="#">分配邀约负责人</a><a class="action-link" href="#">分配谈案负责人</a></span></td>
+        </tr>
+      
+        <tr data-id="LD0008" data-customer-name="孙国强" data-lead-name="孙国强" data-customer-type="企业" data-phone="13300004319" data-wechat="sunfactory" data-email="sun@example.com" data-source="抖音" data-stage="跟进中" data-case-type="仲裁案件" data-created-at="2026-04-14 19:30" data-last-follow-date="2026/04/19" data-lead-summary="直播间咨询劳动争议仲裁" data-description="工厂用工赔偿纠纷，需要评估仲裁与调解方案。" data-lead-owner="海岩" data-invitation-owner="王助理" data-negotiation-owner="" data-address="苏州工业园区" data-job="工厂厂长" data-recycle-days="11" class="drawer-trigger">
+          <td>
+    <div class="lead-info-cell">
+      <div class="lead-info-main">
+        <a class="table-link lead-info-title" href="#">孙国强</a>
+        <span class="lead-info-case">（仲裁案件）</span>
+      </div>
+      <div class="lead-info-meta">
+        <span class="badge warning">抖音</span>
+        <span class="badge warning">跟进中</span>
+        <span>苏州工业园区</span>
+      </div>
+    </div>
+  </td>
+          <td><span class="badge info">企业</span></td>
+          <td><span class="badge warning">抖音</span></td>
+          <td>仲裁案件</td>
+          <td>直播间咨询劳动争议仲裁</td>
+          <td><span class="badge warning">跟进中</span></td>
+          <td>工厂用工赔偿纠纷，需要评估仲裁与调解方案。</td>
+          <td>苏州工业园区</td>
+          <td>工厂厂长</td>
+          <td>13300004319</td>
+          <td><span class="person-chip"><span class="person-avatar">海</span>海岩</span></td>
+          <td><span class="person-chip"><span class="person-avatar">王</span>王助理</span></td>
+          <td>-</td>
+          <td><span class="action-links"><a class="action-link" href="#">分配邀约负责人</a><a class="action-link" href="#">分配谈案负责人</a></span></td>
+        </tr>
+      
+        <tr data-id="LD0009" data-customer-name="何佳宁" data-lead-name="何佳宁" data-customer-type="个人" data-phone="13200003144" data-wechat="jianing-family" data-email="hejianing@example.com" data-source="小红书" data-stage="新案源" data-case-type="文书起草" data-created-at="2026-04-15 17:05" data-last-follow-date="2026/04/18" data-lead-summary="图文咨询遗产继承纠纷" data-description="家庭遗产分配争议，客户希望律师协助梳理材料并起草协议。" data-lead-owner="海岩" data-invitation-owner="" data-negotiation-owner="" data-address="南京鼓楼" data-job="大学教师" data-recycle-days="16" class="drawer-trigger">
+          <td>
+    <div class="lead-info-cell">
+      <div class="lead-info-main">
+        <a class="table-link lead-info-title" href="#">何佳宁</a>
+        <span class="lead-info-case">（文书起草）</span>
+      </div>
+      <div class="lead-info-meta">
+        <span class="badge primary">小红书</span>
+        <span class="badge primary">新案源</span>
+        <span>南京鼓楼</span>
+      </div>
+    </div>
+  </td>
+          <td><span class="badge primary">个人</span></td>
+          <td><span class="badge primary">小红书</span></td>
+          <td>文书起草</td>
+          <td>图文咨询遗产继承纠纷</td>
+          <td><span class="badge primary">新案源</span></td>
+          <td>家庭遗产分配争议，客户希望律师协助梳理材料并起草协议。</td>
+          <td>南京鼓楼</td>
+          <td>大学教师</td>
+          <td>13200003144</td>
+          <td><span class="person-chip"><span class="person-avatar">海</span>海岩</span></td>
+          <td>-</td>
+          <td>-</td>
+          <td><span class="action-links"><a class="action-link" href="#">分配邀约负责人</a><a class="action-link" href="#">分配谈案负责人</a></span></td>
+        </tr>
+      
+        <tr data-id="LD0010" data-customer-name="吴凯" data-lead-name="吴凯" data-customer-type="企业" data-phone="13100009983" data-wechat="wukaitech" data-email="wukai@example.com" data-source="转介绍" data-stage="已转客户" data-case-type="常年法律顾问" data-created-at="2026-04-07 10:45" data-last-follow-date="2026/04/17" data-lead-summary="客户推荐商事诉讼咨询" data-description="股东纠纷进入起诉准备阶段，客户已确认合作意向。" data-lead-owner="海岩" data-invitation-owner="王助理" data-negotiation-owner="刘律师" data-address="深圳南山" data-job="科技公司合伙人" data-recycle-days="5" class="drawer-trigger">
+          <td>
+    <div class="lead-info-cell">
+      <div class="lead-info-main">
+        <a class="table-link lead-info-title" href="#">吴凯</a>
+        <span class="lead-info-case">（常年法律顾问）</span>
+      </div>
+      <div class="lead-info-meta">
+        <span class="badge warning">转介绍</span>
+        <span class="badge info">已转客户</span>
+        <span>深圳南山</span>
+      </div>
+    </div>
+  </td>
+          <td><span class="badge info">企业</span></td>
+          <td><span class="badge warning">转介绍</span></td>
+          <td>常年法律顾问</td>
+          <td>客户推荐商事诉讼咨询</td>
+          <td><span class="badge info">已转客户</span></td>
+          <td>股东纠纷进入起诉准备阶段，客户已确认合作意向。</td>
+          <td>深圳南山</td>
+          <td>科技公司合伙人</td>
+          <td>13100009983</td>
+          <td><span class="person-chip"><span class="person-avatar">海</span>海岩</span></td>
+          <td><span class="person-chip"><span class="person-avatar">王</span>王助理</span></td>
+          <td><span class="person-chip"><span class="person-avatar">刘</span>刘律师</span></td>
+          <td><span class="action-links"><a class="action-link" href="#">分配邀约负责人</a><a class="action-link" href="#">分配谈案负责人</a></span></td>
+        </tr>
+      </tbody>
+                    </table>
+                  </div>
+                  <div class="footer-row"><span>共 10 条</span><span>1 / 1</span><span>20 条/页</span></div>
+                </section>
+              </section>
+
+              <aside class="detail-pane" data-create-title="未命名记录">
+                <div class="detail-topbar">
+                  <div class="detail-topbar-actions"><span>⌃</span><span>⌄</span></div>
+                  <div class="detail-topbar-actions"><span>···</span><span class="detail-close" style="cursor: pointer;">×</span></div>
+                </div>
+                <div class="detail-scroll">
+                  <h2 class="detail-title">张三（刑事诉讼）</h2>
+                  <div class="detail-header-meta">
+                    <span data-detail-field="stage" data-detail-type="stage-badge-inline"><span class="badge warning">跟进中</span></span>
+                    <span class="detail-meta-item">来源：<span data-detail-field="source" data-detail-type="source-badge-inline"><span class="badge warning">快手</span></span></span>
+                    <span class="detail-meta-item">创建时间：<span data-detail-field="createdAt">2026-04-10 10:20</span></span>
+                  </div>
+                  <div class="detail-tabs">
+                    <span class="detail-tab active">基本信息</span>
+                    <span class="detail-tab">历史</span>
+                  </div>
+
+                  <section class="detail-group active" data-role="detail">
+                    <div class="detail-card">
+                      <div class="info-grid">
+                        <div class="info-item"><div class="info-label">客户名称</div><div class="info-value" data-detail-field="customerName">张三</div></div>
+                        <div class="info-item"><div class="info-label">客户类型</div><div class="info-value" data-detail-field="customerType" data-detail-type="customer-type-badge"><span class="badge primary">个人</span></div></div>
+                        <div class="info-item"><div class="info-label">电话</div><div class="info-value" data-detail-field="phone">13800001111</div></div>
+                        <div class="info-item"><div class="info-label">微信</div><div class="info-value muted" data-detail-field="wechat">zhangsan-law</div></div>
+                        <div class="info-item"><div class="info-label">邮箱</div><div class="info-value muted" data-detail-field="email">zhangsan@example.com</div></div>
+                        <div class="info-item"><div class="info-label">案源来源</div><div class="info-value" data-detail-field="source" data-detail-type="source-badge"><span class="badge warning">快手</span></div></div>
+                        <div class="info-item"><div class="info-label">案件类型</div><div class="info-value" data-detail-field="caseType">刑事诉讼</div></div>
+                        <div class="info-item"><div class="info-label">案源阶段</div><div class="info-value" data-detail-field="stage" data-detail-type="stage-badge"><span class="badge warning">跟进中</span></div></div>
+                        <div class="info-item"><div class="info-label">最后跟进日期</div><div class="info-value" data-detail-field="lastFollowDate">2026/04/25</div></div>
+                        <div class="info-item full"><div class="info-label">案件描述</div><div class="info-value" data-detail-field="description">刑事案件，客户希望尽快安排到所面谈。</div></div>
+                        <div class="info-item"><div class="info-label">案源负责人</div><div class="info-value" data-detail-field="leadOwner" data-detail-type="person"><span class="person-chip"><span class="person-avatar">海</span>海岩</span></div></div>
+                        <div class="info-item"><div class="info-label">邀约负责人</div><div class="info-value" data-detail-field="invitationOwner" data-detail-type="person"><span class="person-chip"><span class="person-avatar">王</span>王助理</span></div></div>
+                        <div class="info-item"><div class="info-label">谈案负责人</div><div class="info-value" data-detail-field="negotiationOwner" data-detail-type="person"><span class="person-chip"><span class="person-avatar">刘</span>刘律师</span></div></div>
+                        <div class="info-item"><div class="info-label">客户地址</div><div class="info-value" data-detail-field="address">北京市海淀区中关村南大街 18 号</div></div>
+                        <div class="info-item"><div class="info-label">职务</div><div class="info-value" data-detail-field="job">企业主</div></div>
+                        <div class="info-item"><div class="info-label">距公海回收时间（天）</div><div class="info-value" data-detail-field="recycleDays">12</div></div>
+                      </div>
+                    </div>
+
+                    <div class="switch-tabs">
+                      <span class="switch-tab active">跟进动态</span>
+                      <span class="switch-tab">邀约记录</span>
+                      <span class="switch-tab">谈案记录</span>
+                      <span class="switch-tab">商机</span>
+                      <span class="switch-tab">合同</span>
+                      <span class="switch-tab">案件</span>
+                      <span class="switch-tab">回款计划</span>
+                      <span class="switch-tab">回款记录</span>
+                    </div>
+
+                    <div class="detail-card compact switch-panel active">
+                      <div class="detail-panel-head">
+                        <div class="detail-action-row">
+                          <button class="detail-mini-button" type="button">新增跟进记录</button>
+                          <button class="detail-mini-button" type="button">新增邀约</button>
+                          <button class="detail-mini-button" type="button">新增谈案</button>
+                        </div>
+                      </div>
+                      <div class="activity-list">
+                        <div class="activity-item invite">
+                          <div class="activity-line"><span class="activity-dot"></span></div>
+                          <div class="activity-head"><div class="activity-time">2026-04-16 10:30</div><div class="activity-labels"><span class="activity-tag invite">邀约</span></div></div>
+                          <div class="activity-main">
+                            <div>已约周五下午到所沟通。</div>
+                          </div>
+                          <div class="activity-side"><span class="person-chip"><span class="person-avatar">海</span>海岩</span><span class="method-link"><span class="method-icon">☎</span>电话</span></div>
+                        </div>
+                        <div class="activity-item follow">
+                          <div class="activity-line"><span class="activity-dot"></span></div>
+                          <div class="activity-head"><div class="activity-time">2026-04-15 18:20</div><div class="activity-labels"><span class="activity-tag follow">跟进</span></div></div>
+                          <div class="activity-main">
+                            <div>电话沟通，客户表示下周再联系。</div>
+                          </div>
+                          <div class="activity-side"><span class="person-chip"><span class="person-avatar">王</span>王助理</span><span class="method-link"><span class="method-icon">☎</span>电话</span></div>
+                        </div>
+                        <div class="activity-item negotiation">
+                          <div class="activity-line"><span class="activity-dot"></span></div>
+                          <div class="activity-head"><div class="activity-time">2026-04-14 14:00</div><div class="activity-labels"><span class="activity-tag negotiation">谈案</span></div></div>
+                          <div class="activity-main">
+                            <div>劳动仲裁咨询，客户诉求赔偿 10 万，报价 5000 元，意向中。</div>
+                          </div>
+                          <div class="activity-side"><span class="person-chip"><span class="person-avatar">刘</span>刘律师</span><span class="method-link"><span class="method-icon">面</span>面谈</span></div>
+                        </div>
+                        <div class="activity-item follow">
+                          <div class="activity-line"><span class="activity-dot"></span></div>
+                          <div class="activity-head"><div class="activity-time">2026-04-12 11:15</div><div class="activity-labels"><span class="activity-tag follow">跟进</span></div></div>
+                          <div class="activity-main">
+                            <div>微信添加客户，初步了解需求。</div>
+                          </div>
+                          <div class="activity-side"><span class="person-chip"><span class="person-avatar">王</span>王助理</span><span class="method-link"><span class="method-icon">微</span>微信</span></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="detail-card compact switch-panel">
+                      <div class="detail-panel-head">
+                        <div class="detail-action-row">
+                          <button class="detail-mini-button" type="button">新增邀约记录</button>
+                        </div>
+                      </div>
+                      <div class="related-list">
+                        <div class="related-row">
+                          <div class="related-time">2026-04-25 09:12</div>
+                          <div class="related-main">
+                            <div class="related-title">首次电话邀约，发送定位与接待信息与到店指引。</div>
+                            <div class="related-meta"><span>关联案源：张三</span><span>到店时间：2026/04/27</span><span><span class="badge warning">已邀约</span></span></div>
+                          </div>
+                          <div class="related-side"><span class="person-chip"><span class="person-avatar">王</span>王助理</span><span class="method-link"><span class="method-icon">☎</span>电话</span></div>
+                        </div>
+                        <div class="related-row">
+                          <div class="related-time">2026-04-27 14:30</div>
+                          <div class="related-main">
+                            <div class="related-title">客户确认到所面谈，前台已完成接待准备。</div>
+                            <div class="related-meta"><span>关联案源：张三</span><span>邀约结果：到店</span></div>
+                          </div>
+                          <div class="related-side"><span class="person-chip"><span class="person-avatar">王</span>王助理</span><span class="method-link"><span class="method-icon">微</span>微信</span></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="detail-card compact switch-panel">
+                      <div class="detail-panel-head">
+                        <div class="detail-action-row">
+                          <button class="detail-mini-button" type="button">新增谈案记录</button>
+                        </div>
+                      </div>
+                      <div class="related-list">
+                        <div class="related-row">
+                          <div class="related-time">2026-04-26 10:00</div>
+                          <div class="related-main">
+                            <div class="related-title">面谈前已整理客户诉求与证据情况，现场说明服务范围与风险点。</div>
+                            <div class="related-meta"><span>关联案源：张三</span><span>初步报价：18-22 万</span><span>结果：待确认</span></div>
+                          </div>
+                          <div class="related-side"><span class="person-chip"><span class="person-avatar">刘</span>刘律师</span><span class="method-link"><span class="method-icon">面</span>面谈</span></div>
+                        </div>
+                        <div class="related-row">
+                          <div class="related-time">2026-04-28 09:45</div>
+                          <div class="related-main">
+                            <div class="related-title">补充说明取证思路与代理节奏，客户进入签约前确认阶段。</div>
+                            <div class="related-meta"><span>关联案源：张三</span><span>谈案结果：意向中</span></div>
+                          </div>
+                          <div class="related-side"><span class="person-chip"><span class="person-avatar">刘</span>刘律师</span><span class="method-link"><span class="method-icon">☎</span>电话</span></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="detail-card compact switch-panel">
+                      <div class="detail-panel-head">
+                        <div class="detail-action-row">
+                          <button class="detail-mini-button" type="button">新增商机</button>
+                        </div>
+                      </div>
+                      <div class="related-list">
+                        <div class="related-row">
+                          <div class="related-time">SJ0006</div>
+                          <div class="related-main">
+                            <div class="related-title">张三刑事辩护商机，已进入报价确认。</div>
+                            <div class="related-meta"><span>关联案源：张三</span><span>商机状态：已报价</span><span>成交意向：中</span><span>商机金额：180,000</span></div>
+                          </div>
+                          <div class="related-side"><span class="person-chip"><span class="person-avatar">海</span>海岩</span><span class="badge warning">转合同中</span></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="detail-card compact switch-panel">
+                      <div class="detail-panel-head">
+                        <div class="detail-action-row">
+                          <button class="detail-mini-button" type="button">新增合同</button>
+                        </div>
+                      </div>
+                      <div class="related-list">
+                        <div class="related-row">
+                          <div class="related-time">(2026)中磐 刑 字第0001号</div>
+                          <div class="related-main">
+                            <div class="related-title">张三刑事辩护委托合同</div>
+                            <div class="related-meta"><span>合同状态：履约中</span><span>签订日期：2026/04/28</span><span>合同金额：180,000</span></div>
+                          </div>
+                          <div class="related-side"><span class="badge info">履约中</span><span>已收：30,000</span></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="detail-card compact switch-panel">
+                      <div class="detail-panel-head">
+                        <div class="detail-action-row">
+                          <button class="detail-mini-button" type="button">新增案件</button>
+                        </div>
+                      </div>
+                      <div class="related-list">
+                        <div class="related-row">
+                          <div class="related-time">AJ20260001</div>
+                          <div class="related-main">
+                            <div class="related-title">张三故意伤害刑事辩护案件已立项。</div>
+                            <div class="related-meta"><span>案件阶段：侦查</span><span>立案日期：2026/05/03</span><span>承办律师：刘律师</span></div>
+                          </div>
+                          <div class="related-side"><span class="badge primary">办理中</span></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="detail-card compact switch-panel">
+                      <div class="detail-panel-head">
+                        <div class="detail-action-row">
+                          <button class="detail-mini-button" type="button">新增回款计划</button>
+                        </div>
+                      </div>
+                      <div class="related-list">
+                        <div class="related-row">
+                          <div class="related-time">HK0002</div>
+                          <div class="related-main">
+                            <div class="related-title">首期回款计划已建立。</div>
+                            <div class="related-meta"><span>关联合同：(2026)中磐 刑 字第0001号</span><span>应收金额：80,000</span><span>应收日期：2026/05/12</span></div>
+                          </div>
+                          <div class="related-side"><span class="badge primary">待收</span></div>
+                        </div>
+                        <div class="related-row">
+                          <div class="related-time">HK0003</div>
+                          <div class="related-main">
+                            <div class="related-title">二期尾款计划已建立。</div>
+                            <div class="related-meta"><span>关联合同：(2026)中磐 刑 字第0001号</span><span>应收金额：100,000</span><span>应收日期：2026/06/20</span></div>
+                          </div>
+                          <div class="related-side"><span class="badge warning">未到期</span></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="detail-card compact switch-panel">
+                      <div class="detail-panel-head">
+                        <div class="detail-action-row">
+                          <button class="detail-mini-button" type="button">新增回款记录</button>
+                        </div>
+                      </div>
+                      <div class="related-list">
+                        <div class="related-row">
+                          <div class="related-time">HK0006</div>
+                          <div class="related-main">
+                            <div class="related-title">首期代理费到账并完成认领。</div>
+                            <div class="related-meta"><span>关联合同：(2026)中磐 刑 字第0001号</span><span>回款金额：30,000</span><span>回款日期：2026/05/12</span></div>
+                          </div>
+                          <div class="related-side"><span class="badge success">已到账</span><span>对公转账</span></div>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="detail-group" data-role="history">
+                    <div class="detail-group-title">
+                      <span>历史记录</span>
+                      <span>最近 7 天</span>
+                    </div>
+                    <div class="detail-card">
+                      <table class="history-table">
+                        <thead>
+                          <tr><th>时间</th><th>字段</th><th>变更前</th><th></th><th>变更后</th></tr>
+                        </thead>
+                        <tbody>
+                          <tr><td>04月19日</td><td>谈案负责人</td><td>-</td><td class="history-arrow">→</td><td><span class="person-chip"><span class="person-avatar">海</span>海岩</span></td></tr>
+                          <tr><td>04月18日</td><td>邀约状态</td><td>-</td><td class="history-arrow">→</td><td><span class="badge warning">已邀约</span></td></tr>
+                          <tr><td>04月13日</td><td>案件来源</td><td>-</td><td class="history-arrow">→</td><td><span class="badge warning">快手</span></td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </section>
+
+                  <section class="detail-group" data-role="create">
+                    <div class="detail-group-title">
+                      <span>新建案源</span>
+                      <span>表字段</span>
+                    </div>
+                    <div class="detail-card">
+                      <form class="drawer-form">
+                        <div class="drawer-form-grid">
+                          <div class="field"><label>客户名称</label><input class="input create-placeholder" value="请输入内容" data-placeholder-text="请输入内容"></div>
+                          <div class="field"><label>客户类型</label><select class="select create-placeholder"><option>个人</option><option>企业</option></select></div>
+                        </div>
+                        <div class="drawer-form-grid">
+                          <div class="field"><label>电话</label><input class="input create-placeholder" value="请输入内容" data-placeholder-text="请输入内容"></div>
+                          <div class="field"><label>微信</label><input class="input create-placeholder" value="请输入内容" data-placeholder-text="请输入内容"></div>
+                        </div>
+                        <div class="drawer-form-grid">
+                          <div class="field"><label>邮箱</label><input class="input create-placeholder" value="请输入内容" data-placeholder-text="请输入内容"></div>
+                          <div class="field"><label>案源来源</label><select class="select create-placeholder"><option>请选择选项</option><option>百度</option><option>快手</option><option>领导介绍</option><option>抖音</option><option>小红书</option><option>转介绍</option><option>自有案件</option></select></div>
+                        </div>
+                        <div class="drawer-form-grid">
+                          <div class="field"><label>案件类型</label><select class="select create-placeholder"><option>请选择案件类型</option><optgroup label="诉讼专项"><option>民事诉讼</option><option>刑事诉讼</option><option>行政诉讼</option><option>仲裁案件</option><option>执行案件</option></optgroup><optgroup label="非诉专项"><option>常年法律顾问</option><option>文书起草</option><option>合同审核</option></optgroup></select></div>
+                          <div class="field"><label>案源阶段</label><select class="select create-placeholder"><option>新案源</option><option>跟进中</option><option>已转商机</option><option>已转客户</option><option>无效</option></select></div>
+                        </div>
+                        <div class="drawer-form-grid">
+                          <div class="field"><label>最后跟进日期</label><input class="input create-placeholder" value="2026/04/25" data-placeholder-text="2026/04/25"></div>
+                          <div class="field"><label>距公海回收时间（天）</label><input class="input create-placeholder" value="请输入内容" data-placeholder-text="请输入内容"></div>
+                        </div>
+                        <div class="field"><label>案件描述</label><textarea class="textarea create-placeholder" data-placeholder-text="请输入内容">请输入内容</textarea></div>
+                        <div class="drawer-form-grid">
+                          <div class="field"><label>案源负责人</label><input class="input create-placeholder" value="请选择人员" data-placeholder-text="请选择人员"></div>
+                          <div class="field"><label>邀约负责人</label><input class="input create-placeholder" value="请选择人员" data-placeholder-text="请选择人员"></div>
+                        </div>
+                        <div class="drawer-form-grid">
+                          <div class="field"><label>谈案负责人</label><input class="input create-placeholder" value="请选择人员" data-placeholder-text="请选择人员"></div>
+                          <div class="field"><label>职务</label><input class="input create-placeholder" value="请输入内容" data-placeholder-text="请输入内容"></div>
+                        </div>
+                        <div class="field"><label>客户地址</label><input class="input create-placeholder" value="请输入地址" data-placeholder-text="请输入地址"></div>
+                        <div class="detail-footer">
+                          <button class="button" type="button">提交</button>
+                          <button class="button secondary" type="button">提交后继续添加</button>
+                        </div>
+                      </form>
+                    </div>
+                  </section>
+                </div>
+              </aside>
+            </div>
+          </main>
+        <div class="drawer-backdrop"></div></div>
+      </div>
+    </div>
+    <script src="../../assets/scripts/data.js"></script>
+    <script src="../../assets/scripts/app.js"></script>
+  
+
+</body></html>

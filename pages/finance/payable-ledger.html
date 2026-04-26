@@ -1,0 +1,42 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+  <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>应付台账 - 律所系统</title><link rel="stylesheet" href="../../assets/styles/main.css" /></head>
+  <body data-page="payable-ledger">
+    <div class="app-shell"><aside class="sidebar"></aside><div class="main-shell"><div class="workspace">
+      <main class="page-body compact"><div class="split-workspace">
+        <section class="split-main"><section class="panel">
+          <div class="toolbar"><div><button class="button" type="button">＋ 新增应付记录</button></div><div class="toolbar-tools"><span>付款计划</span><span>供应商结算</span><span>待审批</span></div></div>
+          <div class="table-shell tight"><table>
+            <thead><tr><th>费用类型</th><th>对象</th><th>金额</th><th>预计付款日</th><th>经办人</th><th>状态</th></tr></thead>
+            <tbody>
+              <tr><td><a class="table-link" href="#">鉴定费</a></td><td>司法鉴定中心</td><td>1.8 万</td><td>2026-04-29</td><td>王助理</td><td><span class="badge primary">待付款</span></td></tr>
+              <tr><td>差旅费</td><td>出庭报销</td><td>0.6 万</td><td>2026-04-26</td><td>周律师</td><td><span class="badge warning">待审批</span></td></tr>
+              <tr><td>合作分成</td><td>外部顾问</td><td>5 万</td><td>2026-05-10</td><td>财务部</td><td><span class="badge success">已排期</span></td></tr>
+            </tbody>
+          </table></div>
+        </section></section>
+        <aside class="detail-pane" data-create-title="未命名应付记录">
+          <div class="detail-topbar"><div class="detail-topbar-actions"><span>⌃</span><span>⌄</span></div><div class="detail-topbar-actions"><span>···</span><span>×</span></div></div>
+          <div class="detail-scroll"><h2 class="detail-title">鉴定费</h2><div class="detail-tabs"><span class="detail-tab active">详情</span><span class="detail-tab">历史</span></div>
+            <section class="detail-group" data-role="detail"><div class="detail-card">
+              <div class="detail-field"><div class="detail-label">费用类型</div><div class="detail-value">鉴定费</div></div>
+              <div class="detail-field"><div class="detail-label">对象</div><div class="detail-value">司法鉴定中心</div></div>
+              <div class="detail-field"><div class="detail-label">金额</div><div class="detail-value">1.8 万</div></div>
+              <div class="detail-field"><div class="detail-label">预计付款日</div><div class="detail-value">2026-04-29</div></div>
+              <div class="detail-field"><div class="detail-label">经办人</div><div class="detail-value"><span class="person-chip"><span class="person-avatar">王</span>王助理</span></div></div>
+              <div class="detail-field"><div class="detail-label">状态</div><div class="detail-value"><span class="badge primary">待付款</span></div></div>
+            </div></section>
+            <section class="detail-group" data-role="history"><div class="detail-card"><table class="history-table"><thead><tr><th>时间</th><th>字段</th><th>变更前</th><th></th><th>变更后</th></tr></thead><tbody><tr><td>04月21日</td><td>状态</td><td>草稿</td><td class="history-arrow">→</td><td>待付款</td></tr></tbody></table></div></section>
+            <section class="detail-group" data-role="create"><div class="detail-card"><form class="drawer-form">
+              <div class="drawer-form-grid"><div class="field"><label>费用类型</label><input class="input" value="请输入费用类型" /></div><div class="field"><label>对象</label><input class="input" value="请输入对象名称" /></div></div>
+              <div class="drawer-form-grid"><div class="field"><label>金额</label><input class="input" value="请输入金额" /></div><div class="field"><label>预计付款日</label><input class="input" value="年/月/日" /></div></div>
+              <div class="detail-footer"><button class="button" type="button">提交</button><button class="button secondary" type="button">取消</button></div>
+            </form></div></section>
+          </div>
+        </aside>
+      </div></main>
+    </div></div></div>
+    <script src="../../assets/scripts/app.js"></script>
+  </body>
+</html>
+
