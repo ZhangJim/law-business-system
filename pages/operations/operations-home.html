@@ -1,0 +1,157 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>运营工作台 - 律所系统</title>
+    <link rel="stylesheet" href="../../assets/styles/main.css" />
+  </head>
+  <body data-page="operations-home">
+    <div class="app-shell">
+      <aside class="sidebar"></aside>
+      <div class="main-shell">
+        <div class="workspace">
+          <header class="topbar">
+            <div>
+              <h1>运营工作台</h1>
+              <p>运营先看今天来了多少案源、还有多少待排重和待分发，再快速处理本日导入批次与待处理线索。</p>
+            </div>
+            <div class="topbar-actions">
+              <span class="ghost-chip">2026年04月29日</span>
+              <span class="ghost-chip">运营视角</span>
+            </div>
+          </header>
+
+          <main class="page-body">
+            <section class="metrics">
+              <div class="metric"><div class="metric-label">今日新增案源</div><div class="metric-value">126</div><div class="metric-note">快手 48 / 百度 32 / 抖音 28 / 其他 18</div></div>
+              <div class="metric"><div class="metric-label">待排重数量</div><div class="metric-value">39</div><div class="metric-note">抖音与快手重合偏高，需要先生成排重包</div></div>
+              <div class="metric"><div class="metric-label">待分发数量</div><div class="metric-value">57</div><div class="metric-note">其中高意向 14 条，建议优先分发</div></div>
+              <div class="metric"><div class="metric-label">今日导入记录</div><div class="metric-value">4批</div><div class="metric-note">累计导入 428 条，异常 11 条</div></div>
+            </section>
+
+            <section class="analysis-dual" style="margin-top: 16px;">
+              <section class="panel">
+                <div class="team-panel-head">
+                  <h3>待处理案源列表</h3>
+                  <div class="toolbar-tools"><span>默认打开</span><span>高意向优先</span></div>
+                </div>
+                <div class="table-shell">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>案源编号</th>
+                        <th>客户姓名</th>
+                        <th>手机号</th>
+                        <th>来源平台</th>
+                        <th>投放计划</th>
+                        <th>案件类型</th>
+                        <th>提交时间</th>
+                        <th>排重状态</th>
+                        <th>分发状态</th>
+                        <th>当前负责人</th>
+                        <th>操作</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>YY-20260429-018</td>
+                        <td>张瑞</td>
+                        <td>13800112231</td>
+                        <td><span class="badge warning">快手</span></td>
+                        <td>刑事咨询-北京晚高峰定向</td>
+                        <td>刑事诉讼</td>
+                        <td>09:12</td>
+                        <td><span class="badge success">不重复</span></td>
+                        <td><span class="badge warning">待分发</span></td>
+                        <td><span class="person-chip"><span class="person-avatar">运</span>运营中台A组</span></td>
+                        <td><span class="action-links"><a class="action-link" href="./operation-lead-pool.html">分发</a><a class="action-link" href="#">标记处理</a></span></td>
+                      </tr>
+                      <tr>
+                        <td>YY-20260429-015</td>
+                        <td>王媛</td>
+                        <td>13788990112</td>
+                        <td><span class="badge warning">抖音</span></td>
+                        <td>征拆维权-华东投流一组</td>
+                        <td>行政诉讼</td>
+                        <td>08:46</td>
+                        <td><span class="badge danger">重复</span></td>
+                        <td><span class="badge warning">待分发</span></td>
+                        <td><span class="person-chip"><span class="person-avatar">周</span>周航</span></td>
+                        <td><span class="action-links"><a class="action-link" href="./operation-lead-pool.html">分发</a><a class="action-link" href="#">标记处理</a></span></td>
+                      </tr>
+                      <tr>
+                        <td>YY-20260429-011</td>
+                        <td>陈思远</td>
+                        <td>13622880071</td>
+                        <td><span class="badge warning">小红书</span></td>
+                        <td>企业法顾-创业者内容转化</td>
+                        <td>常年法律顾问</td>
+                        <td>08:05</td>
+                        <td><span class="badge success">不重复</span></td>
+                        <td><span class="badge warning">待分发</span></td>
+                        <td><span class="person-chip"><span class="person-avatar">运</span>运营中台B组</span></td>
+                        <td><span class="action-links"><a class="action-link" href="./operation-lead-pool.html">分发</a><a class="action-link" href="#">标记处理</a></span></td>
+                      </tr>
+                      <tr>
+                        <td>YY-20260429-006</td>
+                        <td>何静雯</td>
+                        <td>13378110529</td>
+                        <td><span class="badge primary">百度</span></td>
+                        <td>企业合同-江苏定向计划</td>
+                        <td>合同审核</td>
+                        <td>07:42</td>
+                        <td><span class="badge success">不重复</span></td>
+                        <td><span class="badge warning">待分发</span></td>
+                        <td><span class="person-chip"><span class="person-avatar">海</span>海岩</span></td>
+                        <td><span class="action-links"><a class="action-link" href="./operation-lead-pool.html">分发</a><a class="action-link" href="#">标记处理</a></span></td>
+                      </tr>
+                      <tr>
+                        <td>YY-20260429-003</td>
+                        <td>孙立</td>
+                        <td>13411882262</td>
+                        <td><span class="badge warning">快手</span></td>
+                        <td>执行回款-华东二组</td>
+                        <td>执行案件</td>
+                        <td>07:16</td>
+                        <td><span class="badge danger">重复</span></td>
+                        <td><span class="badge warning">待分发</span></td>
+                        <td><span class="person-chip"><span class="person-avatar">海</span>海岩</span></td>
+                        <td><span class="action-links"><a class="action-link" href="./operation-lead-pool.html">分发</a><a class="action-link" href="#">标记处理</a></span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <section class="panel analysis-stack">
+                <div>
+                  <h3>最近导入批次</h3>
+                  <div class="leaderboard">
+                    <div class="leaderboard-item"><div class="leaderboard-rank">1</div><div class="leaderboard-main"><div class="leaderboard-name">kuaishou_criminal_20260429.xlsx</div><div class="leaderboard-sub">09:25 导入 / 128 条 / 异常 2 条</div></div><div class="leaderboard-score"><strong>快手</strong><span>查看批次</span></div></div>
+                    <div class="leaderboard-item"><div class="leaderboard-rank">2</div><div class="leaderboard-main"><div class="leaderboard-name">baidu_contract_20260429.xlsx</div><div class="leaderboard-sub">08:50 导入 / 96 条 / 异常 1 条</div></div><div class="leaderboard-score"><strong>百度</strong><span>查看批次</span></div></div>
+                    <div class="leaderboard-item"><div class="leaderboard-rank">3</div><div class="leaderboard-main"><div class="leaderboard-name">douyin_admin_20260429.xlsx</div><div class="leaderboard-sub">08:10 导入 / 112 条 / 异常 5 条</div></div><div class="leaderboard-score"><strong>抖音</strong><span>查看批次</span></div></div>
+                    <div class="leaderboard-item"><div class="leaderboard-rank">4</div><div class="leaderboard-main"><div class="leaderboard-name">xhs_fagu_20260429.xlsx</div><div class="leaderboard-sub">07:35 导入 / 92 条 / 异常 3 条</div></div><div class="leaderboard-score"><strong>小红书</strong><span>查看批次</span></div></div>
+                  </div>
+                </div>
+                <div class="mini-matrix">
+                  <div class="mini-card"><h4>我帮你补一个判断</h4><p>运营首页除了“待分发”，还需要让人一眼看到“待排重”和“导入异常”，不然容易误把脏数据往下分。</p></div>
+                  <div class="mini-card"><h4>今日重点</h4><p>先处理抖音批次排重，再优先分发快手和小红书里的高意向案源，能更快提升下游转化。</p></div>
+                </div>
+                <div class="panel" style="padding: 16px; box-shadow: none;">
+                  <h3 style="margin-top: 0;">运营提醒</h3>
+                  <div class="heat-list">
+                    <div class="heat-item"><div class="heat-main"><strong>待排重积压</strong><span>抖音批次仍有 18 条未完成排重，建议先生成排重包。</span></div><span class="badge warning heat-flag">处理中</span></div>
+                    <div class="heat-item"><div class="heat-main"><strong>待分发过久</strong><span>有 6 条案源超过 2 小时未分发，容易影响后续首响时效。</span></div><span class="badge danger heat-flag">优先</span></div>
+                    <div class="heat-item"><div class="heat-main"><strong>导入异常</strong><span>今日 4 个批次共异常 11 条，多为手机号格式问题。</span></div><span class="badge warning heat-flag">复核</span></div>
+                  </div>
+                </div>
+              </section>
+            </section>
+          </main>
+        </div>
+      </div>
+    </div>
+    <script src="../../assets/scripts/app.js"></script>
+  </body>
+</html>

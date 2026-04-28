@@ -1,17 +1,20 @@
 ﻿<!doctype html>
 <html lang="zh-CN">
-  <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>案件分析 - 律所系统</title><link rel="stylesheet" href="../../assets/styles/main.css" /></head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>案源分析 - 律所系统</title>
+    <link rel="stylesheet" href="../../assets/styles/main.css" />
+  </head>
   <body data-page="lead-analysis">
     <div class="app-shell"><aside class="sidebar"></aside><div class="main-shell"><div class="workspace">
-      <header class="topbar"><div><h1>案件分析</h1><p>观察渠道投放效果、案件量与有效率。</p></div><div class="topbar-actions"><span class="ghost-chip">渠道投放</span></div></header>
+      <header class="topbar"><div><h1>案源分析</h1><p>这里看案源质量、阶段推进和案源专员承接能力。领导不只看量，更看谁能把量变成可谈、可签的业务。</p></div><div class="topbar-actions"><span class="ghost-chip">案源视角</span><span class="ghost-chip">人效判断</span></div></header>
       <main class="page-body">
-        <section class="panel chart-grid">
-          <div class="chart-box"><h3>本月渠道案件量</h3><div class="bars"><div class="bar-col"><div class="bar" style="height: 72%;"></div><div class="bar-value">82</div><div class="bar-label">百度</div></div><div class="bar-col"><div class="bar" style="height: 56%;"></div><div class="bar-value">64</div><div class="bar-label">抖音</div></div><div class="bar-col"><div class="bar" style="height: 38%;"></div><div class="bar-value">41</div><div class="bar-label">快手</div></div><div class="bar-col"><div class="bar" style="height: 28%;"></div><div class="bar-value">29</div><div class="bar-label">介绍</div></div></div></div>
-          <div class="chart-box"><h3>有效案件占比</h3><div class="donut"></div></div>
-        </section>
+        <section class="metrics"><div class="metric"><div class="metric-label">本月新增案源</div><div class="metric-value">502</div><div class="metric-note">其中新案源 311</div></div><div class="metric"><div class="metric-label">进入跟进中</div><div class="metric-value">298</div><div class="metric-note">推进率 59%</div></div><div class="metric"><div class="metric-label">转商机数</div><div class="metric-value">96</div><div class="metric-note">高意向占 41 单</div></div><div class="metric"><div class="metric-label">无效案源</div><div class="metric-value">73</div><div class="metric-note">重复和虚假线索偏多</div></div></section>
+        <section class="analysis-dual"><div class="panel"><h3>案源推进漏斗</h3><div class="funnel-board"><div class="funnel-band"><span>新案源</span><strong>502</strong></div><div class="funnel-band" style="width: 90%;"><span>进入跟进中</span><strong>298</strong></div><div class="funnel-band" style="width: 72%;"><span>已转商机</span><strong>96</strong></div><div class="funnel-band" style="width: 58%;"><span>已转客户</span><strong>42</strong></div><div class="funnel-band" style="width: 44%;"><span>无效关闭</span><strong>73</strong></div></div></div><div class="panel analysis-stack"><div><h3>无效原因观察</h3><div class="trend-strip"><div class="trend-strip-item"><span class="trend-strip-label">重复线索</span><div class="trend-strip-bar"><span class="trend-strip-fill" style="width: 78%;"></span></div><span class="trend-strip-value">29</span></div><div class="trend-strip-item"><span class="trend-strip-label">电话不通</span><div class="trend-strip-bar"><span class="trend-strip-fill" style="width: 52%;"></span></div><span class="trend-strip-value">18</span></div><div class="trend-strip-item"><span class="trend-strip-label">需求不匹配</span><div class="trend-strip-bar"><span class="trend-strip-fill" style="width: 42%;"></span></div><span class="trend-strip-value">15</span></div><div class="trend-strip-item"><span class="trend-strip-label">预算不足</span><div class="trend-strip-bar"><span class="trend-strip-fill" style="width: 30%;"></span></div><span class="trend-strip-value">11</span></div></div></div><div class="mini-card"><h4>管理提醒</h4><p>周航和徐静的首响速度偏慢，无效率也偏高，适合盯响应时长和筛选口径。</p></div></div></section>
+        <section class="panel"><h3>案源负责人排名</h3><div class="leaderboard"><div class="leaderboard-item"><div class="leaderboard-rank">1</div><div class="leaderboard-main"><div class="leaderboard-name">海岩</div><div class="leaderboard-sub">新增 126 / 转商机 31 / 首响 11 分</div></div><div class="leaderboard-score"><strong>31单</strong><span>转商机第一</span></div></div><div class="leaderboard-item"><div class="leaderboard-rank">2</div><div class="leaderboard-main"><div class="leaderboard-name">朱浩</div><div class="leaderboard-sub">新增 92 / 高意向识别更准</div></div><div class="leaderboard-score"><strong>24单</strong><span>质量更好</span></div></div><div class="leaderboard-item"><div class="leaderboard-rank">3</div><div class="leaderboard-main"><div class="leaderboard-name">周航</div><div class="leaderboard-sub">新增量不差，但跟进慢</div></div><div class="leaderboard-score"><strong>18单</strong><span>需盯响应</span></div></div><div class="leaderboard-item"><div class="leaderboard-rank">4</div><div class="leaderboard-main"><div class="leaderboard-name">徐静</div><div class="leaderboard-sub">无效率偏高，筛选偏松</div></div><div class="leaderboard-score"><strong>12单</strong><span>需纠偏</span></div></div></div></section>
       </main>
     </div></div></div>
     <script src="../../assets/scripts/app.js"></script>
   </body>
 </html>
-

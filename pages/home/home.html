@@ -13,37 +13,80 @@
         <div class="workspace">
           <header class="topbar">
             <div>
-              <h1>首页</h1>
-              <p>律所经营总览与今日重点待办。</p>
+              <h1>老板工作台</h1>
+              <p>只看经营结果、渠道质量、团队转化和风险压力，帮助管理层判断方向和人效。</p>
             </div>
             <div class="topbar-actions">
               <span class="ghost-chip">2026年04月</span>
-              <span class="ghost-chip">经营视角</span>
+              <span class="ghost-chip">经营看板</span>
+              <span class="ghost-chip">管理层视角</span>
             </div>
           </header>
           <main class="page-body">
             <section class="metrics">
-              <div class="metric"><div class="metric-label">本月新增案源</div><div class="metric-value">128</div><div class="metric-note">较上月 +18%</div></div>
-              <div class="metric"><div class="metric-label">本月签约金额</div><div class="metric-value">286万</div><div class="metric-note">目标完成 72%</div></div>
-              <div class="metric"><div class="metric-label">待跟进客户</div><div class="metric-value">46</div><div class="metric-note">其中高意向 12 位</div></div>
-              <div class="metric"><div class="metric-label">待回款项目</div><div class="metric-value">21</div><div class="metric-note">逾期 5 项</div></div>
+              <div class="metric"><div class="metric-label">本月案源数</div><div class="metric-value">826</div><div class="metric-note">有效案源 667 条，较上月 +14%</div></div>
+              <div class="metric"><div class="metric-label">成交金额</div><div class="metric-value">286万</div><div class="metric-note">签约 17 单，目标完成 72%</div></div>
+              <div class="metric"><div class="metric-label">整体转化率</div><div class="metric-value">21%</div><div class="metric-note">从案源到签约，较上月提升 3 个点</div></div>
+              <div class="metric"><div class="metric-label">渠道表现</div><div class="metric-value">快手领先</div><div class="metric-note">小红书质量高，百度成本高，抖音重复率高</div></div>
             </section>
-            <section class="panel grid-2">
-              <div>
-                <h3>今日重点</h3>
-                <div class="list">
-                  <div class="list-item"><div><div class="list-main">张三刑事辩护案首次面谈</div><div class="list-sub">来源：快手 | 负责人：刘律师</div></div><div class="list-side">10:30</div></div>
-                  <div class="list-item"><div><div class="list-main">李四行政诉讼案签约审批</div><div class="list-sub">合同金额 18 万 | 待主任确认</div></div><div class="list-side">14:00</div></div>
-                  <div class="list-item"><div><div class="list-main">应收账款催收任务</div><div class="list-sub">3 笔回款预计本周完成</div></div><div class="list-side">全天</div></div>
+
+            <section class="analysis-dual" style="margin-top: 16px;">
+              <section class="panel">
+                <h3>经营漏斗</h3>
+                <div class="funnel-board">
+                  <div class="funnel-band"><span>渠道案源</span><strong>826</strong></div>
+                  <div class="funnel-band" style="width: 90%;"><span>进入跟进</span><strong>502</strong></div>
+                  <div class="funnel-band" style="width: 74%;"><span>成功邀约</span><strong>173</strong></div>
+                  <div class="funnel-band" style="width: 60%;"><span>完成谈案</span><strong>86</strong></div>
+                  <div class="funnel-band" style="width: 46%;"><span>签约成交</span><strong>17</strong></div>
                 </div>
-              </div>
-              <div>
-                <h3>业务提醒</h3>
-                <div class="list">
-                  <div class="list-item"><div><div class="list-main">7 个案源超过 48 小时未更新</div><div class="list-sub">建议安排主管复盘案件转化</div></div><div class="list-side link">查看</div></div>
-                  <div class="list-item"><div><div class="list-main">2 份合同待法务盖章</div><div class="list-sub">涉及民商事团队与家事团队</div></div><div class="list-side link">处理</div></div>
-                  <div class="list-item"><div><div class="list-main">提成发放批次待确认</div><div class="list-sub">财务已完成核对，待合伙人审批</div></div><div class="list-side link">审批</div></div>
+              </section>
+              <section class="panel analysis-stack">
+                <div>
+                  <h3>渠道表现排名</h3>
+                  <div class="leaderboard">
+                    <div class="leaderboard-item"><div class="leaderboard-rank">1</div><div class="leaderboard-main"><div class="leaderboard-name">快手</div><div class="leaderboard-sub">量大且稳定，有效案源 218 条</div></div><div class="leaderboard-score"><strong>92分</strong><span>继续放量</span></div></div>
+                    <div class="leaderboard-item"><div class="leaderboard-rank">2</div><div class="leaderboard-main"><div class="leaderboard-name">小红书</div><div class="leaderboard-sub">企业法顾质量高，客单更稳</div></div><div class="leaderboard-score"><strong>86分</strong><span>可加预算</span></div></div>
+                    <div class="leaderboard-item"><div class="leaderboard-rank">3</div><div class="leaderboard-main"><div class="leaderboard-name">百度</div><div class="leaderboard-sub">量稳但成本偏高</div></div><div class="leaderboard-score"><strong>74分</strong><span>控词控价</span></div></div>
+                    <div class="leaderboard-item"><div class="leaderboard-rank">4</div><div class="leaderboard-main"><div class="leaderboard-name">抖音</div><div class="leaderboard-sub">重复率高，落地页波动大</div></div><div class="leaderboard-score"><strong>67分</strong><span>先做排重</span></div></div>
+                  </div>
                 </div>
+              </section>
+            </section>
+
+            <section class="analysis-dual" style="margin-top: 16px;">
+              <section class="panel">
+                <h3>团队表现</h3>
+                <div class="leaderboard">
+                  <div class="leaderboard-item"><div class="leaderboard-rank">1</div><div class="leaderboard-main"><div class="leaderboard-name">王助理</div><div class="leaderboard-sub">邀约到店率 71%，高意向客户跟进最稳</div></div><div class="leaderboard-score"><strong>71%</strong><span>邀约到店</span></div></div>
+                  <div class="leaderboard-item"><div class="leaderboard-rank">2</div><div class="leaderboard-main"><div class="leaderboard-name">刘律师</div><div class="leaderboard-sub">谈案签约率 54%，高客单收口最好</div></div><div class="leaderboard-score"><strong>54%</strong><span>谈案签约</span></div></div>
+                  <div class="leaderboard-item"><div class="leaderboard-rank">3</div><div class="leaderboard-main"><div class="leaderboard-name">海岩</div><div class="leaderboard-sub">转商机 31 单，案源推进最稳</div></div><div class="leaderboard-score"><strong>31单</strong><span>转商机</span></div></div>
+                  <div class="leaderboard-item"><div class="leaderboard-rank">4</div><div class="leaderboard-main"><div class="leaderboard-name">民商事团队</div><div class="leaderboard-sub">本月签约金额最高，现金流表现稳定</div></div><div class="leaderboard-score"><strong>118万</strong><span>签约额</span></div></div>
+                </div>
+              </section>
+              <section class="panel analysis-stack">
+                <div>
+                  <h3>本月趋势</h3>
+                  <div class="trend-chart">
+                    <div class="trend-col"><div class="trend-line" style="height: 34%;"></div><div class="trend-value">38</div><div class="trend-label">第1周</div></div>
+                    <div class="trend-col"><div class="trend-line" style="height: 48%;"></div><div class="trend-value">52</div><div class="trend-label">第2周</div></div>
+                    <div class="trend-col"><div class="trend-line" style="height: 67%;"></div><div class="trend-value">74</div><div class="trend-label">第3周</div></div>
+                    <div class="trend-col"><div class="trend-line" style="height: 76%;"></div><div class="trend-value">81</div><div class="trend-label">第4周</div></div>
+                    <div class="trend-col"><div class="trend-line" style="height: 58%;"></div><div class="trend-value">63</div><div class="trend-label">本周案源</div></div>
+                    <div class="trend-col"><div class="trend-line" style="height: 44%;"></div><div class="trend-value">17</div><div class="trend-label">本周签约</div></div>
+                  </div>
+                </div>
+                <div class="mini-card"><h4>一句话结论</h4><p>当前问题不在总量，而在后段转化和回款节奏。快手继续放量，抖音先排重，谈案侧要加强 30 万以上客单的收口。</p></div>
+              </section>
+            </section>
+
+            <section class="panel" style="margin-top: 16px;">
+              <h3>风险与关注</h3>
+              <div class="heat-list">
+                <div class="heat-item"><div class="heat-main"><strong>回款风险</strong><span>6 份合同首期款未按时到账，其中 2 份已超过约定节点。</span></div><span class="badge danger heat-flag">预警</span></div>
+                <div class="heat-item"><div class="heat-main"><strong>案件风险</strong><span>7 件案件处于异常状态，主要集中在证据补充和法院节点超期。</span></div><span class="badge warning heat-flag">关注</span></div>
+                <div class="heat-item"><div class="heat-main"><strong>渠道风险</strong><span>抖音重复率 17%，已明显拉低运营案源池质量。</span></div><span class="badge warning heat-flag">待优化</span></div>
+                <div class="heat-item"><div class="heat-main"><strong>人员风险</strong><span>陈泽在办 11 件、异常 2 件，负载偏高，建议阶段性分案。</span></div><span class="badge danger heat-flag">超负载</span></div>
               </div>
             </section>
           </main>
@@ -53,4 +96,3 @@
     <script src="../../assets/scripts/app.js"></script>
   </body>
 </html>
-

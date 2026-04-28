@@ -1,5 +1,16 @@
 ﻿const navConfig = [
   { type: "link", id: "home", label: "首页", href: "../home/home.html", icon: "home" },
+  {
+    type: "group",
+    label: "运营管理",
+    icon: "operations",
+    children: [
+      { id: "operations-home", label: "运营工作台", href: "../operations/operations-home.html" },
+      { id: "operation-lead-pool", label: "运营案源池", href: "../operations/operation-lead-pool.html" },
+      { id: "duplicate-management", label: "排重管理", href: "../operations/duplicate-management.html" },
+      { id: "lead-import-management", label: "案源导入管理", href: "../operations/lead-import-management.html" }
+    ]
+  },
   { type: "link", id: "lead-management", label: "案源管理", href: "../leads/lead-management.html", icon: "lead" },
   {
     type: "group",
@@ -50,10 +61,12 @@
     label: "分析中心",
     icon: "analysis",
     children: [
-      { id: "lead-analysis", label: "线索分析", href: "../analysis/lead-analysis.html" },
+      { id: "channel-analysis", label: "渠道分析", href: "../analysis/channel-analysis.html" },
+      { id: "lead-analysis", label: "案源分析", href: "../analysis/lead-analysis.html" },
       { id: "invitation-analysis", label: "邀约分析", href: "../analysis/invitation-analysis.html" },
       { id: "negotiation-analysis", label: "谈案分析", href: "../analysis/negotiation-analysis.html" },
-      { id: "signing-analysis", label: "签约分析", href: "../analysis/signing-analysis.html" }
+      { id: "signing-analysis", label: "签约分析", href: "../analysis/signing-analysis.html" },
+      { id: "case-analysis", label: "案件分析", href: "../analysis/case-analysis.html" }
     ]
   }
 ];
@@ -66,6 +79,7 @@ function iconMarkup(name) {
     negotiation: '<path d="M5 6h14"/><path d="M8 11h8"/><path d="M10 16h4"/><rect x="4" y="3" width="16" height="18" rx="2"/>',
     customer: '<path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"/><path d="M4 20a8 8 0 0 1 16 0"/>',
     case: '<rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 8h8"/><path d="M8 12h8"/><path d="M8 16h5"/>',
+    operations: '<path d="M4 6h16"/><path d="M7 6l2-3h6l2 3"/><rect x="5" y="6" width="14" height="12" rx="2"/><path d="M9 11h6"/><path d="M12 11v6"/>',
     finance: '<path d="M12 3v18"/><path d="M17 7.5c0-1.9-2.2-3.5-5-3.5s-5 1.6-5 3.5 2.2 3.5 5 3.5 5 1.6 5 3.5-2.2 3.5-5 3.5-5-1.6-5-3.5"/>',
     team: '<path d="M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/><path d="M16.5 12a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/><path d="M3.5 20a5 5 0 0 1 9 0"/><path d="M13 20a4 4 0 0 1 7 0"/>',
     analysis: '<path d="M5 18V9"/><path d="M12 18V5"/><path d="M19 18v-7"/><path d="M3 20h18"/>',
@@ -243,8 +257,12 @@ function leadBadgeClass(type, value) {
 
 function statusBadgeClass(value) {
   const text = String(value || "").trim();
+  if (text === "不重复") return "success";
+  if (text === "已分发") return "success";
   if (text === "潜在客户") return "warning";
+  if (text === "重复") return "danger";
   if (text === "签约客户") return "success";
+  if (text === "待分发") return "warning";
   if (text === "流失客户") return "danger";
   if (text === "已归档") return "success";
   if (["待补充", "待扫描", "待收", "部分", "未到店", "跟进中"].includes(text)) return "warning";
@@ -447,6 +465,9 @@ function setDetailField(drawer, key, value) {
 
 function buildDetailTitle(context, fallback) {
   if (context.memberName) return context.memberName;
+  if (context.packageName) return context.packageName;
+  if (context.fileName) return context.fileName;
+  if (context.batchName) return context.batchName;
   if (context.materialName) return context.materialName;
   if (context.caseName) return context.caseName;
   if (context.contractNo && !context.contractName) return context.contractNo;
@@ -529,6 +550,9 @@ function applyDetailContext(drawer, titleEl, fallbackTitle, context) {
     description: context.description,
     note: context.note,
     materialName: context.materialName,
+    packageName: context.packageName,
+    fileName: context.fileName,
+    batchName: context.batchName,
     materialType: context.materialType,
     materialStatus: context.materialStatus,
     uploadedAt: context.uploadedAt,

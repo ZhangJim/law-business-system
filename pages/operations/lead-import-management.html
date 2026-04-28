@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>案源导入管理 - 律所系统</title>
+    <link rel="stylesheet" href="../../assets/styles/main.css" />
+  </head>
+  <body data-page="lead-import-management">
+    <div class="app-shell">
+      <aside class="sidebar"></aside>
+      <div class="main-shell">
+        <div class="workspace">
+          <main class="page-body compact">
+            <div class="split-workspace">
+              <section class="split-main">
+                <section class="panel">
+                  <div class="tabs submenu">
+                    <a class="tab active" href="#">全部批次</a>
+                    <a class="tab" href="#">今日导入</a>
+                    <a class="tab" href="#">导入成功</a>
+                    <a class="tab" href="#">导入异常</a>
+                  </div>
+
+                  <div class="toolbar">
+                    <div><button class="button" type="button">＋ Excel导入</button></div>
+                    <div class="toolbar-tools"><span>筛选</span><span>排序</span><span>搜索</span></div>
+                  </div>
+
+                  <div class="table-shell tight">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Excel文件名</th>
+                          <th>来源平台</th>
+                          <th>导入时间</th>
+                          <th>导入人</th>
+                          <th>导入数量</th>
+                          <th>成功数量</th>
+                          <th>异常数量</th>
+                          <th>导入状态</th>
+                          <th>操作</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr
+                          data-file-name="快手刑事咨询线索_20260428.xlsx"
+                          data-batch-name="导入批次 IMP-20260428-001"
+                          data-source="快手"
+                          data-created-at="2026/04/28 11:05"
+                          data-owner-name="运营中台A组"
+                          data-description="本次导入 68 条快手刑事咨询线索，字段已完成标准化映射。"
+                          data-note="其中 3 条手机号格式异常，已自动标记为待修复。"
+                          data-validity="导入 68 条 / 成功 65 条 / 异常 3 条"
+                          data-contract-status="导入成功"
+                          data-payment-status="已入池"
+                        >
+                          <td><a class="table-link" href="#">快手刑事咨询线索_20260428.xlsx</a></td>
+                          <td><span class="badge warning">快手</span></td>
+                          <td>2026/04/28 11:05</td>
+                          <td><span class="person-chip"><span class="person-avatar">运</span>运营中台A组</span></td>
+                          <td>68</td>
+                          <td>65</td>
+                          <td>3</td>
+                          <td><span class="badge success">导入成功</span></td>
+                          <td><a class="action-link" href="#">查看数据</a></td>
+                        </tr>
+                        <tr
+                          data-file-name="百度合同纠纷线索_20260428.xlsx"
+                          data-batch-name="导入批次 IMP-20260428-002"
+                          data-source="百度"
+                          data-created-at="2026/04/28 10:12"
+                          data-owner-name="海岩"
+                          data-description="百度合同纠纷投流数据导入完成，主要覆盖上海、苏州、杭州地区。"
+                          data-note="有 1 条案件类型为空，建议回平台补录。"
+                          data-validity="导入 52 条 / 成功 51 条 / 异常 1 条"
+                          data-contract-status="导入成功"
+                          data-payment-status="已入池"
+                        >
+                          <td><a class="table-link" href="#">百度合同纠纷线索_20260428.xlsx</a></td>
+                          <td><span class="badge primary">百度</span></td>
+                          <td>2026/04/28 10:12</td>
+                          <td><span class="person-chip"><span class="person-avatar">海</span>海岩</span></td>
+                          <td>52</td>
+                          <td>51</td>
+                          <td>1</td>
+                          <td><span class="badge success">导入成功</span></td>
+                          <td><a class="action-link" href="#">查看数据</a></td>
+                        </tr>
+                        <tr
+                          data-file-name="抖音征拆线索_20260427.xlsx"
+                          data-batch-name="导入批次 IMP-20260427-004"
+                          data-source="抖音"
+                          data-created-at="2026/04/27 19:20"
+                          data-owner-name="周航"
+                          data-description="抖音征拆专题页夜间导入批次，部分城市字段需人工校对。"
+                          data-note="异常 5 条，主要为手机号位数不正确。"
+                          data-validity="导入 44 条 / 成功 39 条 / 异常 5 条"
+                          data-contract-status="导入异常"
+                          data-payment-status="待修复"
+                        >
+                          <td><a class="table-link" href="#">抖音征拆线索_20260427.xlsx</a></td>
+                          <td><span class="badge warning">抖音</span></td>
+                          <td>2026/04/27 19:20</td>
+                          <td><span class="person-chip"><span class="person-avatar">周</span>周航</span></td>
+                          <td>44</td>
+                          <td>39</td>
+                          <td>5</td>
+                          <td><span class="badge danger">导入异常</span></td>
+                          <td><a class="action-link" href="#">查看数据</a></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="footer-row"><span>共 3 条</span><span>1 / 1</span><span>20 条/页</span></div>
+                </section>
+              </section>
+
+              <aside class="detail-pane" data-create-title="Excel导入运营案源">
+                <div class="detail-topbar">
+                  <div class="detail-topbar-actions"><span>⌃</span><span>⌄</span></div>
+                  <div class="detail-topbar-actions"><span>···</span><span>×</span></div>
+                </div>
+                <div class="detail-scroll">
+                  <h2 class="detail-title">快手刑事咨询线索_20260428.xlsx</h2>
+                  <div class="detail-header-meta">
+                    <span class="detail-meta-item">来源平台：<span data-detail-field="source" data-detail-type="source-badge-inline"><span class="badge warning">快手</span></span></span>
+                    <span class="detail-meta-item">导入时间：<span data-detail-field="createdAt">2026/04/28 11:05</span></span>
+                    <span class="detail-meta-item">导入状态：<span data-detail-field="contractStatus" data-detail-type="status-badge"><span class="badge success">导入成功</span></span></span>
+                  </div>
+                  <div class="detail-tabs">
+                    <span class="detail-tab active">基本信息</span>
+                    <span class="detail-tab">历史</span>
+                  </div>
+
+                  <section class="detail-group active" data-role="detail">
+                    <div class="detail-card">
+                      <div class="info-grid">
+                        <div class="info-item"><div class="info-label">Excel文件名</div><div class="info-value" data-detail-field="fileName">快手刑事咨询线索_20260428.xlsx</div></div>
+                        <div class="info-item"><div class="info-label">导入批次</div><div class="info-value" data-detail-field="batchName">导入批次 IMP-20260428-001</div></div>
+                        <div class="info-item"><div class="info-label">来源平台</div><div class="info-value" data-detail-field="source" data-detail-type="source-badge">快手</div></div>
+                        <div class="info-item"><div class="info-label">导入时间</div><div class="info-value" data-detail-field="createdAt">2026/04/28 11:05</div></div>
+                        <div class="info-item"><div class="info-label">导入人</div><div class="info-value" data-detail-field="ownerName" data-detail-type="person">运营中台A组</div></div>
+                        <div class="info-item"><div class="info-label">导入结果</div><div class="info-value" data-detail-field="validity">导入 68 条 / 成功 65 条 / 异常 3 条</div></div>
+                        <div class="info-item"><div class="info-label">导入状态</div><div class="info-value" data-detail-field="contractStatus" data-detail-type="status-badge">导入成功</div></div>
+                        <div class="info-item"><div class="info-label">入池状态</div><div class="info-value" data-detail-field="paymentStatus" data-detail-type="status-badge">已入池</div></div>
+                        <div class="info-item full"><div class="info-label">说明</div><div class="info-value" data-detail-field="description">本次导入 68 条快手刑事咨询线索，字段已完成标准化映射。</div></div>
+                        <div class="info-item full"><div class="info-label">备注</div><div class="info-value" data-detail-field="note">其中 3 条手机号格式异常，已自动标记为待修复。</div></div>
+                      </div>
+                    </div>
+
+                    <div class="detail-group-title"><span>本次导入数据</span><span>字段与运营案源池一致</span></div>
+                    <div class="detail-card">
+                      <div class="table-shell tight">
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>客户姓名</th>
+                              <th>手机号</th>
+                              <th>来源平台</th>
+                              <th>投放计划</th>
+                              <th>案件类型</th>
+                              <th>案件描述</th>
+                              <th>提交时间</th>
+                              <th>排重状态</th>
+                              <th>分发状态</th>
+                              <th>当前负责人</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>张瑞</td>
+                              <td>13800112231</td>
+                              <td><span class="badge warning">快手</span></td>
+                              <td>刑事咨询-北京晚高峰定向</td>
+                              <td>刑事诉讼</td>
+                              <td>家属代提交，咨询取保候审与后续辩护方案。</td>
+                              <td>2026/04/28 09:12</td>
+                              <td><span class="badge success">不重复</span></td>
+                              <td><span class="badge warning">待分发</span></td>
+                              <td><span class="person-chip"><span class="person-avatar">运</span>运营中台A组</span></td>
+                            </tr>
+                            <tr>
+                              <td>郑凯</td>
+                              <td>13800129973</td>
+                              <td><span class="badge warning">快手</span></td>
+                              <td>刑事咨询-北京晚高峰定向</td>
+                              <td>刑事诉讼</td>
+                              <td>被带走调查后家属急需律师介入。</td>
+                              <td>2026/04/28 09:20</td>
+                              <td><span class="badge success">不重复</span></td>
+                              <td><span class="badge warning">待分发</span></td>
+                              <td><span class="person-chip"><span class="person-avatar">运</span>运营中台A组</span></td>
+                            </tr>
+                            <tr>
+                              <td>杜曼</td>
+                              <td>13800125508</td>
+                              <td><span class="badge warning">快手</span></td>
+                              <td>刑事咨询-北京晚高峰定向</td>
+                              <td>刑事诉讼</td>
+                              <td>家属咨询退赃退赔与辩护节奏。</td>
+                              <td>2026/04/28 09:33</td>
+                              <td><span class="badge danger">重复</span></td>
+                              <td><span class="badge warning">待分发</span></td>
+                              <td><span class="person-chip"><span class="person-avatar">运</span>运营中台A组</span></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="detail-group" data-role="history">
+                    <div class="detail-group-title"><span>导入历史</span><span>最近 7 天</span></div>
+                    <div class="detail-card">
+                      <table class="history-table">
+                        <thead>
+                          <tr><th>时间</th><th>字段</th><th>变更前</th><th></th><th>变更后</th></tr>
+                        </thead>
+                        <tbody>
+                          <tr><td>04月28日</td><td>导入状态</td><td>处理中</td><td class="history-arrow">→</td><td>导入成功</td></tr>
+                          <tr><td>04月28日</td><td>入池状态</td><td>未入池</td><td class="history-arrow">→</td><td>已入池</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </section>
+
+                  <section class="detail-group" data-role="create">
+                    <div class="detail-card">
+                      <form class="drawer-form">
+                        <div class="drawer-form-grid">
+                          <div class="field"><label>Excel文件名</label><input class="input" value="请选择需要导入的 Excel 文件" /></div>
+                          <div class="field"><label>来源平台</label><select class="select"><option>快手</option><option>百度</option><option>抖音</option><option>小红书</option><option>企业微信</option></select></div>
+                        </div>
+                        <div class="drawer-form-grid">
+                          <div class="field"><label>导入人</label><input class="input" value="运营中台A组" /></div>
+                          <div class="field"><label>备注</label><input class="input" value="请输入本次导入批次说明" /></div>
+                        </div>
+                        <div class="detail-footer"><button class="button" type="button">开始导入</button><button class="button secondary" type="button">取消</button></div>
+                      </form>
+                    </div>
+                  </section>
+                </div>
+              </aside>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+    <script src="../../assets/scripts/app.js"></script>
+  </body>
+</html>
