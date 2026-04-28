@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>团队管理 - 律所系统</title>
+    <link rel="stylesheet" href="../../assets/styles/main.css">
+  </head>
+  <body data-page="team-management">
+    <div class="app-shell">
+      <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-main">
+        <div class="brand-badge">A</div>
+        <div class="brand-text">律所系统</div>
+      </div>
+      <button class="collapse-btn" type="button" aria-label="收起导航">«</button>
+    </div>
+    <nav class="nav">
+          <a class="nav-item " href="../home/home.html">
+            <span class="icon icon-box">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M3.5 8.8L12 2l8.5 6.8"></path><path d="M5.5 7.5V20h13V7.5"></path><path d="M9 20v-6h6v6"></path>
+    </svg>
+  </span>
+            <span class="nav-text">首页</span>
+          </a>
+        
+          <a class="nav-item " href="../leads/lead-management.html">
+            <span class="icon icon-box">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <rect x="4" y="4" width="6" height="6" rx="1.5"></rect><rect x="14" y="4" width="6" height="6" rx="1.5"></rect><rect x="4" y="14" width="6" height="6" rx="1.5"></rect><rect x="14" y="14" width="6" height="6" rx="1.5"></rect>
+    </svg>
+  </span>
+            <span class="nav-text">案源管理</span>
+          </a>
+        
+        <div class="nav-group ">
+          <div class="nav-group-label">
+            <span class="icon icon-box">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M3 6h18"></path><path d="M8 3v6"></path><path d="M16 3v6"></path><rect x="4" y="6" width="16" height="14" rx="2"></rect><path d="M8 12h8"></path><path d="M8 16h5"></path>
+    </svg>
+  </span>
+            <span class="nav-text">邀约管理</span>
+            <span class="chevron">›</span>
+          </div>
+          <div class="nav-children">
+            
+                  <a class="nav-child " href="../invitation/invitation-management.html">
+                    <span class="icon icon-dot">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="2.2"></circle><path d="M12 3v3"></path><path d="M12 18v3"></path><path d="M3 12h3"></path><path d="M18 12h3"></path>
+    </svg>
+  </span>
+                    <span class="nav-text">邀约管理</span>
+                  </a>
+                
+                  <a class="nav-child " href="../invitation/invitation-records.html">
+                    <span class="icon icon-dot">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="2.2"></circle><path d="M12 3v3"></path><path d="M12 18v3"></path><path d="M3 12h3"></path><path d="M18 12h3"></path>
+    </svg>
+  </span>
+                    <span class="nav-text">邀约记录</span>
+                  </a>
+                
+          </div>
+        </div>
+      
+        <div class="nav-group ">
+          <div class="nav-group-label">
+            <span class="icon icon-box">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M5 6h14"></path><path d="M8 11h8"></path><path d="M10 16h4"></path><rect x="4" y="3" width="16" height="18" rx="2"></rect>
+    </svg>
+  </span>
+            <span class="nav-text">谈案与签约</span>
+            <span class="chevron">›</span>
+          </div>
+          <div class="nav-children">
+            
+                  <a class="nav-child " href="../negotiation/negotiation-management.html">
+                    <span class="icon icon-dot">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="2.2"></circle><path d="M12 3v3"></path><path d="M12 18v3"></path><path d="M3 12h3"></path><path d="M18 12h3"></path>
+    </svg>
+  </span>
+                    <span class="nav-text">谈案管理</span>
+                  </a>
+                
+                  <a class="nav-child " href="../negotiation/opportunity-management.html">
+                    <span class="icon icon-dot">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="2.2"></circle><path d="M12 3v3"></path><path d="M12 18v3"></path><path d="M3 12h3"></path><path d="M18 12h3"></path>
+    </svg>
+  </span>
+                    <span class="nav-text">商机管理</span>
+                  </a>
+                
+                  <a class="nav-child " href="../negotiation/contract-management.html">
+                    <span class="icon icon-dot">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="2.2"></circle><path d="M12 3v3"></path><path d="M12 18v3"></path><path d="M3 12h3"></path><path d="M18 12h3"></path>
+    </svg>
+  </span>
+                    <span class="nav-text">合同管理</span>
+                  </a>
+                
+                  <a class="nav-child " href="../negotiation/payment-plan.html">
+                    <span class="icon icon-dot">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="2.2"></circle><path d="M12 3v3"></path><path d="M12 18v3"></path><path d="M3 12h3"></path><path d="M18 12h3"></path>
+    </svg>
+  </span>
+                    <span class="nav-text">回款计划</span>
+                  </a>
+                
+                  <a class="nav-child " href="../negotiation/payment-records.html">
+                    <span class="icon icon-dot">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="2.2"></circle><path d="M12 3v3"></path><path d="M12 18v3"></path><path d="M3 12h3"></path><path d="M18 12h3"></path>
+    </svg>
+  </span>
+                    <span class="nav-text">回款记录</span>
+                  </a>
+                
+          </div>
+        </div>
+      
+          <a class="nav-item " href="../customer/customer-management.html">
+            <span class="icon icon-box">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"></path><path d="M4 20a8 8 0 0 1 16 0"></path>
+    </svg>
+  </span>
+            <span class="nav-text">客户管理</span>
+          </a>
+        
+        <div class="nav-group ">
+          <div class="nav-group-label">
+            <span class="icon icon-box">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <rect x="4" y="4" width="16" height="16" rx="2"></rect><path d="M8 8h8"></path><path d="M8 12h8"></path><path d="M8 16h5"></path>
+    </svg>
+  </span>
+            <span class="nav-text">案件管理</span>
+            <span class="chevron">›</span>
+          </div>
+          <div class="nav-children">
+            
+                  <a class="nav-child " href="../case/case-management.html">
+                    <span class="icon icon-dot">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="2.2"></circle><path d="M12 3v3"></path><path d="M12 18v3"></path><path d="M3 12h3"></path><path d="M18 12h3"></path>
+    </svg>
+  </span>
+                    <span class="nav-text">案件管理</span>
+                  </a>
+                
+                  <a class="nav-child " href="../case/archive-management.html">
+                    <span class="icon icon-dot">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="2.2"></circle><path d="M12 3v3"></path><path d="M12 18v3"></path><path d="M3 12h3"></path><path d="M18 12h3"></path>
+    </svg>
+  </span>
+                    <span class="nav-text">档案管理</span>
+                  </a>
+                
+                  <a class="nav-child " href="../case/case-stage-config.html">
+                    <span class="icon icon-dot">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="2.2"></circle><path d="M12 3v3"></path><path d="M12 18v3"></path><path d="M3 12h3"></path><path d="M18 12h3"></path>
+    </svg>
+  </span>
+                    <span class="nav-text">案件阶段配置</span>
+                  </a>
+                
+          </div>
+        </div>
+      
+        <div class="nav-group ">
+          <div class="nav-group-label">
+            <span class="icon icon-box">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M12 3v18"></path><path d="M17 7.5c0-1.9-2.2-3.5-5-3.5s-5 1.6-5 3.5 2.2 3.5 5 3.5 5 1.6 5 3.5-2.2 3.5-5 3.5-5-1.6-5-3.5"></path>
+    </svg>
+  </span>
+            <span class="nav-text">财务管理</span>
+            <span class="chevron">›</span>
+          </div>
+          <div class="nav-children">
+            
+                  <a class="nav-child " href="../finance/receivable-ledger.html">
+                    <span class="icon icon-dot">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="2.2"></circle><path d="M12 3v3"></path><path d="M12 18v3"></path><path d="M3 12h3"></path><path d="M18 12h3"></path>
+    </svg>
+  </span>
+                    <span class="nav-text">应收台账</span>
+                  </a>
+                
+                  <a class="nav-child " href="../finance/payable-ledger.html">
+                    <span class="icon icon-dot">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="2.2"></circle><path d="M12 3v3"></path><path d="M12 18v3"></path><path d="M3 12h3"></path><path d="M18 12h3"></path>
+    </svg>
+  </span>
+                    <span class="nav-text">应付台账</span>
+                  </a>
+                
+                  <a class="nav-child " href="../finance/commission-management.html">
+                    <span class="icon icon-dot">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="2.2"></circle><path d="M12 3v3"></path><path d="M12 18v3"></path><path d="M3 12h3"></path><path d="M18 12h3"></path>
+    </svg>
+  </span>
+                    <span class="nav-text">提成管理</span>
+                  </a>
+                
+                  <a class="nav-child " href="../finance/invoice-management.html">
+                    <span class="icon icon-dot">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="2.2"></circle><path d="M12 3v3"></path><path d="M12 18v3"></path><path d="M3 12h3"></path><path d="M18 12h3"></path>
+    </svg>
+  </span>
+                    <span class="nav-text">发票管理</span>
+                  </a>
+                
+          </div>
+        </div>
+      
+          <a class="nav-item active" href="../team/team-management.html">
+            <span class="icon icon-box">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"></path><path d="M16.5 12a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"></path><path d="M3.5 20a5 5 0 0 1 9 0"></path><path d="M13 20a4 4 0 0 1 7 0"></path>
+    </svg>
+  </span>
+            <span class="nav-text">团队管理</span>
+          </a>
+        
+        <div class="nav-group ">
+          <div class="nav-group-label">
+            <span class="icon icon-box">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M5 18V9"></path><path d="M12 18V5"></path><path d="M19 18v-7"></path><path d="M3 20h18"></path>
+    </svg>
+  </span>
+            <span class="nav-text">分析中心</span>
+            <span class="chevron">›</span>
+          </div>
+          <div class="nav-children">
+            
+                  <a class="nav-child " href="../analysis/lead-analysis.html">
+                    <span class="icon icon-dot">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="2.2"></circle><path d="M12 3v3"></path><path d="M12 18v3"></path><path d="M3 12h3"></path><path d="M18 12h3"></path>
+    </svg>
+  </span>
+                    <span class="nav-text">线索分析</span>
+                  </a>
+                
+                  <a class="nav-child " href="../analysis/invitation-analysis.html">
+                    <span class="icon icon-dot">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="2.2"></circle><path d="M12 3v3"></path><path d="M12 18v3"></path><path d="M3 12h3"></path><path d="M18 12h3"></path>
+    </svg>
+  </span>
+                    <span class="nav-text">邀约分析</span>
+                  </a>
+                
+                  <a class="nav-child " href="../analysis/negotiation-analysis.html">
+                    <span class="icon icon-dot">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="2.2"></circle><path d="M12 3v3"></path><path d="M12 18v3"></path><path d="M3 12h3"></path><path d="M18 12h3"></path>
+    </svg>
+  </span>
+                    <span class="nav-text">谈案分析</span>
+                  </a>
+                
+                  <a class="nav-child " href="../analysis/signing-analysis.html">
+                    <span class="icon icon-dot">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="2.2"></circle><path d="M12 3v3"></path><path d="M12 18v3"></path><path d="M3 12h3"></path><path d="M18 12h3"></path>
+    </svg>
+  </span>
+                    <span class="nav-text">签约分析</span>
+                  </a>
+                
+          </div>
+        </div>
+      </nav>
+    
+    <div class="sidebar-card">
+      <div class="sidebar-card-title">本周签约进度</div>
+      <div class="sidebar-mini-chart">
+        <span style="height: 46%"></span>
+        <span style="height: 70%"></span>
+        <span style="height: 58%"></span>
+        <span style="height: 86%"></span>
+      </div>
+      <div class="sidebar-card-foot">
+        <strong>72%</strong>
+        <span>距目标还差 3 单</span>
+      </div>
+    </div>
+  
+  </aside>
+      <div class="main-shell">
+        <div class="workspace">
+          <main class="page-body compact">
+            <div class="split-workspace">
+              <section class="split-main">
+                <section class="panel">
+                  <div class="toolbar">
+                    <div><button class="button" type="button">＋ 新增成员</button></div>
+                    <div class="toolbar-tools"><span>筛选</span><span>排序</span><span>搜索</span></div>
+                  </div>
+                  <div class="team-panel-head">
+                    <h3>员工信息</h3>
+                  </div>
+                  <div class="team-member-list">
+                    <div class="list-item team-member-row drawer-trigger" data-member-name="海岩" data-member-no="T1001" data-role-name="案源专员" data-lawyer-type="-" data-phone="13800001111" data-email="haiyan@lawfirm.com" data-age="31" data-education="本科" data-join-date="2022/03/10" data-hometown="北京" data-member-status="在岗" data-specialty-tags="短视频获客、刑事线索、客户初筛" data-intro="负责全所线上案源入口管理，擅长短视频线索转化、需求判断和有效分流。" data-lead-load="28" data-invite-load="6" data-negotiation-load="0" data-case-load="0">
+                      <div class="team-avatar-card"><div class="team-avatar-photo">海</div></div>
+                      <div class="team-member-content">
+                        <div class="team-member-top">
+                          <div>
+                            <h3 class="team-member-name">海岩 <span class="badge primary">案源专员</span></h3>
+                            <div class="skill-tags"><span class="skill-tag">短视频获客</span><span class="skill-tag">刑事线索</span><span class="skill-tag">客户初筛</span></div>
+                          </div>
+                          <div class="load-strip"><span class="load-pill">跟进案源 <strong>28</strong></span><span class="load-pill">待分配 <strong>6</strong></span></div>
+                        </div>
+                        <div class="team-meta-grid">
+                          <div class="team-meta-item"><span class="team-meta-label">员工号</span><span class="team-meta-value">T1001</span></div>
+                          <div class="team-meta-item"><span class="team-meta-label">学历 / 年龄</span><span class="team-meta-value">本科 / 31 岁</span></div>
+                          <div class="team-meta-item"><span class="team-meta-label">入职日期</span><span class="team-meta-value">2022/03/10</span></div>
+                          <div class="team-meta-item"><span class="team-meta-label">所在地</span><span class="team-meta-value">北京</span></div>
+                        </div>
+                        <div class="team-intro">负责全所线上案源入口管理，擅长短视频线索转化、需求判断和有效分流。</div>
+                      </div>
+                    </div>
+
+                    <div class="list-item team-member-row drawer-trigger" data-member-name="王助理" data-member-no="T1002" data-role-name="邀约专员" data-lawyer-type="-" data-phone="13900002222" data-email="wangzhuli@lawfirm.com" data-age="29" data-education="大专" data-join-date="2023/01/06" data-hometown="天津" data-member-status="在岗" data-specialty-tags="电话邀约、到店接待、客户跟催" data-intro="负责案源到店邀约、接待排期和到店确认，强调到店率与跟进节奏。" data-lead-load="0" data-invite-load="18" data-negotiation-load="0" data-case-load="0">
+                      <div class="team-avatar-card"><div class="team-avatar-photo">王</div></div>
+                      <div class="team-member-content">
+                        <div class="team-member-top">
+                          <div>
+                            <h3 class="team-member-name">王助理 <span class="badge warning">邀约专员</span></h3>
+                            <div class="skill-tags"><span class="skill-tag">电话邀约</span><span class="skill-tag">到店接待</span><span class="skill-tag">客户跟催</span></div>
+                          </div>
+                          <div class="load-strip"><span class="load-pill">本周邀约 <strong>18</strong></span><span class="load-pill">待到店 <strong>7</strong></span></div>
+                        </div>
+                        <div class="team-meta-grid">
+                          <div class="team-meta-item"><span class="team-meta-label">员工号</span><span class="team-meta-value">T1002</span></div>
+                          <div class="team-meta-item"><span class="team-meta-label">学历 / 年龄</span><span class="team-meta-value">大专 / 29 岁</span></div>
+                          <div class="team-meta-item"><span class="team-meta-label">入职日期</span><span class="team-meta-value">2023/01/06</span></div>
+                          <div class="team-meta-item"><span class="team-meta-label">所在地</span><span class="team-meta-value">天津</span></div>
+                        </div>
+                        <div class="team-intro">负责案源到店邀约、接待排期和到店确认，强调到店率与跟进节奏。</div>
+                      </div>
+                    </div>
+
+                    <div class="list-item team-member-row drawer-trigger" data-member-name="刘律师" data-member-no="T1003" data-role-name="律师" data-lawyer-type="授薪律师" data-phone="13700003333" data-email="liulawyer@lawfirm.com" data-age="35" data-education="硕士" data-join-date="2021/09/18" data-hometown="上海" data-member-status="在岗" data-specialty-tags="刑事辩护、取证策略、面谈成交" data-intro="负责重点刑事及争议案件的谈案与代理，擅长面谈成交、诉讼节奏设计和风险预判。" data-lead-load="0" data-invite-load="0" data-negotiation-load="6" data-case-load="8">
+                      <div class="team-avatar-card"><div class="team-avatar-photo">刘</div></div>
+                      <div class="team-member-content">
+                        <div class="team-member-top">
+                          <div>
+                            <h3 class="team-member-name">刘律师 <span class="badge info">律师</span><span class="badge primary">授薪律师</span></h3>
+                            <div class="skill-tags"><span class="skill-tag">刑事辩护</span><span class="skill-tag">取证策略</span><span class="skill-tag">面谈成交</span></div>
+                          </div>
+                          <div class="load-strip"><span class="load-pill">当前谈案 <strong>6</strong></span><span class="load-pill">在办案件 <strong>8</strong></span></div>
+                        </div>
+                        <div class="team-meta-grid">
+                          <div class="team-meta-item"><span class="team-meta-label">员工号</span><span class="team-meta-value">T1003</span></div>
+                          <div class="team-meta-item"><span class="team-meta-label">学历 / 年龄</span><span class="team-meta-value">硕士 / 35 岁</span></div>
+                          <div class="team-meta-item"><span class="team-meta-label">入职日期</span><span class="team-meta-value">2021/09/18</span></div>
+                          <div class="team-meta-item"><span class="team-meta-label">所在地</span><span class="team-meta-value">上海</span></div>
+                        </div>
+                        <div class="team-intro">负责重点刑事及争议案件的谈案与代理，擅长面谈成交、诉讼节奏设计和风险预判。</div>
+                      </div>
+                    </div>
+
+                    <div class="list-item team-member-row drawer-trigger" data-member-name="陈合伙人" data-member-no="T1004" data-role-name="律师" data-lawyer-type="合伙人" data-phone="13600004444" data-email="chenpartner@lawfirm.com" data-age="42" data-education="硕士" data-join-date="2018/06/01" data-hometown="深圳" data-member-status="在岗" data-specialty-tags="民商事诉讼、股权纠纷、重大客户谈判" data-intro="负责疑难民商事争议与大客户方案把控，兼顾案件策略和团队指导。" data-lead-load="0" data-invite-load="0" data-negotiation-load="4" data-case-load="12">
+                      <div class="team-avatar-card"><div class="team-avatar-photo">陈</div></div>
+                      <div class="team-member-content">
+                        <div class="team-member-top">
+                          <div>
+                            <h3 class="team-member-name">陈合伙人 <span class="badge info">律师</span><span class="badge success">合伙人</span></h3>
+                            <div class="skill-tags"><span class="skill-tag">民商事诉讼</span><span class="skill-tag">股权纠纷</span><span class="skill-tag">重大客户谈判</span></div>
+                          </div>
+                          <div class="load-strip"><span class="load-pill">当前谈案 <strong>4</strong></span><span class="load-pill">在办案件 <strong>12</strong></span></div>
+                        </div>
+                        <div class="team-meta-grid">
+                          <div class="team-meta-item"><span class="team-meta-label">员工号</span><span class="team-meta-value">T1004</span></div>
+                          <div class="team-meta-item"><span class="team-meta-label">学历 / 年龄</span><span class="team-meta-value">硕士 / 42 岁</span></div>
+                          <div class="team-meta-item"><span class="team-meta-label">入职日期</span><span class="team-meta-value">2018/06/01</span></div>
+                          <div class="team-meta-item"><span class="team-meta-label">所在地</span><span class="team-meta-value">深圳</span></div>
+                        </div>
+                        <div class="team-intro">负责疑难民商事争议与大客户方案把控，兼顾案件策略和团队指导。</div>
+                      </div>
+                    </div>
+
+                    <div class="list-item team-member-row drawer-trigger" data-member-name="徐静" data-member-no="T1005" data-role-name="谈案专员" data-lawyer-type="-" data-phone="13500005555" data-email="xujing@lawfirm.com" data-age="30" data-education="本科" data-join-date="2022/11/03" data-hometown="长沙" data-member-status="在岗" data-specialty-tags="报价沟通、谈案转化、客户关系维护" data-intro="承接高意向客户谈案，负责报价沟通、签约前推进和客户关系维护。" data-lead-load="0" data-invite-load="0" data-negotiation-load="9" data-case-load="0">
+                      <div class="team-avatar-card"><div class="team-avatar-photo">徐</div></div>
+                      <div class="team-member-content">
+                        <div class="team-member-top">
+                          <div>
+                            <h3 class="team-member-name">徐静 <span class="badge warning">谈案专员</span></h3>
+                            <div class="skill-tags"><span class="skill-tag">报价沟通</span><span class="skill-tag">谈案转化</span><span class="skill-tag">客户关系维护</span></div>
+                          </div>
+                          <div class="load-strip"><span class="load-pill">当前谈案 <strong>9</strong></span><span class="load-pill">待签约 <strong>3</strong></span></div>
+                        </div>
+                        <div class="team-meta-grid">
+                          <div class="team-meta-item"><span class="team-meta-label">员工号</span><span class="team-meta-value">T1005</span></div>
+                          <div class="team-meta-item"><span class="team-meta-label">学历 / 年龄</span><span class="team-meta-value">本科 / 30 岁</span></div>
+                          <div class="team-meta-item"><span class="team-meta-label">入职日期</span><span class="team-meta-value">2022/11/03</span></div>
+                          <div class="team-meta-item"><span class="team-meta-label">所在地</span><span class="team-meta-value">长沙</span></div>
+                        </div>
+                        <div class="team-intro">承接高意向客户谈案，负责报价沟通、签约前推进和客户关系维护。</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="footer-row"><span>共 5 条</span><span>1 / 1</span><span>20 条/页</span></div>
+                </section>
+              </section>
+
+              <aside class="detail-pane" data-create-title="未命名成员">
+                <div class="detail-topbar">
+                  <div class="detail-topbar-actions"><span>⌃</span><span>⌄</span></div>
+                  <div class="detail-topbar-actions"><span>···</span><span class="detail-close" style="cursor: pointer;">×</span></div>
+                </div>
+                <div class="detail-scroll">
+                  <h2 class="detail-title">海岩</h2>
+                  <div class="detail-header-meta">
+                    <span class="detail-meta-item"><span data-detail-field="roleName">案源专员</span></span>
+                    <span class="detail-meta-item">律师类型：<span data-detail-field="lawyerType">-</span></span>
+                    <span class="detail-meta-item">入职日期：<span data-detail-field="joinDate">2022/03/10</span></span>
+                  </div>
+                  <div class="detail-tabs">
+                    <span class="detail-tab active">基本信息</span>
+                    <span class="detail-tab">历史</span>
+                  </div>
+
+                  <section class="detail-group active" data-role="detail">
+                    <div class="detail-card">
+                      <div class="info-grid">
+                        <div class="info-item"><div class="info-label">姓名</div><div class="info-value" data-detail-field="memberName">海岩</div></div>
+                        <div class="info-item"><div class="info-label">员工号</div><div class="info-value" data-detail-field="memberNo">T1001</div></div>
+                        <div class="info-item"><div class="info-label">岗位</div><div class="info-value" data-detail-field="roleName">案源专员</div></div>
+                        <div class="info-item"><div class="info-label">律师类型</div><div class="info-value" data-detail-field="lawyerType">-</div></div>
+                        <div class="info-item"><div class="info-label">联系电话</div><div class="info-value" data-detail-field="phone">13800001111</div></div>
+                        <div class="info-item"><div class="info-label">电子邮箱</div><div class="info-value muted" data-detail-field="email">haiyan@lawfirm.com</div></div>
+                        <div class="info-item"><div class="info-label">年龄</div><div class="info-value" data-detail-field="age">31</div></div>
+                        <div class="info-item"><div class="info-label">学历</div><div class="info-value" data-detail-field="education">本科</div></div>
+                        <div class="info-item"><div class="info-label">所在地</div><div class="info-value" data-detail-field="hometown">北京</div></div>
+                        <div class="info-item full"><div class="info-label">擅长标签</div><div class="info-value" data-detail-field="specialtyTags">短视频获客、刑事线索、客户初筛</div></div>
+                        <div class="info-item full"><div class="info-label">成员简介</div><div class="info-value" data-detail-field="intro">负责全所线上案源入口管理，擅长短视频线索转化、需求判断和有效分流。</div></div>
+                      </div>
+                    </div>
+                    <div class="detail-metrics">
+                      <div class="metric-card"><div class="metric-card-label">跟进案源</div><div class="metric-card-value" data-detail-field="leadLoad">28</div></div>
+                      <div class="metric-card"><div class="metric-card-label">邀约负载</div><div class="metric-card-value" data-detail-field="inviteLoad">6</div></div>
+                      <div class="metric-card"><div class="metric-card-label">谈案负载</div><div class="metric-card-value" data-detail-field="negotiationLoad">0</div></div>
+                      <div class="metric-card"><div class="metric-card-label">在办案件</div><div class="metric-card-value" data-detail-field="caseLoad">0</div></div>
+                    </div>
+                  </section>
+
+                  <section class="detail-group" data-role="history">
+                    <div class="detail-group-title"><span>成员历史</span><span>最近 7 天</span></div>
+                    <div class="detail-card">
+                      <table class="history-table">
+                        <thead>
+                          <tr><th>时间</th><th>字段</th><th>变更前</th><th></th><th>变更后</th></tr>
+                        </thead>
+                        <tbody>
+                          <tr><td>04月24日</td><td>跟进案源</td><td>24</td><td class="history-arrow">→</td><td>28</td></tr>
+                          <tr><td>04月20日</td><td>擅长标签</td><td>刑事线索</td><td class="history-arrow">→</td><td>刑事线索、客户初筛</td></tr>
+                          <tr><td>04月18日</td><td>岗位</td><td>案源助理</td><td class="history-arrow">→</td><td>案源专员</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </section>
+
+                  <section class="detail-group" data-role="create">
+                    <div class="detail-group-title"><span>快速新建成员</span><span>统一录入组件</span></div>
+                    <div class="detail-card">
+                      <form class="drawer-form">
+                        <div class="drawer-form-grid">
+                          <div class="field"><label>成员姓名</label><input class="input create-placeholder" value="请输入成员姓名" data-placeholder-text="请输入成员姓名"></div>
+                          <div class="field"><label>员工号</label><input class="input create-placeholder" value="请输入员工号" data-placeholder-text="请输入员工号"></div>
+                        </div>
+                        <div class="drawer-form-grid">
+                          <div class="field"><label>岗位</label><select class="select create-placeholder"><option>案源专员</option><option>邀约专员</option><option>谈案专员</option><option>律师</option></select></div>
+                          <div class="field"><label>律师类型</label><select class="select create-placeholder"><option>非律师可留空</option><option>提成律师</option><option>授薪律师</option><option>合伙人</option><option>实习律师</option></select></div>
+                        </div>
+                        <div class="drawer-form-grid">
+                          <div class="field"><label>联系电话</label><input class="input create-placeholder" value="请输入联系电话" data-placeholder-text="请输入联系电话"></div>
+                          <div class="field"><label>电子邮箱</label><input class="input create-placeholder" value="请输入电子邮箱" data-placeholder-text="请输入电子邮箱"></div>
+                        </div>
+                        <div class="drawer-form-grid">
+                          <div class="field"><label>年龄</label><input class="input create-placeholder" value="请输入年龄" data-placeholder-text="请输入年龄"></div>
+                          <div class="field"><label>学历</label><select class="select create-placeholder"><option>本科</option><option>硕士</option><option>博士</option><option>大专</option></select></div>
+                        </div>
+                        <div class="drawer-form-grid">
+                          <div class="field"><label>入职日期</label><input class="input create-placeholder" value="年/月/日" data-placeholder-text="年/月/日"></div>
+                          <div class="field"><label>所在地</label><input class="input create-placeholder" value="请输入所在地" data-placeholder-text="请输入所在地"></div>
+                        </div>
+                        <div class="drawer-form-grid">
+                          <div class="field"><label>跟进案源数</label><input class="input create-placeholder" value="请输入案源负载" data-placeholder-text="请输入案源负载"></div>
+                          <div class="field"><label>邀约负载</label><input class="input create-placeholder" value="请输入邀约负载" data-placeholder-text="请输入邀约负载"></div>
+                        </div>
+                        <div class="drawer-form-grid">
+                          <div class="field"><label>谈案负载</label><input class="input create-placeholder" value="请输入谈案负载" data-placeholder-text="请输入谈案负载"></div>
+                          <div class="field"><label>在办案件数</label><input class="input create-placeholder" value="请输入在办案件数" data-placeholder-text="请输入在办案件数"></div>
+                        </div>
+                        <div class="field"><label>擅长标签</label><input class="input create-placeholder" value="请输入擅长标签，多个用顿号分隔" data-placeholder-text="请输入擅长标签，多个用顿号分隔"></div>
+                        <div class="field"><label>成员简介</label><textarea class="textarea create-placeholder" data-placeholder-text="请输入成员简介">请输入成员简介</textarea></div>
+                        <div class="detail-footer"><button class="button" type="button">提交</button><button class="button secondary" type="button">继续添加</button></div>
+                      </form>
+                    </div>
+                  </section>
+                </div>
+              </aside>
+            </div>
+          </main>
+        <div class="drawer-backdrop"></div></div>
+      </div>
+    </div>
+    <script src="../../assets/scripts/app.js"></script>
+  
+
+</body></html>

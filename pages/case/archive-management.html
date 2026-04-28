@@ -1,37 +1,510 @@
 ﻿<!doctype html>
 <html lang="zh-CN">
-  <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>档案管理 - 律所系统</title><link rel="stylesheet" href="../../assets/styles/main.css" /></head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>案件材料 - 律所系统</title>
+    <link rel="stylesheet" href="../../assets/styles/main.css" />
+  </head>
   <body data-page="archive-management">
-    <div class="app-shell"><aside class="sidebar"></aside><div class="main-shell"><div class="workspace">
-      <main class="page-body compact"><div class="split-workspace">
-        <section class="split-main"><section class="panel">
-          <div class="toolbar"><div><button class="button" type="button">＋ 新增档案</button></div><div class="toolbar-tools"><span>电子卷宗</span><span>纸档位置</span><span>借阅状态</span></div></div>
-          <div class="list">
-            <div class="list-item"><div><div class="list-main"><a class="table-link" href="#">张三故意伤害案卷宗</a></div><div class="list-sub">电子档完整 | 纸档 A-03-12 架</div></div><div class="list-side"><span class="badge success">已归档</span></div></div>
-            <div class="list-item"><div><div class="list-main">李四行政复议案卷宗</div><div class="list-sub">补充证据待上传 | 纸档借阅中</div></div><div class="list-side"><span class="badge warning">待补齐</span></div></div>
-            <div class="list-item"><div><div class="list-main">王某货款纠纷案卷宗</div><div class="list-sub">结案材料待扫描</div></div><div class="list-side"><span class="badge primary">处理中</span></div></div>
-          </div>
-        </section></section>
-        <aside class="detail-pane" data-create-title="未命名档案">
-          <div class="detail-topbar"><div class="detail-topbar-actions"><span>⌃</span><span>⌄</span></div><div class="detail-topbar-actions"><span>···</span><span>×</span></div></div>
-          <div class="detail-scroll"><h2 class="detail-title">张三故意伤害案卷宗</h2><div class="detail-tabs"><span class="detail-tab active">详情</span><span class="detail-tab">历史</span></div>
-            <section class="detail-group" data-role="detail"><div class="detail-card">
-              <div class="detail-field"><div class="detail-label">档案名称</div><div class="detail-value">张三故意伤害案卷宗</div></div>
-              <div class="detail-field"><div class="detail-label">电子档状态</div><div class="detail-value">完整</div></div>
-              <div class="detail-field"><div class="detail-label">纸档位置</div><div class="detail-value">A-03-12 架</div></div>
-              <div class="detail-field"><div class="detail-label">归档状态</div><div class="detail-value"><span class="badge success">已归档</span></div></div>
-            </div></section>
-            <section class="detail-group" data-role="history"><div class="detail-card"><table class="history-table"><thead><tr><th>时间</th><th>字段</th><th>变更前</th><th></th><th>变更后</th></tr></thead><tbody><tr><td>04月20日</td><td>归档状态</td><td>处理中</td><td class="history-arrow">→</td><td>已归档</td></tr></tbody></table></div></section>
-            <section class="detail-group" data-role="create"><div class="detail-card"><form class="drawer-form">
-              <div class="drawer-form-grid"><div class="field"><label>档案名称</label><input class="input" value="请输入档案名称" /></div><div class="field"><label>纸档位置</label><input class="input" value="请输入位置" /></div></div>
-              <div class="field"><label>档案说明</label><textarea class="textarea">请输入档案说明</textarea></div>
-              <div class="detail-footer"><button class="button" type="button">提交</button><button class="button secondary" type="button">取消</button></div>
-            </form></div></section>
-          </div>
-        </aside>
-      </div></main>
-    </div></div></div>
+    <div class="app-shell">
+      <aside class="sidebar"></aside>
+      <div class="main-shell">
+        <div class="workspace">
+          <main class="page-body compact">
+            <div class="split-workspace">
+              <section class="split-main">
+                <section class="panel">
+                  <div class="tabs submenu">
+                    <a class="tab active" href="#">我的材料</a>
+                    <a class="tab" href="#">待补材料</a>
+                    <a class="tab" href="#">关键证据</a>
+                    <a class="tab" href="#">已归档</a>
+                    <a class="tab" href="#">全部材料</a>
+                  </div>
+
+                  <div class="toolbar">
+                    <div></div>
+                    <div class="toolbar-tools"><span>筛选</span><span>分组</span><span>排序</span><span>搜索</span></div>
+                  </div>
+
+                  <div class="table-shell tight">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>材料名称</th>
+                          <th>所属案件</th>
+                          <th>客户信息</th>
+                          <th>材料类型</th>
+                          <th>当前阶段</th>
+                          <th>上传人</th>
+                          <th>上传时间</th>
+                          <th>原件情况</th>
+                          <th>材料状态</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr
+                          data-material-name="劳动合同扫描件"
+                          data-contract-no="(2026)中磐 劳 字第0001号"
+                          data-case-name="张三-劳动仲裁案"
+                          data-customer-name="张三"
+                          data-phone="13800001111"
+                          data-wechat="zhangsan-law"
+                          data-email="zhangsan@example.com"
+                          data-address="北京市海淀区中关村南大街 18 号"
+                          data-job="企业主"
+                          data-case-type="劳动仲裁"
+                          data-stage="办案阶段"
+                          data-material-type="合同文书"
+                          data-material-status="已归档"
+                          data-uploaded-at="2026/04/12 09:20"
+                          data-uploader="刘衡律师"
+                          data-original-status="原件已收"
+                          data-storage-location="电子卷宗 / 劳动仲裁 / A01"
+                          data-description="劳动合同原件已扫描上传，作为主张违法解除的基础证据。"
+                          data-note="纸质原件由客户保管，律所留存彩印件一份。"
+                        >
+                          <td><a class="table-link" href="#">劳动合同扫描件</a></td>
+                          <td>
+                            <div class="lead-info-cell">
+                              <div class="lead-info-main"><span class="lead-info-title">(2026)中磐 劳 字第0001号</span></div>
+                              <div class="lead-info-meta">张三-劳动仲裁案</div>
+                            </div>
+                          </td>
+                          <td>
+                            <div class="lead-info-cell">
+                              <div class="lead-info-main"><span class="lead-info-title">张三</span></div>
+                              <div class="lead-info-meta">电话：13800001111</div>
+                            </div>
+                          </td>
+                          <td>合同文书</td>
+                          <td><span class="badge warning">办案阶段</span></td>
+                          <td><span class="person-chip"><span class="person-avatar">刘</span>刘衡律师</span></td>
+                          <td>2026/04/12 09:20</td>
+                          <td>原件已收</td>
+                          <td><span class="badge success">已归档</span></td>
+                        </tr>
+
+                        <tr
+                          data-material-name="医院诊断证明"
+                          data-contract-no="(2026)中磐 刑 字第0002号"
+                          data-case-name="李明-故意伤害案"
+                          data-customer-name="李明"
+                          data-phone="13900008321"
+                          data-wechat="liming-defense"
+                          data-email="liming@example.com"
+                          data-address="北京市朝阳区望京街道 28 号"
+                          data-job="产品总监"
+                          data-case-type="刑事诉讼"
+                          data-stage="立项阶段"
+                          data-material-type="基础证据"
+                          data-material-status="待补充"
+                          data-uploaded-at="2026/04/13 11:10"
+                          data-uploader="陈泽"
+                          data-original-status="复印件"
+                          data-storage-location="待补材料 / 刑事 / B02"
+                          data-description="现有诊断证明清晰度不足，建议补传原件扫描件并同步病历。"
+                          data-note="家属次日上午补送原件。"
+                        >
+                          <td><a class="table-link" href="#">医院诊断证明</a></td>
+                          <td>
+                            <div class="lead-info-cell">
+                              <div class="lead-info-main"><span class="lead-info-title">(2026)中磐 刑 字第0002号</span></div>
+                              <div class="lead-info-meta">李明-故意伤害案</div>
+                            </div>
+                          </td>
+                          <td>
+                            <div class="lead-info-cell">
+                              <div class="lead-info-main"><span class="lead-info-title">李明</span></div>
+                              <div class="lead-info-meta">电话：13900008321</div>
+                            </div>
+                          </td>
+                          <td>基础证据</td>
+                          <td><span class="badge primary">立项阶段</span></td>
+                          <td><span class="person-chip"><span class="person-avatar">陈</span>陈泽</span></td>
+                          <td>2026/04/13 11:10</td>
+                          <td>复印件</td>
+                          <td><span class="badge warning">待补充</span></td>
+                        </tr>
+
+                        <tr
+                          data-material-name="一审庭审笔录"
+                          data-contract-no="(2026)中磐 行 字第0003号"
+                          data-case-name="王雪-行政诉讼案"
+                          data-customer-name="王雪"
+                          data-phone="13700004567"
+                          data-wechat="wangxue-admin"
+                          data-email="wangxue@example.com"
+                          data-address="天津市南开区卫津路 36 号"
+                          data-job="主厨"
+                          data-case-type="行政诉讼"
+                          data-stage="结果阶段"
+                          data-material-type="庭审材料"
+                          data-material-status="已归档"
+                          data-uploaded-at="2026/04/15 17:35"
+                          data-uploader="罗杉"
+                          data-original-status="电子件"
+                          data-storage-location="电子卷宗 / 行政诉讼 / A11"
+                          data-description="一审庭审笔录整理完成，已上传电子卷宗并标记为关键证据。"
+                          data-note="同步用于二审预案与上诉理由草拟。"
+                        >
+                          <td><a class="table-link" href="#">一审庭审笔录</a></td>
+                          <td>
+                            <div class="lead-info-cell">
+                              <div class="lead-info-main"><span class="lead-info-title">(2026)中磐 行 字第0003号</span></div>
+                              <div class="lead-info-meta">王雪-行政诉讼案</div>
+                            </div>
+                          </td>
+                          <td>
+                            <div class="lead-info-cell">
+                              <div class="lead-info-main"><span class="lead-info-title">王雪</span></div>
+                              <div class="lead-info-meta">电话：13700004567</div>
+                            </div>
+                          </td>
+                          <td>庭审材料</td>
+                          <td><span class="badge success">结果阶段</span></td>
+                          <td><span class="person-chip"><span class="person-avatar">罗</span>罗杉</span></td>
+                          <td>2026/04/15 17:35</td>
+                          <td>电子件</td>
+                          <td><span class="badge success">已归档</span></td>
+                        </tr>
+
+                        <tr
+                          data-material-name="往来对账单"
+                          data-contract-no="(2026)中磐 民 字第0004号"
+                          data-case-name="周建国-合同纠纷案"
+                          data-customer-name="周建国"
+                          data-phone="13600006789"
+                          data-wechat="zhoujianguo-case"
+                          data-email="zhoujianguo@example.com"
+                          data-address="石家庄市长安区建华大街 88 号"
+                          data-job="个体经营"
+                          data-case-type="民事诉讼"
+                          data-stage="办案阶段"
+                          data-material-type="财务凭证"
+                          data-material-status="需原件"
+                          data-uploaded-at="2026/04/16 09:05"
+                          data-uploader="高霖"
+                          data-original-status="仅截图"
+                          data-storage-location="待补原件 / 民事 / C03"
+                          data-description="现有对账单只有截图，无法完全覆盖争议区间，建议尽快补原件。"
+                          data-note="三日内补不到原件则评估银行调取路径。"
+                        >
+                          <td><a class="table-link" href="#">往来对账单</a></td>
+                          <td>
+                            <div class="lead-info-cell">
+                              <div class="lead-info-main"><span class="lead-info-title">(2026)中磐 民 字第0004号</span></div>
+                              <div class="lead-info-meta">周建国-合同纠纷案</div>
+                            </div>
+                          </td>
+                          <td>
+                            <div class="lead-info-cell">
+                              <div class="lead-info-main"><span class="lead-info-title">周建国</span></div>
+                              <div class="lead-info-meta">电话：13600006789</div>
+                            </div>
+                          </td>
+                          <td>财务凭证</td>
+                          <td><span class="badge warning">办案阶段</span></td>
+                          <td><span class="person-chip"><span class="person-avatar">高</span>高霖</span></td>
+                          <td>2026/04/16 09:05</td>
+                          <td>仅截图</td>
+                          <td><span class="badge danger">需原件</span></td>
+                        </tr>
+
+                        <tr
+                          data-material-name="仲裁申请书定稿"
+                          data-contract-no="(2026)中磐 仲 字第0005号"
+                          data-case-name="李四-仲裁争议案"
+                          data-customer-name="李四"
+                          data-phone="02151125"
+                          data-wechat="lisi-arb"
+                          data-email="lisi@example.com"
+                          data-address="北京市西城区金融街 18 号"
+                          data-job="地产项目经理"
+                          data-case-type="仲裁案件"
+                          data-stage="办案阶段"
+                          data-material-type="合同文书"
+                          data-material-status="已归档"
+                          data-uploaded-at="2026/04/17 19:40"
+                          data-uploader="唐宁"
+                          data-original-status="电子件"
+                          data-storage-location="电子卷宗 / 仲裁 / A18"
+                          data-description="仲裁申请书已定稿并完成客户确认，已作为核心提交文书归档。"
+                          data-note="后续仅需同步补充被申请人主体材料。"
+                        >
+                          <td><a class="table-link" href="#">仲裁申请书定稿</a></td>
+                          <td>
+                            <div class="lead-info-cell">
+                              <div class="lead-info-main"><span class="lead-info-title">(2026)中磐 仲 字第0005号</span></div>
+                              <div class="lead-info-meta">李四-仲裁争议案</div>
+                            </div>
+                          </td>
+                          <td>
+                            <div class="lead-info-cell">
+                              <div class="lead-info-main"><span class="lead-info-title">李四</span></div>
+                              <div class="lead-info-meta">电话：02151125</div>
+                            </div>
+                          </td>
+                          <td>合同文书</td>
+                          <td><span class="badge warning">办案阶段</span></td>
+                          <td><span class="person-chip"><span class="person-avatar">唐</span>唐宁</span></td>
+                          <td>2026/04/17 19:40</td>
+                          <td>电子件</td>
+                          <td><span class="badge success">已归档</span></td>
+                        </tr>
+
+                        <tr
+                          data-material-name="财产线索汇总表"
+                          data-contract-no="(2026)中磐 执 字第0006号"
+                          data-case-name="赵海峰-执行异议案"
+                          data-customer-name="赵海峰"
+                          data-phone="13500007890"
+                          data-wechat="zhao-enforce"
+                          data-email="zhaohf@example.com"
+                          data-address="杭州市拱墅区莫干山路 201 号"
+                          data-job="服装加工厂老板"
+                          data-case-type="执行案件"
+                          data-stage="办案阶段"
+                          data-material-type="往来记录"
+                          data-material-status="待扫描"
+                          data-uploaded-at="2026/04/18 13:50"
+                          data-uploader="宋妍"
+                          data-original-status="原件在客户处"
+                          data-storage-location="待扫描 / 执行 / D06"
+                          data-description="已汇总被执行人名下财产线索，但暂未完成盖章版扫描归档。"
+                          data-note="建议补一份线索来源说明，方便后续法院执行沟通。"
+                        >
+                          <td><a class="table-link" href="#">财产线索汇总表</a></td>
+                          <td>
+                            <div class="lead-info-cell">
+                              <div class="lead-info-main"><span class="lead-info-title">(2026)中磐 执 字第0006号</span></div>
+                              <div class="lead-info-meta">赵海峰-执行异议案</div>
+                            </div>
+                          </td>
+                          <td>
+                            <div class="lead-info-cell">
+                              <div class="lead-info-main"><span class="lead-info-title">赵海峰</span></div>
+                              <div class="lead-info-meta">电话：13500007890</div>
+                            </div>
+                          </td>
+                          <td>往来记录</td>
+                          <td><span class="badge warning">办案阶段</span></td>
+                          <td><span class="person-chip"><span class="person-avatar">宋</span>宋妍</span></td>
+                          <td>2026/04/18 13:50</td>
+                          <td>原件在客户处</td>
+                          <td><span class="badge warning">待扫描</span></td>
+                        </tr>
+
+                        <tr
+                          data-material-name="股东会决议复印件"
+                          data-contract-no="(2026)中磐 民 字第0007号"
+                          data-case-name="陈雨桐-股权纠纷案"
+                          data-customer-name="陈雨桐"
+                          data-phone="13400005672"
+                          data-wechat="chen-equity"
+                          data-email="chenyt@example.com"
+                          data-address="上海市徐汇区宜山路 99 号"
+                          data-job="品牌运营总监"
+                          data-case-type="民事诉讼"
+                          data-stage="已结案"
+                          data-material-type="结案材料"
+                          data-material-status="已归档"
+                          data-uploaded-at="2026/04/20 10:45"
+                          data-uploader="陈泽"
+                          data-original-status="复印件"
+                          data-storage-location="结案卷宗 / 股权纠纷 / E02"
+                          data-description="股东会决议复印件作为结案归档材料存档，配合判决书一并留卷。"
+                          data-note="若客户后续申请执行，再补原件核验记录。"
+                        >
+                          <td><a class="table-link" href="#">股东会决议复印件</a></td>
+                          <td>
+                            <div class="lead-info-cell">
+                              <div class="lead-info-main"><span class="lead-info-title">(2026)中磐 民 字第0007号</span></div>
+                              <div class="lead-info-meta">陈雨桐-股权纠纷案</div>
+                            </div>
+                          </td>
+                          <td>
+                            <div class="lead-info-cell">
+                              <div class="lead-info-main"><span class="lead-info-title">陈雨桐</span></div>
+                              <div class="lead-info-meta">电话：13400005672</div>
+                            </div>
+                          </td>
+                          <td>结案材料</td>
+                          <td><span class="badge info">已结案</span></td>
+                          <td><span class="person-chip"><span class="person-avatar">陈</span>陈泽</span></td>
+                          <td>2026/04/20 10:45</td>
+                          <td>复印件</td>
+                          <td><span class="badge success">已归档</span></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="footer-row"><span>共 7 条</span><span>1 / 1</span><span>20 条/页</span></div>
+                </section>
+              </section>
+
+              <aside class="detail-pane">
+                <div class="detail-topbar">
+                  <div class="detail-topbar-actions"><span>^</span><span>v</span></div>
+                  <div class="detail-topbar-actions"><span>...</span><span>×</span></div>
+                </div>
+                <div class="detail-scroll">
+                  <h2 class="detail-title">劳动合同扫描件</h2>
+                  <div class="detail-header-meta">
+                    <span class="detail-meta-item">所属案件：<span data-detail-field="contractNo">(2026)中磐 劳 字第0001号</span></span>
+                    <span class="detail-meta-item">材料类型：<span data-detail-field="materialType">合同文书</span></span>
+                    <span class="detail-meta-item">材料状态：<span data-detail-field="materialStatus" data-detail-type="status-badge">已归档</span></span>
+                    <span class="detail-meta-item">上传时间：<span data-detail-field="uploadedAt">2026/04/12 09:20</span></span>
+                  </div>
+                  <div class="detail-tabs">
+                    <span class="detail-tab active">基本信息</span>
+                    <span class="detail-tab">历史</span>
+                  </div>
+
+                  <section class="detail-group active" data-role="detail">
+                    <div class="detail-card">
+                      <div class="info-grid">
+                        <div class="info-item"><div class="info-label">材料名称</div><div class="info-value" data-detail-field="materialName">劳动合同扫描件</div></div>
+                        <div class="info-item"><div class="info-label">所属案件</div><div class="info-value" data-detail-field="caseName">张三-劳动仲裁案</div></div>
+                        <div class="info-item"><div class="info-label">案件编号</div><div class="info-value" data-detail-field="contractNo">(2026)中磐 劳 字第0001号</div></div>
+                        <div class="info-item"><div class="info-label">客户姓名</div><div class="info-value" data-detail-field="customerName">张三</div></div>
+                        <div class="info-item"><div class="info-label">联系电话</div><div class="info-value" data-detail-field="phone">13800001111</div></div>
+                        <div class="info-item"><div class="info-label">微信</div><div class="info-value muted" data-detail-field="wechat">zhangsan-law</div></div>
+                        <div class="info-item"><div class="info-label">材料类型</div><div class="info-value" data-detail-field="materialType">合同文书</div></div>
+                        <div class="info-item"><div class="info-label">当前阶段</div><div class="info-value" data-detail-field="stage" data-detail-type="stage-badge">办案阶段</div></div>
+                        <div class="info-item"><div class="info-label">上传人</div><div class="info-value" data-detail-field="uploader" data-detail-type="person">刘衡律师</div></div>
+                        <div class="info-item"><div class="info-label">上传时间</div><div class="info-value" data-detail-field="uploadedAt">2026/04/12 09:20</div></div>
+                        <div class="info-item"><div class="info-label">材料状态</div><div class="info-value" data-detail-field="materialStatus" data-detail-type="status-badge">已归档</div></div>
+                        <div class="info-item"><div class="info-label">原件情况</div><div class="info-value" data-detail-field="originalStatus">原件已收</div></div>
+                        <div class="info-item full"><div class="info-label">存放位置</div><div class="info-value" data-detail-field="storageLocation">电子卷宗 / 劳动仲裁 / A01</div></div>
+                        <div class="info-item full"><div class="info-label">材料介绍</div><div class="info-value" data-detail-field="description">劳动合同原件已扫描上传，作为主张违法解除的基础证据。</div></div>
+                        <div class="info-item full"><div class="info-label">备注</div><div class="info-value" data-detail-field="note">纸质原件由客户保管，律所留存彩印件一份。</div></div>
+                      </div>
+                    </div>
+
+                    <div class="switch-tabs">
+                      <span class="switch-tab active">材料动态</span>
+                      <span class="switch-tab">所属案件</span>
+                      <span class="switch-tab">关联合同</span>
+                      <span class="switch-tab">回款计划</span>
+                      <span class="switch-tab">回款记录</span>
+                    </div>
+
+                    <div class="switch-panel active">
+                      <div class="detail-card">
+                        <div class="activity-list">
+                          <div class="activity-item material">
+                            <div class="activity-line"><span class="activity-dot"></span></div>
+                            <div class="activity-time">2026-04-12 09:20</div>
+                            <div class="activity-main">
+                              <div class="activity-head">
+                                <div class="activity-labels"><span class="activity-tag material">材料</span></div>
+                                <strong>已上传劳动合同扫描件并归档到电子卷宗。</strong>
+                              </div>
+                              <div class="activity-meta">上传人：刘衡律师 · 存放位置：电子卷宗 / 劳动仲裁 / A01</div>
+                            </div>
+                            <div class="activity-side"><span class="person-chip"><span class="person-avatar">刘</span>刘衡律师</span><span class="method-link"><span class="method-icon">材</span>上传</span></div>
+                          </div>
+
+                          <div class="activity-item stage-change">
+                            <div class="activity-line"><span class="activity-dot"></span></div>
+                            <div class="activity-time">2026-04-13 14:00</div>
+                            <div class="activity-main">
+                              <div class="activity-head">
+                                <div class="activity-labels"><span class="activity-tag stage-change">阶段变更</span></div>
+                                <strong>材料状态从待处理调整为已归档。</strong>
+                              </div>
+                              <div class="activity-meta">更新说明：扫描质量合格，可直接用于仲裁材料包</div>
+                            </div>
+                            <div class="activity-side"><span class="person-chip"><span class="person-avatar">刘</span>刘衡律师</span><span class="method-link"><span class="method-icon">归</span>归档</span></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="switch-panel">
+                      <div class="detail-card">
+                        <div class="related-list">
+                          <div class="related-row">
+                            <div class="related-time">(2026)中磐 劳 字第0001号</div>
+                            <div class="related-main">
+                              <div class="related-title">张三-劳动仲裁案</div>
+                              <div class="related-meta"><span>案件类型：劳动仲裁</span><span>当前阶段：办案阶段</span><span>承办律师：刘衡律师</span></div>
+                            </div>
+                            <div class="related-side"><span class="person-chip"><span class="person-avatar">张</span>张三</span></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="switch-panel">
+                      <div class="detail-card">
+                        <div class="related-list">
+                          <div class="related-row">
+                            <div class="related-time">(2026)中磐 劳 字第0001号</div>
+                            <div class="related-main">
+                              <div class="related-title">张三劳动争议委托代理合同</div>
+                              <div class="related-meta"><span>合同状态：履约中</span><span>签订日期：2026/04/10</span><span>合同金额：80,000</span></div>
+                            </div>
+                            <div class="related-side"><span class="person-chip"><span class="person-avatar">张</span>张三</span></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="switch-panel">
+                      <div class="detail-card">
+                        <div class="related-list">
+                          <div class="related-row">
+                            <div class="related-time">HK0008</div>
+                            <div class="related-main">
+                              <div class="related-title">二期代理费回款计划</div>
+                              <div class="related-meta"><span>计划金额：20,000</span><span>计划日期：2026/04/28</span><span>状态：待收</span></div>
+                            </div>
+                            <div class="related-side"><span class="person-chip"><span class="person-avatar">徐</span>徐静</span></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="switch-panel">
+                      <div class="detail-card">
+                        <div class="related-list">
+                          <div class="related-row">
+                            <div class="related-time">SK0006</div>
+                            <div class="related-main">
+                              <div class="related-title">首期代理费已到账</div>
+                              <div class="related-meta"><span>到账金额：30,000</span><span>到账日期：2026/04/18</span><span>认领状态：已认领</span></div>
+                            </div>
+                            <div class="related-side"><span class="person-chip"><span class="person-avatar">宋</span>宋妍</span></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="detail-group" data-role="history">
+                    <div class="detail-group-title"><span>材料历史</span><span>最近 10 天</span></div>
+                    <div class="detail-card">
+                      <table class="history-table">
+                        <thead>
+                          <tr><th>时间</th><th>字段</th><th>变更前</th><th></th><th>变更后</th></tr>
+                        </thead>
+                        <tbody>
+                          <tr><td>04月13日</td><td>材料状态</td><td>待处理</td><td class="history-arrow">→</td><td>已归档</td></tr>
+                          <tr><td>04月12日</td><td>原件情况</td><td>未登记</td><td class="history-arrow">→</td><td>原件已收</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </section>
+                </div>
+              </aside>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
     <script src="../../assets/scripts/app.js"></script>
   </body>
 </html>
-

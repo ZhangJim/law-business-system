@@ -29,7 +29,7 @@
     icon: "case",
     children: [
       { id: "case-management", label: "案件管理", href: "../case/case-management.html" },
-      { id: "archive-management", label: "档案管理", href: "../case/archive-management.html" },
+      { id: "archive-management", label: "案件材料", href: "../case/archive-management.html" },
       { id: "case-stage-config", label: "案件阶段配置", href: "../case/case-stage-config.html" }
     ]
   },
@@ -243,11 +243,34 @@ function leadBadgeClass(type, value) {
 
 function statusBadgeClass(value) {
   const text = String(value || "").trim();
+  if (text === "潜在客户") return "warning";
+  if (text === "签约客户") return "success";
+  if (text === "流失客户") return "danger";
+  if (text === "已归档") return "success";
+  if (["待补充", "待扫描", "待收", "部分", "未到店", "跟进中"].includes(text)) return "warning";
+  if (["需原件", "异常", "失败", "无效"].includes(text)) return "danger";
   if (["履约中", "已转商机", "已转客户"].includes(text)) return "info";
   if (["已完成", "已结清", "已到店"].includes(text)) return "success";
-  if (["待审批", "部分", "未到店", "待收", "跟进中"].includes(text)) return "warning";
-  if (["无效", "失败"].includes(text)) return "danger";
+  if (["待审批"].includes(text)) return "warning";
   return "primary";
+}
+
+function memberRoleBadgeClass(value) {
+  const text = String(value || "").trim();
+  if (text === "案源专员") return "primary";
+  if (text === "邀约专员") return "warning";
+  if (text === "谈案专员") return "success";
+  if (text === "律师") return "info";
+  return "primary";
+}
+
+function lawyerBadgeClass(value) {
+  const text = String(value || "").trim();
+  if (text === "合伙人") return "success";
+  if (text === "授薪律师") return "primary";
+  if (text === "提成律师") return "warning";
+  if (text === "实习律师") return "info";
+  return "info";
 }
 
 function personChipMarkup(name) {
@@ -423,10 +446,67 @@ function setDetailField(drawer, key, value) {
 }
 
 function buildDetailTitle(context, fallback) {
+  if (context.memberName) return context.memberName;
+  if (context.materialName) return context.materialName;
+  if (context.caseName) return context.caseName;
+  if (context.contractNo && !context.contractName) return context.contractNo;
   if (context.contractNo) return context.contractNo;
   if (context.customerName && context.caseType) return `${context.customerName}（${context.caseType}）`;
   if (context.customerName) return context.customerName;
   return fallback;
+}
+
+function applyMemberAvatar(drawer, context) {
+  const name = String(context.memberName || context.customerName || "").trim();
+  const fallback = name ? name.charAt(0) : "新";
+  const avatar = String(context.memberAvatar || "").trim();
+
+  drawer.querySelectorAll("[data-detail-avatar-image]").forEach((img) => {
+    if (avatar) {
+      img.src = avatar;
+      img.hidden = false;
+    } else {
+      img.removeAttribute("src");
+      img.hidden = true;
+    }
+  });
+
+  drawer.querySelectorAll("[data-detail-avatar-fallback]").forEach((node) => {
+    node.textContent = fallback;
+    node.hidden = Boolean(avatar);
+  });
+}
+
+function applyTeamDetailDecorations(drawer, context) {
+  drawer.querySelectorAll("[data-detail-role-stack]").forEach((node) => {
+    const role = String(context.roleName || "").trim();
+    const lawyerType = String(context.lawyerType || "").trim();
+    const roleBadge = role ? `<span class="badge ${memberRoleBadgeClass(role)}">${escapeHtml(role)}</span>` : "";
+    const lawyerBadge =
+      lawyerType && lawyerType !== "-"
+        ? `<span class="badge ${lawyerBadgeClass(lawyerType)}">${escapeHtml(lawyerType)}</span>`
+        : "";
+    node.innerHTML = roleBadge + lawyerBadge;
+  });
+
+  drawer.querySelectorAll('[data-detail-tags="specialtyTags"]').forEach((node) => {
+    const tags = String(context.specialtyTags || "")
+      .split(/[、,，]/)
+      .map((item) => item.trim())
+      .filter(Boolean);
+    node.innerHTML = tags.length ? tags.map((tag) => `<span class="skill-tag">${escapeHtml(tag)}</span>`).join("") : '<span class="skill-tag">暂无标签</span>';
+  });
+}
+
+function updateCreateAvatarPreview(scope) {
+  if (!scope) return;
+  const nameField = scope.querySelector("[data-create-avatar-name]");
+  const fallbackNode = scope.querySelector("[data-create-avatar-fallback]");
+  if (!nameField || !fallbackNode) return;
+
+  const placeholder = nameField.dataset.placeholderText || "";
+  const text = nameField.value === placeholder ? "" : nameField.value.trim();
+  fallbackNode.textContent = text ? text.charAt(0) : "新";
 }
 
 function applyDetailContext(drawer, titleEl, fallbackTitle, context) {
@@ -435,6 +515,8 @@ function applyDetailContext(drawer, titleEl, fallbackTitle, context) {
   const detailMap = {
     customerName: context.customerName || context.leadName,
     customerType: context.customerType,
+    customerStatus: context.customerStatus,
+    contactName: context.contactName,
     phone: context.phone,
     wechat: context.wechat,
     email: context.email,
@@ -442,8 +524,37 @@ function applyDetailContext(drawer, titleEl, fallbackTitle, context) {
     stage: context.stage,
     caseType: context.caseType,
     createdAt: context.createdAt,
+    firstFollowDate: context.firstFollowDate,
     lastFollowDate: context.lastFollowDate,
     description: context.description,
+    note: context.note,
+    materialName: context.materialName,
+    materialType: context.materialType,
+    materialStatus: context.materialStatus,
+    uploadedAt: context.uploadedAt,
+    uploader: context.uploader,
+    originalStatus: context.originalStatus,
+    storageLocation: context.storageLocation,
+    ownerName: context.ownerName,
+    customerTags: context.customerTags,
+    relatedLeadCount: context.relatedLeadCount,
+    relatedCaseCount: context.relatedCaseCount,
+    memberName: context.memberName,
+    memberNo: context.memberNo,
+    memberAvatar: context.memberAvatar,
+    roleName: context.roleName,
+    lawyerType: context.lawyerType,
+    specialtyTags: context.specialtyTags,
+    memberStatus: context.memberStatus,
+    intro: context.intro,
+    education: context.education,
+    age: context.age,
+    joinDate: context.joinDate,
+    hometown: context.hometown,
+    inviteLoad: context.inviteLoad,
+    negotiationLoad: context.negotiationLoad,
+    caseLoad: context.caseLoad,
+    leadLoad: context.leadLoad,
     leadOwner: context.leadOwner,
     invitationOwner: context.invitationOwner,
     negotiationOwner: context.negotiationOwner,
@@ -466,6 +577,8 @@ function applyDetailContext(drawer, titleEl, fallbackTitle, context) {
 
   if (titleEl) titleEl.textContent = buildDetailTitle(detailMap, fallbackTitle);
   Object.entries(detailMap).forEach(([key, value]) => setDetailField(drawer, key, value));
+  applyMemberAvatar(drawer, detailMap);
+  applyTeamDetailDecorations(drawer, detailMap);
 }
 
 function initDrawers() {
@@ -516,6 +629,8 @@ function initDrawers() {
         field.selectedIndex = 0;
         field.classList.add("create-placeholder");
       });
+
+      updateCreateAvatarPreview(createPanel);
     }
 
     function setCreateMode(mode) {
@@ -605,6 +720,16 @@ function initDrawers() {
       });
     });
 
+    workspace.querySelectorAll("[data-open-detail]").forEach((trigger) => {
+      trigger.addEventListener("click", (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        const row = trigger.closest("tr, .list-item, .kanban-card");
+        if (!row) return;
+        openDrawer(0, "detail", { ...row.dataset });
+      });
+    });
+
     const splitMain = workspace.querySelector(".split-main");
     if (splitMain) {
       splitMain.querySelectorAll("tbody tr, .list-item, .kanban-card").forEach((item) => {
@@ -632,13 +757,18 @@ function initDrawers() {
             field.value = field.dataset.placeholderText || "";
             field.classList.toggle("create-placeholder", Boolean(field.value));
           }
+          updateCreateAvatarPreview(createPanel);
         });
+
+        field.addEventListener("input", () => updateCreateAvatarPreview(createPanel));
       });
 
       createPanel.querySelectorAll("select").forEach((field) => {
         field.classList.add("create-placeholder");
         field.addEventListener("change", () => field.classList.remove("create-placeholder"));
       });
+
+      updateCreateAvatarPreview(createPanel);
     }
   });
 }
