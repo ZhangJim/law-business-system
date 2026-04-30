@@ -7,6 +7,7 @@
     children: [
       { id: "operations-home", label: "运营工作台", href: "../operations/operations-home.html" },
       { id: "operation-lead-pool", label: "运营案源池", href: "../operations/operation-lead-pool.html" },
+      { id: "data-warehouse", label: "数据仓库", href: "../operations/data-warehouse.html" },
       { id: "duplicate-management", label: "排重管理", href: "../operations/duplicate-management.html" },
       { id: "lead-import-management", label: "案源导入管理", href: "../operations/lead-import-management.html" }
     ]
@@ -61,6 +62,8 @@
     label: "分析中心",
     icon: "analysis",
     children: [
+      { id: "channel-roi-analysis", label: "渠道ROI统计", href: "../analysis/channel-roi-analysis.html" },
+      { id: "channel-cost-management", label: "渠道成本管理", href: "../analysis/channel-cost-management.html" },
       { id: "channel-analysis", label: "渠道分析", href: "../analysis/channel-analysis.html" },
       { id: "lead-analysis", label: "案源分析", href: "../analysis/lead-analysis.html" },
       { id: "invitation-analysis", label: "邀约分析", href: "../analysis/invitation-analysis.html" },
@@ -465,6 +468,7 @@ function setDetailField(drawer, key, value) {
 
 function buildDetailTitle(context, fallback) {
   if (context.memberName) return context.memberName;
+  if (context.channelName) return context.channelName;
   if (context.packageName) return context.packageName;
   if (context.fileName) return context.fileName;
   if (context.batchName) return context.batchName;
@@ -537,6 +541,7 @@ function applyDetailContext(drawer, titleEl, fallbackTitle, context) {
     customerName: context.customerName || context.leadName,
     customerType: context.customerType,
     customerStatus: context.customerStatus,
+    starLevel: context.starLevel,
     contactName: context.contactName,
     phone: context.phone,
     wechat: context.wechat,
@@ -597,6 +602,25 @@ function applyDetailContext(drawer, titleEl, fallbackTitle, context) {
     paymentStatus: context.paymentStatus,
     paymentProgress: context.paymentProgress,
     validity: context.validity
+    ,
+    channelName: context.channelName,
+    labelName: context.labelName,
+    regionName: context.regionName,
+    accountName: context.accountName,
+    timeRange: context.timeRange,
+    leadVolume: context.leadVolume,
+    duplicateVolume: context.duplicateVolume,
+    spendAmount: context.spendAmount,
+    currentM1: context.currentM1,
+    currentRoi: context.currentRoi,
+    historicalRoi: context.historicalRoi,
+    successRate: context.successRate,
+    validCount: context.validCount,
+    costPerValid: context.costPerValid,
+    uploadBy: context.uploadBy,
+    uploadFileName: context.uploadFileName,
+    costDate: context.costDate,
+    registerCount: context.registerCount
   };
 
   if (titleEl) titleEl.textContent = buildDetailTitle(detailMap, fallbackTitle);

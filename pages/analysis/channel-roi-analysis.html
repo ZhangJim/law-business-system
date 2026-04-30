@@ -1,0 +1,260 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>渠道ROI统计 - 律所系统</title>
+    <link rel="stylesheet" href="../../assets/styles/main.css" />
+  </head>
+  <body data-page="channel-roi-analysis">
+    <div class="app-shell"><aside class="sidebar"></aside><div class="main-shell"><div class="workspace">
+      <header class="topbar">
+        <div>
+          <h1>渠道ROI统计</h1>
+          <p>老板和管理层在这里看当前时间段的渠道花费、回款和ROI，判断钱花得值不值、哪个渠道值得继续投。</p>
+        </div>
+        <div class="topbar-actions">
+          <span class="ghost-chip">经营视角</span>
+          <span class="ghost-chip">ROI判断</span>
+        </div>
+      </header>
+      <main class="page-body">
+        <section class="metrics">
+          <div class="metric"><div class="metric-label">当前时间段总消耗</div><div class="metric-value">62.7万</div><div class="metric-note">财务已录入当前统计周期渠道成本</div></div>
+          <div class="metric"><div class="metric-label">当前时间段总回款</div><div class="metric-value">178.4万</div><div class="metric-note">按当前统计周期到账回款口径</div></div>
+          <div class="metric"><div class="metric-label">当前时间段ROI</div><div class="metric-value">2.84</div><div class="metric-note">当前周期总回款 ÷ 总消耗</div></div>
+          <div class="metric"><div class="metric-label">历史累计ROI</div><div class="metric-value">4.17</div><div class="metric-note">总花费与累计总回款计算</div></div>
+        </section>
+
+        <section class="panel">
+          <div class="filter-row">
+            <div class="field"><label>时间段</label><select class="select"><option>当月（2026/04/01 - 2026/04/30）</option><option>最近7天</option><option>最近30天</option><option>本季度</option><option>自定义时间范围</option></select></div>
+            <div class="field"><label>跟进人</label><select class="select"><option>全部</option><option>海岩</option><option>周航</option><option>徐静</option></select></div>
+            <div class="field"><label>渠道标签</label><select class="select"><option>全部标签</option><option>KS-A102</option><option>BD-C331</option><option>DY-H019</option><option>XHS-B208</option><option>QYWX-F606</option></select></div>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="table-shell">
+            <table>
+              <thead>
+                <tr>
+                  <th>对接人</th>
+                  <th>渠道名称</th>
+                  <th>渠道标签</th>
+                  <th>总数据量</th>
+                  <th>1星</th>
+                  <th>2星</th>
+                  <th>3星</th>
+                  <th>4星</th>
+                  <th>5星</th>
+                  <th>总消耗</th>
+                  <th>当前时间段回款M1</th>
+                  <th>当月ROI</th>
+                  <th>历史累计回款</th>
+                  <th>历史ROI</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr data-channel-name="快手" data-account-name="海岩" data-label-name="KS-A102" data-lead-volume="3960" data-valid-count="103" data-spend-amount="38800" data-current-m1="278010" data-current-roi="7.17" data-historical-roi="12.84" data-time-range="2026/04/01 - 2026/04/30" data-region-name="当前时间段" data-upload-file-name="finance_kuaishou_202604.xlsx">
+                  <td><span class="person-chip"><span class="person-avatar">海</span><span>海岩</span></span></td>
+                  <td><a class="table-link" href="#">快手</a></td>
+                  <td><span class="badge primary">KS-A102</span></td>
+                  <td>3960</td>
+                  <td>1248</td>
+                  <td>920</td>
+                  <td>103</td>
+                  <td>764</td>
+                  <td>925</td>
+                  <td>38,800</td>
+                  <td>278,010</td>
+                  <td>7.17</td>
+                  <td>498,200</td>
+                  <td>12.84</td>
+                </tr>
+                <tr data-channel-name="快手" data-account-name="王助理" data-label-name="KS-B214" data-lead-volume="1840" data-valid-count="86" data-spend-amount="22160" data-current-m1="136800" data-current-roi="6.17" data-historical-roi="9.26" data-time-range="2026/04/01 - 2026/04/30" data-region-name="当前时间段" data-upload-file-name="finance_kuaishou_b_202604.xlsx">
+                  <td><span class="person-chip"><span class="person-avatar">王</span><span>王助理</span></span></td>
+                  <td><a class="table-link" href="#">快手</a></td>
+                  <td><span class="badge primary">KS-B214</span></td>
+                  <td>1840</td>
+                  <td>620</td>
+                  <td>452</td>
+                  <td>86</td>
+                  <td>301</td>
+                  <td>381</td>
+                  <td>22,160</td>
+                  <td>136,800</td>
+                  <td>6.17</td>
+                  <td>205,440</td>
+                  <td>9.26</td>
+                </tr>
+                <tr data-channel-name="百度" data-account-name="周航" data-label-name="BD-C331" data-lead-volume="2305" data-valid-count="404" data-spend-amount="340175" data-current-m1="230858" data-current-roi="0.68" data-historical-roi="1.94" data-time-range="2026/04/01 - 2026/04/30" data-region-name="当前时间段" data-upload-file-name="finance_baidu_202604.xlsx">
+                  <td><span class="person-chip"><span class="person-avatar">周</span><span>周航</span></span></td>
+                  <td><a class="table-link" href="#">百度</a></td>
+                  <td><span class="badge warning">BD-C331</span></td>
+                  <td>2305</td>
+                  <td>508</td>
+                  <td>472</td>
+                  <td>404</td>
+                  <td>391</td>
+                  <td>530</td>
+                  <td>340,175</td>
+                  <td>230,858</td>
+                  <td>0.68</td>
+                  <td>659,400</td>
+                  <td>1.94</td>
+                </tr>
+                <tr data-channel-name="百度" data-account-name="海岩" data-label-name="BD-D508" data-lead-volume="1268" data-valid-count="215" data-spend-amount="168420" data-current-m1="118500" data-current-roi="0.70" data-historical-roi="1.66" data-time-range="2026/04/01 - 2026/04/30" data-region-name="当前时间段" data-upload-file-name="finance_baidu_d_202604.xlsx">
+                  <td><span class="person-chip"><span class="person-avatar">海</span><span>海岩</span></span></td>
+                  <td><a class="table-link" href="#">百度</a></td>
+                  <td><span class="badge warning">BD-D508</span></td>
+                  <td>1268</td>
+                  <td>288</td>
+                  <td>264</td>
+                  <td>215</td>
+                  <td>231</td>
+                  <td>270</td>
+                  <td>168,420</td>
+                  <td>118,500</td>
+                  <td>0.70</td>
+                  <td>279,800</td>
+                  <td>1.66</td>
+                </tr>
+                <tr data-channel-name="抖音" data-account-name="徐静" data-label-name="DY-H019" data-lead-volume="1104" data-valid-count="128" data-spend-amount="146314" data-current-m1="40400" data-current-roi="0.28" data-historical-roi="0.96" data-time-range="2026/04/01 - 2026/04/30" data-region-name="当前时间段" data-upload-file-name="finance_douyin_202604.xlsx">
+                  <td><span class="person-chip"><span class="person-avatar">徐</span><span>徐静</span></span></td>
+                  <td><a class="table-link" href="#">抖音</a></td>
+                  <td><span class="badge success">DY-H019</span></td>
+                  <td>1104</td>
+                  <td>288</td>
+                  <td>246</td>
+                  <td>128</td>
+                  <td>188</td>
+                  <td>254</td>
+                  <td>146,314</td>
+                  <td>40,400</td>
+                  <td>0.28</td>
+                  <td>140,820</td>
+                  <td>0.96</td>
+                </tr>
+                <tr data-channel-name="抖音" data-account-name="周航" data-label-name="DY-K552" data-lead-volume="920" data-valid-count="96" data-spend-amount="118640" data-current-m1="56200" data-current-roi="0.47" data-historical-roi="1.21" data-time-range="2026/04/01 - 2026/04/30" data-region-name="当前时间段" data-upload-file-name="finance_douyin_k_202604.xlsx">
+                  <td><span class="person-chip"><span class="person-avatar">周</span><span>周航</span></span></td>
+                  <td><a class="table-link" href="#">抖音</a></td>
+                  <td><span class="badge success">DY-K552</span></td>
+                  <td>920</td>
+                  <td>221</td>
+                  <td>208</td>
+                  <td>96</td>
+                  <td>170</td>
+                  <td>225</td>
+                  <td>118,640</td>
+                  <td>56,200</td>
+                  <td>0.47</td>
+                  <td>143,500</td>
+                  <td>1.21</td>
+                </tr>
+                <tr data-channel-name="小红书" data-account-name="朱浩" data-label-name="XHS-B208" data-lead-volume="860" data-valid-count="71" data-spend-amount="113412" data-current-m1="66987" data-current-roi="0.59" data-historical-roi="2.31" data-time-range="2026/04/01 - 2026/04/30" data-region-name="当前时间段" data-upload-file-name="finance_xhs_202604.xlsx">
+                  <td><span class="person-chip"><span class="person-avatar">朱</span><span>朱浩</span></span></td>
+                  <td><a class="table-link" href="#">小红书</a></td>
+                  <td><span class="badge danger">XHS-B208</span></td>
+                  <td>860</td>
+                  <td>166</td>
+                  <td>182</td>
+                  <td>71</td>
+                  <td>203</td>
+                  <td>238</td>
+                  <td>113,412</td>
+                  <td>66,987</td>
+                  <td>0.59</td>
+                  <td>261,980</td>
+                  <td>2.31</td>
+                </tr>
+                <tr data-channel-name="小红书" data-account-name="徐静" data-label-name="XHS-C917" data-lead-volume="640" data-valid-count="62" data-spend-amount="89200" data-current-m1="54400" data-current-roi="0.61" data-historical-roi="1.88" data-time-range="2026/04/01 - 2026/04/30" data-region-name="当前时间段" data-upload-file-name="finance_xhs_c_202604.xlsx">
+                  <td><span class="person-chip"><span class="person-avatar">徐</span><span>徐静</span></span></td>
+                  <td><a class="table-link" href="#">小红书</a></td>
+                  <td><span class="badge danger">XHS-C917</span></td>
+                  <td>640</td>
+                  <td>140</td>
+                  <td>128</td>
+                  <td>62</td>
+                  <td>161</td>
+                  <td>149</td>
+                  <td>89,200</td>
+                  <td>54,400</td>
+                  <td>0.61</td>
+                  <td>167,600</td>
+                  <td>1.88</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <aside class="detail-pane">
+          <div class="detail-topbar"><div class="detail-topbar-actions"><span>︿</span><span>﹀</span></div><div class="detail-topbar-actions"><span>···</span><span class="detail-close">×</span></div></div>
+          <div class="detail-scroll">
+            <h2 class="detail-title">快手-刑事咨询</h2>
+            <div class="detail-header-meta">
+              <span class="detail-meta-item">统计口径：<span data-detail-field="regionName">当前时间段</span></span>
+              <span class="detail-meta-item">统计周期：<span data-detail-field="timeRange">2026/04/01 - 2026/04/30</span></span>
+            </div>
+            <div class="detail-tabs"><span class="detail-tab active">基本信息</span><span class="detail-tab">历史</span></div>
+            <section class="detail-group active" data-role="detail">
+              <div class="detail-card">
+                <div class="info-grid">
+                  <div class="info-item"><div class="info-label">渠道名称</div><div class="info-value" data-detail-field="channelName">快手</div></div>
+                  <div class="info-item"><div class="info-label">渠道标签</div><div class="info-value" data-detail-field="labelName">KS-A102</div></div>
+                  <div class="info-item"><div class="info-label">对接人</div><div class="info-value" data-detail-field="accountName">海岩</div></div>
+                  <div class="info-item"><div class="info-label">总数据量</div><div class="info-value" data-detail-field="leadVolume">3960</div></div>
+                  <div class="info-item"><div class="info-label">3星数据</div><div class="info-value" data-detail-field="validCount">103</div></div>
+                  <div class="info-item"><div class="info-label">总消耗</div><div class="info-value" data-detail-field="spendAmount">38800</div></div>
+                  <div class="info-item"><div class="info-label">当前时间段回款M1</div><div class="info-value" data-detail-field="currentM1">278010</div></div>
+                  <div class="info-item"><div class="info-label">当月ROI</div><div class="info-value" data-detail-field="currentRoi">7.17</div></div>
+                  <div class="info-item"><div class="info-label">历史累计ROI</div><div class="info-value" data-detail-field="historicalRoi">12.84</div></div>
+                  <div class="info-item"><div class="info-label">成本文件</div><div class="info-value" data-detail-field="uploadFileName">finance_kuaishou_202604.xlsx</div></div>
+                </div>
+              </div>
+            </section>
+            <section class="detail-group" data-role="history">
+              <div class="detail-group-title"><span>更新历史</span><span>最近 30 天</span></div>
+              <div class="detail-card">
+                <table class="history-table">
+                  <thead><tr><th>时间</th><th>字段</th><th>变更前</th><th></th><th>变更后</th></tr></thead>
+                  <tbody>
+                    <tr><td>04月30日</td><td>总消耗</td><td>36,400</td><td class="history-arrow">→</td><td>38,800</td></tr>
+                    <tr><td>04月30日</td><td>当月ROI</td><td>6.72</td><td class="history-arrow">→</td><td>7.17</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+          </div>
+        </aside>
+      </main>
+    </div></div></div>
+    <script src="../../assets/scripts/app.js"></script>
+    <script>
+      document.querySelectorAll('tbody tr').forEach((row) => {
+        row.addEventListener('click', () => {
+          const map = {
+            channelName: row.dataset.channelName,
+            accountName: row.dataset.accountName,
+            labelName: row.dataset.labelName,
+            leadVolume: row.dataset.leadVolume,
+            validCount: row.dataset.validCount,
+            spendAmount: row.dataset.spendAmount,
+            currentM1: row.dataset.currentM1,
+            currentRoi: row.dataset.currentRoi,
+            historicalRoi: row.dataset.historicalRoi,
+            timeRange: row.dataset.timeRange,
+            regionName: row.dataset.regionName,
+            uploadFileName: row.dataset.uploadFileName
+          };
+          Object.entries(map).forEach(([key, value]) => {
+            document.querySelectorAll('[data-detail-field="' + key + '"]').forEach((node) => { node.textContent = value || '-'; });
+          });
+          const title = document.querySelector('.detail-title');
+          if (title) title.textContent = row.dataset.channelName;
+        });
+      });
+    </script>
+  </body>
+</html>

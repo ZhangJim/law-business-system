@@ -1,0 +1,143 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>渠道成本管理 - 律所系统</title>
+    <link rel="stylesheet" href="../../assets/styles/main.css" />
+  </head>
+  <body data-page="channel-cost-management">
+    <div class="app-shell"><aside class="sidebar"></aside><div class="main-shell"><div class="workspace">
+      <header class="topbar">
+        <div>
+          <h1>渠道成本管理</h1>
+          <p>这页由财务录入或上传渠道成本，给渠道ROI统计提供可靠的消耗数据基础。</p>
+        </div>
+        <div class="topbar-actions"><span class="ghost-chip">财务录入</span><span class="ghost-chip">成本上传</span></div>
+      </header>
+      <main class="page-body compact">
+        <div class="split-workspace">
+          <section class="split-main">
+            <section class="panel">
+              <div class="toolbar">
+                <div>
+                  <button class="button" type="button" data-create-mode="upload-cost">＋ 上传渠道成本</button>
+                </div>
+                <div class="toolbar-tools"><span>筛选</span><span>排序</span><span>搜索</span></div>
+              </div>
+              <div class="table-shell">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>日期</th>
+                      <th>对接人</th>
+                      <th>渠道名称</th>
+                      <th>渠道标签</th>
+                      <th>注册量</th>
+                      <th>消耗</th>
+                      <th>成功率</th>
+                      <th>有效个数</th>
+                      <th>有效成本/个</th>
+                      <th>上传文件</th>
+                      <th>录入人</th>
+                      <th>操作</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr data-channel-name="快手" data-account-name="海岩" data-cost-date="2026/04/29" data-register-count="209" data-spend-amount="844.65" data-success-rate="100%" data-valid-count="209" data-cost-per-valid="9.86" data-upload-file-name="kuaishou_cost_20260429.xlsx" data-upload-by="徐静" data-label-name="KS-A102">
+                      <td>04-29</td><td><span class="person-chip"><span class="person-avatar">海</span><span>海岩</span></span></td><td><a class="table-link" href="#">快手</a></td><td><span class="badge primary">KS-A102</span></td><td>209</td><td>844.65</td><td>100%</td><td>209</td><td>9.86</td><td>kuaishou_cost_20260429.xlsx</td><td><span class="person-chip"><span class="person-avatar">徐</span><span>徐静</span></span></td><td><span class="action-links"><a class="action-link" href="#">重新上传</a><a class="action-link" href="#">下载</a></span></td>
+                    </tr>
+                    <tr data-channel-name="百度" data-account-name="周航" data-cost-date="2026/04/29" data-register-count="29" data-spend-amount="1280.00" data-success-rate="100%" data-valid-count="29" data-cost-per-valid="44.14" data-upload-file-name="baidu_cost_20260429.xlsx" data-upload-by="徐静" data-label-name="BD-C331">
+                      <td>04-29</td><td><span class="person-chip"><span class="person-avatar">周</span><span>周航</span></span></td><td><a class="table-link" href="#">百度</a></td><td><span class="badge warning">BD-C331</span></td><td>29</td><td>1280.00</td><td>100%</td><td>29</td><td>44.14</td><td>baidu_cost_20260429.xlsx</td><td><span class="person-chip"><span class="person-avatar">徐</span><span>徐静</span></span></td><td><span class="action-links"><a class="action-link" href="#">重新上传</a><a class="action-link" href="#">下载</a></span></td>
+                    </tr>
+                    <tr data-channel-name="抖音" data-account-name="徐静" data-cost-date="2026/04/28" data-register-count="23" data-spend-amount="2324.60" data-success-rate="100%" data-valid-count="23" data-cost-per-valid="101.08" data-upload-file-name="douyin_cost_20260428.xlsx" data-upload-by="宋妍" data-label-name="DY-H019">
+                      <td>04-28</td><td><span class="person-chip"><span class="person-avatar">徐</span><span>徐静</span></span></td><td><a class="table-link" href="#">抖音</a></td><td><span class="badge success">DY-H019</span></td><td>23</td><td>2324.60</td><td>100%</td><td>23</td><td>101.08</td><td>douyin_cost_20260428.xlsx</td><td><span class="person-chip"><span class="person-avatar">宋</span><span>宋妍</span></span></td><td><span class="action-links"><a class="action-link" href="#">重新上传</a><a class="action-link" href="#">下载</a></span></td>
+                    </tr>
+                    <tr data-channel-name="小红书" data-account-name="朱浩" data-cost-date="2026/04/28" data-register-count="5" data-spend-amount="1962.25" data-success-rate="100%" data-valid-count="5" data-cost-per-valid="392.45" data-upload-file-name="xhs_cost_20260428.xlsx" data-upload-by="海岩" data-label-name="XHS-B208">
+                      <td>04-28</td><td><span class="person-chip"><span class="person-avatar">朱</span><span>朱浩</span></span></td><td><a class="table-link" href="#">小红书</a></td><td><span class="badge danger">XHS-B208</span></td><td>5</td><td>1962.25</td><td>100%</td><td>5</td><td>392.45</td><td>xhs_cost_20260428.xlsx</td><td><span class="person-chip"><span class="person-avatar">海</span><span>海岩</span></span></td><td><span class="action-links"><a class="action-link" href="#">重新上传</a><a class="action-link" href="#">下载</a></span></td>
+                    </tr>
+                    <tr data-channel-name="快手" data-account-name="王助理" data-cost-date="2026/04/27" data-register-count="168" data-spend-amount="1260.40" data-success-rate="100%" data-valid-count="168" data-cost-per-valid="7.50" data-upload-file-name="kuaishou_cost_20260427_b.xlsx" data-upload-by="徐静" data-label-name="KS-B214">
+                      <td>04-27</td><td><span class="person-chip"><span class="person-avatar">王</span><span>王助理</span></span></td><td><a class="table-link" href="#">快手</a></td><td><span class="badge primary">KS-B214</span></td><td>168</td><td>1260.40</td><td>100%</td><td>168</td><td>7.50</td><td>kuaishou_cost_20260427_b.xlsx</td><td><span class="person-chip"><span class="person-avatar">徐</span><span>徐静</span></span></td><td><span class="action-links"><a class="action-link" href="#">重新上传</a><a class="action-link" href="#">下载</a></span></td>
+                    </tr>
+                    <tr data-channel-name="百度" data-account-name="海岩" data-cost-date="2026/04/27" data-register-count="42" data-spend-amount="1588.00" data-success-rate="100%" data-valid-count="42" data-cost-per-valid="37.81" data-upload-file-name="baidu_cost_20260427_d.xlsx" data-upload-by="宋妍" data-label-name="BD-D508">
+                      <td>04-27</td><td><span class="person-chip"><span class="person-avatar">海</span><span>海岩</span></span></td><td><a class="table-link" href="#">百度</a></td><td><span class="badge warning">BD-D508</span></td><td>42</td><td>1588.00</td><td>100%</td><td>42</td><td>37.81</td><td>baidu_cost_20260427_d.xlsx</td><td><span class="person-chip"><span class="person-avatar">宋</span><span>宋妍</span></span></td><td><span class="action-links"><a class="action-link" href="#">重新上传</a><a class="action-link" href="#">下载</a></span></td>
+                    </tr>
+                    <tr data-channel-name="抖音" data-account-name="周航" data-cost-date="2026/04/26" data-register-count="17" data-spend-amount="980.00" data-success-rate="100%" data-valid-count="17" data-cost-per-valid="57.65" data-upload-file-name="douyin_cost_20260426_k.xlsx" data-upload-by="海岩" data-label-name="DY-K552">
+                      <td>04-26</td><td><span class="person-chip"><span class="person-avatar">周</span><span>周航</span></span></td><td><a class="table-link" href="#">抖音</a></td><td><span class="badge success">DY-K552</span></td><td>17</td><td>980.00</td><td>100%</td><td>17</td><td>57.65</td><td>douyin_cost_20260426_k.xlsx</td><td><span class="person-chip"><span class="person-avatar">海</span><span>海岩</span></span></td><td><span class="action-links"><a class="action-link" href="#">重新上传</a><a class="action-link" href="#">下载</a></span></td>
+                    </tr>
+                    <tr data-channel-name="小红书" data-account-name="徐静" data-cost-date="2026/04/26" data-register-count="9" data-spend-amount="720.00" data-success-rate="100%" data-valid-count="9" data-cost-per-valid="80.00" data-upload-file-name="xhs_cost_20260426_c.xlsx" data-upload-by="宋妍" data-label-name="XHS-C917">
+                      <td>04-26</td><td><span class="person-chip"><span class="person-avatar">徐</span><span>徐静</span></span></td><td><a class="table-link" href="#">小红书</a></td><td><span class="badge danger">XHS-C917</span></td><td>9</td><td>720.00</td><td>100%</td><td>9</td><td>80.00</td><td>xhs_cost_20260426_c.xlsx</td><td><span class="person-chip"><span class="person-avatar">宋</span><span>宋妍</span></span></td><td><span class="action-links"><a class="action-link" href="#">重新上传</a><a class="action-link" href="#">下载</a></span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="footer-row"><span>共 8 条</span><span>1 / 1</span><span>20 条/页</span></div>
+            </section>
+          </section>
+
+          <aside class="detail-pane" data-create-title="上传渠道成本" data-default-create-mode="upload-cost">
+            <div class="detail-topbar"><div class="detail-topbar-actions"><span>︿</span><span>﹀</span></div><div class="detail-topbar-actions"><span>···</span><span class="detail-close">×</span></div></div>
+            <div class="detail-scroll">
+              <h2 class="detail-title">快手</h2>
+              <div class="detail-header-meta"><span class="detail-meta-item">日期：<span data-detail-field="costDate">2026/04/29</span></span><span class="detail-meta-item">录入人：<span data-detail-field="uploadBy">徐静</span></span></div>
+              <div class="detail-tabs"><span class="detail-tab active">基本信息</span><span class="detail-tab">历史</span></div>
+
+              <section class="detail-group active" data-role="detail">
+                <div class="detail-card">
+                  <div class="info-grid">
+                    <div class="info-item"><div class="info-label">渠道名称</div><div class="info-value" data-detail-field="channelName">快手</div></div>
+                    <div class="info-item"><div class="info-label">渠道标签</div><div class="info-value" data-detail-field="labelName">KS-A102</div></div>
+                    <div class="info-item"><div class="info-label">对接人</div><div class="info-value" data-detail-field="accountName">海岩</div></div>
+                    <div class="info-item"><div class="info-label">日期</div><div class="info-value" data-detail-field="costDate">2026/04/29</div></div>
+                    <div class="info-item"><div class="info-label">注册量</div><div class="info-value" data-detail-field="registerCount">209</div></div>
+                    <div class="info-item"><div class="info-label">消耗</div><div class="info-value" data-detail-field="spendAmount">844.65</div></div>
+                    <div class="info-item"><div class="info-label">成功率</div><div class="info-value" data-detail-field="successRate">100%</div></div>
+                    <div class="info-item"><div class="info-label">有效个数</div><div class="info-value" data-detail-field="validCount">209</div></div>
+                    <div class="info-item"><div class="info-label">有效成本/个</div><div class="info-value" data-detail-field="costPerValid">9.86</div></div>
+                    <div class="info-item"><div class="info-label">上传文件</div><div class="info-value"><span data-detail-field="uploadFileName">kuaishou_cost_20260429.xlsx</span><span class="action-links"><a class="action-link" href="#">重新上传</a></span></div></div>
+                    <div class="info-item"><div class="info-label">录入人</div><div class="info-value" data-detail-field="uploadBy">财务-徐静</div></div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="detail-group" data-role="history">
+                <div class="detail-group-title"><span>录入历史</span><span>最近 7 天</span></div>
+                <div class="detail-card">
+                  <table class="history-table">
+                    <thead><tr><th>时间</th><th>字段</th><th>变更前</th><th></th><th>变更后</th></tr></thead>
+                    <tbody>
+                      <tr><td>04月29日</td><td>消耗</td><td>812.20</td><td class="history-arrow">→</td><td>844.65</td></tr>
+                      <tr><td>04月29日</td><td>上传文件</td><td>-</td><td class="history-arrow">→</td><td>kuaishou_cost_20260429.xlsx</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </section>
+
+              <section class="detail-group" data-role="create">
+                <div class="detail-card">
+                  <div class="create-mode active" data-create-mode="upload-cost" data-create-title="上传渠道成本">
+                    <form class="drawer-form">
+                      <div class="drawer-form-grid">
+                        <div class="field"><label>渠道名称</label><select class="select"><option>快手</option><option>百度</option><option>抖音</option><option>小红书</option></select></div>
+                        <div class="field"><label>渠道标签</label><select class="select"><option>KS-A102</option><option>BD-C331</option><option>DY-H019</option><option>XHS-B208</option></select></div>
+                      </div>
+                      <div class="drawer-form-grid">
+                        <div class="field"><label>日期</label><input class="input" value="2026/04/30" /></div>
+                        <div class="field"><label>上传文件</label><div class="detail-footer" style="justify-content:flex-start;padding:0;"><button class="button secondary" type="button">选择文件</button></div></div>
+                      </div>
+                      <div class="drawer-form-grid">
+                        <div class="field"><label>对接人</label><select class="select"><option>徐静</option><option>海岩</option><option>周航</option><option>朱浩</option></select></div>
+                      </div>
+                      <div class="detail-footer"><button class="button" type="button">上传</button><button class="button secondary" type="button">取消</button></div>
+                    </form>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </aside>
+        </div>
+      </main>
+    </div></div></div>
+    <script src="../../assets/scripts/app.js"></script>
+  </body>
+</html>

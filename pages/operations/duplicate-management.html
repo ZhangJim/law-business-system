@@ -17,31 +17,133 @@
                 <section class="panel">
                   <div class="tabs submenu">
                     <a class="tab active" href="#">全部排重包</a>
-                    <a class="tab" href="#">今日生成</a>
                     <a class="tab" href="#">未下载</a>
                     <a class="tab" href="#">已下载</a>
                   </div>
+
                   <div class="toolbar">
-                    <div><button class="button" type="button">＋ 生成排重包</button></div>
+                    <div>
+                      <button class="button" type="button" data-create-mode="default">＋ 生成排重包</button>
+                    </div>
                     <div class="toolbar-tools"><span>筛选</span><span>排序</span><span>搜索</span></div>
                   </div>
+
                   <div class="table-shell tight">
                     <table>
                       <thead>
-                        <tr><th>排重包名称</th><th>来源平台</th><th>线索数量</th><th>MD5字段</th><th>时间范围</th><th>生成时间</th><th>生成人</th><th>下载状态</th><th>操作</th></tr>
+                        <tr>
+                          <th>排重包名称</th>
+                          <th>来源范围</th>
+                          <th>案源数据量</th>
+                          <th>重复数据量</th>
+                          <th>时间范围</th>
+                          <th>加密方式</th>
+                          <th>生成人</th>
+                          <th>生成时间</th>
+                          <th>状态</th>
+                          <th>操作</th>
+                        </tr>
                       </thead>
                       <tbody>
-                        <tr data-package-name="快手-刑事咨询排重包-20260428" data-source="快手" data-created-at="2026/04/28 10:20" data-owner-name="运营中台A组" data-payment-status="已下载" data-file-name="kuaishou_md5_20260428.xlsx" data-validity="手机号 MD5" data-batch-name="2026/04/28 00:00 - 2026/04/28 10:00" data-description="372 条线索">
-                          <td><a class="table-link" href="#">快手-刑事咨询排重包-20260428</a></td><td><span class="badge warning">快手</span></td><td>372</td><td>手机号 MD5</td><td>2026/04/28 00:00 - 2026/04/28 10:00</td><td>2026/04/28 10:20</td><td><span class="person-chip"><span class="person-avatar">运</span>运营中台A组</span></td><td><span class="badge success">已下载</span></td><td><a class="action-link" href="#">下载</a></td>
+                        <tr
+                          data-package-name="全渠道排重包-20260430"
+                          data-created-at="2026/04/30 10:20"
+                          data-owner-name="运营中台A组"
+                          data-payment-status="已下载"
+                          data-source="全渠道"
+                          data-description="826 条案源"
+                          data-validity="MD5"
+                          data-batch-name="2026/04/01 00:00 - 2026/04/30 10:00"
+                          data-file-name="all_channels_md5_20260430.txt"
+                          data-duplicate-count="103 条重复"
+                          data-customer-status-range="1星、2星、3星、4星、5星"
+                          data-file-format="TXT"
+                        >
+                          <td><a class="table-link" href="#">全渠道排重包-20260430</a></td>
+                          <td>全渠道</td>
+                          <td>826</td>
+                          <td>103</td>
+                          <td>2026/04/01 00:00 - 2026/04/30 10:00</td>
+                          <td>MD5</td>
+                          <td><span class="person-chip"><span class="person-avatar">运</span>运营中台A组</span></td>
+                          <td>2026/04/30 10:20</td>
+                          <td><span class="badge success">已下载</span></td>
+                          <td><a class="action-link" href="#">下载</a></td>
                         </tr>
-                        <tr data-package-name="百度-行政咨询排重包-20260428" data-source="百度" data-created-at="2026/04/28 09:05" data-owner-name="海岩" data-payment-status="已下载" data-file-name="baidu_md5_20260428.xlsx" data-validity="手机号 MD5" data-batch-name="2026/04/27 12:00 - 2026/04/28 09:00" data-description="216 条线索">
-                          <td><a class="table-link" href="#">百度-行政咨询排重包-20260428</a></td><td><span class="badge primary">百度</span></td><td>216</td><td>手机号 MD5</td><td>2026/04/27 12:00 - 2026/04/28 09:00</td><td>2026/04/28 09:05</td><td><span class="person-chip"><span class="person-avatar">海</span>海岩</span></td><td><span class="badge success">已下载</span></td><td><a class="action-link" href="#">下载</a></td>
+                        <tr
+                          data-package-name="全渠道排重包-20260429"
+                          data-created-at="2026/04/29 18:35"
+                          data-owner-name="海岩"
+                          data-payment-status="未下载"
+                          data-source="全渠道"
+                          data-description="742 条案源"
+                          data-validity="SHA256"
+                          data-batch-name="2025/10/30 00:00 - 2026/04/29 18:00"
+                          data-file-name="all_channels_sha256_20260429.txt"
+                          data-duplicate-count="88 条重复"
+                          data-customer-status-range="1星、2星、3星、4星、5星"
+                          data-file-format="TXT"
+                        >
+                          <td><a class="table-link" href="#">全渠道排重包-20260429</a></td>
+                          <td>全渠道</td>
+                          <td>742</td>
+                          <td>88</td>
+                          <td>2025/10/30 00:00 - 2026/04/29 18:00</td>
+                          <td>SHA256</td>
+                          <td><span class="person-chip"><span class="person-avatar">海</span>海岩</span></td>
+                          <td>2026/04/29 18:35</td>
+                          <td><span class="badge warning">未下载</span></td>
+                          <td><a class="action-link" href="#">下载</a></td>
                         </tr>
-                        <tr data-package-name="抖音-家事咨询排重包-20260427" data-source="抖音" data-created-at="2026/04/27 18:40" data-owner-name="周航" data-payment-status="未下载" data-file-name="douyin_md5_20260427.xlsx" data-validity="手机号 MD5" data-batch-name="2026/04/27 00:00 - 2026/04/27 18:00" data-description="194 条线索">
-                          <td><a class="table-link" href="#">抖音-家事咨询排重包-20260427</a></td><td><span class="badge warning">抖音</span></td><td>194</td><td>手机号 MD5</td><td>2026/04/27 00:00 - 2026/04/27 18:00</td><td>2026/04/27 18:40</td><td><span class="person-chip"><span class="person-avatar">周</span>周航</span></td><td><span class="badge danger">未下载</span></td><td><a class="action-link" href="#">下载</a></td>
+                        <tr
+                          data-package-name="全渠道排重包-20260428"
+                          data-created-at="2026/04/28 15:12"
+                          data-owner-name="周航"
+                          data-payment-status="生成中"
+                          data-source="全渠道"
+                          data-description="618 条案源"
+                          data-validity="MD5"
+                          data-batch-name="2025/04/28 00:00 - 2026/04/28 15:00"
+                          data-file-name="all_channels_md5_20260428.txt"
+                          data-duplicate-count="79 条重复"
+                          data-customer-status-range="1星、2星、3星、4星、5星"
+                          data-file-format="TXT"
+                        >
+                          <td><a class="table-link" href="#">全渠道排重包-20260428</a></td>
+                          <td>全渠道</td>
+                          <td>618</td>
+                          <td>79</td>
+                          <td>2025/04/28 00:00 - 2026/04/28 15:00</td>
+                          <td>MD5</td>
+                          <td><span class="person-chip"><span class="person-avatar">周</span>周航</span></td>
+                          <td>2026/04/28 15:12</td>
+                          <td><span class="badge primary">生成中</span></td>
+                          <td><span class="small">生成后可下载</span></td>
                         </tr>
-                        <tr data-package-name="小红书-法顾咨询排重包-20260427" data-source="小红书" data-created-at="2026/04/27 15:30" data-owner-name="运营中台B组" data-payment-status="已下载" data-file-name="xhs_md5_20260427.xlsx" data-validity="手机号 MD5" data-batch-name="2026/04/26 10:00 - 2026/04/27 15:00" data-description="128 条线索">
-                          <td><a class="table-link" href="#">小红书-法顾咨询排重包-20260427</a></td><td><span class="badge warning">小红书</span></td><td>128</td><td>手机号 MD5</td><td>2026/04/26 10:00 - 2026/04/27 15:00</td><td>2026/04/27 15:30</td><td><span class="person-chip"><span class="person-avatar">运</span>运营中台B组</span></td><td><span class="badge success">已下载</span></td><td><a class="action-link" href="#">下载</a></td>
+                        <tr
+                          data-package-name="全渠道排重包-20260427"
+                          data-created-at="2026/04/27 11:08"
+                          data-owner-name="运营中台B组"
+                          data-payment-status="已下载"
+                          data-source="全渠道"
+                          data-description="534 条案源"
+                          data-validity="MD5"
+                          data-batch-name="2026/03/27 00:00 - 2026/04/27 11:00"
+                          data-file-name="all_channels_md5_20260427.txt"
+                          data-duplicate-count="61 条重复"
+                          data-customer-status-range="1星、2星、3星、4星、5星"
+                          data-file-format="TXT"
+                        >
+                          <td><a class="table-link" href="#">全渠道排重包-20260427</a></td>
+                          <td>全渠道</td>
+                          <td>534</td>
+                          <td>61</td>
+                          <td>2026/03/27 00:00 - 2026/04/27 11:00</td>
+                          <td>MD5</td>
+                          <td><span class="person-chip"><span class="person-avatar">运</span>运营中台B组</span></td>
+                          <td>2026/04/27 11:08</td>
+                          <td><span class="badge success">已下载</span></td>
+                          <td><a class="action-link" href="#">下载</a></td>
                         </tr>
                       </tbody>
                     </table>
@@ -49,15 +151,137 @@
                   <div class="footer-row"><span>共 4 条</span><span>1 / 1</span><span>20 条/页</span></div>
                 </section>
               </section>
+
               <aside class="detail-pane" data-create-title="生成排重包">
-                <div class="detail-topbar"><div class="detail-topbar-actions"><span>︿</span><span>﹀</span></div><div class="detail-topbar-actions"><span>···</span><span class="detail-close">×</span></div></div>
+                <div class="detail-topbar">
+                  <div class="detail-topbar-actions"><span>︿</span><span>﹀</span></div>
+                  <div class="detail-topbar-actions"><span>···</span><span class="detail-close">×</span></div>
+                </div>
                 <div class="detail-scroll">
-                  <h2 class="detail-title">快手-刑事咨询排重包-20260428</h2>
-                  <div class="detail-header-meta"><span class="detail-meta-item">来源平台：<span data-detail-field="source" data-detail-type="source-badge-inline"><span class="badge warning">快手</span></span></span><span class="detail-meta-item">生成时间：<span data-detail-field="createdAt">2026/04/28 10:20</span></span><span class="detail-meta-item">下载状态：<span data-detail-field="paymentStatus" data-detail-type="status-badge"><span class="badge success">已下载</span></span></span></div>
-                  <div class="detail-tabs"><span class="detail-tab active">基本信息</span><span class="detail-tab">历史</span></div>
-                  <section class="detail-group active" data-role="detail"><div class="detail-card"><div class="info-grid"><div class="info-item"><div class="info-label">排重包名称</div><div class="info-value" data-detail-field="packageName">快手-刑事咨询排重包-20260428</div></div><div class="info-item"><div class="info-label">Excel文件名</div><div class="info-value" data-detail-field="fileName">kuaishou_md5_20260428.xlsx</div></div><div class="info-item"><div class="info-label">来源平台</div><div class="info-value" data-detail-field="source" data-detail-type="source-badge">快手</div></div><div class="info-item"><div class="info-label">线索数量</div><div class="info-value" data-detail-field="description">372 条线索</div></div><div class="info-item"><div class="info-label">MD5字段</div><div class="info-value" data-detail-field="validity">手机号 MD5</div></div><div class="info-item"><div class="info-label">时间范围</div><div class="info-value" data-detail-field="batchName">2026/04/28 00:00 - 2026/04/28 10:00</div></div><div class="info-item"><div class="info-label">生成人</div><div class="info-value" data-detail-field="ownerName" data-detail-type="person">运营中台A组</div></div><div class="info-item"><div class="info-label">下载状态</div><div class="info-value" data-detail-field="paymentStatus" data-detail-type="status-badge">已下载</div></div></div></div></section>
-                  <section class="detail-group" data-role="history"><div class="detail-group-title"><span>生成历史</span><span>最近 7 天</span></div><div class="detail-card"><table class="history-table"><thead><tr><th>时间</th><th>字段</th><th>变更前</th><th></th><th>变更后</th></tr></thead><tbody><tr><td>04月28日</td><td>下载状态</td><td>未下载</td><td class="history-arrow">→</td><td>已下载</td></tr><tr><td>04月28日</td><td>线索数量</td><td>-</td><td class="history-arrow">→</td><td>372 条</td></tr></tbody></table></div></section>
-                  <section class="detail-group" data-role="create"><div class="detail-card"><form class="drawer-form"><div class="drawer-form-grid"><div class="field"><label>选择渠道</label><select class="select"><option>快手</option><option>百度</option><option>抖音</option><option>小红书</option><option>企业微信</option></select></div><div class="field"><label>开始时间</label><input class="input" value="年/月/日 时:分" /></div></div><div class="drawer-form-grid"><div class="field"><label>结束时间</label><input class="input" value="年/月/日 时:分" /></div><div class="field"><label>生成结果</label><input class="input create-placeholder" value="提交后自动生成 Excel 与 MD5 文件名" /></div></div><div class="detail-footer"><button class="button" type="button">生成并下载</button><button class="button secondary" type="button">取消</button></div></form></div></section>
+                  <h2 class="detail-title">全渠道排重包-20260430</h2>
+                  <div class="detail-header-meta">
+                    <span class="detail-meta-item">来源范围：<span data-detail-field="source">全渠道</span></span>
+                    <span class="detail-meta-item">生成时间：<span data-detail-field="createdAt">2026/04/30 10:20</span></span>
+                    <span class="detail-meta-item">状态：<span data-detail-field="paymentStatus" data-detail-type="status-badge"><span class="badge success">已下载</span></span></span>
+                  </div>
+                  <div class="detail-tabs">
+                    <span class="detail-tab active">基本信息</span>
+                    <span class="detail-tab">历史</span>
+                  </div>
+
+                  <section class="detail-group active" data-role="detail">
+                    <div class="detail-card">
+                      <div class="info-grid">
+                        <div class="info-item"><div class="info-label">排重包名称</div><div class="info-value" data-detail-field="packageName">全渠道排重包-20260430</div></div>
+                        <div class="info-item"><div class="info-label">来源范围</div><div class="info-value" data-detail-field="source">全渠道</div></div>
+                        <div class="info-item"><div class="info-label">案源数据量</div><div class="info-value" data-detail-field="description">826 条案源</div></div>
+                        <div class="info-item"><div class="info-label">重复数据量</div><div class="info-value" data-detail-field="duplicateCount">103 条重复</div></div>
+                        <div class="info-item"><div class="info-label">时间范围</div><div class="info-value" data-detail-field="batchName">2026/04/01 00:00 - 2026/04/30 10:00</div></div>
+                        <div class="info-item"><div class="info-label">加密方式</div><div class="info-value" data-detail-field="validity">MD5</div></div>
+                        <div class="info-item"><div class="info-label">客户状态范围</div><div class="info-value" data-detail-field="customerStatusRange">1星、2星、3星、4星、5星</div></div>
+                        <div class="info-item"><div class="info-label">文件格式</div><div class="info-value" data-detail-field="fileFormat">TXT</div></div>
+                        <div class="info-item"><div class="info-label">生成人</div><div class="info-value" data-detail-field="ownerName" data-detail-type="person">运营中台A组</div></div>
+                        <div class="info-item"><div class="info-label">生成时间</div><div class="info-value" data-detail-field="createdAt">2026/04/30 10:20</div></div>
+                        <div class="info-item"><div class="info-label">下载状态</div><div class="info-value" data-detail-field="paymentStatus" data-detail-type="status-badge">已下载</div></div>
+                        <div class="info-item"><div class="info-label">输出文件</div><div class="info-value" data-detail-field="fileName">all_channels_md5_20260430.txt</div></div>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="detail-group" data-role="history">
+                    <div class="detail-group-title"><span>生成历史</span><span>最近 7 天</span></div>
+                    <div class="detail-card">
+                      <table class="history-table">
+                        <thead>
+                          <tr><th>时间</th><th>字段</th><th>变更前</th><th></th><th>变更后</th></tr>
+                        </thead>
+                        <tbody>
+                          <tr><td>04月30日</td><td>状态</td><td>未下载</td><td class="history-arrow">→</td><td>已下载</td></tr>
+                          <tr><td>04月30日</td><td>加密方式</td><td>-</td><td class="history-arrow">→</td><td>MD5</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </section>
+
+                  <section class="detail-group" data-role="create">
+                    <div class="detail-card">
+                      <form class="drawer-form">
+                        <div class="detail-group-title"><span>基本信息</span></div>
+                        <div class="drawer-form-grid">
+                          <div class="field">
+                            <label>排重包名称</label>
+                            <input class="input" value="全渠道排重包-20260521" />
+                          </div>
+                          <div class="field">
+                            <label>渠道选择</label>
+                            <select class="select">
+                              <option>全部</option>
+                              <option>快手</option>
+                              <option>百度</option>
+                              <option>抖音</option>
+                              <option>小红书</option>
+                              <option>企业微信</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="detail-group-title"><span>筛选条件</span></div>
+                        <div class="drawer-form-grid">
+                          <div class="field">
+                            <label>时间范围</label>
+                            <select class="select">
+                              <option>最近1月</option>
+                              <option>最近半年</option>
+                              <option>最近一年</option>
+                              <option>自由范围选择</option>
+                            </select>
+                          </div>
+                          <div class="field">
+                            <label>自定义时间范围</label>
+                            <input class="input" value="2026/04/01 00:00 - 2026/04/30 23:59" />
+                          </div>
+                        </div>
+                        <div class="field">
+                          <label>客户状态（多选，默认全选）</label>
+                          <div class="pill-row">
+                            <span class="pill active">1星</span>
+                            <span class="pill active">2星</span>
+                            <span class="pill active">3星</span>
+                            <span class="pill active">4星</span>
+                            <span class="pill active">5星</span>
+                          </div>
+                        </div>
+
+                        <div class="detail-group-title"><span>排重设置</span></div>
+                        <div class="drawer-form-grid">
+                          <div class="field">
+                            <label>唯一字段</label>
+                            <input class="input" value="手机号" readonly />
+                          </div>
+                          <div class="field">
+                            <label>加密方式</label>
+                            <select class="select">
+                              <option>MD5</option>
+                              <option>SHA256</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="detail-group-title"><span>输出设置</span></div>
+                        <div class="drawer-form-grid">
+                          <div class="field">
+                            <label>文件格式</label>
+                            <input class="input" value="TXT" readonly />
+                          </div>
+                        </div>
+
+                        <div class="detail-footer">
+                          <button class="button" type="button">生成</button>
+                          <button class="button secondary" type="button">取消</button>
+                        </div>
+                      </form>
+                    </div>
+                  </section>
                 </div>
               </aside>
             </div>
@@ -66,5 +290,39 @@
       </div>
     </div>
     <script src="../../assets/scripts/app.js"></script>
+    <script>
+      (function () {
+        const drawer = document.querySelector('.detail-pane');
+        if (!drawer) return;
+
+        function setText(field, value) {
+          drawer.querySelectorAll('[data-detail-field="' + field + '"]').forEach((node) => {
+            if (node.dataset.detailType === 'status-badge') {
+              const cls = value === '已下载' ? 'success' : value === '未下载' ? 'warning' : 'primary';
+              node.innerHTML = '<span class="badge ' + cls + '">' + value + '</span>';
+              return;
+            }
+            node.textContent = value || '-';
+          });
+        }
+
+        document.querySelectorAll('tbody tr').forEach((row) => {
+          row.addEventListener('click', () => {
+            setText('packageName', row.dataset.packageName);
+            setText('source', row.dataset.source);
+            setText('description', row.dataset.description);
+            setText('duplicateCount', row.dataset.duplicateCount);
+            setText('batchName', row.dataset.batchName);
+            setText('validity', row.dataset.validity);
+            setText('customerStatusRange', row.dataset.customerStatusRange);
+            setText('fileFormat', row.dataset.fileFormat);
+            setText('ownerName', row.dataset.ownerName);
+            setText('createdAt', row.dataset.createdAt);
+            setText('paymentStatus', row.dataset.paymentStatus);
+            setText('fileName', row.dataset.fileName);
+          });
+        });
+      })();
+    </script>
   </body>
 </html>
