@@ -7,11 +7,13 @@
     children: [
       { id: "operations-home", label: "运营工作台", href: "../operations/operations-home.html" },
       { id: "operation-lead-pool", label: "运营案源池", href: "../operations/operation-lead-pool.html" },
+      { id: "channel-management", label: "渠道管理", href: "../operations/channel-management.html" },
       { id: "data-warehouse", label: "数据仓库", href: "../operations/data-warehouse.html" },
       { id: "duplicate-management", label: "排重管理", href: "../operations/duplicate-management.html" },
       { id: "lead-import-management", label: "案源导入管理", href: "../operations/lead-import-management.html" }
     ]
   },
+  { type: "link", id: "approval-center", label: "审批中心", href: "../approval/approval-center.html", icon: "approval" },
   { type: "link", id: "lead-management", label: "案源管理", href: "../leads/lead-management.html", icon: "lead" },
   {
     type: "group",
@@ -83,6 +85,7 @@ function iconMarkup(name) {
     customer: '<path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z"/><path d="M4 20a8 8 0 0 1 16 0"/>',
     case: '<rect x="4" y="4" width="16" height="16" rx="2"/><path d="M8 8h8"/><path d="M8 12h8"/><path d="M8 16h5"/>',
     operations: '<path d="M4 6h16"/><path d="M7 6l2-3h6l2 3"/><rect x="5" y="6" width="14" height="12" rx="2"/><path d="M9 11h6"/><path d="M12 11v6"/>',
+    approval: '<rect x="5" y="4" width="14" height="16" rx="2"/><path d="M8 8h8"/><path d="M8 12h5"/><path d="M9 16l2 2 4-4"/>',
     finance: '<path d="M12 3v18"/><path d="M17 7.5c0-1.9-2.2-3.5-5-3.5s-5 1.6-5 3.5 2.2 3.5 5 3.5 5 1.6 5 3.5-2.2 3.5-5 3.5-5-1.6-5-3.5"/>',
     team: '<path d="M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/><path d="M16.5 12a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/><path d="M3.5 20a5 5 0 0 1 9 0"/><path d="M13 20a4 4 0 0 1 7 0"/>',
     analysis: '<path d="M5 18V9"/><path d="M12 18V5"/><path d="M19 18v-7"/><path d="M3 20h18"/>',
@@ -523,6 +526,92 @@ function applyTeamDetailDecorations(drawer, context) {
   });
 }
 
+function buildLeadOpportunityData(context) {
+  const id = String(context.id || "").trim();
+  const suffix = id.replace(/\D/g, "").slice(-4) || "0001";
+  const statusMap = {
+    LD0001: "谈判中",
+    LD0002: "已报价",
+    LD0003: "已失败",
+    LD0004: "已报价",
+    LD0005: "谈判中",
+    LD0006: "谈判中",
+    LD0007: "已成交",
+    LD0008: "已报价",
+    LD0009: "已失败",
+    LD0010: "已成交"
+  };
+
+  return {
+    no: `SJ${suffix}`,
+    title: `${context.customerName || "-"}-${context.caseType || "-"}商机`,
+    status: statusMap[id] || "已报价",
+    owner: context.negotiationOwner || context.invitationOwner || context.leadOwner || context.ownerName || "",
+    createdAt: context.createdAt || "-"
+  };
+}
+
+function buildLeadCaseData(context) {
+  const id = String(context.id || "").trim();
+  const stageMap = {
+    LD0001: "办理中",
+    LD0002: "待签约",
+    LD0003: "待签约",
+    LD0004: "已结案",
+    LD0005: "办理中",
+    LD0006: "办理中",
+    LD0007: "已归档",
+    LD0008: "办理中",
+    LD0009: "待签约",
+    LD0010: "已归档"
+  };
+
+  return {
+    title: `${context.customerName || "-"}-${context.caseType || "-"}`,
+    stage: stageMap[id] || "办理中",
+    createdAt: context.createdAt ? String(context.createdAt).replace(/-/g, "/") : "-",
+    owner: context.negotiationOwner || context.leadOwner || "",
+    collaborator: context.invitationOwner || ""
+  };
+}
+
+function applySharedLeadPanels(drawer, context) {
+  const opportunity = buildLeadOpportunityData(context);
+  const caseInfo = buildLeadCaseData(context);
+
+  drawer.querySelectorAll("[data-opportunity-no]").forEach((node) => {
+    node.textContent = opportunity.no;
+  });
+  drawer.querySelectorAll("[data-opportunity-title]").forEach((node) => {
+    node.textContent = opportunity.title;
+  });
+  drawer.querySelectorAll("[data-opportunity-status]").forEach((node) => {
+    node.textContent = opportunity.status;
+  });
+  drawer.querySelectorAll("[data-opportunity-owner]").forEach((node) => {
+    node.innerHTML = personChipMarkup(opportunity.owner);
+  });
+  drawer.querySelectorAll("[data-opportunity-created-at]").forEach((node) => {
+    node.textContent = opportunity.createdAt;
+  });
+
+  drawer.querySelectorAll("[data-case-panel-title]").forEach((node) => {
+    node.textContent = caseInfo.title;
+  });
+  drawer.querySelectorAll("[data-case-panel-stage]").forEach((node) => {
+    node.textContent = caseInfo.stage;
+  });
+  drawer.querySelectorAll("[data-case-panel-created-at]").forEach((node) => {
+    node.textContent = caseInfo.createdAt;
+  });
+  drawer.querySelectorAll("[data-case-panel-owner]").forEach((node) => {
+    node.innerHTML = personChipMarkup(caseInfo.owner);
+  });
+  drawer.querySelectorAll("[data-case-panel-collab]").forEach((node) => {
+    node.innerHTML = personChipMarkup(caseInfo.collaborator);
+  });
+}
+
 function updateCreateAvatarPreview(scope) {
   if (!scope) return;
   const nameField = scope.querySelector("[data-create-avatar-name]");
@@ -627,6 +716,9 @@ function applyDetailContext(drawer, titleEl, fallbackTitle, context) {
   Object.entries(detailMap).forEach(([key, value]) => setDetailField(drawer, key, value));
   applyMemberAvatar(drawer, detailMap);
   applyTeamDetailDecorations(drawer, detailMap);
+  if (context.id && (context.leadOwner !== undefined || context.invitationOwner !== undefined || context.negotiationOwner !== undefined)) {
+    applySharedLeadPanels(drawer, context);
+  }
 }
 
 function initDrawers() {

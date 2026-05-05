@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>审批中心 - 律所系统</title>
+    <link rel="stylesheet" href="../../assets/styles/main.css" />
+    <style>
+      .approval-launch {
+        display: grid;
+        gap: 18px;
+      }
+
+      .approval-section-title {
+        margin: 0 0 10px;
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--text);
+      }
+
+      .approval-card-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .approval-card {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 18px 20px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: #fff;
+      }
+
+      .approval-card-icon {
+        width: 34px;
+        height: 34px;
+        border-radius: 10px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 700;
+        flex: 0 0 auto;
+      }
+
+      .approval-card-icon.project { background: #4f7cff; }
+      .approval-card-icon.finance { background: #12b76a; }
+      .approval-card-icon.admin { background: #f79009; }
+      .approval-card-icon.hr { background: #7a5af8; }
+
+      .approval-card-name {
+        color: var(--text);
+        font-weight: 600;
+      }
+
+      .approval-panel {
+        display: none;
+      }
+
+      .approval-panel.active {
+        display: block;
+      }
+
+      .approval-status {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 600;
+      }
+
+      .approval-status.pending { background: #fff3d6; color: #b26a00; }
+      .approval-status.processing { background: #eef3ff; color: #3969e8; }
+      .approval-status.done { background: #e8f8ef; color: #159957; }
+      .approval-status.copy { background: #f3f0ff; color: #6f42c1; }
+
+      @media (max-width: 1200px) {
+        .approval-card-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 760px) {
+        .approval-card-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body data-page="approval-center">
+    <div class="app-shell">
+      <aside class="sidebar"></aside>
+      <div class="main-shell">
+        <div class="workspace">
+          <main class="page-body compact">
+            <section class="panel">
+              <div class="tabs submenu" id="approvalTabs">
+                <a class="tab active" href="#" data-panel="launch">发起审批</a>
+                <a class="tab" href="#" data-panel="mine">我审批的</a>
+                <a class="tab" href="#" data-panel="created">我发起的</a>
+                <a class="tab" href="#" data-panel="copy">抄送我的</a>
+              </div>
+
+              <div class="approval-panel active" data-panel="launch">
+                <div class="approval-launch">
+                  <section>
+                    <h3 class="approval-section-title">项目审批</h3>
+                    <div class="approval-card-grid">
+                      <div class="approval-card"><span class="approval-card-icon project">项</span><span class="approval-card-name">立项审批</span></div>
+                      <div class="approval-card"><span class="approval-card-icon project">结</span><span class="approval-card-name">结案审批</span></div>
+                      <div class="approval-card"><span class="approval-card-icon project">重</span><span class="approval-card-name">重启项目审批</span></div>
+                      <div class="approval-card"><span class="approval-card-icon project">其</span><span class="approval-card-name">其它审批</span></div>
+                    </div>
+                  </section>
+
+                  <section>
+                    <h3 class="approval-section-title">财务审批</h3>
+                    <div class="approval-card-grid">
+                      <div class="approval-card"><span class="approval-card-icon finance">合</span><span class="approval-card-name">合同审批</span></div>
+                      <div class="approval-card"><span class="approval-card-icon finance">票</span><span class="approval-card-name">发票审批</span></div>
+                      <div class="approval-card"><span class="approval-card-icon finance">报</span><span class="approval-card-name">报销审批</span></div>
+                      <div class="approval-card"><span class="approval-card-icon finance">请</span><span class="approval-card-name">请款审批</span></div>
+                      <div class="approval-card"><span class="approval-card-icon finance">借</span><span class="approval-card-name">借款审批</span></div>
+                      <div class="approval-card"><span class="approval-card-icon finance">退</span><span class="approval-card-name">退款审批</span></div>
+                      <div class="approval-card"><span class="approval-card-icon finance">采</span><span class="approval-card-name">采购审批</span></div>
+                      <div class="approval-card"><span class="approval-card-icon finance">其</span><span class="approval-card-name">其它审批</span></div>
+                    </div>
+                  </section>
+
+                  <section>
+                    <h3 class="approval-section-title">行政审批</h3>
+                    <div class="approval-card-grid">
+                      <div class="approval-card"><span class="approval-card-icon admin">章</span><span class="approval-card-name">盖章审批</span></div>
+                      <div class="approval-card"><span class="approval-card-icon admin">会</span><span class="approval-card-name">会议室预定审批</span></div>
+                      <div class="approval-card"><span class="approval-card-icon admin">其</span><span class="approval-card-name">其它审批</span></div>
+                    </div>
+                  </section>
+
+                  <section>
+                    <h3 class="approval-section-title">人事审批</h3>
+                    <div class="approval-card-grid">
+                      <div class="approval-card"><span class="approval-card-icon hr">假</span><span class="approval-card-name">请假审批</span></div>
+                      <div class="approval-card"><span class="approval-card-icon hr">岗</span><span class="approval-card-name">转岗审批</span></div>
+                      <div class="approval-card"><span class="approval-card-icon hr">离</span><span class="approval-card-name">离职审批</span></div>
+                      <div class="approval-card"><span class="approval-card-icon hr">其</span><span class="approval-card-name">其它审批</span></div>
+                    </div>
+                  </section>
+                </div>
+              </div>
+
+              <div class="approval-panel" data-panel="mine">
+                <div class="table-shell tight">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>审批编号</th>
+                        <th>审批类型</th>
+                        <th>标题</th>
+                        <th>发起人</th>
+                        <th>当前节点</th>
+                        <th>状态</th>
+                        <th>更新时间</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr><td><a class="table-link" href="#">SP-20260505-018</a></td><td>合同审批</td><td>李四行政诉讼合同审批</td><td>海岩</td><td>财务复核</td><td><span class="approval-status pending">待我审批</span></td><td>2026/05/05 10:20</td></tr>
+                      <tr><td><a class="table-link" href="#">SP-20260505-014</a></td><td>盖章审批</td><td>张三劳动仲裁委托书盖章</td><td>刘律师</td><td>行政用章</td><td><span class="approval-status pending">待我审批</span></td><td>2026/05/05 09:50</td></tr>
+                      <tr><td><a class="table-link" href="#">SP-20260504-026</a></td><td>请款审批</td><td>王雪案件保全费请款</td><td>徐静</td><td>负责人确认</td><td><span class="approval-status processing">审批中</span></td><td>2026/05/04 18:12</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="approval-panel" data-panel="created">
+                <div class="table-shell tight">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>审批编号</th>
+                        <th>审批类型</th>
+                        <th>标题</th>
+                        <th>当前节点</th>
+                        <th>状态</th>
+                        <th>更新时间</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr><td><a class="table-link" href="#">SP-20260503-011</a></td><td>立项审批</td><td>周建国合同纠纷案件立项审批</td><td>主任审批</td><td><span class="approval-status processing">审批中</span></td><td>2026/05/03 16:10</td></tr>
+                      <tr><td><a class="table-link" href="#">SP-20260502-009</a></td><td>报销审批</td><td>上海出差交通费用报销</td><td>财务入账</td><td><span class="approval-status done">已通过</span></td><td>2026/05/02 14:30</td></tr>
+                      <tr><td><a class="table-link" href="#">SP-20260501-006</a></td><td>会议室预定审批</td><td>民商事团队周会会议室预定</td><td>流程结束</td><td><span class="approval-status done">已通过</span></td><td>2026/05/01 11:05</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="approval-panel" data-panel="copy">
+                <div class="table-shell tight">
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>审批编号</th>
+                        <th>审批类型</th>
+                        <th>标题</th>
+                        <th>发起人</th>
+                        <th>状态</th>
+                        <th>更新时间</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr><td><a class="table-link" href="#">SP-20260505-003</a></td><td>发票审批</td><td>快手渠道4月广告发票审批</td><td>财务-徐静</td><td><span class="approval-status copy">抄送</span></td><td>2026/05/05 08:40</td></tr>
+                      <tr><td><a class="table-link" href="#">SP-20260504-017</a></td><td>离职审批</td><td>市场部王某离职审批</td><td>人事-马兰</td><td><span class="approval-status copy">抄送</span></td><td>2026/05/04 13:26</td></tr>
+                      <tr><td><a class="table-link" href="#">SP-20260503-021</a></td><td>结案审批</td><td>李明故意伤害案结案审批</td><td>陈泽</td><td><span class="approval-status copy">抄送</span></td><td>2026/05/03 17:42</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </section>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <script src="../../assets/scripts/app.js"></script>
+    <script>
+      const tabs = document.querySelectorAll('#approvalTabs .tab');
+      const panels = document.querySelectorAll('.approval-panel');
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', (event) => {
+          event.preventDefault();
+          const target = tab.dataset.panel;
+          tabs.forEach((item) => item.classList.toggle('active', item === tab));
+          panels.forEach((panel) => panel.classList.toggle('active', panel.dataset.panel === target));
+        });
+      });
+    </script>
+  </body>
+</html>

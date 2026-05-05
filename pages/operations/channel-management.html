@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>渠道管理 - 律所系统</title>
+    <link rel="stylesheet" href="../../assets/styles/main.css" />
+  </head>
+  <body data-page="channel-management">
+    <div class="app-shell">
+      <aside class="sidebar"></aside>
+      <div class="main-shell">
+        <div class="workspace">
+          <main class="page-body compact">
+            <div class="split-workspace">
+              <section class="split-main">
+                <section class="panel">
+                  <div class="toolbar">
+                    <div><button class="button" type="button">＋ 新建渠道</button></div>
+                    <div class="toolbar-tools"><span>筛选</span><span>排序</span><span>搜索</span></div>
+                  </div>
+
+                  <div class="table-shell tight">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>编号</th>
+                          <th>渠道名称</th>
+                          <th>渠道标签</th>
+                          <th>对接人</th>
+                          <th>网络地址</th>
+                          <th>账号</th>
+                          <th>API地址</th>
+                          <th>回调地址</th>
+                          <th>运营分配人</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><a class="table-link" href="#">QD-001</a></td>
+                          <td>快手</td>
+                          <td><span class="badge info">KS-A102</span></td>
+                          <td><span class="person-chip"><span class="person-avatar">海</span>海岩</span></td>
+                          <td>https://ads.kuaishou.com</td>
+                          <td>kuaishou_bj_01</td>
+                          <td>运营案源池接收API</td>
+                          <td>运营案源池回调接口</td>
+                          <td><span class="person-chip"><span class="person-avatar">运</span>运营中台A组</span></td>
+                        </tr>
+                        <tr>
+                          <td><a class="table-link" href="#">QD-002</a></td>
+                          <td>百度</td>
+                          <td><span class="badge warning">BD-C331</span></td>
+                          <td><span class="person-chip"><span class="person-avatar">周</span>周航</span></td>
+                          <td>https://e.baidu.com</td>
+                          <td>baidu_sh_02</td>
+                          <td>运营案源池接收API</td>
+                          <td>运营案源池回调接口</td>
+                          <td><span class="person-chip"><span class="person-avatar">运</span>运营中台B组</span></td>
+                        </tr>
+                        <tr>
+                          <td><a class="table-link" href="#">QD-003</a></td>
+                          <td>抖音</td>
+                          <td><span class="badge success">DY-H019</span></td>
+                          <td><span class="person-chip"><span class="person-avatar">徐</span>徐静</span></td>
+                          <td>https://ad.oceanengine.com</td>
+                          <td>douyin_hd_03</td>
+                          <td>运营案源池接收API</td>
+                          <td>运营案源池回调接口</td>
+                          <td><span class="person-chip"><span class="person-avatar">海</span>海岩</span></td>
+                        </tr>
+                        <tr>
+                          <td><a class="table-link" href="#">QD-004</a></td>
+                          <td>小红书</td>
+                          <td><span class="badge danger">XHS-B208</span></td>
+                          <td><span class="person-chip"><span class="person-avatar">朱</span>朱浩</span></td>
+                          <td>https://ad.xiaohongshu.com</td>
+                          <td>xhs_sz_01</td>
+                          <td>运营案源池接收API</td>
+                          <td>运营案源池回调接口</td>
+                          <td><span class="person-chip"><span class="person-avatar">王</span>王助理</span></td>
+                        </tr>
+                        <tr>
+                          <td><a class="table-link" href="#">QD-005</a></td>
+                          <td>企业微信</td>
+                          <td><span class="badge primary">QW-TJ-512</span></td>
+                          <td><span class="person-chip"><span class="person-avatar">马</span>马兰</span></td>
+                          <td>https://work.weixin.qq.com</td>
+                          <td>wecom_private_02</td>
+                          <td>运营案源池接收API</td>
+                          <td>运营案源池回调接口</td>
+                          <td><span class="person-chip"><span class="person-avatar">海</span>海岩</span></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+              </section>
+
+              <aside class="detail-pane" data-create-title="新建渠道">
+                <div class="detail-topbar">
+                  <div class="detail-topbar-actions"><span>⌃</span><span>⌄</span></div>
+                  <div class="detail-topbar-actions"><span>···</span><span>×</span></div>
+                </div>
+                <div class="detail-scroll">
+                  <h2 class="detail-title">QD-001 快手</h2>
+                  <div class="detail-tabs">
+                    <span class="detail-tab active">详情</span>
+                    <span class="detail-tab">历史</span>
+                  </div>
+
+                  <section class="detail-group" data-role="detail">
+                    <div class="detail-card">
+                      <div class="detail-field"><div class="detail-label">编号</div><div class="detail-value">QD-001</div></div>
+                      <div class="detail-field"><div class="detail-label">渠道名称</div><div class="detail-value">快手</div></div>
+                      <div class="detail-field"><div class="detail-label">渠道标签</div><div class="detail-value"><span class="badge info">KS-A102</span></div></div>
+                      <div class="detail-field"><div class="detail-label">对接人</div><div class="detail-value"><span class="person-chip"><span class="person-avatar">海</span>海岩</span></div></div>
+                      <div class="detail-field"><div class="detail-label">网络地址</div><div class="detail-value">https://ads.kuaishou.com</div></div>
+                      <div class="detail-field"><div class="detail-label">账号</div><div class="detail-value">kuaishou_bj_01</div></div>
+                      <div class="detail-field"><div class="detail-label">API地址</div><div class="detail-value">运营案源池接收API</div></div>
+                      <div class="detail-field"><div class="detail-label">回调地址</div><div class="detail-value">运营案源池回调接口</div></div>
+                      <div class="detail-field"><div class="detail-label">运营分配人</div><div class="detail-value"><span class="person-chip"><span class="person-avatar">运</span>运营中台A组</span></div></div>
+                    </div>
+                  </section>
+
+                  <section class="detail-group" data-role="history">
+                    <div class="detail-card">
+                      <table class="history-table">
+                        <thead><tr><th>时间</th><th>字段</th><th>变更前</th><th></th><th>变更后</th></tr></thead>
+                        <tbody>
+                          <tr><td>05月04日</td><td>渠道标签</td><td>KS-A088</td><td class="history-arrow">→</td><td>KS-A102</td></tr>
+                          <tr><td>05月01日</td><td>运营分配人</td><td>海岩</td><td class="history-arrow">→</td><td>运营中台A组</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </section>
+
+                  <section class="detail-group" data-role="create">
+                    <div class="detail-card">
+                      <form class="drawer-form create-mode active">
+                        <div class="detail-field"><div class="detail-label">编号</div><div class="detail-value muted">提交后自动生成，例如：QD-006</div></div>
+                        <div class="detail-field"><div class="detail-label">渠道名称</div><div class="detail-value"><input class="input" value="请选择渠道名称" /></div></div>
+                        <div class="detail-field"><div class="detail-label">渠道标签</div><div class="detail-value"><input class="input" value="请输入渠道标签，例如：KS-A102" /></div></div>
+                        <div class="detail-field"><div class="detail-label">对接人</div><div class="detail-value"><input class="input" value="请选择对接人" /></div></div>
+                        <div class="detail-field"><div class="detail-label">网络地址</div><div class="detail-value"><input class="input" value="请输入网络地址" /></div></div>
+                        <div class="detail-field"><div class="detail-label">账号</div><div class="detail-value"><input class="input" value="请输入渠道账号" /></div></div>
+                        <div class="detail-field"><div class="detail-label">API地址</div><div class="detail-value"><input class="input" value="运营案源池接收API" /></div></div>
+                        <div class="detail-field"><div class="detail-label">回调地址</div><div class="detail-value"><input class="input" value="运营案源池回调接口" /></div></div>
+                        <div class="detail-field"><div class="detail-label">运营分配人</div><div class="detail-value"><input class="input" value="请选择运营分配人" /></div></div>
+                        <div class="detail-footer">
+                          <button class="button" type="button">提交</button>
+                          <button class="button secondary" type="button">取消</button>
+                        </div>
+                      </form>
+                    </div>
+                  </section>
+                </div>
+              </aside>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+    <script src="../../assets/scripts/app.js"></script>
+  </body>
+</html>

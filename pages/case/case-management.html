@@ -3,8 +3,66 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>案件管理 - 律所系统</title>
-    <link rel="stylesheet" href="../../assets/styles/main.css" />
+      <title>案件管理 - 律所系统</title>
+      <link rel="stylesheet" href="../../assets/styles/main.css" />
+      <style>
+        .approval-picker-backdrop {
+          position: fixed;
+          inset: 0;
+          display: none;
+          align-items: center;
+          justify-content: center;
+          background: rgba(21, 34, 64, 0.16);
+          backdrop-filter: blur(3px);
+          z-index: 90;
+        }
+
+        .approval-picker-backdrop.is-open {
+          display: flex;
+        }
+
+        .approval-picker-modal {
+          width: min(420px, calc(100vw - 32px));
+          padding: 22px;
+          background: #fff;
+          border: 1px solid var(--line);
+          border-radius: 18px;
+          box-shadow: 0 24px 64px rgba(28, 44, 74, 0.14);
+        }
+
+        .approval-picker-title {
+          margin: 0 0 16px;
+          font-size: 22px;
+          font-weight: 700;
+          color: var(--text);
+        }
+
+        .approval-picker-group + .approval-picker-group {
+          margin-top: 16px;
+        }
+
+        .approval-picker-group h4 {
+          margin: 0 0 10px;
+          font-size: 14px;
+          color: var(--muted);
+        }
+
+        .approval-picker-list {
+          display: grid;
+          gap: 10px;
+        }
+
+        .approval-picker-item {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 12px 14px;
+          border: 1px solid var(--line);
+          border-radius: 12px;
+          color: var(--text);
+          background: #fff;
+        }
+      </style>
   </head>
   <body data-page="case-management">
     <div class="app-shell">
@@ -38,7 +96,7 @@
                           <th>案件类型</th>
                           <th>案件介绍</th>
                           <th>承办律师</th>
-                          <th>当前阶段</th>
+                          <th>案件阶段</th>
                           <th>案件状态</th>
                           <th>操作</th>
                         </tr>
@@ -57,7 +115,7 @@
                           data-role-name="刘衡律师"
                           data-hometown="刘衡律师"
                           data-negotiation-owner="刘衡律师"
-                          data-stage="办案阶段"
+                          data-stage="办理中"
                           data-contract-status="正常"
                           data-created-at="2026/04/10 10:30"
                           data-description="员工主张违法解除劳动合同赔偿，已进入仲裁审理准备阶段。"
@@ -83,7 +141,7 @@
                           <td>劳动仲裁</td>
                           <td>违法解除劳动合同赔偿争议，已进入仲裁审理准备。</td>
                           <td><span class="person-chip"><span class="person-avatar">刘</span>刘衡律师</span></td>
-                          <td><span class="badge warning">办案阶段</span></td>
+                          <td><span class="badge warning">办理中</span></td>
                           <td><span class="badge success">正常</span></td>
                           <td><span class="action-links"><a class="action-link" href="#" data-open-create="material-upload">上传材料</a></span></td>
                         </tr>
@@ -101,7 +159,7 @@
                           data-role-name="陈泽"
                           data-hometown="陈泽"
                           data-negotiation-owner="陈泽"
-                          data-stage="立项阶段"
+                          data-stage="待签约"
                           data-contract-status="预警"
                           data-created-at="2026/04/12 14:20"
                           data-description="案件已完成委托，待补齐医院诊断证明与监控调取材料。"
@@ -127,7 +185,7 @@
                           <td>刑事诉讼</td>
                           <td>故意伤害方向，当前证据不完整，需尽快补齐病历与监控。</td>
                           <td><span class="person-chip"><span class="person-avatar">陈</span>陈泽</span></td>
-                          <td><span class="badge primary">立项阶段</span></td>
+                          <td><span class="badge primary">待签约</span></td>
                           <td><span class="badge warning">预警</span></td>
                           <td><span class="action-links"><a class="action-link" href="#" data-open-create="material-upload">上传材料</a></span></td>
                         </tr>
@@ -145,7 +203,7 @@
                           data-role-name="罗杉"
                           data-hometown="罗杉"
                           data-negotiation-owner="谭雪"
-                          data-stage="结果阶段"
+                          data-stage="已结案"
                           data-contract-status="正常"
                           data-created-at="2026/04/08 09:40"
                           data-description="一审已开庭，正在等待判决结果并同步准备后续上诉预案。"
@@ -171,7 +229,7 @@
                           <td>行政诉讼</td>
                           <td>已完成一审开庭，当前重点是等待判决并预做二审准备。</td>
                           <td><span class="person-chip"><span class="person-avatar">罗</span>罗杉</span></td>
-                          <td><span class="badge success">结果阶段</span></td>
+                          <td><span class="badge success">已结案</span></td>
                           <td><span class="badge success">正常</span></td>
                           <td><span class="action-links"><a class="action-link" href="#" data-open-create="material-upload">上传材料</a></span></td>
                         </tr>
@@ -189,7 +247,7 @@
                           data-role-name="高铭"
                           data-hometown="高铭"
                           data-negotiation-owner="宋然"
-                          data-stage="办案阶段"
+                          data-stage="办理中"
                           data-contract-status="异常"
                           data-created-at="2026/04/15 16:10"
                           data-description="对方拒绝提交关键往来记录，证据链存在缺口，需尽快补强。"
@@ -215,7 +273,7 @@
                           <td>民事诉讼</td>
                           <td>合同履行争议，现阶段最大问题是证据链缺口和对方抗辩。</td>
                           <td><span class="person-chip"><span class="person-avatar">高</span>高铭</span></td>
-                          <td><span class="badge warning">办案阶段</span></td>
+                          <td><span class="badge warning">办理中</span></td>
                           <td><span class="badge danger">异常</span></td>
                           <td><span class="action-links"><a class="action-link" href="#" data-open-create="material-upload">上传材料</a></span></td>
                         </tr>
@@ -233,7 +291,7 @@
                           data-role-name="唐宁"
                           data-hometown="唐宁"
                           data-negotiation-owner="徐静"
-                          data-stage="办案阶段"
+                          data-stage="办理中"
                           data-contract-status="正常"
                           data-created-at="2026/04/09 14:00"
                           data-description="仲裁申请已提交，对方已委托代理人，正在准备证据交换。"
@@ -259,7 +317,7 @@
                           <td>仲裁案件</td>
                           <td>已提交仲裁申请，接下来重点在证据交换和对方答辩拆解。</td>
                           <td><span class="person-chip"><span class="person-avatar">唐</span>唐宁</span></td>
-                          <td><span class="badge warning">办案阶段</span></td>
+                          <td><span class="badge warning">办理中</span></td>
                           <td><span class="badge success">正常</span></td>
                           <td><span class="action-links"><a class="action-link" href="#" data-open-create="material-upload">上传材料</a></span></td>
                         </tr>
@@ -277,7 +335,7 @@
                           data-role-name="高铭"
                           data-hometown="高铭"
                           data-negotiation-owner="宋然"
-                          data-stage="结果阶段"
+                          data-stage="已归档"
                           data-contract-status="预警"
                           data-created-at="2026/04/18 11:05"
                           data-description="执行异议已提交，待法院安排听证，对方转移财产风险较高。"
@@ -303,7 +361,7 @@
                           <td>执行案件</td>
                           <td>执行异议已提交，当前需要盯紧财产线索和法院听证排期。</td>
                           <td><span class="person-chip"><span class="person-avatar">高</span>高铭</span></td>
-                          <td><span class="badge success">结果阶段</span></td>
+                          <td><span class="badge info">已归档</span></td>
                           <td><span class="badge warning">预警</span></td>
                           <td><span class="action-links"><a class="action-link" href="#" data-open-create="material-upload">上传材料</a></span></td>
                         </tr>
@@ -367,7 +425,7 @@
                   <h2 class="detail-title">张三-劳动仲裁案</h2>
                   <div class="detail-header-meta">
                     <span class="detail-meta-item">案件编号：<span data-detail-field="contractNo">(2026)中磐 劳 字第0001号</span></span>
-                    <span class="detail-meta-item">当前阶段：<span data-detail-field="stage" data-detail-type="stage-badge-inline">办案阶段</span></span>
+                    <span class="detail-meta-item">案件阶段：<span data-detail-field="stage" data-detail-type="stage-badge-inline">办理中</span></span>
                     <span class="detail-meta-item">案件状态：<span data-detail-field="contractStatus" data-detail-type="status-badge">正常</span></span>
                     <span class="detail-meta-item">创建时间：<span data-detail-field="createdAt">2026/04/10 10:30</span></span>
                   </div>
@@ -390,7 +448,7 @@
                         <div class="info-item"><div class="info-label">案件类型</div><div class="info-value" data-detail-field="caseType">劳动仲裁</div></div>
                         <div class="info-item"><div class="info-label">承办律师</div><div class="info-value" data-detail-field="roleName" data-detail-type="person">刘衡律师</div></div>
                         <div class="info-item"><div class="info-label">协作律师</div><div class="info-value">-</div></div>
-                        <div class="info-item"><div class="info-label">当前阶段</div><div class="info-value" data-detail-field="stage" data-detail-type="stage-badge">办案阶段</div></div>
+                        <div class="info-item"><div class="info-label">案件阶段</div><div class="info-value" data-detail-field="stage" data-detail-type="stage-badge">办理中</div></div>
                         <div class="info-item"><div class="info-label">案件状态</div><div class="info-value" data-detail-field="contractStatus" data-detail-type="status-badge">正常</div></div>
                         <div class="info-item"><div class="info-label">创建时间</div><div class="info-value" data-detail-field="createdAt">2026/04/10 10:30</div></div>
                         <div class="info-item full"><div class="info-label">案件介绍</div><div class="info-value" data-detail-field="description">员工主张违法解除劳动合同赔偿，已进入仲裁审理准备阶段。</div></div>
@@ -404,6 +462,7 @@
                       <span class="switch-tab">合同</span>
                       <span class="switch-tab">回款计划</span>
                       <span class="switch-tab">回款记录</span>
+                      <span class="switch-tab">审批</span>
                     </div>
 
                     <div class="switch-panel active">
@@ -473,7 +532,7 @@
                             <div class="activity-main">
                               <div class="activity-head">
                                 <div class="activity-labels"><span class="activity-tag stage-change">阶段变更</span></div>
-                                <strong>案件从立项阶段调整为办案阶段。</strong>
+                                <strong>案件从待签约调整为办理中。</strong>
                               </div>
                               <div class="activity-meta">变更原因：仲裁材料齐备，正式进入审理准备</div>
                             </div>
@@ -512,18 +571,23 @@
                     </div>
 
                     <div class="switch-panel">
-                      <div class="detail-card">
-                        <div class="related-list">
-                          <div class="related-row">
-                            <div class="related-time">(2026)中磐 劳 字第0001号</div>
-                            <div class="related-main">
-                              <div class="related-title">张三劳动争议委托代理合同</div>
-                              <div class="related-meta"><span>合同状态：履约中</span><span>签订日期：2026/04/10</span><span>合同金额：50,000</span></div>
-                            </div>
-                            <div class="related-side"><span class="person-chip"><span class="person-avatar">张</span>张三</span></div>
+                        <div class="detail-panel-head">
+                          <div class="detail-action-row">
+                            <button class="detail-mini-button" type="button">新增合同</button>
                           </div>
                         </div>
-                      </div>
+                        <div class="detail-card">
+                          <div class="related-list">
+                            <div class="related-row">
+                              <div class="related-time"><a class="action-link" href="#">(2026)中磐 劳 字第0001号</a></div>
+                              <div class="related-main">
+                                <div class="related-title">张三劳动争议委托代理合同</div>
+                                <div class="related-meta"><span>合同状态：已生效</span><span>签订日期：2026/04/10</span><span>合同金额：50,000</span></div>
+                              </div>
+                              <div class="related-side"><span class="person-chip"><span class="person-avatar">张</span>张三</span><span class="method-link"><span class="method-icon">创</span>创建时间 2026/04/10 10:30</span></div>
+                            </div>
+                          </div>
+                        </div>
                     </div>
 
                     <div class="switch-panel">
@@ -581,6 +645,42 @@
                         </div>
                       </div>
                     </div>
+
+                    <div class="switch-panel">
+                      <div class="detail-panel-head">
+                        <div class="detail-action-row">
+                          <button class="detail-mini-button" type="button" onclick="document.getElementById('caseApprovalPicker').classList.add('is-open')">新增审批</button>
+                        </div>
+                      </div>
+                      <div class="detail-card">
+                        <div class="related-list">
+                          <div class="related-row">
+                            <div class="related-time">SP-20260503-011</div>
+                            <div class="related-main">
+                              <div class="related-title">周建国合同纠纷案件立项审批</div>
+                              <div class="related-meta"><span>审批类型：立项审批</span><span>当前节点：主任审批</span><span>状态：审批中</span></div>
+                            </div>
+                            <div class="related-side"><span class="person-chip"><span class="person-avatar">周</span>周建国</span><span class="method-link"><span class="method-icon">更</span>2026/05/03 16:10</span></div>
+                          </div>
+                          <div class="related-row">
+                            <div class="related-time">SP-20260502-009</div>
+                            <div class="related-main">
+                              <div class="related-title">上海出差交通费用报销</div>
+                              <div class="related-meta"><span>审批类型：报销审批</span><span>当前节点：财务入账</span><span>状态：已通过</span></div>
+                            </div>
+                            <div class="related-side"><span class="person-chip"><span class="person-avatar">徐</span>徐静</span><span class="method-link"><span class="method-icon">更</span>2026/05/02 14:30</span></div>
+                          </div>
+                          <div class="related-row">
+                            <div class="related-time">SP-20260501-014</div>
+                            <div class="related-main">
+                              <div class="related-title">李明故意伤害案件结案审批</div>
+                              <div class="related-meta"><span>审批类型：结案审批</span><span>当前节点：流程结束</span><span>状态：已通过</span></div>
+                            </div>
+                            <div class="related-side"><span class="person-chip"><span class="person-avatar">陈</span>陈泽</span><span class="method-link"><span class="method-icon">更</span>2026/05/01 11:05</span></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </section>
 
                   <section class="detail-group" data-role="history">
@@ -591,7 +691,7 @@
                           <tr><th>时间</th><th>字段</th><th>变更前</th><th></th><th>变更后</th></tr>
                         </thead>
                         <tbody>
-                          <tr><td>04月21日</td><td>当前阶段</td><td>立项阶段</td><td class="history-arrow">→</td><td>办案阶段</td></tr>
+                          <tr><td>04月21日</td><td>案件阶段</td><td>待签约</td><td class="history-arrow">→</td><td>办理中</td></tr>
                           <tr><td>04月18日</td><td>回款状态</td><td>待收</td><td class="history-arrow">→</td><td>部分</td></tr>
                           <tr><td>04月12日</td><td>材料上传</td><td>-</td><td class="history-arrow">→</td><td>已归档 3 份</td></tr>
                         </tbody>
@@ -618,7 +718,7 @@
                           </div>
                           <div class="drawer-form-grid">
                             <div class="field"><label>协作律师</label><input class="input" value="可选，未选择则留空" /></div>
-                            <div class="field"><label>当前阶段</label><select class="select"><option>立项阶段</option><option>办案阶段</option><option>结果阶段</option><option>已结案</option></select></div>
+                            <div class="field"><label>案件阶段</label><select class="select"><option>待签约</option><option selected>办理中</option><option>已结案</option><option>已归档</option></select></div>
                           </div>
                           <div class="drawer-form-grid">
                             <div class="field"><label>案件状态</label><select class="select"><option>正常</option><option>预警</option><option>异常</option></select></div>
@@ -655,6 +755,29 @@
               </aside>
             </div>
           </main>
+        </div>
+      </div>
+    </div>
+    <div class="approval-picker-backdrop" id="caseApprovalPicker">
+      <div class="approval-picker-modal">
+        <h3 class="approval-picker-title">新增审批</h3>
+        <div class="approval-picker-group">
+          <h4>案件类</h4>
+          <div class="approval-picker-list">
+            <button class="approval-picker-item" type="button">立案审批 <span>→</span></button>
+            <button class="approval-picker-item" type="button">结案审批 <span>→</span></button>
+          </div>
+        </div>
+        <div class="approval-picker-group">
+          <h4>财务类</h4>
+          <div class="approval-picker-list">
+            <button class="approval-picker-item" type="button">开票审批 <span>→</span></button>
+            <button class="approval-picker-item" type="button">报销审批 <span>→</span></button>
+            <button class="approval-picker-item" type="button">退款审批 <span>→</span></button>
+          </div>
+        </div>
+        <div class="detail-footer" style="margin-top: 18px;">
+          <button class="button secondary" type="button" onclick="document.getElementById('caseApprovalPicker').classList.remove('is-open')">取消</button>
         </div>
       </div>
     </div>

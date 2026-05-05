@@ -1,10 +1,18 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>运营案源池 - 律所系统</title>
     <link rel="stylesheet" href="../../assets/styles/main.css" />
+    <style>
+      .simple-confirm-backdrop { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; background: rgba(21, 34, 64, 0.16); backdrop-filter: blur(3px); z-index: 80; }
+      .simple-confirm-backdrop.is-open { display: flex; }
+      .simple-confirm-modal { width: min(360px, calc(100vw - 32px)); padding: 24px; background: #fff; border: 1px solid var(--line); border-radius: 18px; box-shadow: 0 24px 64px rgba(28, 44, 74, 0.14); }
+      .simple-confirm-title { margin: 0 0 10px; font-size: 22px; font-weight: 700; color: var(--text); }
+      .simple-confirm-text { margin: 0 0 18px; color: var(--muted); line-height: 1.7; }
+      .simple-confirm-actions { display: flex; gap: 12px; }
+    </style>
   </head>
   <body data-page="operation-lead-pool">
     <div class="app-shell">
@@ -21,7 +29,6 @@
                     <a class="tab" href="#">重复线索</a>
                     <a class="tab" href="#">已分发</a>
                   </div>
-
                   <div class="filter-card">
                     <h3>分发状态</h3>
                     <div class="pill-row">
@@ -33,158 +40,46 @@
                     </div>
                   </div>
                 </section>
-
                 <section class="panel">
                   <div class="filter-row">
-                    <div class="field">
-                      <label>姓名</label>
-                      <input class="input" value="请输入客户姓名" />
-                    </div>
-                    <div class="field">
-                      <label>电话</label>
-                      <input class="input" value="请输入手机号" />
-                    </div>
-                    <div class="field">
-                      <label>分发时间</label>
-                      <input class="input" value="请选择分发时间范围" />
-                    </div>
+                    <div class="field"><label>姓名</label><input class="input" value="请输入客户姓名" /></div>
+                    <div class="field"><label>电话</label><input class="input" value="请输入手机号" /></div>
+                    <div class="field"><label>分发时间</label><input class="input" value="请选择分发时间范围" /></div>
                   </div>
                 </section>
-
                 <section class="panel">
                   <div class="toolbar">
                     <div></div>
-                    <div class="toolbar-tools">
-                      <span>筛选</span>
-                      <span>分组</span>
-                      <span>排序</span>
-                      <span>搜索</span>
-                    </div>
+                    <div class="toolbar-tools"><span>筛选</span><span>分组</span><span>排序</span><span>搜索</span></div>
                   </div>
                   <div class="table-shell tight">
                     <table>
                       <thead>
                         <tr>
-                          <th>案源编号</th>
-                          <th>客户姓名</th>
-                          <th>用户星级</th>
-                          <th>手机号</th>
-                          <th>来源平台</th>
-                          <th>投放计划</th>
-                          <th>案件类型</th>
-                          <th>案件描述</th>
-                          <th>提交时间</th>
-                          <th>排重状态</th>
-                          <th>分发状态</th>
-                          <th>当前负责人</th>
-                          <th>操作</th>
+                          <th>案源编号</th><th>客户姓名</th><th>用户星级</th><th>手机号</th><th>来源平台</th><th>投放计划</th><th>案件类型</th><th>案件描述</th><th>提交时间</th><th>排重状态</th><th>分发状态</th><th>当前负责人</th><th>操作</th>
                         </tr>
                       </thead>
                       <tbody>
                         <tr data-customer-name="张瑞" data-phone="13800112231" data-wechat="zr-kuaishou" data-address="北京" data-case-type="刑事诉讼" data-description="家属代提，咨询取保候审与后续辩护方案。" data-source="快手" data-created-at="2026/04/28 09:12" data-owner-name="运营中台A组" data-contract-status="不重复" data-payment-status="待分发" data-contract-name="刑事咨询-北京晚高峰定向" data-validity="KS-CJ-2408" data-star-level="4星">
-                          <td><a class="table-link" href="#">YY-20260428-001</a></td>
-                          <td>张瑞</td>
-                          <td><span class="badge primary">4星</span></td>
-                          <td>13800112231</td>
-                          <td><span class="badge warning">快手</span></td>
-                          <td>刑事咨询-北京晚高峰定向</td>
-                          <td>刑事诉讼</td>
-                          <td>家属代提，咨询取保候审与后续辩护方案。</td>
-                          <td>2026/04/28 09:12</td>
-                          <td><span class="badge success">不重复</span></td>
-                          <td><span class="badge warning">待分发</span></td>
-                          <td><span class="person-chip"><span class="person-avatar">运</span><span>运营中台A组</span></span></td>
-                          <td><span class="action-links"><a class="action-link" href="#" data-open-create="default">分发</a><a class="action-link" href="#" data-open-create="blacklist-confirm">添加黑名单</a></span></td>
+                          <td><a class="table-link" href="#">YY-20260428-001</a></td><td>张瑞</td><td><span class="badge primary">4星</span></td><td>13800112231</td><td><span class="badge warning">快手</span></td><td>刑事咨询-北京晚高峰定向</td><td>刑事诉讼</td><td>家属代提，咨询取保候审与后续辩护方案。</td><td>2026/04/28 09:12</td><td><span class="badge success">不重复</span></td><td><span class="badge warning">待分发</span></td><td><span class="person-chip"><span class="person-avatar">运</span>运营中台A组</span></td><td><span class="action-links"><a class="action-link" href="#" data-open-create="default">分发</a><a class="action-link" href="#" onclick="event.stopPropagation(); document.getElementById('blacklistConfirm').classList.add('is-open'); return false;">添加黑名单</a></span></td>
                         </tr>
                         <tr data-customer-name="李海峰" data-phone="13966128820" data-wechat="hf-baidu" data-address="上海" data-case-type="民事诉讼" data-description="合同款拖欠半年，手里有对账单和转账记录。" data-source="百度" data-created-at="2026/04/28 08:45" data-owner-name="海岩" data-contract-status="不重复" data-payment-status="已分发" data-contract-name="合同纠纷-上海地域扩量" data-validity="BD-SH-1192" data-star-level="5星">
-                          <td><a class="table-link" href="#">YY-20260428-002</a></td>
-                          <td>李海峰</td>
-                          <td><span class="badge warning">5星</span></td>
-                          <td>13966128820</td>
-                          <td><span class="badge primary">百度</span></td>
-                          <td>合同纠纷-上海地域扩量</td>
-                          <td>民事诉讼</td>
-                          <td>合同款拖欠半年，手里有对账单和转账记录。</td>
-                          <td>2026/04/28 08:45</td>
-                          <td><span class="badge success">不重复</span></td>
-                          <td><span class="badge success">已分发</span></td>
-                          <td><span class="person-chip"><span class="person-avatar">海</span><span>海岩</span></span></td>
-                          <td><span class="action-links"><a class="action-link" href="#" data-open-create="default">分发</a><a class="action-link" href="#" data-open-create="blacklist-confirm">添加黑名单</a></span></td>
+                          <td><a class="table-link" href="#">YY-20260428-002</a></td><td>李海峰</td><td><span class="badge warning">5星</span></td><td>13966128820</td><td><span class="badge primary">百度</span></td><td>合同纠纷-上海地域扩量</td><td>民事诉讼</td><td>合同款拖欠半年，手里有对账单和转账记录。</td><td>2026/04/28 08:45</td><td><span class="badge success">不重复</span></td><td><span class="badge success">已分发</span></td><td><span class="person-chip"><span class="person-avatar">海</span>海岩</span></td><td><span class="action-links"><a class="action-link" href="#" data-open-create="default">分发</a><a class="action-link" href="#" onclick="event.stopPropagation(); document.getElementById('blacklistConfirm').classList.add('is-open'); return false;">添加黑名单</a></span></td>
                         </tr>
                         <tr data-customer-name="王媛" data-phone="13788990112" data-wechat="wy-douyin" data-address="杭州" data-case-type="行政诉讼" data-description="土地征收补偿争议，想评估能否起诉。" data-source="抖音" data-created-at="2026/04/27 21:36" data-owner-name="周航" data-contract-status="重复" data-payment-status="待分发" data-contract-name="征拆维权-华东投流一组" data-validity="DY-HZ-7781" data-star-level="3星">
-                          <td><a class="table-link" href="#">YY-20260427-118</a></td>
-                          <td>王媛</td>
-                          <td><span class="badge success">3星</span></td>
-                          <td>13788990112</td>
-                          <td><span class="badge warning">抖音</span></td>
-                          <td>征拆维权-华东投流一组</td>
-                          <td>行政诉讼</td>
-                          <td>土地征收补偿争议，想评估能否起诉。</td>
-                          <td>2026/04/27 21:36</td>
-                          <td><span class="badge danger">重复</span></td>
-                          <td><span class="badge warning">待分发</span></td>
-                          <td><span class="person-chip"><span class="person-avatar">周</span><span>周航</span></span></td>
-                          <td><span class="action-links"><a class="action-link" href="#" data-open-create="default">分发</a><a class="action-link" href="#" data-open-create="blacklist-confirm">添加黑名单</a></span></td>
+                          <td><a class="table-link" href="#">YY-20260427-118</a></td><td>王媛</td><td><span class="badge success">3星</span></td><td>13788990112</td><td><span class="badge warning">抖音</span></td><td>征拆维权-华东投流一组</td><td>行政诉讼</td><td>土地征收补偿争议，想评估能否起诉。</td><td>2026/04/27 21:36</td><td><span class="badge danger">重复</span></td><td><span class="badge warning">待分发</span></td><td><span class="person-chip"><span class="person-avatar">周</span>周航</span></td><td><span class="action-links"><a class="action-link" href="#" data-open-create="default">分发</a><a class="action-link" href="#" onclick="event.stopPropagation(); document.getElementById('blacklistConfirm').classList.add('is-open'); return false;">添加黑名单</a></span></td>
                         </tr>
                         <tr data-customer-name="陈思远" data-phone="13622880071" data-wechat="csy-xhs" data-address="深圳" data-case-type="常年法律顾问" data-description="科技创业公司寻找年度顾问，想先了解服务包。" data-source="小红书" data-created-at="2026/04/27 18:25" data-owner-name="运营中台B组" data-contract-status="不重复" data-payment-status="待分发" data-contract-name="企业法顾-创始人内容转化" data-validity="XHS-SZ-2230" data-star-level="4星">
-                          <td><a class="table-link" href="#">YY-20260427-097</a></td>
-                          <td>陈思远</td>
-                          <td><span class="badge primary">4星</span></td>
-                          <td>13622880071</td>
-                          <td><span class="badge danger">小红书</span></td>
-                          <td>企业法顾-创始人内容转化</td>
-                          <td>常年法律顾问</td>
-                          <td>科技创业公司寻找年度顾问，想先了解服务包。</td>
-                          <td>2026/04/27 18:25</td>
-                          <td><span class="badge success">不重复</span></td>
-                          <td><span class="badge warning">待分发</span></td>
-                          <td><span class="person-chip"><span class="person-avatar">运</span><span>运营中台B组</span></span></td>
-                          <td><span class="action-links"><a class="action-link" href="#" data-open-create="default">分发</a><a class="action-link" href="#" data-open-create="blacklist-confirm">添加黑名单</a></span></td>
+                          <td><a class="table-link" href="#">YY-20260427-097</a></td><td>陈思远</td><td><span class="badge primary">4星</span></td><td>13622880071</td><td><span class="badge danger">小红书</span></td><td>企业法顾-创始人内容转化</td><td>常年法律顾问</td><td>科技创业公司寻找年度顾问，想先了解服务包。</td><td>2026/04/27 18:25</td><td><span class="badge success">不重复</span></td><td><span class="badge warning">待分发</span></td><td><span class="person-chip"><span class="person-avatar">运</span>运营中台B组</span></td><td><span class="action-links"><a class="action-link" href="#" data-open-create="default">分发</a><a class="action-link" href="#" onclick="event.stopPropagation(); document.getElementById('blacklistConfirm').classList.add('is-open'); return false;">添加黑名单</a></span></td>
                         </tr>
                         <tr data-customer-name="赵璇" data-phone="13502038851" data-wechat="zx-wecom" data-address="天津" data-case-type="文书起草" data-description="需要起草股权代持解除协议和保密条款。" data-source="企业微信" data-created-at="2026/04/27 16:40" data-owner-name="王助理" data-contract-status="不重复" data-payment-status="已分发" data-contract-name="私域裂变-法务需求收口" data-validity="QW-TJ-5012" data-star-level="2星">
-                          <td><a class="table-link" href="#">YY-20260427-082</a></td>
-                          <td>赵璇</td>
-                          <td><span class="badge info">2星</span></td>
-                          <td>13502038851</td>
-                          <td><span class="badge info">企业微信</span></td>
-                          <td>私域裂变-法务需求收口</td>
-                          <td>文书起草</td>
-                          <td>需要起草股权代持解除协议和保密条款。</td>
-                          <td>2026/04/27 16:40</td>
-                          <td><span class="badge success">不重复</span></td>
-                          <td><span class="badge success">已分发</span></td>
-                          <td><span class="person-chip"><span class="person-avatar">王</span><span>王助理</span></span></td>
-                          <td><span class="action-links"><a class="action-link" href="#" data-open-create="default">分发</a><a class="action-link" href="#" data-open-create="blacklist-confirm">添加黑名单</a></span></td>
+                          <td><a class="table-link" href="#">YY-20260427-082</a></td><td>赵璇</td><td><span class="badge info">2星</span></td><td>13502038851</td><td><span class="badge info">企业微信</span></td><td>私域裂变-法务需求收口</td><td>文书起草</td><td>需要起草股权代持解除协议和保密条款。</td><td>2026/04/27 16:40</td><td><span class="badge success">不重复</span></td><td><span class="badge success">已分发</span></td><td><span class="person-chip"><span class="person-avatar">王</span>王助理</span></td><td><span class="action-links"><a class="action-link" href="#" data-open-create="default">分发</a><a class="action-link" href="#" onclick="event.stopPropagation(); document.getElementById('blacklistConfirm').classList.add('is-open'); return false;">添加黑名单</a></span></td>
                         </tr>
                         <tr data-customer-name="孙立" data-phone="13411882262" data-wechat="sl-kuai" data-address="苏州" data-case-type="执行案件" data-description="胜诉后一直收不到款，想咨询执行路径和周期。" data-source="快手" data-created-at="2026/04/27 15:12" data-owner-name="海岩" data-contract-status="重复" data-payment-status="待分发" data-contract-name="执行回款-华东二组" data-validity="KS-SZ-4402" data-star-level="1星">
-                          <td><a class="table-link" href="#">YY-20260427-066</a></td>
-                          <td>孙立</td>
-                          <td><span class="badge">1星</span></td>
-                          <td>13411882262</td>
-                          <td><span class="badge warning">快手</span></td>
-                          <td>执行回款-华东二组</td>
-                          <td>执行案件</td>
-                          <td>胜诉后一直收不到款，想咨询执行路径和周期。</td>
-                          <td>2026/04/27 15:12</td>
-                          <td><span class="badge danger">重复</span></td>
-                          <td><span class="badge warning">待分发</span></td>
-                          <td><span class="person-chip"><span class="person-avatar">海</span><span>海岩</span></span></td>
-                          <td><span class="action-links"><a class="action-link" href="#" data-open-create="default">分发</a><a class="action-link" href="#" data-open-create="blacklist-confirm">添加黑名单</a></span></td>
+                          <td><a class="table-link" href="#">YY-20260427-066</a></td><td>孙立</td><td><span class="badge">1星</span></td><td>13411882262</td><td><span class="badge warning">快手</span></td><td>执行回款-华东二组</td><td>执行案件</td><td>胜诉后一直收不到款，想咨询执行路径和周期。</td><td>2026/04/27 15:12</td><td><span class="badge danger">重复</span></td><td><span class="badge warning">待分发</span></td><td><span class="person-chip"><span class="person-avatar">海</span>海岩</span></td><td><span class="action-links"><a class="action-link" href="#" data-open-create="default">分发</a><a class="action-link" href="#" onclick="event.stopPropagation(); document.getElementById('blacklistConfirm').classList.add('is-open'); return false;">添加黑名单</a></span></td>
                         </tr>
                         <tr data-customer-name="何静雯" data-phone="13378110529" data-wechat="hjw-baidu" data-address="南京" data-case-type="合同审核" data-description="准备签大客户框架合同，先做风险审查。" data-source="百度" data-created-at="2026/04/27 13:55" data-owner-name="运营中台A组" data-contract-status="不重复" data-payment-status="待分发" data-contract-name="企业合同-江苏定向计划" data-validity="BD-NJ-3128" data-star-level="5星">
-                          <td><a class="table-link" href="#">YY-20260427-051</a></td>
-                          <td>何静雯</td>
-                          <td><span class="badge warning">5星</span></td>
-                          <td>13378110529</td>
-                          <td><span class="badge primary">百度</span></td>
-                          <td>企业合同-江苏定向计划</td>
-                          <td>合同审核</td>
-                          <td>准备签大客户框架合同，先做风险审查。</td>
-                          <td>2026/04/27 13:55</td>
-                          <td><span class="badge success">不重复</span></td>
-                          <td><span class="badge warning">待分发</span></td>
-                          <td><span class="person-chip"><span class="person-avatar">运</span><span>运营中台A组</span></span></td>
-                          <td><span class="action-links"><a class="action-link" href="#" data-open-create="default">分发</a><a class="action-link" href="#" data-open-create="blacklist-confirm">添加黑名单</a></span></td>
+                          <td><a class="table-link" href="#">YY-20260427-051</a></td><td>何静雯</td><td><span class="badge warning">5星</span></td><td>13378110529</td><td><span class="badge primary">百度</span></td><td>企业合同-江苏定向计划</td><td>合同审核</td><td>准备签大客户框架合同，先做风险审查。</td><td>2026/04/27 13:55</td><td><span class="badge success">不重复</span></td><td><span class="badge warning">待分发</span></td><td><span class="person-chip"><span class="person-avatar">运</span>运营中台A组</span></td><td><span class="action-links"><a class="action-link" href="#" data-open-create="default">分发</a><a class="action-link" href="#" onclick="event.stopPropagation(); document.getElementById('blacklistConfirm').classList.add('is-open'); return false;">添加黑名单</a></span></td>
                         </tr>
                       </tbody>
                     </table>
@@ -192,104 +87,15 @@
                   <div class="footer-row"><span>共 7 条</span><span>1 / 1</span><span>20 条/页</span></div>
                 </section>
               </section>
-
-              <aside class="detail-pane" data-create-title="分发运营案源">
-                <div class="detail-topbar">
-                  <div class="detail-topbar-actions"><span>︿</span><span>﹀</span></div>
-                  <div class="detail-topbar-actions"><span>···</span><span class="detail-close">×</span></div>
-                </div>
+              <aside class="detail-pane" data-create-title="确认分发">
+                <div class="detail-topbar"><div class="detail-topbar-actions"><span>⌃</span><span>⌄</span></div><div class="detail-topbar-actions"><span>···</span><span>×</span></div></div>
                 <div class="detail-scroll">
-                  <h2 class="detail-title">张瑞（刑事诉讼）</h2>
-                  <div class="detail-header-meta">
-                    <span class="detail-meta-item">用户星级：<span data-detail-field="starLevel"><span class="badge primary">4星</span></span></span>
-                    <span class="detail-meta-item">排重：<span data-detail-field="contractStatus" data-detail-type="status-badge"><span class="badge success">不重复</span></span></span>
-                    <span class="detail-meta-item">来源：<span data-detail-field="source" data-detail-type="source-badge-inline"><span class="badge warning">快手</span></span></span>
-                    <span class="detail-meta-item">提交时间：<span data-detail-field="createdAt">2026/04/28 09:12</span></span>
-                  </div>
-                  <div class="detail-tabs">
-                    <span class="detail-tab active">基本信息</span>
-                    <span class="detail-tab">历史</span>
-                  </div>
-
-                  <section class="detail-group active" data-role="detail">
-                    <div class="detail-group-title"><span>客户信息</span></div>
-                    <div class="detail-card">
-                      <div class="info-grid">
-                        <div class="info-item"><div class="info-label">姓名</div><div class="info-value" data-detail-field="customerName">张瑞</div></div>
-                        <div class="info-item"><div class="info-label">手机号</div><div class="info-value" data-detail-field="phone">13800112231</div></div>
-                        <div class="info-item"><div class="info-label">微信号</div><div class="info-value muted" data-detail-field="wechat">zr-kuaishou</div></div>
-                        <div class="info-item"><div class="info-label">城市</div><div class="info-value" data-detail-field="address">北京</div></div>
-                        <div class="info-item"><div class="info-label">案件类型</div><div class="info-value" data-detail-field="caseType">刑事诉讼</div></div>
-                        <div class="info-item"><div class="info-label">用户星级</div><div class="info-value" data-detail-field="starLevel">4星</div></div>
-                        <div class="info-item full"><div class="info-label">案件描述</div><div class="info-value" data-detail-field="description">家属代提，咨询取保候审与后续辩护方案。</div></div>
-                      </div>
-                    </div>
-
-                    <div class="detail-group-title"><span>来源信息</span></div>
-                    <div class="detail-card">
-                      <div class="info-grid">
-                        <div class="info-item"><div class="info-label">来源平台</div><div class="info-value" data-detail-field="source" data-detail-type="source-badge">快手</div></div>
-                        <div class="info-item"><div class="info-label">投放计划</div><div class="info-value" data-detail-field="contractName">刑事咨询-北京晚高峰定向</div></div>
-                        <div class="info-item"><div class="info-label">广告ID</div><div class="info-value" data-detail-field="validity">KS-CJ-2408</div></div>
-                        <div class="info-item"><div class="info-label">提交时间</div><div class="info-value" data-detail-field="createdAt">2026/04/28 09:12</div></div>
-                      </div>
-                    </div>
-
-                    <div class="detail-group-title"><span>排重结果</span></div>
-                    <div class="detail-card">
-                      <div class="info-grid">
-                        <div class="info-item"><div class="info-label">是否重复</div><div class="info-value" data-detail-field="contractStatus" data-detail-type="status-badge">不重复</div></div>
-                        <div class="info-item"><div class="info-label">分发状态</div><div class="info-value" data-detail-field="paymentStatus" data-detail-type="status-badge">待分发</div></div>
-                        <div class="info-item"><div class="info-label">当前负责人</div><div class="info-value" data-detail-field="ownerName" data-detail-type="person">运营中台A组</div></div>
-                      </div>
-                    </div>
-                  </section>
-
-                  <section class="detail-group" data-role="history">
-                    <div class="detail-group-title"><span>处理历史</span><span>最近 7 天</span></div>
-                    <div class="detail-card">
-                      <table class="history-table">
-                        <thead>
-                          <tr><th>时间</th><th>字段</th><th>变更前</th><th></th><th>变更后</th></tr>
-                        </thead>
-                        <tbody>
-                          <tr><td>04月28日</td><td>排重状态</td><td>-</td><td class="history-arrow">→</td><td>不重复</td></tr>
-                          <tr><td>04月28日</td><td>当前负责人</td><td>系统自动接收</td><td class="history-arrow">→</td><td>运营中台A组</td></tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </section>
-
-                  <section class="detail-group" data-role="create">
-                    <div class="detail-card">
-                      <div class="create-mode active" data-create-mode="default" data-create-title="分发运营案源">
-                        <form class="drawer-form">
-                          <div class="drawer-form-grid">
-                            <div class="field"><label>案源编号</label><input class="input" data-create-field="contractNo" value="自动带入当前案源编号" /></div>
-                            <div class="field"><label>客户姓名</label><input class="input" data-create-field="customerName" value="自动带入当前客户姓名" /></div>
-                          </div>
-                          <div class="drawer-form-grid">
-                            <div class="field"><label>手机号</label><input class="input" data-create-field="phone" value="自动带入当前手机号" /></div>
-                            <div class="field"><label>案件类型</label><input class="input" data-create-field="caseType" value="自动带入案件类型" /></div>
-                          </div>
-                          <div class="drawer-form-grid">
-                            <div class="field"><label>分发给案源负责人</label><select class="select"><option>海岩</option><option>周航</option><option>朱浩</option><option>徐静</option></select></div>
-                            <div class="field"><label>备注</label><input class="input" value="请输入分发说明或重复线索处理判断" /></div>
-                          </div>
-                          <div class="detail-footer"><button class="button" type="button">提交分发</button><button class="button secondary" type="button">取消</button></div>
-                        </form>
-                      </div>
-
-                      <div class="create-mode" data-create-mode="blacklist-confirm" data-create-title="确认加入黑名单">
-                        <div class="detail-card" style="max-width: 420px;">
-                          <div class="detail-footer" style="justify-content: flex-start; padding-top: 0;">
-                            <button class="button" type="button">确认</button>
-                            <button class="button secondary" type="button">取消</button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </section>
+                  <h2 class="detail-title">张瑞</h2>
+                  <div class="detail-header-meta"><span class="detail-meta-item">用户星级：<span data-detail-field="starLevel"><span class="badge primary">4星</span></span></span><span class="detail-meta-item">排重：<span data-detail-field="contractStatus" data-detail-type="status-badge"><span class="badge success">不重复</span></span></span><span class="detail-meta-item">来源：<span data-detail-field="source" data-detail-type="source-badge-inline"><span class="badge warning">快手</span></span></span><span class="detail-meta-item">提交时间：<span data-detail-field="createdAt">2026/04/28 09:12</span></span></div>
+                  <div class="detail-tabs"><span class="detail-tab active">基本信息</span><span class="detail-tab">历史</span></div>
+                  <section class="detail-group active" data-role="detail"><div class="detail-card"><div class="info-grid"><div class="info-item"><div class="info-label">姓名</div><div class="info-value" data-detail-field="customerName">张瑞</div></div><div class="info-item"><div class="info-label">手机号</div><div class="info-value" data-detail-field="phone">13800112231</div></div><div class="info-item"><div class="info-label">微信号</div><div class="info-value muted" data-detail-field="wechat">zr-kuaishou</div></div><div class="info-item"><div class="info-label">城市</div><div class="info-value" data-detail-field="address">北京</div></div><div class="info-item"><div class="info-label">案件类型</div><div class="info-value" data-detail-field="caseType">刑事诉讼</div></div><div class="info-item"><div class="info-label">用户星级</div><div class="info-value" data-detail-field="starLevel">4星</div></div><div class="info-item full"><div class="info-label">案件描述</div><div class="info-value" data-detail-field="description">家属代提，咨询取保候审与后续辩护方案。</div></div><div class="info-item"><div class="info-label">来源平台</div><div class="info-value" data-detail-field="source" data-detail-type="source-badge">快手</div></div><div class="info-item"><div class="info-label">投放计划</div><div class="info-value" data-detail-field="contractName">刑事咨询-北京晚高峰定向</div></div><div class="info-item"><div class="info-label">广告ID</div><div class="info-value" data-detail-field="validity">KS-CJ-2408</div></div><div class="info-item"><div class="info-label">是否重复</div><div class="info-value" data-detail-field="contractStatus" data-detail-type="status-badge">不重复</div></div><div class="info-item"><div class="info-label">分发状态</div><div class="info-value" data-detail-field="paymentStatus" data-detail-type="status-badge">待分发</div></div></div></div></section>
+                  <section class="detail-group" data-role="history"><div class="detail-group-title"><span>处理历史</span><span>最近 7 天</span></div><div class="detail-card"><table class="history-table"><thead><tr><th>时间</th><th>字段</th><th>变更前</th><th></th><th>变更后</th></tr></thead><tbody><tr><td>04月28日</td><td>排重状态</td><td>-</td><td class="history-arrow">→</td><td>不重复</td></tr><tr><td>04月28日</td><td>分发状态</td><td>新进入池</td><td class="history-arrow">→</td><td>待分发</td></tr></tbody></table></div></section>
+                  <section class="detail-group" data-role="create"><div class="detail-group-title"><span>确认分发</span><span>表字段</span></div><div class="detail-card"><form class="drawer-form"><div class="drawer-form-grid"><div class="field"><label>案源编号</label><input class="input" value="自动带入当前案源编号" /></div><div class="field"><label>客户姓名</label><input class="input" data-create-field="customerName" value="张瑞" /></div></div><div class="drawer-form-grid"><div class="field"><label>手机号</label><input class="input" data-create-field="phone" value="13800112231" /></div><div class="field"><label>案件类型</label><input class="input" data-create-field="caseType" value="刑事诉讼" /></div></div><div class="drawer-form-grid"><div class="field"><label>分发给案源负责人</label><select class="select"><option>海岩</option><option>运营中台A组</option><option>王助理</option></select></div><div class="field"><label>备注</label><input class="input" value="请输入分发说明或重点线索处理判断" /></div></div><div class="detail-footer"><button class="button" type="button">提交分发</button><button class="button secondary" type="button">取消</button></div></form></div></section>
                 </div>
               </aside>
             </div>
@@ -297,6 +103,7 @@
         </div>
       </div>
     </div>
+    <div class="simple-confirm-backdrop" id="blacklistConfirm"><div class="simple-confirm-modal"><h3 class="simple-confirm-title">确认加入黑名单</h3><p class="simple-confirm-text">确认将当前运营案源加入黑名单吗？</p><div class="simple-confirm-actions"><button class="button" type="button" onclick="document.getElementById('blacklistConfirm').classList.remove('is-open')">确认</button><button class="button secondary" type="button" onclick="document.getElementById('blacklistConfirm').classList.remove('is-open')">取消</button></div></div></div>
     <script src="../../assets/scripts/app.js"></script>
   </body>
 </html>
