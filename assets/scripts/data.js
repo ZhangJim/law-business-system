@@ -15,12 +15,14 @@
       lastFollowDate: "2026/04/25",
       leadSummary: "短视频私信咨询刑事辩护",
       description: "涉嫌故意伤害，家属希望尽快安排律师面见。",
-      address: "北京海淀",
-      job: "餐饮老板",
-      recycleDays: "12",
-      leadOwner: "海岩",
-      invitationOwner: "王助理",
-      negotiationOwner: "刘律师"
+        address: "北京海淀",
+        job: "餐饮老板",
+        recycleDays: "12",
+        starLevel: "4星",
+        leadOwner: "海岩",
+        invitationOwner: "王助理",
+        negotiationOwner: "刘律师",
+        caseOwner: "陈泽"
     },
     {
       id: "LD0002",
@@ -37,12 +39,14 @@
       lastFollowDate: "2026/04/23",
       leadSummary: "搜索行政诉讼律师后留电",
       description: "区政府行政处罚争议，咨询复议与起诉路径。",
-      address: "北京朝阳",
-      job: "产品总监",
-      recycleDays: "15",
-      leadOwner: "海岩",
-      invitationOwner: "",
-      negotiationOwner: ""
+        address: "北京朝阳",
+        job: "产品总监",
+        recycleDays: "15",
+        starLevel: "2星",
+        leadOwner: "海岩",
+        invitationOwner: "",
+        negotiationOwner: "",
+        caseOwner: ""
     },
     {
       id: "LD0003",
@@ -59,12 +63,14 @@
       lastFollowDate: "2026/04/22",
       leadSummary: "搜索婚姻纠纷律师咨询",
       description: "离婚财产分割与孩子抚养权争议。",
-      address: "天津",
-      job: "主厨",
-      recycleDays: "18",
-      leadOwner: "海岩",
-      invitationOwner: "",
-      negotiationOwner: ""
+        address: "天津",
+        job: "主厨",
+        recycleDays: "18",
+        starLevel: "3星",
+        leadOwner: "海岩",
+        invitationOwner: "",
+        negotiationOwner: "",
+        caseOwner: ""
     },
     {
       id: "LD0004",
@@ -81,12 +87,14 @@
       lastFollowDate: "2026/04/21",
       leadSummary: "搜索交通事故赔偿标准",
       description: "三车追尾事故，涉及伤残鉴定与保险赔付执行。",
-      address: "石家庄",
-      job: "个体经营",
-      recycleDays: "20",
-      leadOwner: "海岩",
-      invitationOwner: "",
-      negotiationOwner: ""
+        address: "石家庄",
+        job: "个体经营",
+        recycleDays: "20",
+        starLevel: "1星",
+        leadOwner: "海岩",
+        invitationOwner: "",
+        negotiationOwner: "",
+        caseOwner: ""
     },
     {
       id: "LD0005",
@@ -103,12 +111,14 @@
       lastFollowDate: "2026/04/24",
       leadSummary: "内部转介绍行政案件",
       description: "土地征收补偿争议，客户已准备完整材料。",
-      address: "北京西城",
-      job: "地产项目经理",
-      recycleDays: "10",
-      leadOwner: "海岩",
-      invitationOwner: "王助理",
-      negotiationOwner: "刘律师"
+        address: "北京西城",
+        job: "地产项目经理",
+        recycleDays: "10",
+        starLevel: "5星",
+        leadOwner: "海岩",
+        invitationOwner: "王助理",
+        negotiationOwner: "刘律师",
+        caseOwner: "陈泽"
     },
     {
       id: "LD0006",
@@ -125,12 +135,14 @@
       lastFollowDate: "2026/04/20",
       leadSummary: "老客户转介绍民商事纠纷",
       description: "合作方拖欠货款，准备起诉并申请保全。",
-      address: "杭州",
-      job: "服装加工厂老板",
-      recycleDays: "9",
-      leadOwner: "海岩",
-      invitationOwner: "王助理",
-      negotiationOwner: ""
+        address: "杭州",
+        job: "服装加工厂老板",
+        recycleDays: "9",
+        starLevel: "4星",
+        leadOwner: "海岩",
+        invitationOwner: "王助理",
+        negotiationOwner: "",
+        caseOwner: "周敏"
     },
     {
       id: "LD0007",
@@ -147,12 +159,14 @@
       lastFollowDate: "2026/04/26",
       leadSummary: "搜索合同纠纷律师后在线咨询",
       description: "品牌合作合同违约，客户希望尽快确定索赔方案。",
-      address: "上海徐汇",
-      job: "品牌运营总监",
-      recycleDays: "7",
-      leadOwner: "海岩",
-      invitationOwner: "王助理",
-      negotiationOwner: "刘律师"
+        address: "上海徐汇",
+        job: "品牌运营总监",
+        recycleDays: "7",
+        starLevel: "5星",
+        leadOwner: "海岩",
+        invitationOwner: "王助理",
+        negotiationOwner: "刘律师",
+        caseOwner: "陈泽"
     },
     {
       id: "LD0008",
@@ -169,12 +183,14 @@
       lastFollowDate: "2026/04/19",
       leadSummary: "直播间咨询劳动争议仲裁",
       description: "工厂用工赔偿纠纷，需要评估仲裁与调解方案。",
-      address: "苏州工业园区",
-      job: "工厂厂长",
-      recycleDays: "11",
-      leadOwner: "海岩",
-      invitationOwner: "王助理",
-      negotiationOwner: ""
+        address: "苏州工业园区",
+        job: "工厂厂长",
+        recycleDays: "11",
+        starLevel: "3星",
+        leadOwner: "海岩",
+        invitationOwner: "王助理",
+        negotiationOwner: "",
+        caseOwner: "周敏"
     },
     {
       id: "LD0009",
@@ -191,12 +207,14 @@
       lastFollowDate: "2026/04/18",
       leadSummary: "图文咨询遗产继承纠纷",
       description: "家庭遗产分配争议，客户希望律师协助梳理材料并起草协议。",
-      address: "南京鼓楼",
-      job: "大学教师",
-      recycleDays: "16",
-      leadOwner: "海岩",
-      invitationOwner: "",
-      negotiationOwner: ""
+        address: "南京鼓楼",
+        job: "大学教师",
+        recycleDays: "16",
+        starLevel: "2星",
+        leadOwner: "海岩",
+        invitationOwner: "",
+        negotiationOwner: "",
+        caseOwner: ""
     },
     {
       id: "LD0010",
@@ -213,12 +231,14 @@
       lastFollowDate: "2026/04/17",
       leadSummary: "客户推荐商事诉讼咨询",
       description: "股东纠纷进入起诉准备阶段，客户已确认合作意向。",
-      address: "深圳南山",
-      job: "科技公司合伙人",
-      recycleDays: "5",
-      leadOwner: "海岩",
-      invitationOwner: "王助理",
-      negotiationOwner: "刘律师"
+        address: "深圳南山",
+        job: "科技公司合伙人",
+        recycleDays: "5",
+        starLevel: "5星",
+        leadOwner: "海岩",
+        invitationOwner: "王助理",
+        negotiationOwner: "刘律师",
+        caseOwner: "陈泽"
     }
   ]
 };

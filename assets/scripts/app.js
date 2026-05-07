@@ -240,10 +240,18 @@ function escapeAttr(value) {
   return escapeHtml(value).replace(/'/g, "&#39;");
 }
 
-function leadBadgeClass(type, value) {
-  const text = String(value || "").trim();
+  function leadBadgeClass(type, value) {
+    const text = String(value || "").trim();
+  
+    if (type === "customerType") return text === "企业" ? "info" : "primary";
 
-  if (type === "customerType") return text === "企业" ? "info" : "primary";
+    if (type === "starLevel") {
+      if (text === "1星") return "warning";
+      if (text === "2星") return "info";
+      if (text === "3星") return "success";
+      if (text === "4星") return "primary";
+      if (text === "5星") return "danger";
+    }
 
   if (type === "source") {
     if (["快手", "领导介绍", "抖音", "转介绍"].includes(text)) return "warning";
@@ -351,24 +359,26 @@ function leadInfoCellMarkup(lead) {
 function renderLeadManagementRows(leads) {
   return leads
     .map(
-      (lead) => `
-        <tr ${leadDatasetAttributes(lead)}>
-          <td>${leadInfoCellMarkup(lead)}</td>
-          <td><span class="badge ${leadBadgeClass("customerType", lead.customerType)}">${escapeHtml(lead.customerType)}</span></td>
-          <td><span class="badge ${leadBadgeClass("source", lead.source)}">${escapeHtml(lead.source)}</span></td>
-          <td>${escapeHtml(lead.caseType)}</td>
+        (lead) => `
+          <tr ${leadDatasetAttributes(lead)}>
+            <td>${leadInfoCellMarkup(lead)}</td>
+            <td><span class="badge ${leadBadgeClass("starLevel", lead.starLevel)}">${escapeHtml(lead.starLevel)}</span></td>
+            <td><span class="badge ${leadBadgeClass("customerType", lead.customerType)}">${escapeHtml(lead.customerType)}</span></td>
+            <td><span class="badge ${leadBadgeClass("source", lead.source)}">${escapeHtml(lead.source)}</span></td>
+            <td>${escapeHtml(lead.caseType)}</td>
           <td>${escapeHtml(lead.leadSummary)}</td>
           <td><span class="badge ${leadBadgeClass("stage", lead.stage)}">${escapeHtml(lead.stage)}</span></td>
           <td>${escapeHtml(lead.description)}</td>
           <td>${escapeHtml(lead.address)}</td>
           <td>${escapeHtml(lead.job)}</td>
           <td>${escapeHtml(lead.phone)}</td>
-          <td>${personChipMarkup(lead.leadOwner)}</td>
-          <td>${personChipMarkup(lead.invitationOwner)}</td>
-          <td>${personChipMarkup(lead.negotiationOwner)}</td>
-          <td><span class="action-links"><a class="action-link" href="#">分配邀约负责人</a><a class="action-link" href="#">分配谈案负责人</a></span></td>
-        </tr>
-      `
+            <td>${personChipMarkup(lead.leadOwner)}</td>
+            <td>${personChipMarkup(lead.invitationOwner)}</td>
+            <td>${personChipMarkup(lead.negotiationOwner)}</td>
+            <td>${personChipMarkup(lead.caseOwner)}</td>
+            <td><span class="action-links"><a class="action-link" href="#">分配谈案负责人</a><a class="action-link" href="#">分配办案负责人</a></span></td>
+          </tr>
+        `
     )
     .join("");
 }
