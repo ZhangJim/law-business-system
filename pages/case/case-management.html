@@ -496,7 +496,7 @@
                     <div class="switch-panel active">
                       <div class="detail-panel-head">
                         <div class="detail-action-row">
-                          <button class="detail-mini-button" type="button">新增材料记录</button>
+                          <button class="detail-mini-button" type="button">上传材料</button>
                           <button class="detail-mini-button" type="button">新增回款记录</button>
                         </div>
                       </div>
@@ -523,7 +523,7 @@
                                 <div class="activity-labels"><span class="activity-tag material">材料</span></div>
                                 <strong>已上传劳动合同、工资流水及解除通知。</strong>
                               </div>
-                              <div class="activity-meta">材料状态：已归档 ｜ 待补：社保缴费明细</div>
+                              <div class="activity-meta">材料分类：证据材料 ｜ 待补：社保缴费明细</div>
                             </div>
                             <div class="activity-side"><span class="person-chip"><span class="person-avatar">刘</span>刘衡律师</span><span class="method-link"><span class="method-icon">材</span>材料</span></div>
                           </div>
@@ -582,7 +582,7 @@
                             <div class="related-time">2026-04-12</div>
                             <div class="related-main">
                               <div class="related-title">劳动合同、工资流水、解除通知</div>
-                              <div class="related-meta"><span>材料分类：基础证据</span><span>状态：已归档</span></div>
+                              <div class="related-meta"><span>材料分类：证据材料</span></div>
                             </div>
                             <div class="related-side"><span class="person-chip"><span class="person-avatar">刘</span>刘衡律师</span></div>
                           </div>
@@ -590,7 +590,7 @@
                             <div class="related-time">2026-04-17</div>
                             <div class="related-main">
                               <div class="related-title">社保缴费记录、考勤截图</div>
-                              <div class="related-meta"><span>材料分类：补充证据</span><span>状态：待补完整</span></div>
+                              <div class="related-meta"><span>材料分类：补充材料</span></div>
                             </div>
                             <div class="related-side"><span class="person-chip"><span class="person-avatar">张</span>张三</span></div>
                           </div>
@@ -733,26 +733,103 @@
                       <div class="create-mode active" data-create-mode="default" data-create-title="新建案件">
                         <form class="drawer-form">
                           <div class="drawer-form-grid">
-                            <div class="field"><label>案件编号</label><input class="input" value="提交后自动生成，例如：(2026)中磐 劳 字第0008号" /></div>
-                            <div class="field"><label>案件名称</label><input class="input" value="请输入案件名称，如：张三-劳动仲裁案" /></div>
+                            <div class="field"><label>案件编号</label><input class="input" readonly value="提交后自动生成，例如：(2026)中磐 劳 字第0008号" /></div>
+                            <div class="field">
+                              <label>关联案源</label>
+                              <select class="select" data-case-lead-select>
+                                <option value="">请选择案源</option>
+                                <option value="LD-001"
+                                  data-customer-name="张三"
+                                  data-phone="13800001111"
+                                  data-wechat="zhangsan-law"
+                                  data-email="zhangsan@example.com"
+                                  data-address="北京市海淀区中关村南大街 18 号"
+                                  data-job="企业主"
+                                  data-case-type="劳动仲裁"
+                                  data-invitation-owner="王珂"
+                                  data-negotiation-owner="刘衡律师"
+                                  data-description="员工主张违法解除劳动合同赔偿，已进入仲裁审理准备阶段。"
+                                >张三（劳动仲裁）</option>
+                                <option value="LD-002"
+                                  data-customer-name="李明"
+                                  data-phone="13900008321"
+                                  data-wechat="liming-defense"
+                                  data-email="liming@example.com"
+                                  data-address="北京市朝阳区望京街道 28 号"
+                                  data-job="产品总监"
+                                  data-case-type="刑事诉讼"
+                                  data-invitation-owner="马兰"
+                                  data-negotiation-owner="陈泽"
+                                  data-description="案件已完成委托，待补齐医院诊断证明与监控调取材料。"
+                                >李明（刑事诉讼）</option>
+                                <option value="LD-003"
+                                  data-customer-name="王雪"
+                                  data-phone="13700004567"
+                                  data-wechat="wangxue-admin"
+                                  data-email="wangxue@example.com"
+                                  data-address="天津市南开区卫津路 36 号"
+                                  data-job="主厨"
+                                  data-case-type="行政诉讼"
+                                  data-invitation-owner="李萌"
+                                  data-negotiation-owner="谭雪"
+                                  data-description="一审已开庭，正在等待判决结果并同步准备后续上诉预案。"
+                                >王雪（行政诉讼）</option>
+                                <option value="LD-004"
+                                  data-customer-name="周建国"
+                                  data-phone="13600006789"
+                                  data-wechat="zhoujianguo-case"
+                                  data-email="zhoujianguo@example.com"
+                                  data-address="石家庄市长安区建华大街 88 号"
+                                  data-job="个体经营"
+                                  data-case-type="民事诉讼"
+                                  data-invitation-owner="赵倩"
+                                  data-negotiation-owner="宋然"
+                                  data-description="对方拒绝提交关键往来记录，证据链存在缺口，需尽快补强。"
+                                >周建国（民事诉讼）</option>
+                              </select>
+                            </div>
                           </div>
                           <div class="drawer-form-grid">
-                            <div class="field"><label>客户姓名</label><input class="input" data-create-field="customerName" value="请选择客户姓名" /></div>
-                            <div class="field"><label>关联合同</label><input class="input" data-create-field="contractNo" value="请选择合同编号" /></div>
+                            <div class="field"><label>案件名称</label><input class="input" data-case-create-field="caseName" value="选择案源后自动生成，例如：张三-劳动仲裁案" /></div>
+                            <div class="field">
+                              <label>关联合同</label>
+                              <select class="select" data-create-field="contractNo">
+                                <option>请选择合同编号</option>
+                                <option>(2026)中磐 民 字第0004号</option>
+                                <option>(2026)中磐 民 字第0007号</option>
+                                <option>(2026)中磐 劳 字第0008号</option>
+                              </select>
+                            </div>
                           </div>
                           <div class="drawer-form-grid">
-                            <div class="field"><label>案件类型</label><select class="select"><option>民事诉讼</option><option>刑事诉讼</option><option>行政诉讼</option><option>仲裁案件</option><option>执行案件</option><option>常年法律顾问</option><option>文书起草</option><option>合同审核</option></select></div>
-                            <div class="field"><label>承办律师</label><input class="input" data-create-field="roleName" value="请选择承办律师" /></div>
+                            <div class="field"><label>客户姓名</label><input class="input" data-create-field="customerName" data-case-create-field="customerName" readonly value="选择案源后自动带出" /></div>
+                            <div class="field"><label>联系电话</label><input class="input" data-case-create-field="phone" readonly value="选择案源后自动带出" /></div>
                           </div>
                           <div class="drawer-form-grid">
-                            <div class="field"><label>协作律师</label><input class="input" value="可选，未选择则留空" /></div>
-                            <div class="field"><label>案件阶段</label><select class="select"><option>待签约</option><option selected>办理中</option><option>已结案</option><option>已归档</option></select></div>
+                            <div class="field"><label>微信</label><input class="input" data-case-create-field="wechat" readonly value="选择案源后自动带出" /></div>
+                            <div class="field"><label>邮箱</label><input class="input" data-case-create-field="email" readonly value="选择案源后自动带出" /></div>
+                          </div>
+                          <div class="drawer-form-grid">
+                            <div class="field"><label>地址</label><input class="input" data-case-create-field="address" readonly value="选择案源后自动带出" /></div>
+                            <div class="field"><label>职务</label><input class="input" data-case-create-field="job" readonly value="选择案源后自动带出" /></div>
+                          </div>
+                          <div class="drawer-form-grid">
+                            <div class="field"><label>案件类型</label><input class="input" data-case-create-field="caseType" readonly value="选择案源后自动带出" /></div>
+                            <div class="field"><label>办案</label><input class="input" data-create-field="roleName" value="请选择办案负责人" /></div>
+                          </div>
+                          <div class="drawer-form-grid">
+                            <div class="field"><label>助理</label><input class="input" value="可选，未选择则留空" /></div>
+                            <div class="field"><label>案件阶段</label><select class="select"><option selected>待签约</option><option>办理中</option><option>已结案</option><option>已归档</option></select></div>
+                          </div>
+                          <div class="drawer-form-grid">
+                            <div class="field"><label>邀约</label><input class="input" data-case-create-field="invitationOwner" readonly value="选择案源后自动带出" /></div>
+                            <div class="field"><label>谈案</label><input class="input" data-case-create-field="negotiationOwner" readonly value="选择案源后自动带出" /></div>
                           </div>
                           <div class="drawer-form-grid">
                             <div class="field"><label>案件状态</label><select class="select"><option>正常</option><option>预警</option><option>异常</option></select></div>
                             <div class="field"><label>创建时间</label><input class="input" value="年/月/日 时:分" /></div>
                           </div>
-                          <div class="field"><label>案件介绍</label><textarea class="textarea">请输入案件背景、争议焦点和当前律师判断</textarea></div>
+                          <div class="field"><label>案件介绍</label><textarea class="textarea" data-case-create-field="description">选择案源后自动带入案件背景，仍可补充修改。</textarea></div>
                           <div class="field"><label>备注</label><textarea class="textarea">请输入补充说明、客户要求或律师内部提醒</textarea></div>
                           <div class="detail-footer"><button class="button" type="button">提交</button><button class="button secondary" type="button">保存草稿</button></div>
                         </form>
@@ -761,19 +838,18 @@
                       <div class="create-mode" data-create-mode="material-upload" data-create-title="上传案件材料">
                         <form class="drawer-form">
                           <div class="drawer-form-grid">
-                            <div class="field"><label>所属案件</label><input class="input" data-create-field="caseName" value="自动带入当前案件名称" /></div>
-                            <div class="field"><label>案件编号</label><input class="input" data-create-field="contractNo" value="自动带入当前案件编号" /></div>
+                            <div class="field"><label>所属案件</label><input class="input" data-create-field="caseName" readonly value="自动带入当前案件名称" /></div>
+                            <div class="field"><label>案件编号</label><input class="input" data-create-field="contractNo" readonly value="自动带入当前案件编号" /></div>
                           </div>
                           <div class="drawer-form-grid">
-                            <div class="field"><label>材料类型</label><select class="select"><option>基础证据</option><option>身份材料</option><option>合同文书</option><option>往来记录</option><option>财务凭证</option><option>庭审材料</option><option>结案材料</option></select></div>
-                            <div class="field"><label>材料名称</label><input class="input" value="请输入材料名称，如：劳动合同扫描件" /></div>
+                            <div class="field"><label>材料标题</label><input class="input" value="请输入上传材料标题，如：劳动合同扫描件" /></div>
+                            <div class="field"><label>材料分类</label><select class="select"><option>证据材料</option><option>补充材料</option><option>身份材料</option><option>往来文书</option><option>财务票据</option><option>庭审材料</option><option>结案归档</option></select></div>
                           </div>
                           <div class="drawer-form-grid">
-                            <div class="field"><label>材料附件</label><input class="input" value="点击上传附件或拖拽文件到这里" /></div>
+                            <div class="field"><label>材料附件</label><input class="input" value="点击上传附件" /></div>
                             <div class="field"><label>上传时间</label><input class="input" value="年/月/日 时:分" /></div>
                           </div>
-                          <div class="field"><label>材料说明</label><textarea class="textarea">请输入材料内容、来源说明或需要提醒承办律师的事项</textarea></div>
-                          <div class="field"><label>备注</label><textarea class="textarea">如需补充原件情况、扫描质量或缺失页说明，可记录在这里</textarea></div>
+                          <div class="field"><label>备注</label><textarea class="textarea">可填写材料说明、版本备注或需要提醒律师的事项</textarea></div>
                           <div class="detail-footer"><button class="button" type="button">提交</button><button class="button secondary" type="button">继续上传</button></div>
                         </form>
                       </div>
@@ -809,7 +885,54 @@
         </div>
       </div>
     </div>
-    <script src="../../assets/scripts/app.js"></script>
+    <script src="../../assets/scripts/app.js?v=20260508-case-upload"></script>
+    <script>
+      (function () {
+        const leadSelect = document.querySelector("[data-case-lead-select]");
+        if (!leadSelect) return;
+
+        const fillField = (key, value) => {
+          document.querySelectorAll(`[data-case-create-field="${key}"]`).forEach((field) => {
+            if ("value" in field) field.value = value || "";
+          });
+        };
+
+        const syncLeadToCreateForm = () => {
+          const option = leadSelect.options[leadSelect.selectedIndex];
+          if (!option || !option.value) {
+            fillField("caseName", "选择案源后自动生成，例如：张三-劳动仲裁案");
+            fillField("customerName", "选择案源后自动带出");
+            fillField("phone", "选择案源后自动带出");
+            fillField("wechat", "选择案源后自动带出");
+            fillField("email", "选择案源后自动带出");
+            fillField("address", "选择案源后自动带出");
+            fillField("job", "选择案源后自动带出");
+            fillField("caseType", "选择案源后自动带出");
+            fillField("invitationOwner", "选择案源后自动带出");
+            fillField("negotiationOwner", "选择案源后自动带出");
+            fillField("description", "选择案源后自动带入案件背景，仍可补充修改。");
+            return;
+          }
+
+          const customerName = option.dataset.customerName || "";
+          const caseType = option.dataset.caseType || "";
+
+          fillField("caseName", customerName && caseType ? `${customerName}-${caseType}案` : "");
+          fillField("customerName", customerName);
+          fillField("phone", option.dataset.phone || "");
+          fillField("wechat", option.dataset.wechat || "");
+          fillField("email", option.dataset.email || "");
+          fillField("address", option.dataset.address || "");
+          fillField("job", option.dataset.job || "");
+          fillField("caseType", caseType);
+          fillField("invitationOwner", option.dataset.invitationOwner || "");
+          fillField("negotiationOwner", option.dataset.negotiationOwner || "");
+          fillField("description", option.dataset.description || "");
+        };
+
+        leadSelect.addEventListener("change", syncLeadToCreateForm);
+      })();
+    </script>
   </body>
 </html>
 

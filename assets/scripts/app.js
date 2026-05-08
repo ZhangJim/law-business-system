@@ -7,6 +7,7 @@
     children: [
       { id: "operations-home", label: "运营工作台", href: "../operations/operations-home.html" },
       { id: "operation-lead-pool", label: "运营案源池", href: "../operations/operation-lead-pool.html" },
+      { id: "invitation-auto-dispatch", label: "邀约自动分发管理", href: "../operations/invitation-auto-dispatch.html" },
       { id: "channel-management", label: "渠道管理", href: "../operations/channel-management.html" },
       { id: "data-warehouse", label: "数据仓库", href: "../operations/data-warehouse.html" },
       { id: "duplicate-management", label: "排重管理", href: "../operations/duplicate-management.html" },
@@ -482,6 +483,7 @@ function setDetailField(drawer, key, value) {
 function buildDetailTitle(context, fallback) {
   if (context.memberName) return context.memberName;
   if (context.channelName) return context.channelName;
+  if (context.ruleName) return context.ruleName;
   if (context.packageName) return context.packageName;
   if (context.fileName) return context.fileName;
   if (context.batchName) return context.batchName;
@@ -819,9 +821,9 @@ function initDrawers() {
       backdrop.classList.add("is-open");
 
       if (mode === "create") {
+        resetCreatePanel();
         const modeTitle = setCreateMode((context && context.createMode) || drawer.dataset.defaultCreateMode || "default");
         if (title) title.textContent = modeTitle;
-        resetCreatePanel();
         applyCreateContext(context || {});
       } else {
         if (title) title.textContent = baseDetailTitle;
