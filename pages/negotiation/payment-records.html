@@ -5,6 +5,157 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>回款记录 - 律所系统</title>
     <link rel="stylesheet" href="../../assets/styles/main.css" />
+    <style>
+      .payment-process-note {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .payment-process-note span:not(:last-child)::after {
+        content: "|";
+        margin-left: 10px;
+        color: var(--line-strong);
+      }
+
+      .payment-summary-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px 20px;
+      }
+
+      .payment-summary-item {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .payment-summary-item.full {
+        grid-column: 1 / -1;
+      }
+
+      .payment-summary-label {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .payment-summary-value {
+        color: var(--text);
+        line-height: 1.7;
+      }
+
+      .payment-summary-value .person-chip {
+        margin-right: 8px;
+      }
+
+      .payment-create-section + .payment-create-section {
+        margin-top: 22px;
+        padding-top: 18px;
+        border-top: 1px solid var(--line);
+      }
+
+      .payment-create-section h4 {
+        margin: 0 0 14px;
+        font-size: 15px;
+      }
+
+      .payment-readonly-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px 20px;
+      }
+
+      .payment-readonly-item {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 12px 14px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: #fbfcff;
+      }
+
+      .payment-readonly-item.full {
+        grid-column: 1 / -1;
+      }
+
+      .payment-readonly-item .label {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .payment-readonly-item .value {
+        color: var(--text);
+      }
+
+      .payment-readonly-item .value.muted {
+        color: #a4afc1;
+      }
+
+      .payment-evidence-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .payment-upload-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 96px;
+        height: 42px;
+        padding: 0 16px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: #fff;
+        color: var(--text);
+        cursor: pointer;
+      }
+
+      .payment-upload-file {
+        display: none;
+      }
+
+      .payment-upload-name {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .payment-validation {
+        display: none;
+        margin-top: 8px;
+        color: var(--danger);
+        font-size: 12px;
+      }
+
+      .payment-validation.is-visible {
+        display: block;
+      }
+
+      .payment-node-tip {
+        margin: 12px 0 0;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.7;
+      }
+
+      .payment-node-select:disabled {
+        background: #f6f8fc;
+        color: #a4afc1;
+        cursor: not-allowed;
+      }
+
+      @media (max-width: 1200px) {
+        .payment-summary-grid,
+        .payment-readonly-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
   </head>
   <body data-page="payment-records">
     <div class="app-shell">
@@ -16,8 +167,24 @@
               <section class="split-main">
                 <section class="panel">
                   <div class="toolbar">
-                    <div><button class="button" type="button">＋ 新增回款记录</button></div>
-                    <div class="toolbar-tools"><span>财务对账</span><span>到账认领</span><span>异常审核</span></div>
+                    <div class="tabs submenu">
+                      <a class="tab active" href="#">全部</a>
+                      <a class="tab" href="#">待收</a>
+                      <a class="tab" href="#">已收</a>
+                      <a class="tab" href="#">逾期</a>
+                    </div>
+                    <div class="payment-process-note">
+                      <span>填写到账证据</span>
+                      <span>财务审核</span>
+                      <span>确认到账</span>
+                    </div>
+                  </div>
+                </section>
+
+                <section class="panel">
+                  <div class="toolbar">
+                    <div><button class="button" type="button" data-open-create="default" id="newPaymentRecordBtn">＋ 新增回款记录</button></div>
+                    <div class="toolbar-tools"><span>筛选</span><span>分组</span><span>排序</span><span>搜索</span></div>
                   </div>
 
                   <div class="table-shell tight">
@@ -28,42 +195,130 @@
                           <th>到账日期</th>
                           <th>客户</th>
                           <th>合同编号</th>
+                          <th>回款节点</th>
                           <th>到账金额</th>
                           <th>收款方式</th>
-                          <th>认领状态</th>
+                          <th>是否到账</th>
                           <th>备注</th>
+                          <th>邀约人</th>
+                          <th>创建时间</th>
+                          <th>更新时间</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
+                        <tr
+                          data-record-no="SK0001"
+                          data-paid-date="2026/04/25"
+                          data-customer-name="李四"
+                          data-contract-no="(2026)中磐 行 字第0001号"
+                          data-contract-name="李四行政诉讼委托代理合同"
+                          data-lead-name="李四（行政诉讼）"
+                          data-case-name="李四土地征收补偿行政案件"
+                          data-node-name="首付款"
+                          data-arrival-amount="80,000"
+                          data-pay-method="对公转账"
+                          data-arrival-status="已到账"
+                          data-remark="首期款"
+                          data-invitation-owner="王助理"
+                          data-lawyer-owner="陈泽"
+                          data-created-at="2026/04/18 10:20"
+                          data-updated-at="2026/04/25 16:10"
+                          data-contract-total="180,000"
+                          data-received-amount="80,000"
+                          data-pending-amount="100,000"
+                          data-node-planned-date="2026/04/18"
+                          data-node-received="80,000"
+                          data-node-remaining="0"
+                          data-evidence-name="receipt_sk0001.pdf"
+                        >
                           <td><a class="table-link" href="#">SK0001</a></td>
-                          <td>2026-04-25</td>
+                          <td>2026/04/25</td>
                           <td>李四</td>
                           <td>(2026)中磐 行 字第0001号</td>
+                          <td>首付款</td>
                           <td>80,000</td>
                           <td>对公转账</td>
-                          <td><span class="badge success">已认领</span></td>
-                          <td>首付款</td>
+                          <td><span class="badge success">已到账</span></td>
+                          <td>首期款</td>
+                          <td><span class="person-chip"><span class="person-avatar">王</span>王助理</span></td>
+                          <td>2026/04/18 10:20</td>
+                          <td>2026/04/25 16:10</td>
                         </tr>
-                        <tr>
+                        <tr
+                          data-record-no="SK0002"
+                          data-paid-date="2026/04/24"
+                          data-customer-name="王某企业"
+                          data-contract-no="(2026)中磐 民 字第0001号"
+                          data-contract-name="王某装修纠纷代理合同"
+                          data-lead-name="王某（民事诉讼）"
+                          data-case-name="王某装修纠纷代理案件"
+                          data-node-name="补充费用"
+                          data-arrival-amount="20,000"
+                          data-pay-method="微信"
+                          data-arrival-status="待确认"
+                          data-remark="补充费用节点"
+                          data-invitation-owner="海岩"
+                          data-lawyer-owner="刘律师"
+                          data-created-at="2026/04/22 14:10"
+                          data-updated-at="2026/04/24 18:30"
+                          data-contract-total="150,000"
+                          data-received-amount="100,000"
+                          data-pending-amount="50,000"
+                          data-node-planned-date="2026/04/24"
+                          data-node-received="0"
+                          data-node-remaining="20,000"
+                          data-evidence-name="wechat_transfer_0424.jpg"
+                        >
                           <td><a class="table-link" href="#">SK0002</a></td>
-                          <td>2026-04-24</td>
+                          <td>2026/04/24</td>
                           <td>王某企业</td>
                           <td>(2026)中磐 民 字第0001号</td>
-                          <td>100,000</td>
-                          <td>对公转账</td>
-                          <td><span class="badge warning">待认领</span></td>
-                          <td>需确认合同回款节点</td>
+                          <td>补充费用</td>
+                          <td>20,000</td>
+                          <td>微信</td>
+                          <td><span class="badge warning">待确认</span></td>
+                          <td>补充费用节点</td>
+                          <td><span class="person-chip"><span class="person-avatar">海</span>海岩</span></td>
+                          <td>2026/04/22 14:10</td>
+                          <td>2026/04/24 18:30</td>
                         </tr>
-                        <tr>
+                        <tr
+                          data-record-no="SK0003"
+                          data-paid-date="2026/04/22"
+                          data-customer-name="张三"
+                          data-contract-no="(2026)中磐 刑 字第0001号"
+                          data-contract-name="张三劳动争议委托代理合同"
+                          data-lead-name="张三（劳动仲裁）"
+                          data-case-name="张三-劳动仲裁案"
+                          data-node-name="律师费二期"
+                          data-arrival-amount="30,000"
+                          data-pay-method="支付宝"
+                          data-arrival-status="未到账"
+                          data-remark="二期款尚未到账，已通知客户补回单"
+                          data-invitation-owner="马兰"
+                          data-lawyer-owner="刘衡律师"
+                          data-created-at="2026/04/20 11:15"
+                          data-updated-at="2026/04/22 09:35"
+                          data-contract-total="200,000"
+                          data-received-amount="110,000"
+                          data-pending-amount="90,000"
+                          data-node-planned-date="2026/04/23"
+                          data-node-received="0"
+                          data-node-remaining="30,000"
+                          data-evidence-name="-"
+                        >
                           <td><a class="table-link" href="#">SK0003</a></td>
-                          <td>2026-04-22</td>
+                          <td>2026/04/22</td>
                           <td>张三</td>
                           <td>(2026)中磐 刑 字第0001号</td>
+                          <td>律师费二期</td>
                           <td>30,000</td>
-                          <td>微信</td>
-                          <td><span class="badge primary">待审核</span></td>
-                          <td>补充费用</td>
+                          <td>支付宝</td>
+                          <td><span class="badge primary">未到账</span></td>
+                          <td>二期款尚未到账，已通知客户补回单</td>
+                          <td><span class="person-chip"><span class="person-avatar">马</span>马兰</span></td>
+                          <td>2026/04/20 11:15</td>
+                          <td>2026/04/22 09:35</td>
                         </tr>
                       </tbody>
                     </table>
@@ -71,66 +326,182 @@
                 </section>
               </section>
 
-              <aside class="detail-pane" data-create-title="未命名回款记录">
+              <aside class="detail-pane" data-create-title="新建回款记录">
                 <div class="detail-topbar">
                   <div class="detail-topbar-actions"><span>⌃</span><span>⌄</span></div>
                   <div class="detail-topbar-actions"><span>···</span><span>×</span></div>
                 </div>
                 <div class="detail-scroll">
                   <h2 class="detail-title">SK0001</h2>
-                  <div class="detail-tabs"><span class="detail-tab active">详情</span><span class="detail-tab">历史</span></div>
+                  <div class="detail-tabs">
+                    <span class="detail-tab active">详情</span>
+                    <span class="detail-tab">历史</span>
+                  </div>
 
                   <section class="detail-group" data-role="detail">
+                    <div class="detail-group-title"><span>回款信息</span></div>
                     <div class="detail-card">
-                      <div class="detail-field"><div class="detail-label">记录编号</div><div class="detail-value">SK0001</div></div>
-                      <div class="detail-field"><div class="detail-label">到账日期</div><div class="detail-value">2026-04-25</div></div>
-                      <div class="detail-field"><div class="detail-label">关联合同</div><div class="detail-value">(2026)中磐 行 字第0001号 | 李四行政诉讼委托合同</div></div>
-                      <div class="detail-field"><div class="detail-label">客户</div><div class="detail-value">李四</div></div>
-                      <div class="detail-field"><div class="detail-label">关联案源</div><div class="detail-value">李四</div></div>
-                      <div class="detail-field"><div class="detail-label">关联案件</div><div class="detail-value">李四土地征收补偿行政案件</div></div>
-                      <div class="detail-field"><div class="detail-label">到账金额</div><div class="detail-value">80,000</div></div>
-                      <div class="detail-field"><div class="detail-label">收款方式</div><div class="detail-value">对公转账</div></div>
-                      <div class="detail-field"><div class="detail-label">认领状态</div><div class="detail-value"><span class="badge success">已认领</span></div></div>
-                      <div class="detail-field"><div class="detail-label">备注</div><div class="detail-value">首付款</div></div>
+                      <div class="payment-summary-grid">
+                        <div class="payment-summary-item">
+                          <span class="payment-summary-label">记录编号</span>
+                          <div class="payment-summary-value" data-detail-field="recordNo">SK0001</div>
+                        </div>
+                        <div class="payment-summary-item">
+                          <span class="payment-summary-label">关联合同</span>
+                          <div class="payment-summary-value"><a class="table-link" href="#" data-detail-field="contractNo">(2026)中磐 行 字第0001号</a></div>
+                        </div>
+                        <div class="payment-summary-item">
+                          <span class="payment-summary-label">节点名称</span>
+                          <div class="payment-summary-value" data-detail-field="nodeName">首付款</div>
+                        </div>
+                        <div class="payment-summary-item">
+                          <span class="payment-summary-label">到账日期</span>
+                          <div class="payment-summary-value" data-detail-field="paidDate">2026/04/25</div>
+                        </div>
+                        <div class="payment-summary-item">
+                          <span class="payment-summary-label">到账金额</span>
+                          <div class="payment-summary-value" data-detail-field="arrivalAmount">80,000</div>
+                        </div>
+                        <div class="payment-summary-item">
+                          <span class="payment-summary-label">收款方式</span>
+                          <div class="payment-summary-value" data-detail-field="payMethod">对公转账</div>
+                        </div>
+                        <div class="payment-summary-item">
+                          <span class="payment-summary-label">是否到账</span>
+                          <div class="payment-summary-value" id="detailArrivalStatus"><span class="badge success">已到账</span></div>
+                        </div>
+                        <div class="payment-summary-item">
+                          <span class="payment-summary-label">到账凭证</span>
+                          <div class="payment-summary-value" data-detail-field="evidenceName">receipt_sk0001.pdf</div>
+                        </div>
+                        <div class="payment-summary-item full">
+                          <span class="payment-summary-label">备注</span>
+                          <div class="payment-summary-value" data-detail-field="remark">首期款</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="detail-group-title" style="margin-top: 18px;"><span>节点应收信息</span></div>
+                    <div class="detail-card">
+                      <div class="payment-summary-grid">
+                        <div class="payment-summary-item">
+                          <span class="payment-summary-label">节点名称</span>
+                          <div class="payment-summary-value" data-detail-field="nodeName">首付款</div>
+                        </div>
+                        <div class="payment-summary-item">
+                          <span class="payment-summary-label">节点应收金额</span>
+                          <div class="payment-summary-value" data-detail-field="nodeReceivable">80,000</div>
+                        </div>
+                        <div class="payment-summary-item">
+                          <span class="payment-summary-label">计划回款日期</span>
+                          <div class="payment-summary-value" data-detail-field="nodePlannedDate">2026/04/18</div>
+                        </div>
+                      </div>
                     </div>
                   </section>
 
                   <section class="detail-group" data-role="history">
                     <div class="detail-card">
                       <table class="history-table">
-                        <thead><tr><th>时间</th><th>字段</th><th>变更前</th><th></th><th>变更后</th></tr></thead>
+                        <thead>
+                          <tr><th>时间</th><th>字段</th><th>变更前</th><th></th><th>变更后</th></tr>
+                        </thead>
                         <tbody>
-                          <tr><td>04月25日</td><td>认领状态</td><td>待认领</td><td class="history-arrow">→</td><td>已认领</td></tr>
+                          <tr><td>04月25日</td><td>是否到账</td><td>待确认</td><td class="history-arrow">→</td><td>已到账</td></tr>
                           <tr><td>04月25日</td><td>到账金额</td><td>0</td><td class="history-arrow">→</td><td>80,000</td></tr>
+                          <tr><td>04月24日</td><td>到账凭证</td><td>-</td><td class="history-arrow">→</td><td>receipt_sk0001.pdf</td></tr>
                         </tbody>
                       </table>
                     </div>
                   </section>
 
                   <section class="detail-group" data-role="create">
+                    <div class="detail-group-title">
+                      <span>新建回款记录</span>
+                      <span>回款确认</span>
+                    </div>
                     <div class="detail-card">
-                      <form class="drawer-form">
-                        <div class="drawer-form-grid">
-                          <div class="field"><label>记录编号</label><input class="input" value="提交后自动生成，例如 SK0004" /></div>
-                          <div class="field"><label>关联合同</label><input class="input" data-create-field="contractNo" value="请选择合同编号" /></div>
+                      <form class="drawer-form" id="paymentRecordCreateForm">
+                        <div class="payment-create-section">
+                          <h4>回款信息</h4>
+                          <div class="drawer-form-grid">
+                            <div class="field">
+                              <label>记录编号</label>
+                              <input class="input create-placeholder" value="提交后自动生成，例如 SK0004" readonly />
+                            </div>
+                            <div class="field">
+                              <label>关联合同</label>
+                              <select class="select" id="createContractSelect">
+                                <option value="">请选择合同编号</option>
+                                <option value="HT-001">(2026)中磐 行 字第0001号</option>
+                                <option value="HT-002">(2026)中磐 民 字第0001号</option>
+                                <option value="HT-003">(2026)中磐 刑 字第0001号</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="drawer-form-grid">
+                            <div class="field">
+                              <label>回款节点</label>
+                              <select class="select payment-node-select create-placeholder" id="createNodeSelect" disabled>
+                                <option value="">请先选择关联合同</option>
+                              </select>
+                            </div>
+                            <div class="field">
+                              <label>到账日期</label>
+                              <input class="input" id="createPaidDate" value="年/月/日" />
+                            </div>
+                          </div>
+                          <div class="drawer-form-grid">
+                            <div class="field">
+                              <label>到账金额</label>
+                              <input class="input" id="createArrivalAmount" value="请输入金额" />
+                              <div class="payment-validation" id="amountValidation">到账金额不能超过当前节点剩余应收金额</div>
+                            </div>
+                            <div class="field">
+                              <label>收款方式</label>
+                              <select class="select" id="createPayMethod">
+                                <option>对公转账</option>
+                                <option>微信</option>
+                                <option>支付宝</option>
+                                <option>现金</option>
+                                <option>其他</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="drawer-form-grid">
+                            <div class="field">
+                              <label>是否到账</label>
+                              <select class="select" id="createArrivalStatus">
+                                <option>未到账</option>
+                                <option>待确认</option>
+                                <option>已到账</option>
+                              </select>
+                            </div>
+                            <div class="field">
+                              <label>到账凭证</label>
+                              <div class="payment-evidence-row">
+                                <label class="payment-upload-button" for="paymentEvidenceFile">选择文件</label>
+                                <input class="payment-upload-file" id="paymentEvidenceFile" type="file" />
+                                <span class="payment-upload-name" id="paymentEvidenceName">未选择文件</span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="field">
+                            <label>备注</label>
+                            <textarea class="input" id="createRemark">请输入备注</textarea>
+                          </div>
                         </div>
-                        <div class="drawer-form-grid">
-                          <div class="field"><label>合同名称</label><input class="input" data-create-field="contractName" value="请选择合同名称" /></div>
-                          <div class="field"><label>关联合同客户</label><input class="input" data-create-field="customerName" value="请选择客户" /></div>
+
+                        <div class="payment-create-section">
+                          <h4>节点应收信息</h4>
+                          <div class="payment-readonly-grid">
+                            <div class="payment-readonly-item"><span class="label">节点名称</span><div class="value muted" id="createNodeNameView">请先选择回款节点</div></div>
+                            <div class="payment-readonly-item"><span class="label">应收金额</span><div class="value muted" id="createNodeReceivableView">请先选择回款节点</div></div>
+                            <div class="payment-readonly-item"><span class="label">计划回款日期</span><div class="value muted" id="createNodePlannedDateView">请先选择回款节点</div></div>
+                          </div>
+                          <p class="payment-node-tip">选择合同后，将自动加载该合同下的回款节点。销售提交到账凭证后，可将状态改为“待确认”，财务核验流水后确认“已到账”。</p>
                         </div>
-                        <div class="drawer-form-grid">
-                          <div class="field"><label>关联案源</label><input class="input" data-create-field="leadName" value="请选择案源" /></div>
-                          <div class="field"><label>关联案件</label><input class="input" data-create-field="caseName" value="请选择案件" /></div>
-                        </div>
-                        <div class="drawer-form-grid">
-                          <div class="field"><label>到账日期</label><input class="input" value="年/月/日" /></div>
-                          <div class="field"><label>到账金额</label><input class="input" value="请输入金额" /></div>
-                        </div>
-                        <div class="drawer-form-grid">
-                          <div class="field"><label>收款方式</label><input class="input" value="请输入收款方式" /></div>
-                          <div class="field"><label>认领状态</label><select class="select"><option>待认领</option><option>已认领</option><option>待审核</option></select></div>
-                        </div>
-                        <div class="field"><label>备注</label><input class="input" value="请输入备注" /></div>
+
                         <div class="detail-footer">
                           <button class="button" type="button">提交</button>
                           <button class="button secondary" type="button">取消</button>
@@ -145,6 +516,222 @@
         </div>
       </div>
     </div>
-    <script src="../../assets/scripts/app.js"></script>
+    <script src="../../assets/scripts/app.js?v=20260510-payment-records"></script>
+    <script>
+      const contractLibrary = {
+        "HT-001": {
+          contractNo: "(2026)中磐 行 字第0001号",
+          contractName: "李四行政诉讼委托代理合同",
+          customerName: "李四",
+          caseName: "李四土地征收补偿行政案件",
+          leadName: "李四（行政诉讼）",
+          invitationOwner: "王助理",
+          lawyerOwner: "陈泽",
+          contractTotal: "180,000",
+          receivedAmount: "80,000",
+          pendingAmount: "100,000",
+          nodes: [
+            { name: "补充费用", receivable: "20,000", plannedDate: "2026/04/25", received: "0", remaining: "20,000" },
+            { name: "尾款", receivable: "80,000", plannedDate: "2026/05/30", received: "0", remaining: "80,000" },
+            { name: "首付款", receivable: "80,000", plannedDate: "2026/04/18", received: "80,000", remaining: "0" }
+          ]
+        },
+        "HT-002": {
+          contractNo: "(2026)中磐 民 字第0001号",
+          contractName: "王某装修纠纷代理合同",
+          customerName: "王某企业",
+          caseName: "王某装修纠纷代理案件",
+          leadName: "王某（民事诉讼）",
+          invitationOwner: "海岩",
+          lawyerOwner: "刘律师",
+          contractTotal: "150,000",
+          receivedAmount: "100,000",
+          pendingAmount: "50,000",
+          nodes: [
+            { name: "尾款", receivable: "50,000", plannedDate: "2026/05/18", received: "0", remaining: "50,000" }
+          ]
+        },
+        "HT-003": {
+          contractNo: "(2026)中磐 刑 字第0001号",
+          contractName: "张三劳动争议委托代理合同",
+          customerName: "张三",
+          caseName: "张三-劳动仲裁案",
+          leadName: "张三（劳动仲裁）",
+          invitationOwner: "马兰",
+          lawyerOwner: "刘衡律师",
+          contractTotal: "200,000",
+          receivedAmount: "110,000",
+          pendingAmount: "90,000",
+          nodes: [
+            { name: "律师费二期", receivable: "30,000", plannedDate: "2026/04/23", received: "0", remaining: "30,000" },
+            { name: "尾款", receivable: "60,000", plannedDate: "2026/05/20", received: "0", remaining: "60,000" }
+          ]
+        }
+      };
+
+      const detailStatusMap = {
+        "未到账": "primary",
+        "待确认": "warning",
+        "已到账": "success"
+      };
+
+      function personChip(name) {
+        return `<span class="person-chip"><span class="person-avatar">${name.charAt(0)}</span>${name}</span>`;
+      }
+
+      function renderDetailPeople(context) {
+        const host = document.getElementById("detailPeopleRow");
+        if (!host) return;
+        host.innerHTML = `${personChip(context.invitationOwner)} ${personChip(context.lawyerOwner)}`;
+      }
+
+      function renderDetailStatus(status) {
+        const host = document.getElementById("detailArrivalStatus");
+        if (!host) return;
+        const cls = detailStatusMap[status] || "primary";
+        host.innerHTML = `<span class="badge ${cls}">${status}</span>`;
+      }
+
+      function fillDetailFromRow(row) {
+        if (!row) return;
+        const data = row.dataset;
+        renderDetailPeople(data);
+        renderDetailStatus(data.arrivalStatus);
+      }
+
+      function setReadonlyValue(id, value) {
+        const node = document.getElementById(id);
+        if (!node) return;
+        node.textContent = value || "选择合同后自动带出";
+        node.classList.toggle("muted", !value);
+      }
+
+      function resetNodeInfo() {
+        setReadonlyValue("createNodeNameView", "请先选择回款节点");
+        setReadonlyValue("createNodeReceivableView", "请先选择回款节点");
+        setReadonlyValue("createNodePlannedDateView", "请先选择回款节点");
+        setReadonlyValue("createNodeReceivedView", "请先选择回款节点");
+        setReadonlyValue("createNodeRemainingView", "请先选择回款节点");
+      }
+
+      function populateNodeOptions(contractKey) {
+        const nodeSelect = document.getElementById("createNodeSelect");
+        if (!nodeSelect) return;
+        const contract = contractLibrary[contractKey];
+        if (!contract) {
+          nodeSelect.innerHTML = '<option value="">请先选择关联合同</option>';
+          nodeSelect.disabled = true;
+          nodeSelect.classList.add("create-placeholder");
+          resetNodeInfo();
+          return;
+        }
+
+        const options = contract.nodes
+          .filter((node) => Number(String(node.remaining).replace(/,/g, "")) > 0)
+          .map((node) => `<option value="${node.name}">${node.name}</option>`)
+          .join("");
+
+        nodeSelect.innerHTML = `<option value="">请选择回款节点</option>${options}`;
+        nodeSelect.disabled = false;
+        nodeSelect.classList.add("create-placeholder");
+        resetNodeInfo();
+      }
+
+      function populateContractInfo(contractKey) {
+        const contract = contractLibrary[contractKey];
+        if (!contract) {
+          populateNodeOptions("");
+          return;
+        }
+        populateNodeOptions(contractKey);
+      }
+
+      function populateNodeInfo(contractKey, nodeName) {
+        const contract = contractLibrary[contractKey];
+        const node = contract ? contract.nodes.find((item) => item.name === nodeName) : null;
+        if (!node) {
+          resetNodeInfo();
+          validateArrivalAmount();
+          return;
+        }
+
+        setReadonlyValue("createNodeNameView", node.name);
+        setReadonlyValue("createNodeReceivableView", node.receivable);
+        setReadonlyValue("createNodePlannedDateView", node.plannedDate);
+        setReadonlyValue("createNodeReceivedView", node.received);
+        setReadonlyValue("createNodeRemainingView", node.remaining);
+        validateArrivalAmount();
+      }
+
+      function validateArrivalAmount() {
+        const amountInput = document.getElementById("createArrivalAmount");
+        const nodeSelect = document.getElementById("createNodeSelect");
+        const contractSelect = document.getElementById("createContractSelect");
+        const validation = document.getElementById("amountValidation");
+        if (!amountInput || !validation || !contractSelect || !nodeSelect) return;
+
+        const contract = contractLibrary[contractSelect.value];
+        const node = contract ? contract.nodes.find((item) => item.name === nodeSelect.value) : null;
+        const amount = Number(String(amountInput.value || "").replace(/[^\d.]/g, ""));
+        const remaining = node ? Number(String(node.remaining).replace(/,/g, "")) : 0;
+        const shouldWarn = node && amount && amount > remaining;
+        validation.classList.toggle("is-visible", Boolean(shouldWarn));
+      }
+
+      function resetCreateForm() {
+        document.getElementById("createContractSelect").selectedIndex = 0;
+        populateContractInfo("");
+        const nodeSelect = document.getElementById("createNodeSelect");
+        if (nodeSelect) {
+          nodeSelect.innerHTML = '<option value="">请先选择关联合同</option>';
+          nodeSelect.disabled = true;
+        }
+        document.getElementById("createArrivalStatus").selectedIndex = 0;
+        document.getElementById("createPayMethod").selectedIndex = 0;
+        document.getElementById("paymentEvidenceName").textContent = "未选择文件";
+        document.getElementById("amountValidation").classList.remove("is-visible");
+      }
+
+      document.querySelectorAll(".split-main tbody tr").forEach((row) => {
+        row.addEventListener("click", () => fillDetailFromRow(row));
+      });
+
+      const contractSelect = document.getElementById("createContractSelect");
+      if (contractSelect) {
+        contractSelect.addEventListener("change", () => {
+          populateContractInfo(contractSelect.value);
+        });
+      }
+
+      const nodeSelect = document.getElementById("createNodeSelect");
+      if (nodeSelect) {
+        nodeSelect.addEventListener("change", () => {
+          populateNodeInfo(contractSelect.value, nodeSelect.value);
+        });
+      }
+
+      const amountInput = document.getElementById("createArrivalAmount");
+      if (amountInput) {
+        amountInput.addEventListener("input", validateArrivalAmount);
+      }
+
+      const evidenceInput = document.getElementById("paymentEvidenceFile");
+      if (evidenceInput) {
+        evidenceInput.addEventListener("change", () => {
+          const label = document.getElementById("paymentEvidenceName");
+          if (label) label.textContent = evidenceInput.files.length ? evidenceInput.files[0].name : "未选择文件";
+        });
+      }
+
+      const createButton = document.getElementById("newPaymentRecordBtn");
+      if (createButton) {
+        createButton.addEventListener("click", () => {
+          setTimeout(resetCreateForm, 0);
+        });
+      }
+
+      fillDetailFromRow(document.querySelector(".split-main tbody tr"));
+      resetCreateForm();
+    </script>
   </body>
 </html>

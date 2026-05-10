@@ -31,7 +31,6 @@
     icon: "negotiation",
     children: [
       { id: "negotiation-management", label: "谈案管理", href: "../negotiation/negotiation-management.html" },
-      { id: "opportunity-management", label: "商机管理", href: "../negotiation/opportunity-management.html" },
       { id: "contract-management", label: "合同管理", href: "../negotiation/contract-management.html" },
       { id: "payment-plan", label: "回款计划", href: "../negotiation/payment-plan.html" },
       { id: "payment-records", label: "回款记录", href: "../negotiation/payment-records.html" }

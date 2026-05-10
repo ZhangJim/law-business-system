@@ -3,194 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>商机管理 - 律所系统</title>
+    <title>商机管理已下线 - 律所系统</title>
     <link rel="stylesheet" href="../../assets/styles/main.css" />
   </head>
-  <body data-page="opportunity-management">
+  <body data-page="negotiation-management">
     <div class="app-shell">
       <aside class="sidebar"></aside>
       <div class="main-shell">
         <div class="workspace">
           <main class="page-body compact">
-            <div class="split-workspace">
-              <section class="split-main">
-                <section class="filter-row">
-                  <div class="filter-card">
-                    <h3>成交意向</h3>
-                    <div class="pill-row">
-                      <span class="pill active">全部</span>
-                      <span class="pill">高</span>
-                      <span class="pill">中</span>
-                      <span class="pill">低</span>
-                    </div>
-                  </div>
-                  <div class="filter-card">
-                    <h3>客户</h3>
-                    <div class="search-row">
-                      <div class="field" style="min-width: 100%;">
-                        <input class="input" value="请选择" />
-                      </div>
-                    </div>
-                  </div>
-                </section>
-
-                <section class="panel">
-                  <div class="tabs submenu">
-                    <a class="tab active" href="#">我的商机</a>
-                    <a class="tab" href="#">全部商机</a>
-                    <a class="tab" href="#">已成交</a>
-                    <a class="tab" href="#">已丢单</a>
-                  </div>
-
-                  <div class="toolbar">
-                    <div><button class="button" type="button" data-create-mode="opportunity">＋ 新增商机</button></div>
-                    <div class="toolbar-tools"><span>筛选</span><span>分组</span><span>排序</span><span>搜索</span></div>
-                  </div>
-
-                  <div class="table-shell tight">
-                    <table>
-                      <thead>
-                        <tr>
-                          <th style="width: 32px;"><input type="checkbox" /></th>
-                          <th>商机名称</th>
-                          <th>客户名称</th>
-                          <th>邀约负责人</th>
-                          <th>谈案负责人</th>
-                          <th>渠道</th>
-                          <th>商机状态</th>
-                          <th>成交意向</th>
-                          <th>商机金额</th>
-                          <th>更新时间</th>
-                          <th>创建人</th>
-                          <th>操作</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td><input type="checkbox" /></td>
-                          <td><a class="table-link" href="#">李四-行政诉讼商机</a></td>
-                          <td>李四</td>
-                          <td><span class="person-chip"><span class="person-avatar">海</span>海岩</span></td>
-                          <td><span class="person-chip"><span class="person-avatar">刘</span>刘律师</span></td>
-                          <td><span class="badge warning">领导介绍</span></td>
-                          <td><span class="badge warning">已报价</span></td>
-                          <td><span class="badge warning">中</span></td>
-                          <td>180,000</td>
-                          <td>2026/04/29 16:20</td>
-                          <td><span class="person-chip"><span class="person-avatar">海</span>海岩</span></td>
-                          <td><span class="action-links"><a class="action-link" href="#">查看</a></span></td>
-                        </tr>
-                        <tr>
-                          <td><input type="checkbox" /></td>
-                          <td><a class="table-link" href="#">赵六-常年法律顾问商机</a></td>
-                          <td>赵六</td>
-                          <td><span class="person-chip"><span class="person-avatar">海</span>海岩</span></td>
-                          <td><span class="person-chip"><span class="person-avatar">王</span>王助理</span></td>
-                          <td><span class="badge info">百度</span></td>
-                          <td><span class="badge primary">谈判中</span></td>
-                          <td><span class="badge warning">中</span></td>
-                          <td>55,555</td>
-                          <td>2026/04/28 11:30</td>
-                          <td><span class="person-chip"><span class="person-avatar">海</span>海岩</span></td>
-                          <td><span class="action-links"><a class="action-link" href="#">查看</a></span></td>
-                        </tr>
-                        <tr>
-                          <td><input type="checkbox" /></td>
-                          <td><a class="table-link" href="#">张三-刑事诉讼商机</a></td>
-                          <td>张三</td>
-                          <td><span class="person-chip"><span class="person-avatar">海</span>海岩</span></td>
-                          <td><span class="person-chip"><span class="person-avatar">刘</span>刘律师</span></td>
-                          <td><span class="badge warning">快手</span></td>
-                          <td><span class="badge success">已成交</span></td>
-                          <td><span class="badge warning">高</span></td>
-                          <td>88,888</td>
-                          <td>2026/04/27 18:40</td>
-                          <td><span class="person-chip"><span class="person-avatar">海</span>海岩</span></td>
-                          <td><span class="action-links"><a class="action-link" href="#">查看</a></span></td>
-                        </tr>
-                        <tr>
-                          <td><input type="checkbox" /></td>
-                          <td><a class="table-link" href="#">王雪-民事诉讼商机</a></td>
-                          <td>王雪</td>
-                          <td><span class="person-chip"><span class="person-avatar">海</span>海岩</span></td>
-                          <td><span class="person-chip"><span class="person-avatar">刘</span>刘律师</span></td>
-                          <td><span class="badge info">百度</span></td>
-                          <td><span class="badge danger">已失败</span></td>
-                          <td><span class="badge info">低</span></td>
-                          <td>36,000</td>
-                          <td>2026/04/26 09:50</td>
-                          <td><span class="person-chip"><span class="person-avatar">海</span>海岩</span></td>
-                          <td><span class="action-links"><a class="action-link" href="#">查看</a></span></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </section>
-              </section>
-
-              <aside class="detail-pane" data-create-title="未命名商机" data-default-create-mode="opportunity">
-                <div class="detail-topbar">
-                  <div class="detail-topbar-actions"><span>⌃</span><span>⌄</span></div>
-                  <div class="detail-topbar-actions"><span>···</span><span>×</span></div>
+            <section class="panel" style="max-width: 860px; margin: 40px auto;">
+              <div class="panel-header">
+                <div>
+                  <h1>商机管理已下线</h1>
+                  <p>该页面入口已隐藏，列表、新建和详情已停止使用，后续如需恢复可再启用。</p>
                 </div>
-                <div class="detail-scroll">
-                  <h2 class="detail-title">李四-行政诉讼商机</h2>
-                  <div class="detail-tabs"><span class="detail-tab active">详情</span><span class="detail-tab">历史</span></div>
-
-                  <section class="detail-group" data-role="detail">
-                    <div class="detail-card">
-                      <div class="detail-field"><div class="detail-label">商机名称（自动）</div><div class="detail-value">李四-行政诉讼商机</div></div>
-                      <div class="detail-field"><div class="detail-label">客户名称</div><div class="detail-value">李四</div></div>
-                      <div class="detail-field"><div class="detail-label">关联案源</div><div class="detail-value">李四（行政诉讼）</div></div>
-                      <div class="detail-field"><div class="detail-label">商机状态</div><div class="detail-value"><span class="badge warning">已报价</span></div></div>
-                      <div class="detail-field"><div class="detail-label">成交意向</div><div class="detail-value"><span class="badge warning">中</span></div></div>
-                      <div class="detail-field"><div class="detail-label">商机金额</div><div class="detail-value">180,000</div></div>
-                      <div class="detail-field"><div class="detail-label">商机描述</div><div class="detail-value">客户已沟通过报价，准备进入签约阶段。</div></div>
-                      <div class="detail-field"><div class="detail-label">邀约负责人</div><div class="detail-value"><span class="person-chip"><span class="person-avatar">海</span>海岩</span></div></div>
-                      <div class="detail-field"><div class="detail-label">谈案负责人</div><div class="detail-value"><span class="person-chip"><span class="person-avatar">刘</span>刘律师</span></div></div>
-                      <div class="detail-field"><div class="detail-label">渠道</div><div class="detail-value"><span class="badge warning">领导介绍</span></div></div>
-                      <div class="detail-field"><div class="detail-label">创建时间</div><div class="detail-value">2026/04/20 10:15</div></div>
-                      <div class="detail-field"><div class="detail-label">更新时间</div><div class="detail-value">2026/04/29 16:20</div></div>
-                    </div>
-                  </section>
-
-                  <section class="detail-group" data-role="history">
-                    <div class="detail-card">
-                      <table class="history-table">
-                        <thead><tr><th>时间</th><th>字段</th><th>变更前</th><th></th><th>变更后</th></tr></thead>
-                        <tbody>
-                          <tr><td>04月29日</td><td>商机状态</td><td>谈判中</td><td class="history-arrow">→</td><td>已报价</td></tr>
-                          <tr><td>04月28日</td><td>商机金额</td><td>160,000</td><td class="history-arrow">→</td><td>180,000</td></tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </section>
-
-                  <section class="detail-group" data-role="create">
-                    <div class="detail-card">
-                      <form class="drawer-form create-mode active" data-create-mode="opportunity" data-create-title="新建商机">
-                        <div class="detail-field"><div class="detail-label">商机名称（自动）</div><div class="detail-value muted">客户名称 + 案件类型 + 商机</div></div>
-                        <div class="detail-field"><div class="detail-label">客户名称</div><div class="detail-value"><input class="input" value="请选择客户" /></div></div>
-                        <div class="detail-field"><div class="detail-label">关联案源</div><div class="detail-value"><input class="input" value="请选择案源" /></div></div>
-                        <div class="detail-field"><div class="detail-label">商机状态</div><div class="detail-value"><select class="select"><option>已报价</option><option>谈判中</option><option>已成交</option><option>已失败</option></select></div></div>
-                        <div class="detail-field"><div class="detail-label">成交意向</div><div class="detail-value"><select class="select"><option>高</option><option selected>中</option><option>低</option></select></div></div>
-                        <div class="detail-field"><div class="detail-label">商机金额</div><div class="detail-value"><input class="input" value="请输入商机金额" /></div></div>
-                        <div class="detail-field"><div class="detail-label">商机描述</div><div class="detail-value"><input class="input" value="请输入当前推进情况" /></div></div>
-                        <div class="detail-field"><div class="detail-label">邀约负责人</div><div class="detail-value"><input class="input" value="请选择邀约负责人" /></div></div>
-                        <div class="detail-field"><div class="detail-label">谈案负责人</div><div class="detail-value"><input class="input" value="请选择谈案负责人" /></div></div>
-                        <div class="detail-field"><div class="detail-label">渠道</div><div class="detail-value"><input class="input" value="请选择渠道" /></div></div>
-                        <div class="detail-field"><div class="detail-label">创建时间</div><div class="detail-value muted">提交后自动生成</div></div>
-                        <div class="detail-field"><div class="detail-label">更新时间</div><div class="detail-value muted">提交后自动生成</div></div>
-                        <div class="detail-footer">
-                          <button class="button" type="button">提交</button>
-                          <button class="button secondary" type="button">取消</button>
-                        </div>
-                      </form>
-                    </div>
-                  </section>
+              </div>
+              <div class="empty-state" style="padding: 56px 24px;">
+                <p>当前不再提供商机管理独立页面。</p>
+                <div class="detail-action-row" style="justify-content: center; margin-top: 20px;">
+                  <a class="button button-secondary" href="../negotiation/negotiation-management.html">返回谈案管理</a>
+                  <a class="button" href="../negotiation/contract-management.html">进入合同管理</a>
                 </div>
-              </aside>
-            </div>
+              </div>
+            </section>
           </main>
         </div>
       </div>
