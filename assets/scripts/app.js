@@ -52,6 +52,8 @@
     label: "财务管理",
     icon: "finance",
     children: [
+      { id: "case-finance-ledger", label: "案件财务总账", href: "../finance/case-finance-ledger.html" },
+      { id: "prepayment-ledger", label: "预收台账", href: "../finance/prepayment-ledger.html" },
       { id: "receivable-ledger", label: "应收台账", href: "../finance/receivable-ledger.html" },
       { id: "payable-ledger", label: "应付台账", href: "../finance/payable-ledger.html" },
       { id: "commission-management", label: "提成管理", href: "../finance/commission-management.html" },

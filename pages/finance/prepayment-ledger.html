@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>预收台账 - 律所系统</title>
+    <link rel="stylesheet" href="../../assets/styles/main.css" />
+    <style>
+      .prepayment-link {
+        color: var(--primary);
+        font-weight: 600;
+      }
+
+      .prepayment-filters {
+        margin-bottom: 16px;
+      }
+
+      .prepayment-filter-grid {
+        display: grid;
+        grid-template-columns: minmax(180px, 220px) minmax(240px, 320px) minmax(260px, 1fr);
+        gap: 14px;
+        align-items: end;
+      }
+
+      .prepayment-heading {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin: 0 0 20px;
+      }
+
+      .prepayment-title-line {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .prepayment-title-line .detail-title {
+        margin: 0;
+      }
+
+      .prepayment-heading-actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .prepayment-status-pill,
+      .prepayment-amount-pill {
+        display: inline-flex;
+        align-items: center;
+        min-height: 28px;
+        padding: 0 12px;
+        border-radius: 999px;
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 1;
+      }
+
+      .prepayment-status-pill.waiting {
+        color: #9e6a1f;
+        background: #fff4df;
+        border: 1px solid #ffe0ad;
+      }
+
+      .prepayment-status-pill.partial {
+        color: #1f5dca;
+        background: #edf4ff;
+        border: 1px solid #cfe0ff;
+      }
+
+      .prepayment-status-pill.success {
+        color: #217252;
+        background: #e4f7ee;
+        border: 1px solid #bdebd7;
+      }
+
+      .prepayment-amount-pill {
+        color: #1f5dca;
+        background: #edf4ff;
+        border: 1px solid #cfe0ff;
+      }
+
+      .prepayment-info-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0 28px;
+      }
+
+      .prepayment-section-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin: 18px 0 10px;
+        color: #63718a;
+        font-size: 13px;
+      }
+
+      .prepayment-empty {
+        min-height: 84px;
+        display: flex;
+        align-items: center;
+        color: #63718a;
+      }
+
+      @media (max-width: 900px) {
+        .prepayment-filter-grid,
+        .prepayment-info-grid,
+        .prepayment-heading {
+          grid-template-columns: 1fr;
+        }
+
+        .prepayment-heading {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body data-page="prepayment-ledger">
+    <div class="app-shell">
+      <aside class="sidebar"></aside>
+      <div class="main-shell">
+        <div class="workspace">
+          <main class="page-body compact">
+            <div class="split-workspace">
+              <section class="split-main">
+                <section class="panel prepayment-filters">
+                  <div class="prepayment-filter-grid">
+                    <div class="field">
+                      <label>状态筛选</label>
+                      <select class="select">
+                        <option>全部状态</option>
+                        <option>待开票</option>
+                        <option>已开票</option>
+                      </select>
+                    </div>
+                    <div class="field">
+                      <label>时间筛选</label>
+                      <input class="input" value="2026/04/01 - 2026/04/30" />
+                    </div>
+                    <div class="field">
+                      <label>搜索</label>
+                      <input class="input" value="搜索客户、合同编号、案件名称" />
+                    </div>
+                  </div>
+                </section>
+
+                <section class="panel">
+                  <div class="toolbar">
+                    <div></div>
+                    <div class="toolbar-tools"><span>筛选</span><span>分组</span><span>排序</span><span>搜索</span></div>
+                  </div>
+                  <div class="table-shell tight">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>客户名称</th>
+                          <th>合同编号</th>
+                          <th>案件名称</th>
+                          <th>已收金额</th>
+                          <th>收款日期</th>
+                          <th>邀约人</th>
+                          <th>收款方式</th>
+                          <th>状态</th>
+                          <th>最近更新时间</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr
+                          data-prepayment-title="张三故意伤害刑事辩护案"
+                          data-customer-name="张三"
+                          data-contract-no="(2026)中磐 刑 字第0001号"
+                          data-case-name="张三故意伤害刑事辩护案"
+                          data-received-amount="120,000"
+                          data-receipt-date="2026/04/18"
+                          data-registrant="王助理"
+                          data-payment-method="对公转账"
+                          data-current-status="待开票"
+                          data-last-process-time="2026/04/28 10:20"
+                          data-has-invoice="false"
+                          data-invoice-date="-"
+                          data-invoice-amount="-"
+                          data-invoice-type="-"
+                          data-invoice-applicant="-"
+                          data-invoice-issuer="-"
+                          data-approval-status="-"
+                          data-invoice-attachment="-"
+                          data-other-attachment="-"
+                        >
+                          <td><a class="prepayment-link" href="#">张三</a></td>
+                          <td><a class="prepayment-link" href="#">(2026)中磐 刑 字第0001号</a></td>
+                          <td><a class="prepayment-link" href="#">张三故意伤害刑事辩护案</a></td>
+                          <td>120,000</td>
+                          <td>2026/04/18</td>
+                          <td><span class="person-chip"><span class="person-avatar">王</span>王助理</span></td>
+                          <td>对公转账</td>
+                          <td><span class="badge warning">待开票</span></td>
+                          <td>2026/04/28 10:20</td>
+                        </tr>
+                        <tr
+                          data-prepayment-title="李四土地征收补偿行政案"
+                          data-customer-name="李四"
+                          data-contract-no="(2026)中磐 行 字第0001号"
+                          data-case-name="李四土地征收补偿行政案"
+                          data-received-amount="80,000"
+                          data-receipt-date="2026/04/25"
+                          data-registrant="海岩"
+                          data-payment-method="对公转账"
+                          data-current-status="已开票"
+                          data-last-process-time="2026/04/29 15:30"
+                          data-has-invoice="true"
+                          data-invoice-date="2026/04/29"
+                          data-invoice-amount="30,000"
+                          data-invoice-type="增值税普通发票"
+                          data-invoice-applicant="王助理"
+                          data-invoice-issuer="徐静"
+                          data-approval-status="已通过"
+                          data-invoice-attachment="invoice_lisi_20260429.pdf"
+                          data-other-attachment="开票审批 SP-20260429-003"
+                        >
+                          <td><a class="prepayment-link" href="#">李四</a></td>
+                          <td><a class="prepayment-link" href="#">(2026)中磐 行 字第0001号</a></td>
+                          <td><a class="prepayment-link" href="#">李四土地征收补偿行政案</a></td>
+                          <td>80,000</td>
+                          <td>2026/04/25</td>
+                          <td><span class="person-chip"><span class="person-avatar">海</span>海岩</span></td>
+                          <td>对公转账</td>
+                          <td><span class="badge success">已开票</span></td>
+                          <td>2026/04/29 15:30</td>
+                        </tr>
+                        <tr
+                          data-prepayment-title="王某装修纠纷代理案"
+                          data-customer-name="王某企业"
+                          data-contract-no="(2026)中磐 民 字第0001号"
+                          data-case-name="王某装修纠纷代理案"
+                          data-received-amount="100,000"
+                          data-receipt-date="2026/04/24"
+                          data-registrant="王助理"
+                          data-payment-method="微信"
+                          data-current-status="已开票"
+                          data-last-process-time="2026/04/26 14:10"
+                          data-has-invoice="true"
+                          data-invoice-date="2026/04/26"
+                          data-invoice-amount="100,000"
+                          data-invoice-type="增值税专用发票"
+                          data-invoice-applicant="海岩"
+                          data-invoice-issuer="宋妍"
+                          data-approval-status="已通过"
+                          data-invoice-attachment="invoice_wangqiye_20260426.pdf"
+                          data-other-attachment="合同扫描件"
+                        >
+                          <td><a class="prepayment-link" href="#">王某企业</a></td>
+                          <td><a class="prepayment-link" href="#">(2026)中磐 民 字第0001号</a></td>
+                          <td><a class="prepayment-link" href="#">王某装修纠纷代理案</a></td>
+                          <td>100,000</td>
+                          <td>2026/04/24</td>
+                          <td><span class="person-chip"><span class="person-avatar">王</span>王助理</span></td>
+                          <td>微信</td>
+                          <td><span class="badge success">已开票</span></td>
+                          <td>2026/04/26 14:10</td>
+                        </tr>
+                        <tr
+                          data-prepayment-title="赵六常年法律顾问服务"
+                          data-customer-name="赵六"
+                          data-contract-no="(2026)中磐 顾 字第0002号"
+                          data-case-name="赵六常年法律顾问服务"
+                          data-received-amount="50,000"
+                          data-receipt-date="2026/04/26"
+                          data-registrant="陈泽"
+                          data-payment-method="支付宝"
+                          data-current-status="待开票"
+                          data-last-process-time="2026/04/30 09:40"
+                          data-has-invoice="false"
+                          data-invoice-date="-"
+                          data-invoice-amount="-"
+                          data-invoice-type="-"
+                          data-invoice-applicant="-"
+                          data-invoice-issuer="-"
+                          data-approval-status="-"
+                          data-invoice-attachment="-"
+                          data-other-attachment="-"
+                        >
+                          <td><a class="prepayment-link" href="#">赵六</a></td>
+                          <td><a class="prepayment-link" href="#">(2026)中磐 顾 字第0002号</a></td>
+                          <td><a class="prepayment-link" href="#">赵六常年法律顾问服务</a></td>
+                          <td>50,000</td>
+                          <td>2026/04/26</td>
+                          <td><span class="person-chip"><span class="person-avatar">陈</span>陈泽</span></td>
+                          <td>支付宝</td>
+                          <td><span class="badge warning">待开票</span></td>
+                          <td>2026/04/30 09:40</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+              </section>
+
+              <aside class="detail-pane">
+                <div class="detail-topbar">
+                  <div class="detail-topbar-actions"><span>⌃</span><span>⌄</span></div>
+                  <div class="detail-topbar-actions"><span>···</span><span>×</span></div>
+                </div>
+                <div class="detail-scroll">
+                  <div class="prepayment-heading">
+                    <div class="prepayment-title-line">
+                      <h2 class="detail-title">张三故意伤害刑事辩护案</h2>
+                      <span class="prepayment-status-pill waiting" data-detail-field="currentStatus" data-detail-type="status-pill">待开票</span>
+                      <span class="prepayment-amount-pill" data-detail-field="receivedAmount" data-detail-type="amount-pill">已收金额 120,000</span>
+                    </div>
+                    <div class="prepayment-heading-actions">
+                      <button class="button secondary" type="button">查看合同</button>
+                      <button class="button secondary" type="button">查看案件</button>
+                    </div>
+                  </div>
+                  <div class="detail-tabs"><span class="detail-tab active">详情</span><span class="detail-tab">历史</span></div>
+
+                  <section class="detail-group" data-role="detail">
+                    <div class="detail-group-title"><span>基础信息</span></div>
+                    <div class="detail-card">
+                      <div class="prepayment-info-grid">
+                        <div class="info-item"><div class="info-label">客户名称</div><div class="info-value prepayment-link" data-detail-field="customerName">张三</div></div>
+                        <div class="info-item"><div class="info-label">合同编号</div><div class="info-value prepayment-link" data-detail-field="contractNo">(2026)中磐 刑 字第0001号</div></div>
+                        <div class="info-item"><div class="info-label">案件名称</div><div class="info-value prepayment-link" data-detail-field="caseName">张三故意伤害刑事辩护案</div></div>
+                        <div class="info-item"><div class="info-label">已收金额</div><div class="info-value" data-detail-field="receivedAmount">120,000</div></div>
+                        <div class="info-item"><div class="info-label">收款日期</div><div class="info-value" data-detail-field="receiptDate">2026/04/18</div></div>
+                        <div class="info-item"><div class="info-label">收款方式</div><div class="info-value" data-detail-field="paymentMethod">对公转账</div></div>
+                        <div class="info-item"><div class="info-label">当前状态</div><div class="info-value"><span class="badge warning" data-detail-field="currentStatus" data-detail-type="status-badge">待开票</span></div></div>
+                        <div class="info-item"><div class="info-label">最近更新时间</div><div class="info-value" data-detail-field="lastProcessTime">2026/04/28 10:20</div></div>
+                      </div>
+                    </div>
+
+                    <div class="prepayment-section-title">
+                      <span>开票信息</span>
+                      <button class="button secondary" type="button" data-role="invoice-action">申请开票</button>
+                    </div>
+                    <div class="detail-card">
+                      <div class="prepayment-empty" data-role="invoice-empty">暂无开票记录</div>
+                      <table class="history-table" data-role="invoice-table" style="display: none;">
+                        <thead>
+                          <tr>
+                            <th>开票日期</th>
+                            <th>开票金额</th>
+                            <th>发票类型</th>
+                            <th>开票申请人</th>
+                            <th>开票人</th>
+                            <th>审批状态</th>
+                            <th>发票附件</th>
+                            <th>其他附件</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td data-detail-field="invoiceDate">-</td>
+                            <td data-detail-field="invoiceAmount">-</td>
+                            <td data-detail-field="invoiceType">-</td>
+                            <td data-detail-field="invoiceApplicant" data-detail-type="person">-</td>
+                            <td data-detail-field="invoiceIssuer" data-detail-type="person">-</td>
+                            <td data-detail-field="approvalStatus">-</td>
+                            <td data-detail-field="invoiceAttachment">-</td>
+                            <td data-detail-field="otherAttachment">-</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </section>
+
+                  <section class="detail-group" data-role="history">
+                    <div class="detail-card">
+                      <table class="history-table">
+                        <thead><tr><th>时间</th><th>操作人</th><th>字段</th><th>变更前</th><th></th><th>变更后</th></tr></thead>
+                        <tbody>
+                          <tr><td>04月28日</td><td>王助理</td><td>开票状态</td><td>-</td><td class="history-arrow">→</td><td>待开票</td></tr>
+                          <tr><td>04月18日</td><td>王助理</td><td>创建了记录</td><td>-</td><td class="history-arrow">→</td><td>已收款待开票</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </section>
+                </div>
+              </aside>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+    <script src="../../assets/scripts/app.js"></script>
+    <script>
+      function prepaymentStatusClass(value) {
+        if (value === "已开票") return "success";
+        return "waiting";
+      }
+
+      function prepaymentBadgeClass(value) {
+        if (value === "已开票") return "success";
+        return "warning";
+      }
+
+      function setPrepaymentField(key, value) {
+        document.querySelectorAll(`[data-detail-field="${key}"]`).forEach((node) => {
+          if (node.dataset.detailType === "person") {
+            const text = value || "-";
+            node.innerHTML = text === "-" ? "-" : `<span class="person-chip"><span class="person-avatar">${text.charAt(0)}</span>${text}</span>`;
+            return;
+          }
+
+          if (node.dataset.detailType === "status-pill") {
+            node.className = `prepayment-status-pill ${prepaymentStatusClass(value)}`;
+            node.textContent = value || "-";
+            return;
+          }
+
+          if (node.dataset.detailType === "amount-pill") {
+            node.textContent = `已收金额 ${value || "-"}`;
+            return;
+          }
+
+          if (node.dataset.detailType === "status-badge") {
+            node.className = `badge ${prepaymentBadgeClass(value)}`;
+            node.textContent = value || "-";
+            return;
+          }
+
+          node.textContent = value || "-";
+        });
+      }
+
+      function updateInvoiceArea(hasInvoice) {
+        const empty = document.querySelector('[data-role="invoice-empty"]');
+        const table = document.querySelector('[data-role="invoice-table"]');
+        const action = document.querySelector('[data-role="invoice-action"]');
+        if (empty) empty.style.display = hasInvoice ? "none" : "flex";
+        if (table) table.style.display = hasInvoice ? "" : "none";
+        if (action) action.style.display = hasInvoice ? "none" : "inline-flex";
+      }
+
+      document.querySelectorAll('body[data-page="prepayment-ledger"] tbody tr[data-customer-name]').forEach((row) => {
+        row.addEventListener("click", () => {
+          const title = document.querySelector(".detail-title");
+          if (title) title.textContent = row.dataset.prepaymentTitle || row.dataset.caseName || "预收详情";
+
+          [
+            "customerName",
+            "contractNo",
+            "caseName",
+            "receivedAmount",
+            "receiptDate",
+            "paymentMethod",
+            "currentStatus",
+            "lastProcessTime",
+            "invoiceDate",
+            "invoiceAmount",
+            "invoiceType",
+            "invoiceApplicant",
+            "invoiceIssuer",
+            "approvalStatus",
+            "invoiceAttachment",
+            "otherAttachment"
+          ].forEach((key) => setPrepaymentField(key, row.dataset[key]));
+
+          updateInvoiceArea(row.dataset.hasInvoice === "true");
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>案件财务总账 - 律所系统</title>
+    <link rel="stylesheet" href="../../assets/styles/main.css" />
+    <style>
+      .case-finance-link {
+        color: var(--primary);
+        font-weight: 600;
+      }
+
+      .case-finance-filters {
+        margin-bottom: 16px;
+      }
+
+      .case-finance-filter-grid {
+        display: grid;
+        grid-template-columns: minmax(180px, 220px) minmax(240px, 320px) minmax(260px, 1fr);
+        gap: 14px;
+        align-items: end;
+      }
+
+      .case-finance-roles {
+        display: grid;
+        gap: 5px;
+        min-width: 180px;
+      }
+
+      .case-finance-role-line {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        color: #63718a;
+        white-space: nowrap;
+      }
+
+      .case-finance-heading {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin: 0 0 20px;
+      }
+
+      .case-finance-title-line {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .case-finance-title-line .detail-title {
+        margin: 0;
+      }
+
+      .case-finance-heading-actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .case-finance-pill {
+        display: inline-flex;
+        align-items: center;
+        min-height: 28px;
+        padding: 0 12px;
+        border-radius: 999px;
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 1;
+        color: #1f5dca;
+        background: #edf4ff;
+        border: 1px solid #cfe0ff;
+      }
+
+      .case-finance-pill.success {
+        color: #217252;
+        background: #e4f7ee;
+        border-color: #bdebd7;
+      }
+
+      .case-finance-pill.warning {
+        color: #9e6a1f;
+        background: #fff4df;
+        border-color: #ffe0ad;
+      }
+
+      .case-finance-info-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0 28px;
+      }
+
+      .case-finance-section-title {
+        margin: 18px 0 10px;
+        color: #63718a;
+        font-size: 13px;
+      }
+
+      .case-finance-empty {
+        min-height: 72px;
+        display: flex;
+        align-items: center;
+        color: #63718a;
+      }
+
+      @media (max-width: 900px) {
+        .case-finance-filter-grid,
+        .case-finance-info-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .case-finance-heading {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body data-page="case-finance-ledger">
+    <div class="app-shell">
+      <aside class="sidebar"></aside>
+      <div class="main-shell">
+        <div class="workspace">
+          <main class="page-body compact">
+            <div class="split-workspace">
+              <section class="split-main">
+                <section class="panel case-finance-filters">
+                  <div class="case-finance-filter-grid">
+                    <div class="field">
+                      <label>状态筛选</label>
+                      <select class="select">
+                        <option>全部状态</option>
+                        <option>待签约</option>
+                        <option>办理中</option>
+                        <option>已结案</option>
+                        <option>已归档</option>
+                      </select>
+                    </div>
+                    <div class="field">
+                      <label>时间筛选</label>
+                      <input class="input" value="2026/04/01 - 2026/04/30" />
+                    </div>
+                    <div class="field">
+                      <label>搜索</label>
+                      <input class="input" value="搜索案件名称、客户名称、合同编号" />
+                    </div>
+                  </div>
+                </section>
+
+                <section class="panel">
+                  <div class="toolbar">
+                    <div></div>
+                    <div class="toolbar-tools"><span>筛选</span><span>分组</span><span>排序</span><span>搜索</span></div>
+                  </div>
+                  <div class="table-shell tight">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>案件名称</th>
+                          <th>客户名称</th>
+                          <th>合同编号</th>
+                          <th>案件相关人</th>
+                          <th>合同金额</th>
+                          <th>已收金额</th>
+                          <th>待收金额</th>
+                          <th>已开票金额</th>
+                          <th>未开票金额</th>
+                          <th>总支出</th>
+                          <th>当前利润</th>
+                          <th>案件状态</th>
+                          <th>最近更新时间</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr
+                          data-case-name="张三-劳动仲裁案"
+                          data-customer-name="张三"
+                          data-contract-no="(2026)中磐 劳 字第0001号"
+                          data-handler="刘衡律师"
+                          data-assistant="王助理"
+                          data-inviter="马兰"
+                          data-negotiator="陈泽"
+                          data-contract-amount="180,000"
+                          data-received-amount="80,000"
+                          data-pending-amount="100,000"
+                          data-invoiced-amount="80,000"
+                          data-uninvoiced-amount="100,000"
+                          data-expense-total="12,500"
+                          data-profit="67,500"
+                          data-case-status="办理中"
+                          data-last-update="2026/04/29 16:20"
+                          data-income-date="2026/04/25"
+                          data-income-amount="80,000"
+                          data-income-method="对公转账"
+                          data-income-arrival="已到账"
+                          data-income-attachment="到账凭证 receipt_sk0001.pdf"
+                          data-invoice-date="2026/04/26"
+                          data-invoice-amount="80,000"
+                          data-invoice-type="增值税普通发票"
+                          data-invoice-applicant="王助理"
+                          data-invoice-issuer="徐静"
+                          data-invoice-approval="已通过"
+                          data-invoice-attachment="invoice_zhangsan_20260426.pdf"
+                          data-expense-date="2026/04/20"
+                          data-expense-type="差旅费"
+                          data-expense-amount="12,500"
+                          data-expense-applicant="刘衡律师"
+                          data-expense-approval="已通过"
+                          data-expense-note="外地仲裁开庭差旅"
+                          data-expense-attachment="expense_20260420.pdf"
+                        >
+                          <td><a class="case-finance-link" href="#">张三-劳动仲裁案</a></td>
+                          <td><a class="case-finance-link" href="#">张三</a></td>
+                          <td><a class="case-finance-link" href="#">(2026)中磐 劳 字第0001号</a></td>
+                          <td>
+                            <div class="case-finance-roles">
+                              <span class="case-finance-role-line">办案 <span class="person-chip"><span class="person-avatar">刘</span>刘衡律师</span></span>
+                              <span class="case-finance-role-line">助理 <span class="person-chip"><span class="person-avatar">王</span>王助理</span></span>
+                              <span class="case-finance-role-line">邀约 <span class="person-chip"><span class="person-avatar">马</span>马兰</span></span>
+                              <span class="case-finance-role-line">谈案 <span class="person-chip"><span class="person-avatar">陈</span>陈泽</span></span>
+                            </div>
+                          </td>
+                          <td>180,000</td>
+                          <td>80,000</td>
+                          <td>100,000</td>
+                          <td>80,000</td>
+                          <td>100,000</td>
+                          <td>12,500</td>
+                          <td>67,500</td>
+                          <td><span class="badge warning">办理中</span></td>
+                          <td>2026/04/29 16:20</td>
+                        </tr>
+                        <tr
+                          data-case-name="李明-故意伤害案"
+                          data-customer-name="李明"
+                          data-contract-no="(2026)中磐 刑 字第0002号"
+                          data-handler="陈泽"
+                          data-assistant="王助理"
+                          data-inviter="海岩"
+                          data-negotiator="陈泽"
+                          data-contract-amount="150,000"
+                          data-received-amount="150,000"
+                          data-pending-amount="0"
+                          data-invoiced-amount="150,000"
+                          data-uninvoiced-amount="0"
+                          data-expense-total="8,000"
+                          data-profit="142,000"
+                          data-case-status="已结案"
+                          data-last-update="2026/04/28 11:40"
+                          data-income-date="2026/04/22"
+                          data-income-amount="150,000"
+                          data-income-method="对公转账"
+                          data-income-arrival="已到账"
+                          data-income-attachment="receipt_liming.pdf"
+                          data-invoice-date="2026/04/24"
+                          data-invoice-amount="150,000"
+                          data-invoice-type="增值税专用发票"
+                          data-invoice-applicant="海岩"
+                          data-invoice-issuer="宋妍"
+                          data-invoice-approval="已通过"
+                          data-invoice-attachment="invoice_liming_20260424.pdf"
+                          data-expense-date="2026/04/18"
+                          data-expense-type="材料复印"
+                          data-expense-amount="8,000"
+                          data-expense-applicant="陈泽"
+                          data-expense-approval="已通过"
+                          data-expense-note="阅卷及材料整理"
+                          data-expense-attachment="expense_liming.pdf"
+                        >
+                          <td><a class="case-finance-link" href="#">李明-故意伤害案</a></td>
+                          <td><a class="case-finance-link" href="#">李明</a></td>
+                          <td><a class="case-finance-link" href="#">(2026)中磐 刑 字第0002号</a></td>
+                          <td>
+                            <div class="case-finance-roles">
+                              <span class="case-finance-role-line">办案 <span class="person-chip"><span class="person-avatar">陈</span>陈泽</span></span>
+                              <span class="case-finance-role-line">助理 <span class="person-chip"><span class="person-avatar">王</span>王助理</span></span>
+                              <span class="case-finance-role-line">邀约 <span class="person-chip"><span class="person-avatar">海</span>海岩</span></span>
+                              <span class="case-finance-role-line">谈案 <span class="person-chip"><span class="person-avatar">陈</span>陈泽</span></span>
+                            </div>
+                          </td>
+                          <td>150,000</td>
+                          <td>150,000</td>
+                          <td>0</td>
+                          <td>150,000</td>
+                          <td>0</td>
+                          <td>8,000</td>
+                          <td>142,000</td>
+                          <td><span class="badge success">已结案</span></td>
+                          <td>2026/04/28 11:40</td>
+                        </tr>
+                        <tr
+                          data-case-name="王雪-行政诉讼案"
+                          data-customer-name="王雪"
+                          data-contract-no="(2026)中磐 行 字第0003号"
+                          data-handler="罗杉"
+                          data-assistant="徐静"
+                          data-inviter="海岩"
+                          data-negotiator="刘律师"
+                          data-contract-amount="220,000"
+                          data-received-amount="60,000"
+                          data-pending-amount="160,000"
+                          data-invoiced-amount="0"
+                          data-uninvoiced-amount="220,000"
+                          data-expense-total="0"
+                          data-profit="60,000"
+                          data-case-status="待签约"
+                          data-last-update="2026/04/27 09:50"
+                          data-income-date="2026/04/27"
+                          data-income-amount="60,000"
+                          data-income-method="微信"
+                          data-income-arrival="待审核"
+                          data-income-attachment="客户付款截图"
+                          data-invoice-date=""
+                          data-expense-date=""
+                        >
+                          <td><a class="case-finance-link" href="#">王雪-行政诉讼案</a></td>
+                          <td><a class="case-finance-link" href="#">王雪</a></td>
+                          <td><a class="case-finance-link" href="#">(2026)中磐 行 字第0003号</a></td>
+                          <td>
+                            <div class="case-finance-roles">
+                              <span class="case-finance-role-line">办案 <span class="person-chip"><span class="person-avatar">罗</span>罗杉</span></span>
+                              <span class="case-finance-role-line">助理 <span class="person-chip"><span class="person-avatar">徐</span>徐静</span></span>
+                              <span class="case-finance-role-line">邀约 <span class="person-chip"><span class="person-avatar">海</span>海岩</span></span>
+                              <span class="case-finance-role-line">谈案 <span class="person-chip"><span class="person-avatar">刘</span>刘律师</span></span>
+                            </div>
+                          </td>
+                          <td>220,000</td>
+                          <td>60,000</td>
+                          <td>160,000</td>
+                          <td>0</td>
+                          <td>220,000</td>
+                          <td>0</td>
+                          <td>60,000</td>
+                          <td><span class="badge primary">待签约</span></td>
+                          <td>2026/04/27 09:50</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+              </section>
+
+              <aside class="detail-pane">
+                <div class="detail-topbar">
+                  <div class="detail-topbar-actions"><span>⌃</span><span>⌄</span></div>
+                  <div class="detail-topbar-actions"><span>···</span><span>×</span></div>
+                </div>
+                <div class="detail-scroll">
+                  <div class="case-finance-heading">
+                    <div class="case-finance-title-line">
+                      <h2 class="detail-title">张三-劳动仲裁案</h2>
+                      <span class="case-finance-pill warning" data-detail-field="caseStatus" data-detail-type="status-pill">办理中</span>
+                      <span class="case-finance-pill" data-detail-field="profit" data-detail-type="profit-pill">当前利润 67,500</span>
+                    </div>
+                    <div class="case-finance-heading-actions">
+                      <button class="button secondary" type="button">查看合同</button>
+                      <button class="button secondary" type="button">查看案件</button>
+                    </div>
+                  </div>
+                  <div class="detail-tabs"><span class="detail-tab active">详情</span><span class="detail-tab">历史</span></div>
+
+                  <section class="detail-group" data-role="detail">
+                    <div class="detail-group-title"><span>基础信息</span></div>
+                    <div class="detail-card">
+                      <div class="case-finance-info-grid">
+                        <div class="info-item"><div class="info-label">客户名称</div><div class="info-value case-finance-link" data-detail-field="customerName">张三</div></div>
+                        <div class="info-item"><div class="info-label">合同编号</div><div class="info-value case-finance-link" data-detail-field="contractNo">(2026)中磐 劳 字第0001号</div></div>
+                        <div class="info-item"><div class="info-label">案件名称</div><div class="info-value case-finance-link" data-detail-field="caseName">张三-劳动仲裁案</div></div>
+                        <div class="info-item"><div class="info-label">案件状态</div><div class="info-value"><span class="badge warning" data-detail-field="caseStatus" data-detail-type="status-badge">办理中</span></div></div>
+                        <div class="info-item full">
+                          <div class="info-label">案件相关人</div>
+                          <div class="info-value">
+                            <div class="case-role-row">
+                              <span class="case-role-item"><span class="case-role-label">办案</span><span data-detail-field="handler" data-detail-type="person"><span class="person-chip"><span class="person-avatar">刘</span>刘衡律师</span></span></span>
+                              <span class="case-role-item"><span class="case-role-label">助理</span><span data-detail-field="assistant" data-detail-type="person"><span class="person-chip"><span class="person-avatar">王</span>王助理</span></span></span>
+                              <span class="case-role-item"><span class="case-role-label">邀约</span><span data-detail-field="inviter" data-detail-type="person"><span class="person-chip"><span class="person-avatar">马</span>马兰</span></span></span>
+                              <span class="case-role-item"><span class="case-role-label">谈案</span><span data-detail-field="negotiator" data-detail-type="person"><span class="person-chip"><span class="person-avatar">陈</span>陈泽</span></span></span>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="info-item"><div class="info-label">合同金额</div><div class="info-value" data-detail-field="contractAmount">180,000</div></div>
+                        <div class="info-item"><div class="info-label">已收金额</div><div class="info-value" data-detail-field="receivedAmount">80,000</div></div>
+                        <div class="info-item"><div class="info-label">待收金额</div><div class="info-value" data-detail-field="pendingAmount">100,000</div></div>
+                        <div class="info-item"><div class="info-label">已开票金额</div><div class="info-value" data-detail-field="invoicedAmount">80,000</div></div>
+                        <div class="info-item"><div class="info-label">未开票金额</div><div class="info-value" data-detail-field="uninvoicedAmount">100,000</div></div>
+                        <div class="info-item"><div class="info-label">总支出</div><div class="info-value" data-detail-field="expenseTotal">12,500</div></div>
+                        <div class="info-item"><div class="info-label">当前利润</div><div class="info-value" data-detail-field="profit">67,500</div></div>
+                        <div class="info-item"><div class="info-label">最近更新时间</div><div class="info-value" data-detail-field="lastUpdate">2026/04/29 16:20</div></div>
+                      </div>
+                    </div>
+
+                    <div class="case-finance-section-title">收入记录</div>
+                    <div class="detail-card">
+                      <div class="case-finance-empty" data-role="income-empty" style="display: none;">暂无记录</div>
+                      <table class="history-table" data-role="income-table">
+                        <thead><tr><th>收款日期</th><th>收款金额</th><th>收款方式</th><th>邀约人</th><th>到账状态</th><th>附件</th></tr></thead>
+                        <tbody><tr><td data-detail-field="incomeDate">2026/04/25</td><td data-detail-field="incomeAmount">80,000</td><td data-detail-field="incomeMethod">对公转账</td><td data-detail-field="inviter" data-detail-type="person"><span class="person-chip"><span class="person-avatar">马</span>马兰</span></td><td data-detail-field="incomeArrival">已到账</td><td data-detail-field="incomeAttachment">到账凭证 receipt_sk0001.pdf</td></tr></tbody>
+                      </table>
+                    </div>
+
+                    <div class="case-finance-section-title">开票记录</div>
+                    <div class="detail-card">
+                      <div class="case-finance-empty" data-role="invoice-empty" style="display: none;">暂无记录</div>
+                      <table class="history-table" data-role="invoice-table">
+                        <thead><tr><th>开票日期</th><th>开票金额</th><th>发票类型</th><th>开票申请人</th><th>开票人</th><th>审批状态</th><th>附件</th></tr></thead>
+                        <tbody><tr><td data-detail-field="invoiceDate">2026/04/26</td><td data-detail-field="invoiceAmount">80,000</td><td data-detail-field="invoiceType">增值税普通发票</td><td data-detail-field="invoiceApplicant" data-detail-type="person"><span class="person-chip"><span class="person-avatar">王</span>王助理</span></td><td data-detail-field="invoiceIssuer" data-detail-type="person"><span class="person-chip"><span class="person-avatar">徐</span>徐静</span></td><td data-detail-field="invoiceApproval">已通过</td><td data-detail-field="invoiceAttachment">invoice_zhangsan_20260426.pdf</td></tr></tbody>
+                      </table>
+                    </div>
+
+                    <div class="case-finance-section-title">支出记录</div>
+                    <div class="detail-card">
+                      <div class="case-finance-empty" data-role="expense-empty" style="display: none;">暂无记录</div>
+                      <table class="history-table" data-role="expense-table">
+                        <thead><tr><th>支出日期</th><th>支出类型</th><th>支出金额</th><th>申请人</th><th>审批状态</th><th>备注</th><th>附件</th></tr></thead>
+                        <tbody><tr><td data-detail-field="expenseDate">2026/04/20</td><td data-detail-field="expenseType">差旅费</td><td data-detail-field="expenseAmount">12,500</td><td data-detail-field="expenseApplicant" data-detail-type="person"><span class="person-chip"><span class="person-avatar">刘</span>刘衡律师</span></td><td data-detail-field="expenseApproval">已通过</td><td data-detail-field="expenseNote">外地仲裁开庭差旅</td><td data-detail-field="expenseAttachment">expense_20260420.pdf</td></tr></tbody>
+                      </table>
+                    </div>
+                  </section>
+
+                  <section class="detail-group" data-role="history">
+                    <div class="detail-card">
+                      <table class="history-table">
+                        <thead><tr><th>时间</th><th>操作人</th><th>字段</th><th>变更前</th><th></th><th>变更后</th></tr></thead>
+                        <tbody>
+                          <tr><td>04月29日</td><td>徐静</td><td>利润核算</td><td>待确认</td><td class="history-arrow">→</td><td>已更新</td></tr>
+                          <tr><td>04月25日</td><td>王助理</td><td>收入记录</td><td>-</td><td class="history-arrow">→</td><td>80,000</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </section>
+                </div>
+              </aside>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+    <script src="../../assets/scripts/app.js"></script>
+    <script>
+      function caseFinanceStatusClass(value) {
+        if (value === "已结案" || value === "已归档") return "success";
+        if (value === "办理中") return "warning";
+        return "primary";
+      }
+
+      function setCaseFinanceField(key, value) {
+        document.querySelectorAll(`[data-detail-field="${key}"]`).forEach((node) => {
+          if (node.dataset.detailType === "person") {
+            const text = value || "-";
+            node.innerHTML = text === "-" ? "-" : `<span class="person-chip"><span class="person-avatar">${text.charAt(0)}</span>${text}</span>`;
+            return;
+          }
+
+          if (node.dataset.detailType === "status-pill") {
+            node.className = `case-finance-pill ${caseFinanceStatusClass(value)}`;
+            node.textContent = value || "-";
+            return;
+          }
+
+          if (node.dataset.detailType === "status-badge") {
+            node.className = `badge ${caseFinanceStatusClass(value)}`;
+            node.textContent = value || "-";
+            return;
+          }
+
+          if (node.dataset.detailType === "profit-pill") {
+            node.textContent = `当前利润 ${value || "-"}`;
+            return;
+          }
+
+          node.textContent = value || "-";
+        });
+      }
+
+      function toggleFinanceRecord(kind, hasRecord) {
+        const empty = document.querySelector(`[data-role="${kind}-empty"]`);
+        const table = document.querySelector(`[data-role="${kind}-table"]`);
+        if (empty) empty.style.display = hasRecord ? "none" : "flex";
+        if (table) table.style.display = hasRecord ? "" : "none";
+      }
+
+      document.querySelectorAll('body[data-page="case-finance-ledger"] tbody tr[data-case-name]').forEach((row) => {
+        row.addEventListener("click", () => {
+          const title = document.querySelector(".detail-title");
+          if (title) title.textContent = row.dataset.caseName || "案件财务详情";
+
+          [
+            "customerName",
+            "contractNo",
+            "caseName",
+            "handler",
+            "assistant",
+            "inviter",
+            "negotiator",
+            "contractAmount",
+            "receivedAmount",
+            "pendingAmount",
+            "invoicedAmount",
+            "uninvoicedAmount",
+            "expenseTotal",
+            "profit",
+            "caseStatus",
+            "lastUpdate",
+            "incomeDate",
+            "incomeAmount",
+            "incomeMethod",
+            "incomeArrival",
+            "incomeAttachment",
+            "invoiceDate",
+            "invoiceAmount",
+            "invoiceType",
+            "invoiceApplicant",
+            "invoiceIssuer",
+            "invoiceApproval",
+            "invoiceAttachment",
+            "expenseDate",
+            "expenseType",
+            "expenseAmount",
+            "expenseApplicant",
+            "expenseApproval",
+            "expenseNote",
+            "expenseAttachment"
+          ].forEach((key) => setCaseFinanceField(key, row.dataset[key]));
+
+          toggleFinanceRecord("income", Boolean(row.dataset.incomeDate));
+          toggleFinanceRecord("invoice", Boolean(row.dataset.invoiceDate));
+          toggleFinanceRecord("expense", Boolean(row.dataset.expenseDate));
+        });
+      });
+    </script>
+  </body>
+</html>

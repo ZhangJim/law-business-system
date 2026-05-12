@@ -1,49 +1,447 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="zh-CN">
-  <head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>应收台账 - 律所系统</title><link rel="stylesheet" href="../../assets/styles/main.css" /></head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>应收台账 - 律所系统</title>
+    <link rel="stylesheet" href="../../assets/styles/main.css" />
+    <style>
+      .receivable-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding-top: 18px;
+      }
+
+      .receivable-link {
+        color: var(--primary);
+        font-weight: 600;
+      }
+
+      .receivable-filters {
+        margin-bottom: 16px;
+      }
+
+      .receivable-filter-grid {
+        display: grid;
+        grid-template-columns: minmax(180px, 220px) minmax(240px, 320px) minmax(260px, 1fr);
+        gap: 14px;
+        align-items: end;
+      }
+
+      .receivable-detail-heading {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin: 0 0 20px;
+      }
+
+      .receivable-detail-heading .detail-title {
+        margin: 0;
+      }
+
+      .receivable-status-pill,
+      .receivable-amount-pill {
+        display: inline-flex;
+        align-items: center;
+        min-height: 28px;
+        padding: 0 12px;
+        border-radius: 999px;
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 1;
+      }
+
+      .receivable-status-pill.warning {
+        color: #9e6a1f;
+        background: #fff4df;
+        border: 1px solid #ffe0ad;
+      }
+
+      .receivable-status-pill.success {
+        color: #217252;
+        background: #e4f7ee;
+        border: 1px solid #bdebd7;
+      }
+
+      .receivable-amount-pill {
+        color: #1f5dca;
+        background: #edf4ff;
+        border: 1px solid #cfe0ff;
+      }
+
+      .receivable-info-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0 28px;
+      }
+
+      .receivable-section-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin: 18px 0 10px;
+        color: #63718a;
+        font-size: 13px;
+      }
+
+      @media (max-width: 900px) {
+        .receivable-filter-grid,
+        .receivable-info-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
   <body data-page="receivable-ledger">
-    <div class="app-shell"><aside class="sidebar"></aside><div class="main-shell"><div class="workspace">
-      <main class="page-body compact"><div class="split-workspace">
-        <section class="split-main">
-          <section class="metrics">
-            <div class="metric"><div class="metric-label">应收总额</div><div class="metric-value">786万</div><div class="metric-note">含未开票项目</div></div>
-            <div class="metric"><div class="metric-label">本月到账</div><div class="metric-value">198万</div><div class="metric-note">到账率 83%</div></div>
-            <div class="metric"><div class="metric-label">逾期应收</div><div class="metric-value">56万</div><div class="metric-note">共 5 笔</div></div>
-          </section>
-          <section class="panel">
-            <div class="toolbar"><div><button class="button" type="button">＋ 新增应收记录</button></div><div class="toolbar-tools"><span>筛选</span><span>分组</span><span>排序</span><span>搜索</span></div></div>
-            <div class="table-shell tight"><table>
-              <thead><tr><th>客户</th><th>合同编号</th><th>应收金额</th><th>已收金额</th><th>未收金额</th><th>最近应收日</th><th>状态</th></tr></thead>
-              <tbody>
-                <tr><td><a class="table-link" href="#">李四</a></td><td>(2026)中磐 行 字第0001号</td><td>18 万</td><td>8 万</td><td>10 万</td><td>2026-04-30</td><td><span class="badge warning">待催收</span></td></tr>
-                <tr><td>王某企业</td><td>(2026)中磐 民 字第0011号</td><td>30 万</td><td>20 万</td><td>10 万</td><td>2026-05-08</td><td><span class="badge primary">正常</span></td></tr>
-                <tr><td>张三</td><td>(2026)中磐 刑 字第0023号</td><td>22 万</td><td>12 万</td><td>10 万</td><td>2026-04-18</td><td><span class="badge danger">已逾期</span></td></tr>
-              </tbody>
-            </table></div>
-          </section>
-        </section>
-        <aside class="detail-pane" data-create-title="未命名应收记录">
-          <div class="detail-topbar"><div class="detail-topbar-actions"><span>⌃</span><span>⌄</span></div><div class="detail-topbar-actions"><span>···</span><span>×</span></div></div>
-          <div class="detail-scroll"><h2 class="detail-title">李四应收台账</h2><div class="detail-tabs"><span class="detail-tab active">详情</span><span class="detail-tab">历史</span></div>
-            <section class="detail-group" data-role="detail"><div class="detail-card">
-              <div class="detail-field"><div class="detail-label">客户</div><div class="detail-value">李四</div></div>
-              <div class="detail-field"><div class="detail-label">合同编号</div><div class="detail-value">(2026)中磐 行 字第0001号</div></div>
-              <div class="detail-field"><div class="detail-label">应收金额</div><div class="detail-value">18 万</div></div>
-              <div class="detail-field"><div class="detail-label">已收金额</div><div class="detail-value">8 万</div></div>
-              <div class="detail-field"><div class="detail-label">未收金额</div><div class="detail-value">10 万</div></div>
-              <div class="detail-field"><div class="detail-label">状态</div><div class="detail-value"><span class="badge warning">待催收</span></div></div>
-            </div></section>
-            <section class="detail-group" data-role="history"><div class="detail-card"><table class="history-table"><thead><tr><th>时间</th><th>字段</th><th>变更前</th><th></th><th>变更后</th></tr></thead><tbody><tr><td>04月23日</td><td>未收金额</td><td>18 万</td><td class="history-arrow">→</td><td>10 万</td></tr></tbody></table></div></section>
-            <section class="detail-group" data-role="create"><div class="detail-card"><form class="drawer-form">
-              <div class="drawer-form-grid"><div class="field"><label>客户</label><input class="input" value="请输入客户名称" /></div><div class="field"><label>合同编号</label><input class="input" value="例如：(2026)中磐 行 字第0001号" /></div></div>
-              <div class="drawer-form-grid"><div class="field"><label>应收金额</label><input class="input" value="请输入金额" /></div><div class="field"><label>最近应收日</label><input class="input" value="年/月/日" /></div></div>
-              <div class="detail-footer"><button class="button" type="button">提交</button><button class="button secondary" type="button">取消</button></div>
-            </form></div></section>
-          </div>
-        </aside>
-      </div></main>
-    </div></div></div>
+    <div class="app-shell">
+      <aside class="sidebar"></aside>
+      <div class="main-shell">
+        <div class="workspace">
+          <main class="page-body compact">
+            <div class="split-workspace">
+              <section class="split-main">
+                <section class="panel receivable-filters">
+                  <div class="receivable-filter-grid">
+                    <div class="field">
+                      <label>状态筛选</label>
+                      <select class="select">
+                        <option>全部状态</option>
+                        <option>待回款</option>
+                        <option>已到账</option>
+                      </select>
+                    </div>
+                    <div class="field">
+                      <label>时间筛选</label>
+                      <input class="input" value="2026/04/01 - 2026/04/30" />
+                    </div>
+                    <div class="field">
+                      <label>搜索</label>
+                      <input class="input" value="搜索客户名称、合同编号、案件名称" />
+                    </div>
+                  </div>
+                </section>
+
+                <section class="panel">
+                  <div class="toolbar">
+                    <div></div>
+                    <div class="toolbar-tools"><span>筛选</span><span>分组</span><span>排序</span><span>搜索</span></div>
+                  </div>
+                  <div class="table-shell tight">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>客户名称</th>
+                          <th>合同编号</th>
+                          <th>案件名称</th>
+                          <th>发票金额</th>
+                          <th>开票日期</th>
+                          <th>开票申请人</th>
+                          <th>开票人</th>
+                          <th>状态</th>
+                          <th>最近更新时间</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr
+                          data-receivable-title="李四土地征收补偿行政案"
+                          data-customer-name="李四"
+                          data-contract-no="(2026)中磐 行 字第0001号"
+                          data-case-name="李四土地征收补偿行政案"
+                          data-invoice-amount="80,000"
+                          data-invoice-date="2026/04/16"
+                          data-invoice-applicant="王助理"
+                          data-invoice-issuer="徐静"
+                          data-contract-status="待回款"
+                          data-last-follow-time="2026/04/25 09:30"
+                          data-invoice-type="增值税普通发票"
+                          data-invoice-title="李四"
+                          data-tax-no="-"
+                          data-approval-status="已通过"
+                          data-payment-date="2026/04/25"
+                          data-payment-amount="80,000"
+                          data-payment-method="对公转账"
+                          data-payment-proof="receipt_sk0001.pdf"
+                          data-registrant="海岩"
+                          data-arrival-status="已到账"
+                          data-attachment="到账凭证、银行流水"
+                          data-invoice-attachment="invoice_lisi_20260416.pdf"
+                          data-other-attachment="审批单 SP-20260416-002"
+                        >
+                          <td><a class="receivable-link" href="#">李四</a></td>
+                          <td><a class="receivable-link" href="#">(2026)中磐 行 字第0001号</a></td>
+                          <td><a class="receivable-link" href="#">李四土地征收补偿行政案</a></td>
+                          <td>80,000</td>
+                          <td>2026/04/16</td>
+                          <td><span class="person-chip"><span class="person-avatar">王</span>王助理</span></td>
+                          <td><span class="person-chip"><span class="person-avatar">徐</span>徐静</span></td>
+                          <td><span class="badge warning">待回款</span></td>
+                          <td>2026/04/25 09:30</td>
+                        </tr>
+                        <tr
+                          data-receivable-title="王某企业装修纠纷代理案"
+                          data-customer-name="王某企业"
+                          data-contract-no="(2026)中磐 民 字第0001号"
+                          data-case-name="王某装修纠纷代理案"
+                          data-invoice-amount="100,000"
+                          data-invoice-date="2026/04/18"
+                          data-invoice-applicant="海岩"
+                          data-invoice-issuer="宋妍"
+                          data-contract-status="已到账"
+                          data-last-follow-time="2026/04/24 15:20"
+                          data-invoice-type="增值税专用发票"
+                          data-invoice-title="王某装饰工程有限公司"
+                          data-tax-no="91110108MA00A1234X"
+                          data-approval-status="已通过"
+                          data-payment-date="2026/04/24"
+                          data-payment-amount="100,000"
+                          data-payment-method="对公转账"
+                          data-payment-proof="receipt_sk0002.pdf"
+                          data-registrant="王助理"
+                          data-arrival-status="已到账"
+                          data-attachment="到账凭证"
+                          data-invoice-attachment="invoice_wangqiye_20260418.pdf"
+                          data-other-attachment="合同扫描件"
+                        >
+                          <td><a class="receivable-link" href="#">王某企业</a></td>
+                          <td><a class="receivable-link" href="#">(2026)中磐 民 字第0001号</a></td>
+                          <td><a class="receivable-link" href="#">王某装修纠纷代理案</a></td>
+                          <td>100,000</td>
+                          <td>2026/04/18</td>
+                          <td><span class="person-chip"><span class="person-avatar">海</span>海岩</span></td>
+                          <td><span class="person-chip"><span class="person-avatar">宋</span>宋妍</span></td>
+                          <td><span class="badge success">已到账</span></td>
+                          <td>2026/04/24 15:20</td>
+                        </tr>
+                        <tr
+                          data-receivable-title="张三故意伤害刑事辩护案"
+                          data-customer-name="张三"
+                          data-contract-no="(2026)中磐 刑 字第0001号"
+                          data-case-name="张三故意伤害刑事辩护案"
+                          data-invoice-amount="300,000"
+                          data-invoice-date="2026/04/22"
+                          data-invoice-applicant="刘律师"
+                          data-invoice-issuer="徐静"
+                          data-contract-status="待回款"
+                          data-last-follow-time="2026/04/28 11:10"
+                          data-invoice-type="增值税普通发票"
+                          data-invoice-title="张三"
+                          data-tax-no="-"
+                          data-approval-status="审批中"
+                          data-payment-date="-"
+                          data-payment-amount="-"
+                          data-payment-method="-"
+                          data-payment-proof="-"
+                          data-registrant="-"
+                          data-arrival-status="未到账"
+                          data-attachment="-"
+                          data-invoice-attachment="invoice_zhangsan_20260422.pdf"
+                          data-other-attachment="开票审批 SP-20260422-006"
+                        >
+                          <td><a class="receivable-link" href="#">张三</a></td>
+                          <td><a class="receivable-link" href="#">(2026)中磐 刑 字第0001号</a></td>
+                          <td><a class="receivable-link" href="#">张三故意伤害刑事辩护案</a></td>
+                          <td>300,000</td>
+                          <td>2026/04/22</td>
+                          <td><span class="person-chip"><span class="person-avatar">刘</span>刘律师</span></td>
+                          <td><span class="person-chip"><span class="person-avatar">徐</span>徐静</span></td>
+                          <td><span class="badge warning">待回款</span></td>
+                          <td>2026/04/28 11:10</td>
+                        </tr>
+                        <tr
+                          data-receivable-title="赵六常年法律顾问服务"
+                          data-customer-name="赵六"
+                          data-contract-no="(2026)中磐 顾 字第0002号"
+                          data-case-name="赵六常年法律顾问服务"
+                          data-invoice-amount="50,000"
+                          data-invoice-date="2026/04/26"
+                          data-invoice-applicant="陈泽"
+                          data-invoice-issuer="宋妍"
+                          data-contract-status="待回款"
+                          data-last-follow-time="2026/04/29 16:40"
+                          data-invoice-type="增值税专用发票"
+                          data-invoice-title="赵六科技有限公司"
+                          data-tax-no="91310115MA1K56789Q"
+                          data-approval-status="已通过"
+                          data-payment-date="-"
+                          data-payment-amount="-"
+                          data-payment-method="-"
+                          data-payment-proof="-"
+                          data-registrant="-"
+                          data-arrival-status="未到账"
+                          data-attachment="-"
+                          data-invoice-attachment="invoice_zhaoliu_20260426.pdf"
+                          data-other-attachment="开票申请单"
+                        >
+                          <td><a class="receivable-link" href="#">赵六</a></td>
+                          <td><a class="receivable-link" href="#">(2026)中磐 顾 字第0002号</a></td>
+                          <td><a class="receivable-link" href="#">赵六常年法律顾问服务</a></td>
+                          <td>50,000</td>
+                          <td>2026/04/26</td>
+                          <td><span class="person-chip"><span class="person-avatar">陈</span>陈泽</span></td>
+                          <td><span class="person-chip"><span class="person-avatar">宋</span>宋妍</span></td>
+                          <td><span class="badge warning">待回款</span></td>
+                          <td>2026/04/29 16:40</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+              </section>
+
+              <aside class="detail-pane">
+                <div class="detail-topbar">
+                  <div class="detail-topbar-actions"><span>⌃</span><span>⌄</span></div>
+                  <div class="detail-topbar-actions"><span>···</span><span>×</span></div>
+                </div>
+                <div class="detail-scroll">
+                  <div class="receivable-detail-heading">
+                    <h2 class="detail-title">李四土地征收补偿行政案</h2>
+                    <span class="receivable-status-pill warning" data-detail-field="contractStatus" data-detail-type="status-badge">待回款</span>
+                    <span class="receivable-amount-pill" data-detail-field="invoiceAmount" data-detail-type="amount-badge">发票金额 80,000</span>
+                  </div>
+                  <div class="detail-tabs"><span class="detail-tab active">详情</span><span class="detail-tab">历史</span></div>
+
+                  <section class="detail-group" data-role="detail">
+                    <div class="detail-group-title"><span>基本信息</span></div>
+                    <div class="detail-card">
+                      <div class="receivable-info-grid">
+                        <div class="info-item"><div class="info-label">客户名称</div><div class="info-value receivable-link" data-detail-field="customerName">李四</div></div>
+                        <div class="info-item"><div class="info-label">合同编号</div><div class="info-value receivable-link" data-detail-field="contractNo">(2026)中磐 行 字第0001号</div></div>
+                        <div class="info-item"><div class="info-label">案件名称</div><div class="info-value receivable-link" data-detail-field="caseName">李四土地征收补偿行政案</div></div>
+                        <div class="info-item"><div class="info-label">发票金额</div><div class="info-value" data-detail-field="invoiceAmount">80,000</div></div>
+                        <div class="info-item"><div class="info-label">开票日期</div><div class="info-value" data-detail-field="invoiceDate">2026/04/16</div></div>
+                        <div class="info-item"><div class="info-label">当前状态</div><div class="info-value"><span class="badge warning" data-detail-field="contractStatus" data-detail-type="status-badge">待回款</span></div></div>
+                        <div class="info-item"><div class="info-label">最近更新时间</div><div class="info-value" data-detail-field="lastFollowTime">2026/04/25 09:30</div></div>
+                      </div>
+                    </div>
+
+                    <div class="receivable-section-title"><span>开票信息</span><button class="button secondary" type="button">查看审批单</button></div>
+                    <div class="detail-card">
+                      <div class="receivable-info-grid">
+                        <div class="info-item"><div class="info-label">开票申请人</div><div class="info-value" data-detail-field="invoiceApplicant" data-detail-type="person"><span class="person-chip"><span class="person-avatar">王</span>王助理</span></div></div>
+                        <div class="info-item"><div class="info-label">开票人</div><div class="info-value" data-detail-field="invoiceIssuer" data-detail-type="person"><span class="person-chip"><span class="person-avatar">徐</span>徐静</span></div></div>
+                        <div class="info-item"><div class="info-label">发票类型</div><div class="info-value" data-detail-field="invoiceType">增值税普通发票</div></div>
+                        <div class="info-item"><div class="info-label">发票抬头</div><div class="info-value" data-detail-field="invoiceTitle">李四</div></div>
+                        <div class="info-item"><div class="info-label">税号</div><div class="info-value" data-detail-field="taxNo">-</div></div>
+                        <div class="info-item"><div class="info-label">审批状态</div><div class="info-value" data-detail-field="approvalStatus">已通过</div></div>
+                      </div>
+                    </div>
+
+                    <div class="detail-group-title"><span>回款记录</span></div>
+                    <div class="detail-card">
+                      <table class="history-table">
+                        <thead>
+                          <tr>
+                            <th>回款日期</th>
+                            <th>回款金额</th>
+                            <th>收款方式</th>
+                            <th>到账凭证</th>
+                            <th>登记人</th>
+                            <th>到账状态</th>
+                            <th>附件</th>
+                            <th>其他附件</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td data-detail-field="paymentDate">2026/04/25</td>
+                            <td data-detail-field="paymentAmount">80,000</td>
+                            <td data-detail-field="paymentMethod">对公转账</td>
+                            <td data-detail-field="paymentProof">receipt_sk0001.pdf</td>
+                            <td data-detail-field="registrant" data-detail-type="person"><span class="person-chip"><span class="person-avatar">海</span>海岩</span></td>
+                            <td><span class="badge success" data-detail-field="arrivalStatus">已到账</span></td>
+                            <td data-detail-field="attachment">到账凭证、银行流水</td>
+                            <td data-detail-field="otherAttachment">审批单 SP-20260416-002</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div class="receivable-actions">
+                        <button class="button" type="button">确认到账</button>
+                      </div>
+                    </div>
+                  </section>
+
+                  <section class="detail-group" data-role="history">
+                    <div class="detail-card">
+                      <table class="history-table">
+                        <thead><tr><th>时间</th><th>操作人</th><th>字段</th><th>变更前</th><th></th><th>变更后</th></tr></thead>
+                        <tbody>
+                          <tr><td>04月25日</td><td>徐静</td><td>当前状态</td><td>待回款</td><td class="history-arrow">→</td><td>已到账</td></tr>
+                          <tr><td>04月16日</td><td>王助理</td><td>创建了记录</td><td>-</td><td class="history-arrow">→</td><td>发票已开具</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </section>
+                </div>
+              </aside>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
     <script src="../../assets/scripts/app.js"></script>
+    <script>
+      function setReceivableField(key, value) {
+        document.querySelectorAll(`[data-detail-field="${key}"]`).forEach((node) => {
+          if (node.dataset.detailType === "person") {
+            const text = value || "-";
+            node.innerHTML = text === "-" ? "-" : `<span class="person-chip"><span class="person-avatar">${text.charAt(0)}</span>${text}</span>`;
+            return;
+          }
+
+          if (node.dataset.detailType === "amount-badge") {
+            node.textContent = `发票金额 ${value || "-"}`;
+            return;
+          }
+
+          if (node.dataset.detailType === "status-badge") {
+            const badgeClass = value === "已到账" ? "success" : "warning";
+            node.className = node.classList.contains("receivable-status-pill") ? `receivable-status-pill ${badgeClass}` : `badge ${badgeClass}`;
+            node.textContent = value || "-";
+            return;
+          }
+
+          if (key === "arrivalStatus") {
+            node.className = `badge ${value === "已到账" ? "success" : "warning"}`;
+          }
+
+          node.textContent = value || "-";
+        });
+      }
+
+      document.querySelectorAll('body[data-page="receivable-ledger"] tbody tr[data-customer-name]').forEach((row) => {
+        row.addEventListener("click", () => {
+          const title = document.querySelector(".detail-title");
+          if (title) title.textContent = row.dataset.receivableTitle || row.dataset.caseName || "应收详情";
+
+          [
+            "customerName",
+            "contractNo",
+            "caseName",
+            "invoiceAmount",
+            "invoiceDate",
+            "contractStatus",
+            "lastFollowTime",
+            "invoiceApplicant",
+            "invoiceIssuer",
+            "invoiceType",
+            "invoiceTitle",
+            "taxNo",
+            "approvalStatus",
+            "paymentDate",
+            "paymentAmount",
+            "paymentMethod",
+            "paymentProof",
+            "registrant",
+            "arrivalStatus",
+            "attachment",
+            "otherAttachment"
+          ].forEach((key) => setReceivableField(key, row.dataset[key]));
+        });
+      });
+    </script>
   </body>
 </html>
-
