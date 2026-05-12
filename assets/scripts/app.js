@@ -401,7 +401,7 @@ function renderInvitationRows(leads) {
           <td>${personChipMarkup(lead.leadOwner)}</td>
           <td>${personChipMarkup(lead.invitationOwner)}</td>
           <td>${personChipMarkup(lead.negotiationOwner)}</td>
-          <td><span class="action-links"><a class="action-link" href="#" data-open-create="invitation-record">新增邀约记录</a><a class="action-link" href="#" data-open-create="default">新增商机</a></span></td>
+          <td><span class="action-links"><a class="action-link" href="#" data-open-create="invitation-record">新增邀约记录</a></span></td>
         </tr>
       `
     )
