@@ -149,6 +149,28 @@
         cursor: not-allowed;
       }
 
+      .payment-invoice-section-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-top: 18px;
+      }
+
+      .payment-invoice-section-title .button {
+        min-height: 32px;
+        padding: 0 12px;
+        border-radius: 9px;
+        font-size: 13px;
+      }
+
+      .payment-invoice-empty {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 14px;
+      }
+
       @media (max-width: 1200px) {
         .payment-summary-grid,
         .payment-readonly-grid {
@@ -199,10 +221,12 @@
                           <th>到账金额</th>
                           <th>收款方式</th>
                           <th>是否到账</th>
+                          <th>开票状态</th>
                           <th>备注</th>
                           <th>邀约人</th>
                           <th>创建时间</th>
                           <th>更新时间</th>
+                          <th>操作</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -223,6 +247,15 @@
                           data-lawyer-owner="陈泽"
                           data-created-at="2026/04/18 10:20"
                           data-updated-at="2026/04/25 16:10"
+                          data-invoice-status="已开票"
+                          data-invoice-no="FP20260425001"
+                          data-invoice-date="2026/04/29"
+                          data-invoice-amount="30,000"
+                          data-invoice-type="增值税普通发票"
+                          data-invoice-applicant="王助理"
+                          data-invoice-issuer="徐静"
+                          data-invoice-approval-status="已通过"
+                          data-invoice-attachment="invoice_lisi_20260429.pdf"
                           data-contract-total="180,000"
                           data-received-amount="80,000"
                           data-pending-amount="100,000"
@@ -239,10 +272,12 @@
                           <td>80,000</td>
                           <td>对公转账</td>
                           <td><span class="badge success">已到账</span></td>
+                          <td><span class="badge success">已开票</span></td>
                           <td>首期款</td>
                           <td><span class="person-chip"><span class="person-avatar">王</span>王助理</span></td>
                           <td>2026/04/18 10:20</td>
                           <td>2026/04/25 16:10</td>
+                          <td><span class="action-links"><a class="action-link" href="#">查看开票详情</a><a class="action-link" href="#" data-open-detail>查看详情</a></span></td>
                         </tr>
                         <tr
                           data-record-no="SK0002"
@@ -261,6 +296,15 @@
                           data-lawyer-owner="刘律师"
                           data-created-at="2026/04/22 14:10"
                           data-updated-at="2026/04/24 18:30"
+                          data-invoice-status="未开票"
+                          data-invoice-no=""
+                          data-invoice-date="-"
+                          data-invoice-amount="-"
+                          data-invoice-type="-"
+                          data-invoice-applicant="-"
+                          data-invoice-issuer="-"
+                          data-invoice-approval-status="-"
+                          data-invoice-attachment="-"
                           data-contract-total="150,000"
                           data-received-amount="100,000"
                           data-pending-amount="50,000"
@@ -277,10 +321,12 @@
                           <td>20,000</td>
                           <td>微信</td>
                           <td><span class="badge warning">待确认</span></td>
+                          <td><span class="badge warning">未开票</span></td>
                           <td>补充费用节点</td>
                           <td><span class="person-chip"><span class="person-avatar">海</span>海岩</span></td>
                           <td>2026/04/22 14:10</td>
                           <td>2026/04/24 18:30</td>
+                          <td><span class="action-links"><a class="action-link" href="#">申请开票</a><a class="action-link" href="#" data-open-detail>查看详情</a></span></td>
                         </tr>
                         <tr
                           data-record-no="SK0003"
@@ -299,6 +345,15 @@
                           data-lawyer-owner="刘衡律师"
                           data-created-at="2026/04/20 11:15"
                           data-updated-at="2026/04/22 09:35"
+                          data-invoice-status="未开票"
+                          data-invoice-no=""
+                          data-invoice-date="-"
+                          data-invoice-amount="-"
+                          data-invoice-type="-"
+                          data-invoice-applicant="-"
+                          data-invoice-issuer="-"
+                          data-invoice-approval-status="-"
+                          data-invoice-attachment="-"
                           data-contract-total="200,000"
                           data-received-amount="110,000"
                           data-pending-amount="90,000"
@@ -315,10 +370,12 @@
                           <td>30,000</td>
                           <td>支付宝</td>
                           <td><span class="badge primary">未到账</span></td>
+                          <td><span class="badge warning">未开票</span></td>
                           <td>二期款尚未到账，已通知客户补回单</td>
                           <td><span class="person-chip"><span class="person-avatar">马</span>马兰</span></td>
                           <td>2026/04/20 11:15</td>
                           <td>2026/04/22 09:35</td>
+                          <td><span class="action-links"><a class="action-link" href="#">申请开票</a><a class="action-link" href="#" data-open-detail>查看详情</a></span></td>
                         </tr>
                       </tbody>
                     </table>
@@ -396,6 +453,42 @@
                           <span class="payment-summary-label">计划回款日期</span>
                           <div class="payment-summary-value" data-detail-field="nodePlannedDate">2026/04/18</div>
                         </div>
+                      </div>
+                    </div>
+
+                    <div class="detail-group-title payment-invoice-section-title">
+                      <span>开票信息</span>
+                      <button class="button secondary" type="button" id="detailInvoiceAction">查看开票详情</button>
+                    </div>
+                    <div class="detail-card">
+                      <div class="payment-invoice-empty" data-role="invoice-empty" style="display: none;">
+                        <div>开票状态：<span id="detailInvoiceStatus"><span class="badge warning">未开票</span></span></div>
+                      </div>
+                      <div data-role="invoice-table">
+                        <table class="history-table">
+                          <thead>
+                            <tr>
+                              <th>开票日期</th>
+                              <th>开票金额</th>
+                              <th>发票类型</th>
+                              <th>开票申请人</th>
+                              <th>开票人</th>
+                              <th>审批状态</th>
+                              <th>发票附件</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td data-detail-field="invoiceDate">2026/04/29</td>
+                              <td data-detail-field="invoiceAmount">30,000</td>
+                              <td data-detail-field="invoiceType">增值税普通发票</td>
+                              <td data-detail-field="invoiceApplicant" data-detail-type="person">王助理</td>
+                              <td data-detail-field="invoiceIssuer" data-detail-type="person">徐静</td>
+                              <td data-detail-field="invoiceApprovalStatus">已通过</td>
+                              <td data-detail-field="invoiceAttachment">invoice_lisi_20260429.pdf</td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </div>
                   </section>
@@ -592,11 +685,57 @@
         host.innerHTML = `<span class="badge ${cls}">${status}</span>`;
       }
 
+      function setPaymentDetailField(key, value) {
+        document.querySelectorAll(`[data-detail-field="${key}"]`).forEach((node) => {
+          if (node.dataset.detailType === "person") {
+            node.innerHTML = value && value !== "-" ? personChip(value) : "-";
+            return;
+          }
+          node.textContent = value || "-";
+        });
+      }
+
+      function renderInvoiceInfo(data) {
+        const status = data.invoiceStatus || "未开票";
+        const statusHost = document.getElementById("detailInvoiceStatus");
+        const actionButton = document.getElementById("detailInvoiceAction");
+        const empty = document.querySelector('[data-role="invoice-empty"]');
+        const table = document.querySelector('[data-role="invoice-table"]');
+        const isInvoiced = status === "已开票";
+
+        if (statusHost) {
+          statusHost.innerHTML = `<span class="badge ${isInvoiced ? "success" : "warning"}">${status || "未开票"}</span>`;
+        }
+        if (empty) empty.style.display = isInvoiced ? "none" : "grid";
+        if (table) table.style.display = isInvoiced ? "" : "none";
+        if (actionButton) {
+          actionButton.textContent = isInvoiced ? "查看开票详情" : "申请开票";
+        }
+        setPaymentDetailField("invoiceDate", data.invoiceDate);
+        setPaymentDetailField("invoiceAmount", data.invoiceAmount);
+        setPaymentDetailField("invoiceType", data.invoiceType);
+        setPaymentDetailField("invoiceApplicant", data.invoiceApplicant);
+        setPaymentDetailField("invoiceIssuer", data.invoiceIssuer);
+        setPaymentDetailField("invoiceApprovalStatus", data.invoiceApprovalStatus);
+        setPaymentDetailField("invoiceAttachment", data.invoiceAttachment);
+      }
+
       function fillDetailFromRow(row) {
         if (!row) return;
         const data = row.dataset;
+        setPaymentDetailField("recordNo", data.recordNo);
+        setPaymentDetailField("contractNo", data.contractNo);
+        setPaymentDetailField("nodeName", data.nodeName);
+        setPaymentDetailField("paidDate", data.paidDate);
+        setPaymentDetailField("arrivalAmount", data.arrivalAmount);
+        setPaymentDetailField("payMethod", data.payMethod);
+        setPaymentDetailField("evidenceName", data.evidenceName);
+        setPaymentDetailField("remark", data.remark);
+        setPaymentDetailField("nodeReceivable", data.arrivalAmount);
+        setPaymentDetailField("nodePlannedDate", data.nodePlannedDate);
         renderDetailPeople(data);
         renderDetailStatus(data.arrivalStatus);
+        renderInvoiceInfo(data);
       }
 
       function setReadonlyValue(id, value) {

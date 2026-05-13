@@ -350,7 +350,6 @@
                             <th>开票人</th>
                             <th>审批状态</th>
                             <th>发票附件</th>
-                            <th>其他附件</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -362,7 +361,6 @@
                             <td data-detail-field="invoiceIssuer" data-detail-type="person">-</td>
                             <td data-detail-field="approvalStatus">-</td>
                             <td data-detail-field="invoiceAttachment">-</td>
-                            <td data-detail-field="otherAttachment">-</td>
                           </tr>
                         </tbody>
                       </table>
@@ -434,7 +432,10 @@
         const action = document.querySelector('[data-role="invoice-action"]');
         if (empty) empty.style.display = hasInvoice ? "none" : "flex";
         if (table) table.style.display = hasInvoice ? "" : "none";
-        if (action) action.style.display = hasInvoice ? "none" : "inline-flex";
+        if (action) {
+          action.style.display = "inline-flex";
+          action.textContent = hasInvoice ? "查看开票详情" : "申请开票";
+        }
       }
 
       document.querySelectorAll('body[data-page="prepayment-ledger"] tbody tr[data-customer-name]').forEach((row) => {
@@ -457,8 +458,7 @@
             "invoiceApplicant",
             "invoiceIssuer",
             "approvalStatus",
-            "invoiceAttachment",
-            "otherAttachment"
+            "invoiceAttachment"
           ].forEach((key) => setPrepaymentField(key, row.dataset[key]));
 
           updateInvoiceArea(row.dataset.hasInvoice === "true");

@@ -238,7 +238,7 @@
                           data-arrival-status="未到账"
                           data-attachment="-"
                           data-invoice-attachment="invoice_zhangsan_20260422.pdf"
-                          data-other-attachment="开票审批 SP-20260422-006"
+                          <!-- data-other-attachment="开票审批 SP-20260422-006" -->
                         >
                           <td><a class="receivable-link" href="#">张三</a></td>
                           <td><a class="receivable-link" href="#">(2026)中磐 刑 字第0001号</a></td>
@@ -318,16 +318,32 @@
                       </div>
                     </div>
 
-                    <div class="receivable-section-title"><span>开票信息</span><button class="button secondary" type="button">查看审批单</button></div>
+                    <div class="receivable-section-title"><span>开票信息</span><button class="button secondary" type="button">查看开票详情</button></div>
                     <div class="detail-card">
-                      <div class="receivable-info-grid">
-                        <div class="info-item"><div class="info-label">开票申请人</div><div class="info-value" data-detail-field="invoiceApplicant" data-detail-type="person"><span class="person-chip"><span class="person-avatar">王</span>王助理</span></div></div>
-                        <div class="info-item"><div class="info-label">开票人</div><div class="info-value" data-detail-field="invoiceIssuer" data-detail-type="person"><span class="person-chip"><span class="person-avatar">徐</span>徐静</span></div></div>
-                        <div class="info-item"><div class="info-label">发票类型</div><div class="info-value" data-detail-field="invoiceType">增值税普通发票</div></div>
-                        <div class="info-item"><div class="info-label">发票抬头</div><div class="info-value" data-detail-field="invoiceTitle">李四</div></div>
-                        <div class="info-item"><div class="info-label">税号</div><div class="info-value" data-detail-field="taxNo">-</div></div>
-                        <div class="info-item"><div class="info-label">审批状态</div><div class="info-value" data-detail-field="approvalStatus">已通过</div></div>
-                      </div>
+                      <table class="history-table">
+                        <thead>
+                          <tr>
+                            <th>开票日期</th>
+                            <th>开票金额</th>
+                            <th>发票类型</th>
+                            <th>开票申请人</th>
+                            <th>开票人</th>
+                            <th>审批状态</th>
+                            <th>发票附件</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td data-detail-field="invoiceDate">2026/04/16</td>
+                            <td data-detail-field="invoiceAmount">80,000</td>
+                            <td data-detail-field="invoiceType">增值税普通发票</td>
+                            <td data-detail-field="invoiceApplicant" data-detail-type="person"><span class="person-chip"><span class="person-avatar">王</span>王助理</span></td>
+                            <td data-detail-field="invoiceIssuer" data-detail-type="person"><span class="person-chip"><span class="person-avatar">徐</span>徐静</span></td>
+                            <td data-detail-field="approvalStatus">已通过</td>
+                            <td data-detail-field="invoiceAttachment">invoice_lisi_20260416.pdf</td>
+                          </tr>
+                        </tbody>
+                      </table>
                     </div>
 
                     <div class="detail-group-title"><span>回款记录</span></div>
@@ -431,6 +447,7 @@
             "invoiceTitle",
             "taxNo",
             "approvalStatus",
+            "invoiceAttachment",
             "paymentDate",
             "paymentAmount",
             "paymentMethod",

@@ -1,10 +1,109 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>发票管理 - 律所系统</title>
+    <title>开票管理 - 律所系统</title>
     <link rel="stylesheet" href="../../assets/styles/main.css" />
+    <style>
+      .invoice-link {
+        color: var(--primary);
+        font-weight: 600;
+      }
+
+      .invoice-filters {
+        margin-bottom: 16px;
+      }
+
+      .invoice-filter-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+        align-items: end;
+      }
+
+      .invoice-detail-heading {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin: 0 0 20px;
+      }
+
+      .invoice-detail-heading .detail-title {
+        margin: 0;
+      }
+
+      .invoice-status-pill,
+      .invoice-amount-pill {
+        display: inline-flex;
+        align-items: center;
+        min-height: 28px;
+        padding: 0 12px;
+        border-radius: 999px;
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 1;
+      }
+
+      .invoice-status-pill.warning {
+        color: #9e6a1f;
+        background: #fff4df;
+        border: 1px solid #ffe0ad;
+      }
+
+      .invoice-status-pill.success {
+        color: #217252;
+        background: #e4f7ee;
+        border: 1px solid #bdebd7;
+      }
+
+      .invoice-amount-pill {
+        color: #1f5dca;
+        background: #edf4ff;
+        border: 1px solid #cfe0ff;
+      }
+
+      .invoice-info-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0 28px;
+      }
+
+      .invoice-section-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin: 18px 0 10px;
+        color: #63718a;
+        font-size: 13px;
+      }
+
+      .invoice-section-title .button {
+        min-height: 32px;
+        padding: 0 14px;
+      }
+
+      .invoice-table-actions {
+        display: inline-flex;
+        gap: 12px;
+        white-space: nowrap;
+      }
+
+      @media (max-width: 1200px) {
+        .invoice-filter-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 760px) {
+        .invoice-filter-grid,
+        .invoice-info-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
   </head>
   <body data-page="invoice-management">
     <div class="app-shell">
@@ -14,50 +113,260 @@
           <main class="page-body compact">
             <div class="split-workspace">
               <section class="split-main">
+                <section class="panel invoice-filters">
+                  <div class="panel-header">
+                    <div>
+                      <h1>开票管理</h1>
+                      <p>审批通过后的开票记录统一在这里查看，财务只维护发票信息与附件。</p>
+                    </div>
+                    <div class="toolbar-tools"><span>财务视角</span><span>发票归档</span></div>
+                  </div>
+                  <div class="invoice-filter-grid">
+                    <div class="field">
+                      <label>客户名称</label>
+                      <input class="input" value="搜索或选择客户名称" />
+                    </div>
+                    <div class="field">
+                      <label>合同编号</label>
+                      <input class="input" value="搜索或选择合同编号" />
+                    </div>
+                    <div class="field">
+                      <label>案件名称</label>
+                      <input class="input" value="搜索或选择案件名称" />
+                    </div>
+                    <div class="field">
+                      <label>开票状态</label>
+                      <select class="select">
+                        <option>全部状态</option>
+                        <option>待开票</option>
+                        <option>已开票</option>
+                      </select>
+                    </div>
+                    <div class="field">
+                      <label>开票申请人</label>
+                      <select class="select">
+                        <option>全部申请人</option>
+                        <option>王助理</option>
+                        <option>海岩</option>
+                        <option>陈泽</option>
+                      </select>
+                    </div>
+                    <div class="field">
+                      <label>开票人</label>
+                      <select class="select">
+                        <option>全部开票人</option>
+                        <option>徐静</option>
+                        <option>宋妍</option>
+                      </select>
+                    </div>
+                    <div class="field">
+                      <label>发票类型</label>
+                      <select class="select">
+                        <option>全部类型</option>
+                        <option>增值税普通发票</option>
+                        <option>增值税专用发票</option>
+                      </select>
+                    </div>
+                    <div class="field">
+                      <label>开票日期</label>
+                      <input class="input" value="2026/04/01 - 2026/04/30" />
+                    </div>
+                  </div>
+                </section>
+
                 <section class="panel">
                   <div class="toolbar">
-                    <div><button class="button" type="button">＋ 新增发票申请</button></div>
+                    <div></div>
                     <div class="toolbar-tools"><span>筛选</span><span>分组</span><span>排序</span><span>搜索</span></div>
                   </div>
                   <div class="table-shell tight">
                     <table>
-                      <thead><tr><th>申请单号</th><th>客户</th><th>开票金额</th><th>发票类型</th><th>申请时间</th><th>状态</th></tr></thead>
+                      <thead>
+                        <tr>
+                          <th>申请编号</th>
+                          <th>客户名称</th>
+                          <th>合同编号</th>
+                          <th>案件名称</th>
+                          <th>开票金额</th>
+                          <th>发票类型</th>
+                          <th>开票申请人</th>
+                          <th>开票人</th>
+                          <th>开票状态</th>
+                          <th>开票日期</th>
+                          <th>发票附件</th>
+                          <th>审批单</th>
+                          <th>操作</th>
+                        </tr>
+                      </thead>
                       <tbody>
-                        <tr><td><a class="table-link" href="#">FP-20260425-01</a></td><td>王某企业</td><td>10 万</td><td>专票</td><td>2026-04-25</td><td><span class="badge warning">待开具</span></td></tr>
-                        <tr><td>FP-20260422-03</td><td>李四</td><td>8 万</td><td>普票</td><td>2026-04-22</td><td><span class="badge success">已寄出</span></td></tr>
-                        <tr><td>FP-20260418-02</td><td>张三</td><td>3 万</td><td>普票</td><td>2026-04-18</td><td><span class="badge primary">已作废重开</span></td></tr>
+                        <tr
+                          data-invoice-title="李四土地征收补偿行政案"
+                          data-apply-no="SP-20260416-002"
+                          data-customer-name="李四"
+                          data-contract-no="(2026)中磐 行 字第0001号"
+                          data-case-name="李四土地征收补偿行政案"
+                          data-invoice-amount="80,000"
+                          data-invoice-type="增值税普通发票"
+                          data-invoice-applicant="王助理"
+                          data-invoice-issuer="徐静"
+                          data-invoice-status="已开票"
+                          data-invoice-date="2026/04/29"
+                          data-invoice-attachment="invoice_lisi_20260429.pdf"
+                          data-invoice-heading="李四"
+                          data-tax-no="-"
+                          data-approval-status="已通过"
+                        >
+                          <td><strong>SP-20260416-002</strong></td>
+                          <td><a class="invoice-link" href="#">李四</a></td>
+                          <td><a class="invoice-link" href="#">(2026)中磐 行 字第0001号</a></td>
+                          <td><a class="invoice-link" href="#">李四土地征收补偿行政案</a></td>
+                          <td>80,000</td>
+                          <td>增值税普通发票</td>
+                          <td><span class="person-chip"><span class="person-avatar">王</span>王助理</span></td>
+                          <td><span class="person-chip"><span class="person-avatar">徐</span>徐静</span></td>
+                          <td><span class="badge success">已开票</span></td>
+                          <td>2026/04/29</td>
+                          <td>invoice_lisi_20260429.pdf</td>
+                          <td>开票审批单</td>
+                          <td><span class="invoice-table-actions"><a class="action-link" href="#" data-invoice-action>查看开票申请</a><a class="action-link" href="#" data-invoice-action>查看详情</a></span></td>
+                        </tr>
+                        <tr
+                          data-invoice-title="赵六常年法律顾问服务"
+                          data-apply-no="SP-20260426-004"
+                          data-customer-name="赵六"
+                          data-contract-no="(2026)中磐 顾 字第0002号"
+                          data-case-name="赵六常年法律顾问服务"
+                          data-invoice-amount="50,000"
+                          data-invoice-type="增值税专用发票"
+                          data-invoice-applicant="陈泽"
+                          data-invoice-issuer="-"
+                          data-invoice-status="待开票"
+                          data-invoice-date="-"
+                          data-invoice-attachment="-"
+                          data-invoice-heading="赵六科技有限公司"
+                          data-tax-no="91310115MA1K56789Q"
+                          data-approval-status="已通过"
+                        >
+                          <td><strong>SP-20260426-004</strong></td>
+                          <td><a class="invoice-link" href="#">赵六</a></td>
+                          <td><a class="invoice-link" href="#">(2026)中磐 顾 字第0002号</a></td>
+                          <td><a class="invoice-link" href="#">赵六常年法律顾问服务</a></td>
+                          <td>50,000</td>
+                          <td>增值税专用发票</td>
+                          <td><span class="person-chip"><span class="person-avatar">陈</span>陈泽</span></td>
+                          <td>-</td>
+                          <td><span class="badge warning">待开票</span></td>
+                          <td>-</td>
+                          <td>-</td>
+                          <td>开票审批单</td>
+                          <td><span class="invoice-table-actions"><a class="action-link" href="#" data-invoice-action>查看开票申请</a><a class="action-link" href="#" data-invoice-action>查看详情</a></span></td>
+                        </tr>
+                        <tr
+                          data-invoice-title="王某装修纠纷代理案"
+                          data-apply-no="SP-20260418-006"
+                          data-customer-name="王某企业"
+                          data-contract-no="(2026)中磐 民 字第0001号"
+                          data-case-name="王某装修纠纷代理案"
+                          data-invoice-amount="100,000"
+                          data-invoice-type="增值税专用发票"
+                          data-invoice-applicant="海岩"
+                          data-invoice-issuer="宋妍"
+                          data-invoice-status="已开票"
+                          data-invoice-date="2026/04/26"
+                          data-invoice-attachment="invoice_wangqiye_20260426.pdf"
+                          data-invoice-heading="王某装饰工程有限公司"
+                          data-tax-no="91110108MA00A1234X"
+                          data-approval-status="已通过"
+                        >
+                          <td><strong>SP-20260418-006</strong></td>
+                          <td><a class="invoice-link" href="#">王某企业</a></td>
+                          <td><a class="invoice-link" href="#">(2026)中磐 民 字第0001号</a></td>
+                          <td><a class="invoice-link" href="#">王某装修纠纷代理案</a></td>
+                          <td>100,000</td>
+                          <td>增值税专用发票</td>
+                          <td><span class="person-chip"><span class="person-avatar">海</span>海岩</span></td>
+                          <td><span class="person-chip"><span class="person-avatar">宋</span>宋妍</span></td>
+                          <td><span class="badge success">已开票</span></td>
+                          <td>2026/04/26</td>
+                          <td>invoice_wangqiye_20260426.pdf</td>
+                          <td>开票审批单</td>
+                          <td><span class="invoice-table-actions"><a class="action-link" href="#" data-invoice-action>查看开票申请</a><a class="action-link" href="#" data-invoice-action>查看详情</a></span></td>
+                        </tr>
+                        <tr
+                          data-invoice-title="张三故意伤害刑事辩护案"
+                          data-apply-no="SP-20260422-009"
+                          data-customer-name="张三"
+                          data-contract-no="(2026)中磐 刑 字第0001号"
+                          data-case-name="张三故意伤害刑事辩护案"
+                          data-invoice-amount="300,000"
+                          data-invoice-type="增值税普通发票"
+                          data-invoice-applicant="刘律师"
+                          data-invoice-issuer="-"
+                          data-invoice-status="待开票"
+                          data-invoice-date="-"
+                          data-invoice-attachment="-"
+                          data-invoice-heading="张三"
+                          data-tax-no="-"
+                          data-approval-status="已通过"
+                        >
+                          <td><strong>SP-20260422-009</strong></td>
+                          <td><a class="invoice-link" href="#">张三</a></td>
+                          <td><a class="invoice-link" href="#">(2026)中磐 刑 字第0001号</a></td>
+                          <td><a class="invoice-link" href="#">张三故意伤害刑事辩护案</a></td>
+                          <td>300,000</td>
+                          <td>增值税普通发票</td>
+                          <td><span class="person-chip"><span class="person-avatar">刘</span>刘律师</span></td>
+                          <td>-</td>
+                          <td><span class="badge warning">待开票</span></td>
+                          <td>-</td>
+                          <td>-</td>
+                          <td>开票审批单</td>
+                          <td><span class="invoice-table-actions"><a class="action-link" href="#" data-invoice-action>查看开票申请</a><a class="action-link" href="#" data-invoice-action>查看详情</a></span></td>
+                        </tr>
                       </tbody>
                     </table>
+                    <div class="footer-row"><span>共 4 条</span><span>1 / 1　20 条/页</span></div>
                   </div>
                 </section>
               </section>
-              <aside class="detail-pane" data-create-title="未命名发票申请">
+
+              <aside class="detail-pane">
                 <div class="detail-topbar"><div class="detail-topbar-actions"><span>⌃</span><span>⌄</span></div><div class="detail-topbar-actions"><span>···</span><span>×</span></div></div>
                 <div class="detail-scroll">
-                  <h2 class="detail-title">FP-20260425-01</h2>
-                  <div class="detail-tabs"><span class="detail-tab active">详情</span><span class="detail-tab">历史</span></div>
-                  <section class="detail-group" data-role="detail"><div class="detail-card">
-                    <div class="detail-field"><div class="detail-label">客户</div><div class="detail-value">王某企业</div></div>
-                    <div class="detail-field"><div class="detail-label">开票金额</div><div class="detail-value">10 万</div></div>
-                    <div class="detail-field"><div class="detail-label">发票类型</div><div class="detail-value">专票</div></div>
-                    <div class="detail-field"><div class="detail-label">申请时间</div><div class="detail-value">2026/04/25</div></div>
-                    <div class="detail-field"><div class="detail-label">开票状态</div><div class="detail-value"><span class="badge warning">待开具</span></div></div>
-                    <div class="detail-field"><div class="detail-label">邮寄信息</div><div class="detail-value muted">待填写</div></div>
-                  </div></section>
-                  <section class="detail-group" data-role="history"><div class="detail-group-title"><span>状态历史</span><span>最近更新</span></div><div class="detail-card">
-                    <table class="history-table"><thead><tr><th>时间</th><th>字段</th><th>变更前</th><th></th><th>变更后</th></tr></thead><tbody>
-                      <tr><td>04月25日</td><td>开票状态</td><td>草稿</td><td class="history-arrow">→</td><td>待开具</td></tr>
-                      <tr><td>04月25日</td><td>发票金额</td><td>-</td><td class="history-arrow">→</td><td>10 万</td></tr>
-                    </tbody></table>
-                  </div></section>
-                  <section class="detail-group" data-role="create"><div class="detail-group-title"><span>快速新建发票</span><span>统一录入组件</span></div><div class="detail-card">
-                    <form class="drawer-form">
-                      <div class="drawer-form-grid"><div class="field"><label>客户名称</label><input class="input" value="请输入客户名称" /></div><div class="field"><label>开票金额</label><input class="input" value="请输入金额" /></div></div>
-                      <div class="drawer-form-grid"><div class="field"><label>发票类型</label><select class="select"><option>专票</option><option>普票</option></select></div><div class="field"><label>申请日期</label><input class="input" value="年/月/日" /></div></div>
-                      <div class="field"><label>备注</label><textarea class="textarea">请输入开票备注</textarea></div>
-                      <div class="detail-footer"><button class="button" type="button">提交</button><button class="button secondary" type="button">保存草稿</button></div>
-                    </form>
-                  </div></section>
+                  <div class="invoice-detail-heading">
+                    <h2 class="detail-title">李四土地征收补偿行政案</h2>
+                    <span class="invoice-status-pill success" data-detail-field="invoiceStatus" data-detail-type="invoice-status">已开票</span>
+                    <span class="invoice-amount-pill" data-detail-field="invoiceAmount" data-detail-type="invoice-amount">开票金额 80,000</span>
+                  </div>
+                  <div class="detail-tabs"><span class="detail-tab active">详情</span></div>
+
+                  <section class="detail-group" data-role="detail">
+                    <div class="detail-group-title"><span>基础信息</span></div>
+                    <div class="detail-card">
+                      <div class="invoice-info-grid">
+                        <div class="info-item"><div class="info-label">客户名称</div><div class="info-value invoice-link" data-detail-field="customerName">李四</div></div>
+                        <div class="info-item"><div class="info-label">合同编号</div><div class="info-value invoice-link" data-detail-field="contractNo">(2026)中磐 行 字第0001号</div></div>
+                        <div class="info-item"><div class="info-label">案件名称</div><div class="info-value invoice-link" data-detail-field="caseName">李四土地征收补偿行政案</div></div>
+                        <div class="info-item"><div class="info-label">开票金额</div><div class="info-value" data-detail-field="invoiceAmount">80,000</div></div>
+                        <div class="info-item"><div class="info-label">开票日期</div><div class="info-value" data-detail-field="invoiceDate">2026/04/29</div></div>
+                        <div class="info-item"><div class="info-label">开票状态</div><div class="info-value" data-detail-field="invoiceStatus" data-detail-type="status-badge">已开票</div></div>
+                      </div>
+                    </div>
+
+                    <div class="invoice-section-title"><span>开票信息</span><button class="button secondary" type="button">查看开票申请</button></div>
+                    <div class="detail-card">
+                      <div class="invoice-info-grid">
+                        <div class="info-item"><div class="info-label">开票申请人</div><div class="info-value" data-detail-field="invoiceApplicant" data-detail-type="person"><span class="person-chip"><span class="person-avatar">王</span>王助理</span></div></div>
+                        <div class="info-item"><div class="info-label">开票人</div><div class="info-value" data-detail-field="invoiceIssuer" data-detail-type="person"><span class="person-chip"><span class="person-avatar">徐</span>徐静</span></div></div>
+                        <div class="info-item"><div class="info-label">发票类型</div><div class="info-value" data-detail-field="invoiceType">增值税普通发票</div></div>
+                        <div class="info-item"><div class="info-label">发票抬头</div><div class="info-value" data-detail-field="invoiceHeading">李四</div></div>
+                        <div class="info-item"><div class="info-label">税号</div><div class="info-value" data-detail-field="taxNo">-</div></div>
+                        <div class="info-item"><div class="info-label">审批状态</div><div class="info-value" data-detail-field="approvalStatus">已通过</div></div>
+                        <div class="info-item"><div class="info-label">发票附件</div><div class="info-value" data-detail-field="invoiceAttachment">invoice_lisi_20260429.pdf</div></div>
+                        <div class="info-item"><div class="info-label">审批单</div><div class="info-value" data-detail-field="applyNo">SP-20260416-002</div></div>
+                      </div>
+                    </div>
+                  </section>
                 </div>
               </aside>
             </div>
@@ -66,6 +375,89 @@
       </div>
     </div>
     <script src="../../assets/scripts/app.js"></script>
+    <script>
+      function invoicePersonChip(value) {
+        const text = value || "-";
+        return text === "-" ? "-" : `<span class="person-chip"><span class="person-avatar">${text.charAt(0)}</span>${text}</span>`;
+      }
+
+      function setInvoiceField(key, value) {
+        document.querySelectorAll(`[data-detail-field="${key}"]`).forEach((node) => {
+          if (node.dataset.detailType === "person") {
+            node.innerHTML = invoicePersonChip(value);
+            return;
+          }
+          if (node.dataset.detailType === "invoice-status") {
+            const statusClass = value === "已开票" ? "success" : "warning";
+            node.className = `invoice-status-pill ${statusClass}`;
+            node.textContent = value || "-";
+            return;
+          }
+          if (node.dataset.detailType === "invoice-amount") {
+            node.textContent = `开票金额 ${value || "-"}`;
+            return;
+          }
+          if (node.dataset.detailType === "status-badge") {
+            const statusClass = value === "已开票" ? "success" : "warning";
+            node.innerHTML = `<span class="badge ${statusClass}">${value || "-"}</span>`;
+            return;
+          }
+          node.textContent = value || "-";
+        });
+      }
+
+      function openInvoiceDetail(row) {
+        if (!row) return;
+        const drawer = document.querySelector('body[data-page="invoice-management"] .detail-pane');
+        const workspace = document.querySelector('body[data-page="invoice-management"] .workspace');
+        if (!drawer || !workspace) return;
+
+        let backdrop = workspace.querySelector(".drawer-backdrop");
+        if (!backdrop) {
+          backdrop = document.createElement("div");
+          backdrop.className = "drawer-backdrop";
+          workspace.appendChild(backdrop);
+        }
+
+        const title = drawer.querySelector(".detail-title");
+        if (title) title.textContent = row.dataset.invoiceTitle || row.dataset.caseName || "开票详情";
+
+        [
+          "applyNo",
+          "customerName",
+          "contractNo",
+          "caseName",
+          "invoiceAmount",
+          "invoiceDate",
+          "invoiceStatus",
+          "invoiceApplicant",
+          "invoiceIssuer",
+          "invoiceType",
+          "invoiceHeading",
+          "taxNo",
+          "approvalStatus",
+          "invoiceAttachment"
+        ].forEach((key) => setInvoiceField(key, row.dataset[key]));
+
+        drawer.classList.remove("is-create");
+        drawer.classList.add("is-open");
+        backdrop.classList.add("is-open");
+      }
+
+      document.querySelectorAll('body[data-page="invoice-management"] tbody tr[data-apply-no]').forEach((row) => {
+        row.addEventListener("click", (event) => {
+          if (event.target.closest("[data-invoice-action]")) return;
+          openInvoiceDetail(row);
+        });
+      });
+
+      document.querySelectorAll("[data-invoice-action]").forEach((link) => {
+        link.addEventListener("click", (event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          openInvoiceDetail(link.closest("tr"));
+        });
+      });
+    </script>
   </body>
 </html>
-
