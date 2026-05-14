@@ -5,6 +5,306 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>团队管理 - 律所系统</title>
     <link rel="stylesheet" href="../../assets/styles/main.css" />
+    <style>
+      .team-page-header {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        align-items: flex-start;
+        margin-bottom: 18px;
+      }
+
+      .team-page-header h3 {
+        margin: 0 0 6px;
+        font-size: 22px;
+      }
+
+      .team-page-header p {
+        margin: 0;
+        color: var(--text-muted);
+      }
+
+      .team-role-tabs {
+        margin-bottom: 12px;
+      }
+
+      .team-filter-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        align-items: center;
+        margin-bottom: 16px;
+      }
+
+      .lawyer-type-row {
+        display: none;
+      }
+
+      .lawyer-type-row.is-visible {
+        display: flex;
+      }
+
+      .team-member-list {
+        display: grid;
+        gap: 14px;
+      }
+
+      .team-member-row {
+        display: grid;
+        grid-template-columns: 176px minmax(0, 1fr);
+        gap: 18px;
+        align-items: center;
+        min-height: 190px;
+        padding: 18px;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        background: #fff;
+        cursor: pointer;
+        transition: box-shadow 0.18s ease, transform 0.18s ease, background 0.18s ease;
+      }
+
+      .team-member-row:hover {
+        background: #f8fbff;
+        box-shadow: 0 14px 34px rgba(37, 83, 185, 0.12);
+        transform: translateY(-1px);
+      }
+
+      .team-avatar-card {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        align-self: center;
+        width: 160px;
+        height: 160px;
+        min-height: 160px;
+        border-radius: 12px;
+        background: #f5f7fb;
+      }
+
+      .team-avatar-photo {
+        width: 92px;
+        height: 92px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        color: #fff;
+        font-size: 38px;
+        font-weight: 800;
+        background: linear-gradient(135deg, #6792ff, #7b4df4);
+        overflow: hidden;
+      }
+
+      .team-avatar-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .team-member-top {
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        align-items: flex-start;
+      }
+
+      .team-member-name {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 8px;
+        margin: 0 0 10px;
+        font-size: 18px;
+      }
+
+      .skill-tags,
+      .load-strip {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .skill-tag,
+      .load-pill {
+        display: inline-flex;
+        align-items: center;
+        min-height: 26px;
+        padding: 0 10px;
+        border-radius: 999px;
+        background: #eef4ff;
+        color: #3568c9;
+        font-size: 12px;
+      }
+
+      .load-pill {
+        color: #25324a;
+        background: #f3f6fb;
+      }
+
+      .team-meta-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+        margin: 20px 0 10px;
+      }
+
+      .team-meta-label {
+        display: block;
+        margin-bottom: 6px;
+        color: var(--text-muted);
+        font-size: 12px;
+      }
+
+      .team-meta-value {
+        color: var(--text-main);
+        font-size: 14px;
+      }
+
+      .team-contact-line,
+      .team-intro {
+        color: var(--text-muted);
+        font-size: 13px;
+        line-height: 1.7;
+      }
+
+      .team-contact-line {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .team-intro {
+        margin-top: 8px;
+        color: #3d4b63;
+      }
+
+      .team-create-head {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 16px;
+        margin-bottom: 16px;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        background: #f8fbff;
+      }
+
+      .team-create-avatar {
+        display: grid;
+        place-items: center;
+        width: 96px;
+        height: 96px;
+        flex: 0 0 96px;
+        overflow: hidden;
+        border-radius: 16px;
+        background: #f2f5fb;
+      }
+
+      .team-create-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .team-create-avatar-fallback {
+        display: grid;
+        place-items: center;
+        width: 68px;
+        height: 68px;
+        border-radius: 50%;
+        color: #fff;
+        font-size: 28px;
+        font-weight: 800;
+        background: linear-gradient(135deg, #6792ff, #7b4df4);
+      }
+
+      .team-create-head-main h4 {
+        margin: 0 0 10px;
+        font-size: 15px;
+      }
+
+      .team-create-note {
+        margin-top: 8px;
+        color: var(--text-muted);
+        font-size: 12px;
+      }
+
+      .team-detail-profile {
+        display: grid;
+        grid-template-columns: 124px minmax(0, 1fr);
+        gap: 18px;
+        align-items: center;
+        margin-bottom: 16px;
+        padding: 16px;
+        background: #f8fbff;
+      }
+
+      .team-detail-avatar {
+        display: grid;
+        place-items: center;
+        width: 104px;
+        height: 104px;
+        overflow: hidden;
+        border-radius: 16px;
+        background: #f2f5fb;
+      }
+
+      .team-detail-avatar-inner {
+        display: grid;
+        place-items: center;
+        width: 78px;
+        height: 78px;
+        overflow: hidden;
+        border-radius: 50%;
+        color: #fff;
+        font-size: 32px;
+        font-weight: 800;
+        background: linear-gradient(135deg, #6792ff, #7b4df4);
+      }
+
+      .team-detail-avatar-inner img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .team-detail-profile-main {
+        min-width: 0;
+      }
+
+      .team-detail-role-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 10px;
+      }
+
+      .team-detail-skill-tags {
+        margin-bottom: 12px;
+      }
+
+      .team-detail-summary {
+        color: #3d4b63;
+        line-height: 1.8;
+      }
+
+      @media (max-width: 1100px) {
+        .team-member-row {
+          grid-template-columns: 1fr;
+        }
+
+        .team-member-top {
+          flex-direction: column;
+        }
+
+        .team-meta-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .team-detail-profile {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
   </head>
   <body data-page="team-management">
     <div class="app-shell">
@@ -17,974 +317,209 @@
                 <section class="panel">
                   <div class="team-page-header">
                     <div class="team-header-main">
-                      <h3>成员管理</h3>
-                      <p>统一维护案源、邀约、谈案与律师成员信息，快速查看岗位、负载、擅长方向与团队状态。</p>
+                      <h3>团队管理</h3>
+                      <p>维护律所运营、邀约、案源、谈案、律师和职能成员信息，关注组织协同与业务分工。</p>
                     </div>
-                    <button class="button" type="button">＋ 新增成员</button>
+                    <button class="button" type="button" data-open-create>+ 新增成员</button>
                   </div>
 
-                  <div class="tabs submenu team-role-tabs">
-                    <a class="tab active" href="#">全部成员 20</a>
-                    <a class="tab" href="#">案源专员 4</a>
-                    <a class="tab" href="#">邀约专员 4</a>
-                    <a class="tab" href="#">谈案专员 4</a>
-                    <a class="tab" href="#">律师 8</a>
+                  <div class="tabs submenu team-role-tabs" data-role-tabs>
+                    <a class="tab active" href="#" data-role-filter="全部">全部</a>
+                    <a class="tab" href="#" data-role-filter="运营">运营</a>
+                    <a class="tab" href="#" data-role-filter="邀约">邀约</a>
+                    <a class="tab" href="#" data-role-filter="案源">案源</a>
+                    <a class="tab" href="#" data-role-filter="谈案">谈案</a>
+                    <a class="tab" href="#" data-role-filter="律师">律师</a>
+                    <a class="tab" href="#" data-role-filter="财务">财务</a>
+                    <a class="tab" href="#" data-role-filter="行政">行政</a>
+                    <a class="tab" href="#" data-role-filter="人事">人事</a>
                   </div>
 
                   <div class="team-filter-row">
-                    <div class="pill-row">
-                      <span class="pill active">全部律师类型</span>
-                      <span class="pill">提成律师</span>
-                      <span class="pill">授薪律师</span>
-                      <span class="pill">合伙人</span>
-                      <span class="pill">实习律师</span>
+                    <div class="pill-row lawyer-type-row" data-lawyer-types>
+                      <span class="pill active" data-lawyer-filter="全部律师">全部律师</span>
+                      <span class="pill" data-lawyer-filter="权益合伙人律师">权益合伙人律师</span>
+                      <span class="pill" data-lawyer-filter="高级合伙人律师">高级合伙人律师</span>
+                      <span class="pill" data-lawyer-filter="初级合伙人律师">初级合伙人律师</span>
+                      <span class="pill" data-lawyer-filter="提成律师">提成律师</span>
+                      <span class="pill" data-lawyer-filter="工薪律师">工薪律师</span>
                     </div>
                     <div class="toolbar-tools"><span>筛选</span><span>排序</span><span>搜索</span></div>
                   </div>
 
-                  <div class="team-stats-grid">
-                    <div class="team-stat-card">
-                      <div class="team-stat-label">当前在岗成员</div>
-                      <div class="team-stat-value">20</div>
-                      <div class="team-stat-note">案源 4 人 / 邀约 4 人 / 谈案 4 人 / 律师 8 人</div>
-                    </div>
-                    <div class="team-stat-card">
-                      <div class="team-stat-label">本周邀约负载</div>
-                      <div class="team-stat-value">70</div>
-                      <div class="team-stat-note">待到店 28 位，邀约专员的排期压力可快速看到</div>
-                    </div>
-                    <div class="team-stat-card">
-                      <div class="team-stat-label">当前谈案负载</div>
-                      <div class="team-stat-value">70</div>
-                      <div class="team-stat-note">谈案专员与律师共同承接高意向客户</div>
-                    </div>
-                    <div class="team-stat-card">
-                      <div class="team-stat-label">在办案件总量</div>
-                      <div class="team-stat-value">71</div>
-                      <div class="team-stat-note">适合结合律师负载快速判断排期压力</div>
-                    </div>
-                  </div>
-
                   <div class="team-member-list">
-                    <div class="list-item team-member-row"
-                      data-member-name="朱浩"
-                      data-member-no="T1001"
-                      data-member-avatar="../../image/nan7.png"
-                      data-role-name="案源专员"
-                      data-lawyer-type="-"
-                      data-phone="13800011231"
-                      data-email="zhuhao@lawfirm.com"
-                      data-age="33"
-                      data-education="本科"
-                      data-join-date="2022/03/10"
-                      data-hometown="长沙"
-                      data-member-status="在岗"
-                      data-specialty-tags="短视频案源、刑事线索、客户初筛"
-                      data-intro="负责短视频及直播线索入口管理，擅长判断客户紧急程度并完成首轮筛选。"
-                      data-lead-load="26"
-                      data-invite-load="7"
-                      data-negotiation-load="0"
-                      data-case-load="0"
-                    >
-                      <div class="team-avatar-card"><div class="team-avatar-photo is-image"><img src="../../image/nan7.png" alt="朱浩" /></div></div>
-                      <div class="team-member-content">
-                        <div class="team-member-top">
-                          <div>
-                            <h3 class="team-member-name">朱浩 <span class="badge primary">案源专员</span></h3>
-                            <div class="skill-tags"><span class="skill-tag">短视频案源</span><span class="skill-tag">刑事线索</span><span class="skill-tag">客户初筛</span></div>
-                          </div>
-                          <div class="load-strip"><span class="load-pill">跟进案源 <strong>26</strong></span><span class="load-pill">待分配 <strong>7</strong></span></div>
-                        </div>
-                        <div class="team-meta-grid">
-                          <div class="team-meta-item"><span class="team-meta-label">员工号</span><span class="team-meta-value">T1001</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">学历 / 年龄</span><span class="team-meta-value">本科 / 33 岁</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">入职日期</span><span class="team-meta-value">2022/03/10</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">所在地</span><span class="team-meta-value">长沙</span></div>
-                        </div>
-                        <div class="team-contact-line"><span>电话：13800011231</span><span>邮箱：zhuhao@lawfirm.com</span></div>
-                        <div class="team-intro">负责短视频及直播线索入口管理，擅长判断客户紧急程度并完成首轮筛选。</div>
-                      </div>
-                    </div>
-
-                    <div class="list-item team-member-row"
-                      data-member-name="林悦"
-                      data-member-no="T1002"
-                      data-member-avatar="../../image/nv3.png"
-                      data-role-name="案源专员"
-                      data-lawyer-type="-"
-                      data-phone="13800011232"
-                      data-email="linyue@lawfirm.com"
-                      data-age="29"
-                      data-education="本科"
-                      data-join-date="2023/02/14"
-                      data-hometown="北京"
-                      data-member-status="在岗"
-                      data-specialty-tags="百度投流、婚家咨询、需求分层"
-                      data-intro="负责搜索与信息流渠道案源归集，擅长婚家纠纷咨询与高意向客户分层。"
-                      data-lead-load="21"
-                      data-invite-load="5"
-                      data-negotiation-load="0"
-                      data-case-load="0"
-                    >
-                      <div class="team-avatar-card"><div class="team-avatar-photo is-image"><img src="../../image/nv3.png" alt="林悦" /></div></div>
-                      <div class="team-member-content">
-                        <div class="team-member-top">
-                          <div>
-                            <h3 class="team-member-name">林悦 <span class="badge primary">案源专员</span></h3>
-                            <div class="skill-tags"><span class="skill-tag">百度投流</span><span class="skill-tag">婚家咨询</span><span class="skill-tag">需求分层</span></div>
-                          </div>
-                          <div class="load-strip"><span class="load-pill">跟进案源 <strong>21</strong></span><span class="load-pill">待分配 <strong>5</strong></span></div>
-                        </div>
-                        <div class="team-meta-grid">
-                          <div class="team-meta-item"><span class="team-meta-label">员工号</span><span class="team-meta-value">T1002</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">学历 / 年龄</span><span class="team-meta-value">本科 / 29 岁</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">入职日期</span><span class="team-meta-value">2023/02/14</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">所在地</span><span class="team-meta-value">北京</span></div>
-                        </div>
-                        <div class="team-contact-line"><span>电话：13800011232</span><span>邮箱：linyue@lawfirm.com</span></div>
-                        <div class="team-intro">负责搜索与信息流渠道案源归集，擅长婚家纠纷咨询与高意向客户分层。</div>
-                      </div>
-                    </div>
-
-                    <div class="list-item team-member-row"
-                      data-member-name="周航"
-                      data-member-no="T1003"
-                      data-member-avatar=""
-                      data-role-name="案源专员"
-                      data-lawyer-type="-"
-                      data-phone="13800011233"
-                      data-email="zhouhang@lawfirm.com"
-                      data-age="31"
-                      data-education="硕士"
-                      data-join-date="2021/08/09"
-                      data-hometown="上海"
-                      data-member-status="在岗"
-                      data-specialty-tags="企业法顾、合同咨询、线索归档"
-                      data-intro="负责企业咨询类线索整理和案源归档，对非诉专项识别准确度高。"
-                      data-lead-load="24"
-                      data-invite-load="4"
-                      data-negotiation-load="0"
-                      data-case-load="0"
-                    >
-                      <div class="team-avatar-card"><div class="team-avatar-photo">周</div></div>
-                      <div class="team-member-content">
-                        <div class="team-member-top">
-                          <div>
-                            <h3 class="team-member-name">周航 <span class="badge primary">案源专员</span></h3>
-                            <div class="skill-tags"><span class="skill-tag">企业法顾</span><span class="skill-tag">合同咨询</span><span class="skill-tag">线索归档</span></div>
-                          </div>
-                          <div class="load-strip"><span class="load-pill">跟进案源 <strong>24</strong></span><span class="load-pill">待分配 <strong>4</strong></span></div>
-                        </div>
-                        <div class="team-meta-grid">
-                          <div class="team-meta-item"><span class="team-meta-label">员工号</span><span class="team-meta-value">T1003</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">学历 / 年龄</span><span class="team-meta-value">硕士 / 31 岁</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">入职日期</span><span class="team-meta-value">2021/08/09</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">所在地</span><span class="team-meta-value">上海</span></div>
-                        </div>
-                        <div class="team-contact-line"><span>电话：13800011233</span><span>邮箱：zhouhang@lawfirm.com</span></div>
-                        <div class="team-intro">负责企业咨询类线索整理和案源归档，对非诉专项识别准确度高。</div>
-                      </div>
-                    </div>
-
-                    <div class="list-item team-member-row"
-                      data-member-name="许曼"
-                      data-member-no="T1004"
-                      data-member-avatar="../../image/nv9.png"
-                      data-role-name="案源专员"
-                      data-lawyer-type="-"
-                      data-phone="13800011234"
-                      data-email="xuman@lawfirm.com"
-                      data-age="27"
-                      data-education="本科"
-                      data-join-date="2024/01/06"
-                      data-hometown="杭州"
-                      data-member-status="在岗"
-                      data-specialty-tags="小红书咨询、婚家纠纷、客户建档"
-                      data-intro="负责内容平台获客与客户建档，擅长婚家纠纷和执行案件前置判断。"
-                      data-lead-load="18"
-                      data-invite-load="6"
-                      data-negotiation-load="0"
-                      data-case-load="0"
-                    >
-                      <div class="team-avatar-card"><div class="team-avatar-photo is-image"><img src="../../image/nv9.png" alt="许曼" /></div></div>
-                      <div class="team-member-content">
-                        <div class="team-member-top">
-                          <div>
-                            <h3 class="team-member-name">许曼 <span class="badge primary">案源专员</span></h3>
-                            <div class="skill-tags"><span class="skill-tag">小红书咨询</span><span class="skill-tag">婚家纠纷</span><span class="skill-tag">客户建档</span></div>
-                          </div>
-                          <div class="load-strip"><span class="load-pill">跟进案源 <strong>18</strong></span><span class="load-pill">待分配 <strong>6</strong></span></div>
-                        </div>
-                        <div class="team-meta-grid">
-                          <div class="team-meta-item"><span class="team-meta-label">员工号</span><span class="team-meta-value">T1004</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">学历 / 年龄</span><span class="team-meta-value">本科 / 27 岁</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">入职日期</span><span class="team-meta-value">2024/01/06</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">所在地</span><span class="team-meta-value">杭州</span></div>
-                        </div>
-                        <div class="team-contact-line"><span>电话：13800011234</span><span>邮箱：xuman@lawfirm.com</span></div>
-                        <div class="team-intro">负责内容平台获客与客户建档，擅长婚家纠纷和执行案件前置判断。</div>
-                      </div>
-                    </div>
-
-                    <div class="list-item team-member-row"
-                      data-member-name="王珂"
-                      data-member-no="T1005"
-                      data-member-avatar=""
-                      data-role-name="邀约专员"
-                      data-lawyer-type="-"
-                      data-phone="13900012231"
-                      data-email="wangke@lawfirm.com"
-                      data-age="30"
-                      data-education="大专"
-                      data-join-date="2023/01/06"
-                      data-hometown="天津"
-                      data-member-status="在岗"
-                      data-specialty-tags="电话邀约、到店确认、接待排期"
-                      data-intro="负责案源电话邀约和到所排期，强调邀约节奏、确认效率与到店率。"
-                      data-lead-load="0"
-                      data-invite-load="19"
-                      data-negotiation-load="8"
-                      data-case-load="0"
-                    >
-                      <div class="team-avatar-card"><div class="team-avatar-photo">王</div></div>
-                      <div class="team-member-content">
-                        <div class="team-member-top">
-                          <div>
-                            <h3 class="team-member-name">王珂 <span class="badge warning">邀约专员</span></h3>
-                            <div class="skill-tags"><span class="skill-tag">电话邀约</span><span class="skill-tag">到店确认</span><span class="skill-tag">接待排期</span></div>
-                          </div>
-                          <div class="load-strip"><span class="load-pill">本周邀约 <strong>19</strong></span><span class="load-pill">待到店 <strong>8</strong></span></div>
-                        </div>
-                        <div class="team-meta-grid">
-                          <div class="team-meta-item"><span class="team-meta-label">员工号</span><span class="team-meta-value">T1005</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">学历 / 年龄</span><span class="team-meta-value">大专 / 30 岁</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">入职日期</span><span class="team-meta-value">2023/01/06</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">所在地</span><span class="team-meta-value">天津</span></div>
-                        </div>
-                        <div class="team-contact-line"><span>电话：13900012231</span><span>邮箱：wangke@lawfirm.com</span></div>
-                        <div class="team-intro">负责案源电话邀约和到所排期，强调邀约节奏、确认效率与到店率。</div>
-                      </div>
-                    </div>
-
-                    <div class="list-item team-member-row"
-                      data-member-name="李萌"
-                      data-member-no="T1006"
-                      data-member-avatar=""
-                      data-role-name="邀约专员"
-                      data-lawyer-type="-"
-                      data-phone="13900012232"
-                      data-email="limeng@lawfirm.com"
-                      data-age="28"
-                      data-education="本科"
-                      data-join-date="2022/06/19"
-                      data-hometown="南京"
-                      data-member-status="在岗"
-                      data-specialty-tags="微信邀约、失联召回、客户维护"
-                      data-intro="善于通过微信沟通完成失联客户召回，对回访和复邀转化表现稳定。"
-                      data-lead-load="0"
-                      data-invite-load="16"
-                      data-negotiation-load="6"
-                      data-case-load="0"
-                    >
-                      <div class="team-avatar-card"><div class="team-avatar-photo">李</div></div>
-                      <div class="team-member-content">
-                        <div class="team-member-top">
-                          <div>
-                            <h3 class="team-member-name">李萌 <span class="badge warning">邀约专员</span></h3>
-                            <div class="skill-tags"><span class="skill-tag">微信邀约</span><span class="skill-tag">失联召回</span><span class="skill-tag">客户维护</span></div>
-                          </div>
-                          <div class="load-strip"><span class="load-pill">本周邀约 <strong>16</strong></span><span class="load-pill">待到店 <strong>6</strong></span></div>
-                        </div>
-                        <div class="team-meta-grid">
-                          <div class="team-meta-item"><span class="team-meta-label">员工号</span><span class="team-meta-value">T1006</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">学历 / 年龄</span><span class="team-meta-value">本科 / 28 岁</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">入职日期</span><span class="team-meta-value">2022/06/19</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">所在地</span><span class="team-meta-value">南京</span></div>
-                        </div>
-                        <div class="team-contact-line"><span>电话：13900012232</span><span>邮箱：limeng@lawfirm.com</span></div>
-                        <div class="team-intro">善于通过微信沟通完成失联客户召回，对回访和复邀转化表现稳定。</div>
-                      </div>
-                    </div>
-
-                    <div class="list-item team-member-row"
-                      data-member-name="马兰"
-                      data-member-no="T1007"
-                      data-member-avatar=""
-                      data-role-name="邀约专员"
-                      data-lawyer-type="-"
-                      data-phone="13900012233"
-                      data-email="malan@lawfirm.com"
-                      data-age="32"
-                      data-education="本科"
-                      data-join-date="2021/12/03"
-                      data-hometown="成都"
-                      data-member-status="在岗"
-                      data-specialty-tags="高净值接待、到店接待、服务表达"
-                      data-intro="负责高客单价客户邀约接待，擅长到店前准备和现场服务表达。"
-                      data-lead-load="0"
-                      data-invite-load="21"
-                      data-negotiation-load="9"
-                      data-case-load="0"
-                    >
-                      <div class="team-avatar-card"><div class="team-avatar-photo">马</div></div>
-                      <div class="team-member-content">
-                        <div class="team-member-top">
-                          <div>
-                            <h3 class="team-member-name">马兰 <span class="badge warning">邀约专员</span></h3>
-                            <div class="skill-tags"><span class="skill-tag">高净值接待</span><span class="skill-tag">到店接待</span><span class="skill-tag">服务表达</span></div>
-                          </div>
-                          <div class="load-strip"><span class="load-pill">本周邀约 <strong>21</strong></span><span class="load-pill">待到店 <strong>9</strong></span></div>
-                        </div>
-                        <div class="team-meta-grid">
-                          <div class="team-meta-item"><span class="team-meta-label">员工号</span><span class="team-meta-value">T1007</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">学历 / 年龄</span><span class="team-meta-value">本科 / 32 岁</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">入职日期</span><span class="team-meta-value">2021/12/03</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">所在地</span><span class="team-meta-value">成都</span></div>
-                        </div>
-                        <div class="team-contact-line"><span>电话：13900012233</span><span>邮箱：malan@lawfirm.com</span></div>
-                        <div class="team-intro">负责高客单价客户邀约接待，擅长到店前准备和现场服务表达。</div>
-                      </div>
-                    </div>
-
-                    <div class="list-item team-member-row"
-                      data-member-name="赵倩"
-                      data-member-no="T1008"
-                      data-member-avatar=""
-                      data-role-name="邀约专员"
-                      data-lawyer-type="-"
-                      data-phone="13900012234"
-                      data-email="zhaoqian@lawfirm.com"
-                      data-age="26"
-                      data-education="大专"
-                      data-join-date="2024/02/20"
-                      data-hometown="西安"
-                      data-member-status="在岗"
-                      data-specialty-tags="邀约脚本、客户安抚、复邀提醒"
-                      data-intro="负责标准化邀约脚本执行和客户安抚，适合承接情绪波动较大的咨询客户。"
-                      data-lead-load="0"
-                      data-invite-load="14"
-                      data-negotiation-load="5"
-                      data-case-load="0"
-                    >
-                      <div class="team-avatar-card"><div class="team-avatar-photo">赵</div></div>
-                      <div class="team-member-content">
-                        <div class="team-member-top">
-                          <div>
-                            <h3 class="team-member-name">赵倩 <span class="badge warning">邀约专员</span></h3>
-                            <div class="skill-tags"><span class="skill-tag">邀约脚本</span><span class="skill-tag">客户安抚</span><span class="skill-tag">复邀提醒</span></div>
-                          </div>
-                          <div class="load-strip"><span class="load-pill">本周邀约 <strong>14</strong></span><span class="load-pill">待到店 <strong>5</strong></span></div>
-                        </div>
-                        <div class="team-meta-grid">
-                          <div class="team-meta-item"><span class="team-meta-label">员工号</span><span class="team-meta-value">T1008</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">学历 / 年龄</span><span class="team-meta-value">大专 / 26 岁</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">入职日期</span><span class="team-meta-value">2024/02/20</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">所在地</span><span class="team-meta-value">西安</span></div>
-                        </div>
-                        <div class="team-contact-line"><span>电话：13900012234</span><span>邮箱：zhaoqian@lawfirm.com</span></div>
-                        <div class="team-intro">负责标准化邀约脚本执行和客户安抚，适合承接情绪波动较大的咨询客户。</div>
-                      </div>
-                    </div>
-
-                    <div class="list-item team-member-row"
-                      data-member-name="徐静"
-                      data-member-no="T1009"
-                      data-member-avatar=""
-                      data-role-name="谈案专员"
-                      data-lawyer-type="-"
-                      data-phone="13700013231"
-                      data-email="xujing@lawfirm.com"
-                      data-age="30"
-                      data-education="本科"
-                      data-join-date="2022/11/03"
-                      data-hometown="长沙"
-                      data-member-status="在岗"
-                      data-specialty-tags="报价沟通、谈案转化、客户关系"
-                      data-intro="承接高意向客户谈案，负责报价沟通、签约前推进和客户关系维护。"
-                      data-lead-load="0"
-                      data-invite-load="0"
-                      data-negotiation-load="9"
-                      data-case-load="3"
-                    >
-                      <div class="team-avatar-card"><div class="team-avatar-photo">徐</div></div>
-                      <div class="team-member-content">
-                        <div class="team-member-top">
-                          <div>
-                            <h3 class="team-member-name">徐静 <span class="badge success">谈案专员</span></h3>
-                            <div class="skill-tags"><span class="skill-tag">报价沟通</span><span class="skill-tag">谈案转化</span><span class="skill-tag">客户关系</span></div>
-                          </div>
-                          <div class="load-strip"><span class="load-pill">当前谈案 <strong>9</strong></span><span class="load-pill">待签约 <strong>3</strong></span></div>
-                        </div>
-                        <div class="team-meta-grid">
-                          <div class="team-meta-item"><span class="team-meta-label">员工号</span><span class="team-meta-value">T1009</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">学历 / 年龄</span><span class="team-meta-value">本科 / 30 岁</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">入职日期</span><span class="team-meta-value">2022/11/03</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">所在地</span><span class="team-meta-value">长沙</span></div>
-                        </div>
-                        <div class="team-contact-line"><span>电话：13700013231</span><span>邮箱：xujing@lawfirm.com</span></div>
-                        <div class="team-intro">承接高意向客户谈案，负责报价沟通、签约前推进和客户关系维护。</div>
-                      </div>
-                    </div>
-
-                    <div class="list-item team-member-row"
-                      data-member-name="谭雪"
-                      data-member-no="T1010"
-                      data-member-avatar=""
-                      data-role-name="谈案专员"
-                      data-lawyer-type="-"
-                      data-phone="13700013232"
-                      data-email="tanxue@lawfirm.com"
-                      data-age="34"
-                      data-education="硕士"
-                      data-join-date="2020/09/18"
-                      data-hometown="广州"
-                      data-member-status="在岗"
-                      data-specialty-tags="行政争议、成交推进、方案表达"
-                      data-intro="擅长行政争议类方案表达和报价说明，对异议处理和成交推进经验丰富。"
-                      data-lead-load="0"
-                      data-invite-load="0"
-                      data-negotiation-load="11"
-                      data-case-load="4"
-                    >
-                      <div class="team-avatar-card"><div class="team-avatar-photo">谭</div></div>
-                      <div class="team-member-content">
-                        <div class="team-member-top">
-                          <div>
-                            <h3 class="team-member-name">谭雪 <span class="badge success">谈案专员</span></h3>
-                            <div class="skill-tags"><span class="skill-tag">行政争议</span><span class="skill-tag">成交推进</span><span class="skill-tag">方案表达</span></div>
-                          </div>
-                          <div class="load-strip"><span class="load-pill">当前谈案 <strong>11</strong></span><span class="load-pill">待签约 <strong>4</strong></span></div>
-                        </div>
-                        <div class="team-meta-grid">
-                          <div class="team-meta-item"><span class="team-meta-label">员工号</span><span class="team-meta-value">T1010</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">学历 / 年龄</span><span class="team-meta-value">硕士 / 34 岁</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">入职日期</span><span class="team-meta-value">2020/09/18</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">所在地</span><span class="team-meta-value">广州</span></div>
-                        </div>
-                        <div class="team-contact-line"><span>电话：13700013232</span><span>邮箱：tanxue@lawfirm.com</span></div>
-                        <div class="team-intro">擅长行政争议类方案表达和报价说明，对异议处理和成交推进经验丰富。</div>
-                      </div>
-                    </div>
-
-                    <div class="list-item team-member-row"
-                      data-member-name="宋然"
-                      data-member-no="T1011"
-                      data-member-avatar=""
-                      data-role-name="谈案专员"
-                      data-lawyer-type="-"
-                      data-phone="13700013233"
-                      data-email="songran@lawfirm.com"
-                      data-age="31"
-                      data-education="本科"
-                      data-join-date="2021/05/26"
-                      data-hometown="苏州"
-                      data-member-status="在岗"
-                      data-specialty-tags="执行案件、顾问签约、客户画像"
-                      data-intro="负责执行和顾问类项目谈案，能快速梳理客户画像并完成签约转化。"
-                      data-lead-load="0"
-                      data-invite-load="0"
-                      data-negotiation-load="8"
-                      data-case-load="2"
-                    >
+                    <article class="team-member-row" data-role="运营" data-lawyer-type="" data-member-name="宋妍" data-position="运营专员" data-no="T1001" data-phone="13800011001" data-email="songyan@lawfirm.com" data-education="本科" data-age="29" data-join="2022/03/10" data-city="北京" data-tags="渠道对接,投放复盘,数据整理" data-intro="负责渠道投流数据整理、成本文件上传与运营案源入池校验。">
                       <div class="team-avatar-card"><div class="team-avatar-photo">宋</div></div>
                       <div class="team-member-content">
-                        <div class="team-member-top">
-                          <div>
-                            <h3 class="team-member-name">宋然 <span class="badge success">谈案专员</span></h3>
-                            <div class="skill-tags"><span class="skill-tag">执行案件</span><span class="skill-tag">顾问签约</span><span class="skill-tag">客户画像</span></div>
-                          </div>
-                          <div class="load-strip"><span class="load-pill">当前谈案 <strong>8</strong></span><span class="load-pill">待签约 <strong>2</strong></span></div>
-                        </div>
-                        <div class="team-meta-grid">
-                          <div class="team-meta-item"><span class="team-meta-label">员工号</span><span class="team-meta-value">T1011</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">学历 / 年龄</span><span class="team-meta-value">本科 / 31 岁</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">入职日期</span><span class="team-meta-value">2021/05/26</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">所在地</span><span class="team-meta-value">苏州</span></div>
-                        </div>
-                        <div class="team-contact-line"><span>电话：13700013233</span><span>邮箱：songran@lawfirm.com</span></div>
-                        <div class="team-intro">负责执行和顾问类项目谈案，能快速梳理客户画像并完成签约转化。</div>
+                        <div class="team-member-top"><div><h3 class="team-member-name">宋妍 <span class="badge primary">运营</span></h3><div class="skill-tags"><span class="skill-tag">渠道对接</span><span class="skill-tag">投放复盘</span><span class="skill-tag">数据整理</span></div></div></div>
+                        <div class="team-meta-grid"><div><span class="team-meta-label">员工号</span><span class="team-meta-value">T1001</span></div><div><span class="team-meta-label">学历 / 年龄</span><span class="team-meta-value">本科 / 29 岁</span></div><div><span class="team-meta-label">入职日期</span><span class="team-meta-value">2022/03/10</span></div><div><span class="team-meta-label">所在地</span><span class="team-meta-value">北京</span></div></div>
+                        <div class="team-contact-line"><span>电话：13800011001</span><span>邮箱：songyan@lawfirm.com</span></div><div class="team-intro">负责渠道投流数据整理、成本文件上传与运营案源入池校验。</div>
                       </div>
-                    </div>
+                    </article>
 
-                    <div class="list-item team-member-row"
-                      data-member-name="杜青"
-                      data-member-no="T1012"
-                      data-member-avatar=""
-                      data-role-name="谈案专员"
-                      data-lawyer-type="-"
-                      data-phone="13700013234"
-                      data-email="duqing@lawfirm.com"
-                      data-age="29"
-                      data-education="本科"
-                      data-join-date="2023/04/12"
-                      data-hometown="武汉"
-                      data-member-status="在岗"
-                      data-specialty-tags="刑事咨询、风险沟通、异议处理"
-                      data-intro="负责刑事咨询客户的深度谈案与风险说明，善于处理价格和周期异议。"
-                      data-lead-load="0"
-                      data-invite-load="0"
-                      data-negotiation-load="7"
-                      data-case-load="3"
-                    >
+                    <article class="team-member-row" data-role="运营" data-lawyer-type="" data-member-name="周航" data-position="运营主管" data-no="T1002" data-phone="13800011002" data-email="zhouhang@lawfirm.com" data-education="硕士" data-age="34" data-join="2020/08/18" data-city="上海" data-tags="渠道策略,ROI分析,自动分发" data-intro="负责运营渠道策略、ROI判断和自动分发规则维护。">
+                      <div class="team-avatar-card"><div class="team-avatar-photo">周</div></div>
+                      <div class="team-member-content"><div class="team-member-top"><div><h3 class="team-member-name">周航 <span class="badge primary">运营</span></h3><div class="skill-tags"><span class="skill-tag">渠道策略</span><span class="skill-tag">ROI分析</span><span class="skill-tag">自动分发</span></div></div></div><div class="team-meta-grid"><div><span class="team-meta-label">员工号</span><span class="team-meta-value">T1002</span></div><div><span class="team-meta-label">学历 / 年龄</span><span class="team-meta-value">硕士 / 34 岁</span></div><div><span class="team-meta-label">入职日期</span><span class="team-meta-value">2020/08/18</span></div><div><span class="team-meta-label">所在地</span><span class="team-meta-value">上海</span></div></div><div class="team-contact-line"><span>电话：13800011002</span><span>邮箱：zhouhang@lawfirm.com</span></div><div class="team-intro">负责运营渠道策略、ROI判断和自动分发规则维护。</div></div>
+                    </article>
+
+                    <article class="team-member-row" data-role="邀约" data-lawyer-type="" data-member-name="王助理" data-position="邀约专员" data-no="T1003" data-phone="13900012001" data-email="wangzhuli@lawfirm.com" data-education="大专" data-age="28" data-join="2023/01/06" data-city="天津" data-tags="电话邀约,到店确认,客户跟催" data-intro="负责案源电话邀约、到店确认与接待排期。">
+                      <div class="team-avatar-card"><div class="team-avatar-photo">王</div></div>
+                      <div class="team-member-content"><div class="team-member-top"><div><h3 class="team-member-name">王助理 <span class="badge warning">邀约专员</span></h3><div class="skill-tags"><span class="skill-tag">电话邀约</span><span class="skill-tag">到店确认</span><span class="skill-tag">客户跟催</span></div></div><div class="load-strip"><span class="load-pill">本周邀约 <strong>18</strong></span><span class="load-pill">历史邀约数量 <strong>386</strong></span></div></div><div class="team-meta-grid"><div><span class="team-meta-label">员工号</span><span class="team-meta-value">T1003</span></div><div><span class="team-meta-label">学历 / 年龄</span><span class="team-meta-value">大专 / 28 岁</span></div><div><span class="team-meta-label">入职日期</span><span class="team-meta-value">2023/01/06</span></div><div><span class="team-meta-label">所在地</span><span class="team-meta-value">天津</span></div></div><div class="team-contact-line"><span>电话：13900012001</span><span>邮箱：wangzhuli@lawfirm.com</span></div><div class="team-intro">负责案源电话邀约、到店确认与接待排期。</div></div>
+                    </article>
+
+                    <article class="team-member-row" data-role="邀约" data-lawyer-type="" data-member-name="马兰" data-position="邀约专员" data-no="T1004" data-phone="13900012002" data-email="malan@lawfirm.com" data-education="本科" data-age="31" data-join="2021/12/03" data-city="成都" data-tags="微信邀约,高净值接待,复约转化" data-intro="擅长微信邀约与高净值客户到店接待。">
+                      <div class="team-avatar-card"><div class="team-avatar-photo">马</div></div>
+                      <div class="team-member-content"><div class="team-member-top"><div><h3 class="team-member-name">马兰 <span class="badge warning">邀约专员</span></h3><div class="skill-tags"><span class="skill-tag">微信邀约</span><span class="skill-tag">高净值接待</span><span class="skill-tag">复约转化</span></div></div><div class="load-strip"><span class="load-pill">本周邀约 <strong>21</strong></span><span class="load-pill">历史邀约数量 <strong>421</strong></span></div></div><div class="team-meta-grid"><div><span class="team-meta-label">员工号</span><span class="team-meta-value">T1004</span></div><div><span class="team-meta-label">学历 / 年龄</span><span class="team-meta-value">本科 / 31 岁</span></div><div><span class="team-meta-label">入职日期</span><span class="team-meta-value">2021/12/03</span></div><div><span class="team-meta-label">所在地</span><span class="team-meta-value">成都</span></div></div><div class="team-contact-line"><span>电话：13900012002</span><span>邮箱：malan@lawfirm.com</span></div><div class="team-intro">擅长微信邀约与高净值客户到店接待。</div></div>
+                    </article>
+
+                    <article class="team-member-row" data-role="案源" data-lawyer-type="" data-member-name="朱浩" data-position="案源专员" data-no="T1005" data-phone="13800013001" data-email="zhuhao@lawfirm.com" data-education="本科" data-age="32" data-join="2022/03/10" data-city="长沙" data-tags="短视频案源,客户初筛,刑事线索" data-intro="负责短视频和直播线索入口管理，判断客户紧急程度并完成初筛。">
+                      <div class="team-avatar-card"><div class="team-avatar-photo"><img src="../../image/nan7.png" alt="朱浩" /></div></div>
+                      <div class="team-member-content"><div class="team-member-top"><div><h3 class="team-member-name">朱浩 <span class="badge primary">案源专员</span></h3><div class="skill-tags"><span class="skill-tag">短视频案源</span><span class="skill-tag">客户初筛</span><span class="skill-tag">刑事线索</span></div></div></div><div class="team-meta-grid"><div><span class="team-meta-label">员工号</span><span class="team-meta-value">T1005</span></div><div><span class="team-meta-label">学历 / 年龄</span><span class="team-meta-value">本科 / 32 岁</span></div><div><span class="team-meta-label">入职日期</span><span class="team-meta-value">2022/03/10</span></div><div><span class="team-meta-label">所在地</span><span class="team-meta-value">长沙</span></div></div><div class="team-contact-line"><span>电话：13800013001</span><span>邮箱：zhuhao@lawfirm.com</span></div><div class="team-intro">负责短视频和直播线索入口管理，判断客户紧急程度并完成初筛。</div></div>
+                    </article>
+
+                    <article class="team-member-row" data-role="案源" data-lawyer-type="" data-member-name="林悦" data-position="案源专员" data-no="T1006" data-phone="13800013002" data-email="linyue@lawfirm.com" data-education="本科" data-age="29" data-join="2023/02/14" data-city="北京" data-tags="百度投流,婚家咨询,需求分层" data-intro="负责搜索渠道案源归集，擅长婚家纠纷咨询与需求分层。">
+                      <div class="team-avatar-card"><div class="team-avatar-photo"><img src="../../image/nv3.png" alt="林悦" /></div></div>
+                      <div class="team-member-content"><div class="team-member-top"><div><h3 class="team-member-name">林悦 <span class="badge primary">案源专员</span></h3><div class="skill-tags"><span class="skill-tag">百度投流</span><span class="skill-tag">婚家咨询</span><span class="skill-tag">需求分层</span></div></div></div><div class="team-meta-grid"><div><span class="team-meta-label">员工号</span><span class="team-meta-value">T1006</span></div><div><span class="team-meta-label">学历 / 年龄</span><span class="team-meta-value">本科 / 29 岁</span></div><div><span class="team-meta-label">入职日期</span><span class="team-meta-value">2023/02/14</span></div><div><span class="team-meta-label">所在地</span><span class="team-meta-value">北京</span></div></div><div class="team-contact-line"><span>电话：13800013002</span><span>邮箱：linyue@lawfirm.com</span></div><div class="team-intro">负责搜索渠道案源归集，擅长婚家纠纷咨询与需求分层。</div></div>
+                    </article>
+
+                    <article class="team-member-row" data-role="谈案" data-lawyer-type="" data-member-name="徐静" data-position="谈案专员" data-no="T1007" data-phone="13700014001" data-email="xujing@lawfirm.com" data-education="本科" data-age="30" data-join="2022/11/03" data-city="杭州" data-tags="报价沟通,谈案转化,关系维护" data-intro="承接高意向客户谈案，负责报价沟通与签约前推进。">
+                      <div class="team-avatar-card"><div class="team-avatar-photo"><img src="../../image/nv9.png" alt="徐静" /></div></div>
+                      <div class="team-member-content"><div class="team-member-top"><div><h3 class="team-member-name">徐静 <span class="badge success">谈案专员</span></h3><div class="skill-tags"><span class="skill-tag">报价沟通</span><span class="skill-tag">谈案转化</span><span class="skill-tag">关系维护</span></div></div><div class="load-strip"><span class="load-pill">当前谈案 <strong>9</strong></span><span class="load-pill">历史谈案数量 <strong>236</strong></span></div></div><div class="team-meta-grid"><div><span class="team-meta-label">员工号</span><span class="team-meta-value">T1007</span></div><div><span class="team-meta-label">学历 / 年龄</span><span class="team-meta-value">本科 / 30 岁</span></div><div><span class="team-meta-label">入职日期</span><span class="team-meta-value">2022/11/03</span></div><div><span class="team-meta-label">所在地</span><span class="team-meta-value">杭州</span></div></div><div class="team-contact-line"><span>电话：13700014001</span><span>邮箱：xujing@lawfirm.com</span></div><div class="team-intro">承接高意向客户谈案，负责报价沟通与签约前推进。</div></div>
+                    </article>
+
+                    <article class="team-member-row" data-role="谈案" data-lawyer-type="" data-member-name="杜青" data-position="谈案专员" data-no="T1008" data-phone="13700014002" data-email="duqing@lawfirm.com" data-education="本科" data-age="29" data-join="2023/04/12" data-city="武汉" data-tags="刑事咨询,风险沟通,异议处理" data-intro="负责刑事咨询客户深度谈案与风险说明。">
                       <div class="team-avatar-card"><div class="team-avatar-photo">杜</div></div>
-                      <div class="team-member-content">
-                        <div class="team-member-top">
-                          <div>
-                            <h3 class="team-member-name">杜青 <span class="badge success">谈案专员</span></h3>
-                            <div class="skill-tags"><span class="skill-tag">刑事咨询</span><span class="skill-tag">风险沟通</span><span class="skill-tag">异议处理</span></div>
-                          </div>
-                          <div class="load-strip"><span class="load-pill">当前谈案 <strong>7</strong></span><span class="load-pill">待签约 <strong>3</strong></span></div>
-                        </div>
-                        <div class="team-meta-grid">
-                          <div class="team-meta-item"><span class="team-meta-label">员工号</span><span class="team-meta-value">T1012</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">学历 / 年龄</span><span class="team-meta-value">本科 / 29 岁</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">入职日期</span><span class="team-meta-value">2023/04/12</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">所在地</span><span class="team-meta-value">武汉</span></div>
-                        </div>
-                        <div class="team-contact-line"><span>电话：13700013234</span><span>邮箱：duqing@lawfirm.com</span></div>
-                        <div class="team-intro">负责刑事咨询客户的深度谈案与风险说明，善于处理价格和周期异议。</div>
-                      </div>
-                    </div>
+                      <div class="team-member-content"><div class="team-member-top"><div><h3 class="team-member-name">杜青 <span class="badge success">谈案专员</span></h3><div class="skill-tags"><span class="skill-tag">刑事咨询</span><span class="skill-tag">风险沟通</span><span class="skill-tag">异议处理</span></div></div><div class="load-strip"><span class="load-pill">当前谈案 <strong>7</strong></span><span class="load-pill">历史谈案数量 <strong>198</strong></span></div></div><div class="team-meta-grid"><div><span class="team-meta-label">员工号</span><span class="team-meta-value">T1008</span></div><div><span class="team-meta-label">学历 / 年龄</span><span class="team-meta-value">本科 / 29 岁</span></div><div><span class="team-meta-label">入职日期</span><span class="team-meta-value">2023/04/12</span></div><div><span class="team-meta-label">所在地</span><span class="team-meta-value">武汉</span></div></div><div class="team-contact-line"><span>电话：13700014002</span><span>邮箱：duqing@lawfirm.com</span></div><div class="team-intro">负责刑事咨询客户深度谈案与风险说明。</div></div>
+                    </article>
 
-                    <div class="list-item team-member-row"
-                      data-member-name="刘衡"
-                      data-member-no="T1013"
-                      data-member-avatar="../../image/nan13.png"
-                      data-role-name="律师"
-                      data-lawyer-type="授薪律师"
-                      data-phone="13600014231"
-                      data-email="liuheng@lawfirm.com"
-                      data-age="36"
-                      data-education="硕士"
-                      data-join-date="2021/09/18"
-                      data-hometown="上海"
-                      data-member-status="在岗"
-                      data-specialty-tags="刑事辩护、取证策略、面谈成交"
-                      data-intro="负责重点刑事及争议案件的谈案与代理，擅长面谈成交、诉讼策略与风险预判。"
-                      data-lead-load="0"
-                      data-invite-load="0"
-                      data-negotiation-load="6"
-                      data-case-load="8"
-                    >
-                      <div class="team-avatar-card"><div class="team-avatar-photo is-image"><img src="../../image/nan13.png" alt="刘衡" /></div></div>
-                      <div class="team-member-content">
-                        <div class="team-member-top">
-                          <div>
-                            <h3 class="team-member-name">刘衡 <span class="badge info">律师</span><span class="badge primary">授薪律师</span></h3>
-                            <div class="skill-tags"><span class="skill-tag">刑事辩护</span><span class="skill-tag">取证策略</span><span class="skill-tag">面谈成交</span></div>
-                          </div>
-                          <div class="load-strip"><span class="load-pill">当前谈案 <strong>6</strong></span><span class="load-pill">在办案件 <strong>8</strong></span></div>
-                        </div>
-                        <div class="team-meta-grid">
-                          <div class="team-meta-item"><span class="team-meta-label">员工号</span><span class="team-meta-value">T1013</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">学历 / 年龄</span><span class="team-meta-value">硕士 / 36 岁</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">入职日期</span><span class="team-meta-value">2021/09/18</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">所在地</span><span class="team-meta-value">上海</span></div>
-                        </div>
-                        <div class="team-contact-line"><span>电话：13600014231</span><span>邮箱：liuheng@lawfirm.com</span></div>
-                        <div class="team-intro">负责重点刑事及争议案件的谈案与代理，擅长面谈成交、诉讼策略与风险预判。</div>
-                      </div>
-                    </div>
-
-                    <div class="list-item team-member-row"
-                      data-member-name="陈泽"
-                      data-member-no="T1014"
-                      data-member-avatar=""
-                      data-role-name="律师"
-                      data-lawyer-type="合伙人"
-                      data-phone="13600014232"
-                      data-email="chenze@lawfirm.com"
-                      data-age="43"
-                      data-education="硕士"
-                      data-join-date="2018/06/01"
-                      data-hometown="深圳"
-                      data-member-status="在岗"
-                      data-specialty-tags="民商事诉讼、重大客户谈判、团队指导"
-                      data-intro="负责疑难民商事争议与大客户方案把控，兼顾案件策略制定与团队指导。"
-                      data-lead-load="0"
-                      data-invite-load="0"
-                      data-negotiation-load="4"
-                      data-case-load="12"
-                    >
+                    <article class="team-member-row" data-role="律师" data-lawyer-type="权益合伙人律师" data-member-name="陈泽" data-position="律师" data-no="T1009" data-phone="13600015001" data-email="chenze@lawfirm.com" data-education="硕士" data-age="43" data-join="2018/06/01" data-city="深圳" data-tags="民商诉讼,重大客户谈判,团队指导" data-intro="负责疑难民商事争议与大客户方案把控，兼顾案件策略制定与团队指导。">
                       <div class="team-avatar-card"><div class="team-avatar-photo">陈</div></div>
-                      <div class="team-member-content">
-                        <div class="team-member-top">
-                          <div>
-                            <h3 class="team-member-name">陈泽 <span class="badge info">律师</span><span class="badge success">合伙人</span></h3>
-                            <div class="skill-tags"><span class="skill-tag">民商事诉讼</span><span class="skill-tag">重大客户谈判</span><span class="skill-tag">团队指导</span></div>
-                          </div>
-                          <div class="load-strip"><span class="load-pill">当前谈案 <strong>4</strong></span><span class="load-pill">在办案件 <strong>12</strong></span></div>
-                        </div>
-                        <div class="team-meta-grid">
-                          <div class="team-meta-item"><span class="team-meta-label">员工号</span><span class="team-meta-value">T1014</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">学历 / 年龄</span><span class="team-meta-value">硕士 / 43 岁</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">入职日期</span><span class="team-meta-value">2018/06/01</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">所在地</span><span class="team-meta-value">深圳</span></div>
-                        </div>
-                        <div class="team-contact-line"><span>电话：13600014232</span><span>邮箱：chenze@lawfirm.com</span></div>
-                        <div class="team-intro">负责疑难民商事争议与大客户方案把控，兼顾案件策略制定与团队指导。</div>
-                      </div>
-                    </div>
+                      <div class="team-member-content"><div class="team-member-top"><div><h3 class="team-member-name">陈泽 <span class="badge info">律师</span><span class="badge success">权益合伙人律师</span></h3><div class="skill-tags"><span class="skill-tag">民商诉讼</span><span class="skill-tag">重大客户谈判</span><span class="skill-tag">团队指导</span></div></div><div class="load-strip"><span class="load-pill">已结案件 <strong>86</strong></span><span class="load-pill">在办案件 <strong>12</strong></span></div></div><div class="team-meta-grid"><div><span class="team-meta-label">员工号</span><span class="team-meta-value">T1009</span></div><div><span class="team-meta-label">学历 / 年龄</span><span class="team-meta-value">硕士 / 43 岁</span></div><div><span class="team-meta-label">入职日期</span><span class="team-meta-value">2018/06/01</span></div><div><span class="team-meta-label">所在地</span><span class="team-meta-value">深圳</span></div></div><div class="team-contact-line"><span>电话：13600015001</span><span>邮箱：chenze@lawfirm.com</span></div><div class="team-intro">负责疑难民商事争议与大客户方案把控，兼顾案件策略制定与团队指导。</div></div>
+                    </article>
 
-                    <div class="list-item team-member-row"
-                      data-member-name="高铭"
-                      data-member-no="T1015"
-                      data-member-avatar=""
-                      data-role-name="律师"
-                      data-lawyer-type="提成律师"
-                      data-phone="13600014233"
-                      data-email="gaoming@lawfirm.com"
-                      data-age="38"
-                      data-education="本科"
-                      data-join-date="2019/03/22"
-                      data-hometown="重庆"
-                      data-member-status="在岗"
-                      data-specialty-tags="执行异议、合同纠纷、回款推进"
-                      data-intro="偏执行和合同纠纷类案件，既能承接谈案也能跟进回款与执行进度。"
-                      data-lead-load="0"
-                      data-invite-load="0"
-                      data-negotiation-load="5"
-                      data-case-load="9"
-                    >
-                      <div class="team-avatar-card"><div class="team-avatar-photo">高</div></div>
-                      <div class="team-member-content">
-                        <div class="team-member-top">
-                          <div>
-                            <h3 class="team-member-name">高铭 <span class="badge info">律师</span><span class="badge warning">提成律师</span></h3>
-                            <div class="skill-tags"><span class="skill-tag">执行异议</span><span class="skill-tag">合同纠纷</span><span class="skill-tag">回款推进</span></div>
-                          </div>
-                          <div class="load-strip"><span class="load-pill">当前谈案 <strong>5</strong></span><span class="load-pill">在办案件 <strong>9</strong></span></div>
-                        </div>
-                        <div class="team-meta-grid">
-                          <div class="team-meta-item"><span class="team-meta-label">员工号</span><span class="team-meta-value">T1015</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">学历 / 年龄</span><span class="team-meta-value">本科 / 38 岁</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">入职日期</span><span class="team-meta-value">2019/03/22</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">所在地</span><span class="team-meta-value">重庆</span></div>
-                        </div>
-                        <div class="team-contact-line"><span>电话：13600014233</span><span>邮箱：gaoming@lawfirm.com</span></div>
-                        <div class="team-intro">偏执行和合同纠纷类案件，既能承接谈案也能跟进回款与执行进度。</div>
-                      </div>
-                    </div>
-
-                    <div class="list-item team-member-row"
-                      data-member-name="许闻"
-                      data-member-no="T1016"
-                      data-member-avatar=""
-                      data-role-name="律师"
-                      data-lawyer-type="实习律师"
-                      data-phone="13600014234"
-                      data-email="xuwen@lawfirm.com"
-                      data-age="25"
-                      data-education="本科"
-                      data-join-date="2025/02/10"
-                      data-hometown="合肥"
-                      data-member-status="在岗"
-                      data-specialty-tags="卷宗整理、法律检索、文书起草"
-                      data-intro="配合律师团队进行检索、文书起草和卷宗整理，基础功扎实，成长速度快。"
-                      data-lead-load="0"
-                      data-invite-load="0"
-                      data-negotiation-load="2"
-                      data-case-load="3"
-                    >
-                      <div class="team-avatar-card"><div class="team-avatar-photo">许</div></div>
-                      <div class="team-member-content">
-                        <div class="team-member-top">
-                          <div>
-                            <h3 class="team-member-name">许闻 <span class="badge info">律师</span><span class="badge info">实习律师</span></h3>
-                            <div class="skill-tags"><span class="skill-tag">卷宗整理</span><span class="skill-tag">法律检索</span><span class="skill-tag">文书起草</span></div>
-                          </div>
-                          <div class="load-strip"><span class="load-pill">当前谈案 <strong>2</strong></span><span class="load-pill">在办案件 <strong>3</strong></span></div>
-                        </div>
-                        <div class="team-meta-grid">
-                          <div class="team-meta-item"><span class="team-meta-label">员工号</span><span class="team-meta-value">T1016</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">学历 / 年龄</span><span class="team-meta-value">本科 / 25 岁</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">入职日期</span><span class="team-meta-value">2025/02/10</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">所在地</span><span class="team-meta-value">合肥</span></div>
-                        </div>
-                        <div class="team-contact-line"><span>电话：13600014234</span><span>邮箱：xuwen@lawfirm.com</span></div>
-                        <div class="team-intro">配合律师团队进行检索、文书起草和卷宗整理，基础功扎实，成长速度快。</div>
-                      </div>
-                    </div>
-
-                    <div class="list-item team-member-row"
-                      data-member-name="罗杉"
-                      data-member-no="T1017"
-                      data-member-avatar=""
-                      data-role-name="律师"
-                      data-lawyer-type="授薪律师"
-                      data-phone="13600014235"
-                      data-email="luoshan@lawfirm.com"
-                      data-age="34"
-                      data-education="硕士"
-                      data-join-date="2020/08/17"
-                      data-hometown="南京"
-                      data-member-status="在岗"
-                      data-specialty-tags="行政诉讼、政府事务、证据组织"
-                      data-intro="专注行政诉讼与政府事务争议，擅长证据组织和庭前方案设计。"
-                      data-lead-load="0"
-                      data-invite-load="0"
-                      data-negotiation-load="5"
-                      data-case-load="7"
-                    >
-                      <div class="team-avatar-card"><div class="team-avatar-photo">罗</div></div>
-                      <div class="team-member-content">
-                        <div class="team-member-top">
-                          <div>
-                            <h3 class="team-member-name">罗杉 <span class="badge info">律师</span><span class="badge primary">授薪律师</span></h3>
-                            <div class="skill-tags"><span class="skill-tag">行政诉讼</span><span class="skill-tag">政府事务</span><span class="skill-tag">证据组织</span></div>
-                          </div>
-                          <div class="load-strip"><span class="load-pill">当前谈案 <strong>5</strong></span><span class="load-pill">在办案件 <strong>7</strong></span></div>
-                        </div>
-                        <div class="team-meta-grid">
-                          <div class="team-meta-item"><span class="team-meta-label">员工号</span><span class="team-meta-value">T1017</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">学历 / 年龄</span><span class="team-meta-value">硕士 / 34 岁</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">入职日期</span><span class="team-meta-value">2020/08/17</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">所在地</span><span class="team-meta-value">南京</span></div>
-                        </div>
-                        <div class="team-contact-line"><span>电话：13600014235</span><span>邮箱：luoshan@lawfirm.com</span></div>
-                        <div class="team-intro">专注行政诉讼与政府事务争议，擅长证据组织和庭前方案设计。</div>
-                      </div>
-                    </div>
-
-                    <div class="list-item team-member-row"
-                      data-member-name="黄靖"
-                      data-member-no="T1018"
-                      data-member-avatar=""
-                      data-role-name="律师"
-                      data-lawyer-type="合伙人"
-                      data-phone="13600014236"
-                      data-email="huangjing@lawfirm.com"
-                      data-age="45"
-                      data-education="博士"
-                      data-join-date="2016/11/08"
-                      data-hometown="北京"
-                      data-member-status="在岗"
-                      data-specialty-tags="企业法顾、股权争议、合规顾问"
-                      data-intro="负责企业法顾与合规类项目，对股权争议、重大顾问方案把控能力强。"
-                      data-lead-load="0"
-                      data-invite-load="0"
-                      data-negotiation-load="3"
-                      data-case-load="14"
-                    >
+                    <article class="team-member-row" data-role="律师" data-lawyer-type="高级合伙人律师" data-member-name="黄静" data-position="律师" data-no="T1010" data-phone="13600015002" data-email="huangjing@lawfirm.com" data-education="博士" data-age="45" data-join="2016/11/08" data-city="北京" data-tags="公司治理,股权纠纷,重大谈判" data-intro="负责公司治理、股权争议及高净值客户诉讼方案。">
                       <div class="team-avatar-card"><div class="team-avatar-photo">黄</div></div>
-                      <div class="team-member-content">
-                        <div class="team-member-top">
-                          <div>
-                            <h3 class="team-member-name">黄靖 <span class="badge info">律师</span><span class="badge success">合伙人</span></h3>
-                            <div class="skill-tags"><span class="skill-tag">企业法顾</span><span class="skill-tag">股权争议</span><span class="skill-tag">合规顾问</span></div>
-                          </div>
-                          <div class="load-strip"><span class="load-pill">当前谈案 <strong>3</strong></span><span class="load-pill">在办案件 <strong>14</strong></span></div>
-                        </div>
-                        <div class="team-meta-grid">
-                          <div class="team-meta-item"><span class="team-meta-label">员工号</span><span class="team-meta-value">T1018</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">学历 / 年龄</span><span class="team-meta-value">博士 / 45 岁</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">入职日期</span><span class="team-meta-value">2016/11/08</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">所在地</span><span class="team-meta-value">北京</span></div>
-                        </div>
-                        <div class="team-contact-line"><span>电话：13600014236</span><span>邮箱：huangjing@lawfirm.com</span></div>
-                        <div class="team-intro">负责企业法顾与合规类项目，对股权争议、重大顾问方案把控能力强。</div>
-                      </div>
-                    </div>
+                      <div class="team-member-content"><div class="team-member-top"><div><h3 class="team-member-name">黄静 <span class="badge info">律师</span><span class="badge success">高级合伙人律师</span></h3><div class="skill-tags"><span class="skill-tag">公司治理</span><span class="skill-tag">股权纠纷</span><span class="skill-tag">重大谈判</span></div></div><div class="load-strip"><span class="load-pill">已结案件 <strong>104</strong></span><span class="load-pill">在办案件 <strong>15</strong></span></div></div><div class="team-meta-grid"><div><span class="team-meta-label">员工号</span><span class="team-meta-value">T1010</span></div><div><span class="team-meta-label">学历 / 年龄</span><span class="team-meta-value">博士 / 45 岁</span></div><div><span class="team-meta-label">入职日期</span><span class="team-meta-value">2016/11/08</span></div><div><span class="team-meta-label">所在地</span><span class="team-meta-value">北京</span></div></div><div class="team-contact-line"><span>电话：13600015002</span><span>邮箱：huangjing@lawfirm.com</span></div><div class="team-intro">负责公司治理、股权争议及高净值客户诉讼方案。</div></div>
+                    </article>
 
-                    <div class="list-item team-member-row"
-                      data-member-name="孙澈"
-                      data-member-no="T1019"
-                      data-member-avatar=""
-                      data-role-name="律师"
-                      data-lawyer-type="提成律师"
-                      data-phone="13600014237"
-                      data-email="sunche@lawfirm.com"
-                      data-age="37"
-                      data-education="本科"
-                      data-join-date="2019/12/19"
-                      data-hometown="青岛"
-                      data-member-status="在岗"
-                      data-specialty-tags="家事诉讼、调解谈判、证据梳理"
-                      data-intro="擅长婚姻家事诉讼和调解谈判，对证据梳理与客户情绪管理经验丰富。"
-                      data-lead-load="0"
-                      data-invite-load="0"
-                      data-negotiation-load="4"
-                      data-case-load="10"
-                    >
-                      <div class="team-avatar-card"><div class="team-avatar-photo">孙</div></div>
-                      <div class="team-member-content">
-                        <div class="team-member-top">
-                          <div>
-                            <h3 class="team-member-name">孙澈 <span class="badge info">律师</span><span class="badge warning">提成律师</span></h3>
-                            <div class="skill-tags"><span class="skill-tag">家事诉讼</span><span class="skill-tag">调解谈判</span><span class="skill-tag">证据梳理</span></div>
-                          </div>
-                          <div class="load-strip"><span class="load-pill">当前谈案 <strong>4</strong></span><span class="load-pill">在办案件 <strong>10</strong></span></div>
-                        </div>
-                        <div class="team-meta-grid">
-                          <div class="team-meta-item"><span class="team-meta-label">员工号</span><span class="team-meta-value">T1019</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">学历 / 年龄</span><span class="team-meta-value">本科 / 37 岁</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">入职日期</span><span class="team-meta-value">2019/12/19</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">所在地</span><span class="team-meta-value">青岛</span></div>
-                        </div>
-                        <div class="team-contact-line"><span>电话：13600014237</span><span>邮箱：sunche@lawfirm.com</span></div>
-                        <div class="team-intro">擅长婚姻家事诉讼和调解谈判，对证据梳理与客户情绪管理经验丰富。</div>
-                      </div>
-                    </div>
+                    <article class="team-member-row" data-role="律师" data-lawyer-type="初级合伙人律师" data-member-name="罗杉" data-position="律师" data-no="T1011" data-phone="13600015003" data-email="luoshan@lawfirm.com" data-education="硕士" data-age="34" data-join="2020/08/17" data-city="南京" data-tags="行政诉讼,政府事务,证据组织" data-intro="专注行政诉讼与政府事务争议，擅长证据组织和庭前方案设计。">
+                      <div class="team-avatar-card"><div class="team-avatar-photo">罗</div></div>
+                      <div class="team-member-content"><div class="team-member-top"><div><h3 class="team-member-name">罗杉 <span class="badge info">律师</span><span class="badge primary">初级合伙人律师</span></h3><div class="skill-tags"><span class="skill-tag">行政诉讼</span><span class="skill-tag">政府事务</span><span class="skill-tag">证据组织</span></div></div><div class="load-strip"><span class="load-pill">已结案件 <strong>48</strong></span><span class="load-pill">在办案件 <strong>7</strong></span></div></div><div class="team-meta-grid"><div><span class="team-meta-label">员工号</span><span class="team-meta-value">T1011</span></div><div><span class="team-meta-label">学历 / 年龄</span><span class="team-meta-value">硕士 / 34 岁</span></div><div><span class="team-meta-label">入职日期</span><span class="team-meta-value">2020/08/17</span></div><div><span class="team-meta-label">所在地</span><span class="team-meta-value">南京</span></div></div><div class="team-contact-line"><span>电话：13600015003</span><span>邮箱：luoshan@lawfirm.com</span></div><div class="team-intro">专注行政诉讼与政府事务争议，擅长证据组织和庭前方案设计。</div></div>
+                    </article>
 
-                    <div class="list-item team-member-row"
-                      data-member-name="唐宁"
-                      data-member-no="T1020"
-                      data-member-avatar=""
-                      data-role-name="律师"
-                      data-lawyer-type="授薪律师"
-                      data-phone="13600014238"
-                      data-email="tangning@lawfirm.com"
-                      data-age="33"
-                      data-education="硕士"
-                      data-join-date="2022/07/15"
-                      data-hometown="杭州"
-                      data-member-status="在岗"
-                      data-specialty-tags="仲裁案件、顾问合同、庭前沟通"
-                      data-intro="主做仲裁与顾问合同争议，兼顾客户庭前沟通和争议解决方案落地。"
-                      data-lead-load="0"
-                      data-invite-load="0"
-                      data-negotiation-load="6"
-                      data-case-load="6"
-                    >
+                    <article class="team-member-row" data-role="律师" data-lawyer-type="提成律师" data-member-name="刘衡" data-position="律师" data-no="T1012" data-phone="13600015004" data-email="liuheng@lawfirm.com" data-education="硕士" data-age="36" data-join="2021/09/18" data-city="上海" data-tags="刑事辩护,取证策略,面谈成交" data-intro="负责重点刑事及争议案件代理，擅长诉讼策略与风险预判。">
+                      <div class="team-avatar-card"><div class="team-avatar-photo"><img src="../../image/nan13.png" alt="刘衡" /></div></div>
+                      <div class="team-member-content"><div class="team-member-top"><div><h3 class="team-member-name">刘衡 <span class="badge info">律师</span><span class="badge warning">提成律师</span></h3><div class="skill-tags"><span class="skill-tag">刑事辩护</span><span class="skill-tag">取证策略</span><span class="skill-tag">面谈成交</span></div></div><div class="load-strip"><span class="load-pill">已结案件 <strong>62</strong></span><span class="load-pill">在办案件 <strong>8</strong></span></div></div><div class="team-meta-grid"><div><span class="team-meta-label">员工号</span><span class="team-meta-value">T1012</span></div><div><span class="team-meta-label">学历 / 年龄</span><span class="team-meta-value">硕士 / 36 岁</span></div><div><span class="team-meta-label">入职日期</span><span class="team-meta-value">2021/09/18</span></div><div><span class="team-meta-label">所在地</span><span class="team-meta-value">上海</span></div></div><div class="team-contact-line"><span>电话：13600015004</span><span>邮箱：liuheng@lawfirm.com</span></div><div class="team-intro">负责重点刑事及争议案件代理，擅长诉讼策略与风险预判。</div></div>
+                    </article>
+
+                    <article class="team-member-row" data-role="律师" data-lawyer-type="工薪律师" data-member-name="唐宁" data-position="律师" data-no="T1013" data-phone="13600015005" data-email="tangning@lawfirm.com" data-education="本科" data-age="31" data-join="2022/05/12" data-city="广州" data-tags="劳动仲裁,合同审核,文书起草" data-intro="负责劳动仲裁、合同审核及常规诉讼材料准备。">
                       <div class="team-avatar-card"><div class="team-avatar-photo">唐</div></div>
-                      <div class="team-member-content">
-                        <div class="team-member-top">
-                          <div>
-                            <h3 class="team-member-name">唐宁 <span class="badge info">律师</span><span class="badge primary">授薪律师</span></h3>
-                            <div class="skill-tags"><span class="skill-tag">仲裁案件</span><span class="skill-tag">顾问合同</span><span class="skill-tag">庭前沟通</span></div>
-                          </div>
-                          <div class="load-strip"><span class="load-pill">当前谈案 <strong>6</strong></span><span class="load-pill">在办案件 <strong>6</strong></span></div>
-                        </div>
-                        <div class="team-meta-grid">
-                          <div class="team-meta-item"><span class="team-meta-label">员工号</span><span class="team-meta-value">T1020</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">学历 / 年龄</span><span class="team-meta-value">硕士 / 33 岁</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">入职日期</span><span class="team-meta-value">2022/07/15</span></div>
-                          <div class="team-meta-item"><span class="team-meta-label">所在地</span><span class="team-meta-value">杭州</span></div>
-                        </div>
-                        <div class="team-contact-line"><span>电话：13600014238</span><span>邮箱：tangning@lawfirm.com</span></div>
-                        <div class="team-intro">主做仲裁与顾问合同争议，兼顾客户庭前沟通和争议解决方案落地。</div>
-                      </div>
-                    </div>
-                  </div>
+                      <div class="team-member-content"><div class="team-member-top"><div><h3 class="team-member-name">唐宁 <span class="badge info">律师</span><span class="badge primary">工薪律师</span></h3><div class="skill-tags"><span class="skill-tag">劳动仲裁</span><span class="skill-tag">合同审核</span><span class="skill-tag">文书起草</span></div></div><div class="load-strip"><span class="load-pill">已结案件 <strong>35</strong></span><span class="load-pill">在办案件 <strong>6</strong></span></div></div><div class="team-meta-grid"><div><span class="team-meta-label">员工号</span><span class="team-meta-value">T1013</span></div><div><span class="team-meta-label">学历 / 年龄</span><span class="team-meta-value">本科 / 31 岁</span></div><div><span class="team-meta-label">入职日期</span><span class="team-meta-value">2022/05/12</span></div><div><span class="team-meta-label">所在地</span><span class="team-meta-value">广州</span></div></div><div class="team-contact-line"><span>电话：13600015005</span><span>邮箱：tangning@lawfirm.com</span></div><div class="team-intro">负责劳动仲裁、合同审核及常规诉讼材料准备。</div></div>
+                    </article>
 
-                  <div class="footer-row"><span>共 20 条</span><span>1 / 1</span><span>20 条/页</span></div>
+                    <article class="team-member-row" data-role="财务" data-lawyer-type="" data-member-name="徐静" data-position="财务专员" data-no="T1014" data-phone="13500016001" data-email="finance-xu@lawfirm.com" data-education="本科" data-age="33" data-join="2021/02/28" data-city="长春" data-tags="回款核验,发票归档,成本上传" data-intro="负责回款到账核验、开票信息归档和渠道成本文件整理。">
+                      <div class="team-avatar-card"><div class="team-avatar-photo"><img src="../../image/nv9.png" alt="徐静" /></div></div>
+                      <div class="team-member-content"><div class="team-member-top"><div><h3 class="team-member-name">徐静 <span class="badge info">财务</span></h3><div class="skill-tags"><span class="skill-tag">回款核验</span><span class="skill-tag">发票归档</span><span class="skill-tag">成本上传</span></div></div></div><div class="team-meta-grid"><div><span class="team-meta-label">员工号</span><span class="team-meta-value">T1014</span></div><div><span class="team-meta-label">学历 / 年龄</span><span class="team-meta-value">本科 / 33 岁</span></div><div><span class="team-meta-label">入职日期</span><span class="team-meta-value">2021/02/28</span></div><div><span class="team-meta-label">所在地</span><span class="team-meta-value">长春</span></div></div><div class="team-contact-line"><span>电话：13500016001</span><span>邮箱：finance-xu@lawfirm.com</span></div><div class="team-intro">负责回款到账核验、开票信息归档和渠道成本文件整理。</div></div>
+                    </article>
+
+                    <article class="team-member-row" data-role="邀约" data-lawyer-type="" data-member-name="赵晴" data-position="邀约专员" data-no="T1015" data-phone="13900012003" data-email="zhaoqing@lawfirm.com" data-education="本科" data-age="27" data-join="2023/06/19" data-city="南京" data-tags="短信邀约,到店排期,失败复盘" data-intro="负责未到店客户复约、失败原因记录和到店排期确认。">
+                      <div class="team-avatar-card"><div class="team-avatar-photo">赵</div></div>
+                      <div class="team-member-content"><div class="team-member-top"><div><h3 class="team-member-name">赵晴 <span class="badge warning">邀约专员</span></h3><div class="skill-tags"><span class="skill-tag">短信邀约</span><span class="skill-tag">到店排期</span><span class="skill-tag">失败复盘</span></div></div><div class="load-strip"><span class="load-pill">本周邀约 <strong>16</strong></span><span class="load-pill">历史邀约数量 <strong>274</strong></span></div></div><div class="team-meta-grid"><div><span class="team-meta-label">员工号</span><span class="team-meta-value">T1015</span></div><div><span class="team-meta-label">学历 / 年龄</span><span class="team-meta-value">本科 / 27 岁</span></div><div><span class="team-meta-label">入职日期</span><span class="team-meta-value">2023/06/19</span></div><div><span class="team-meta-label">所在地</span><span class="team-meta-value">南京</span></div></div><div class="team-contact-line"><span>电话：13900012003</span><span>邮箱：zhaoqing@lawfirm.com</span></div><div class="team-intro">负责未到店客户复约、失败原因记录和到店排期确认。</div></div>
+                    </article>
+
+                    <article class="team-member-row" data-role="案源" data-lawyer-type="" data-member-name="许曼" data-position="案源专员" data-no="T1016" data-phone="13800013003" data-email="xuman@lawfirm.com" data-education="大专" data-age="28" data-join="2023/09/01" data-city="苏州" data-tags="小红书案源,文书需求,非诉识别" data-intro="负责小红书与私域入口案源初筛，擅长识别合同审核和文书起草需求。">
+                      <div class="team-avatar-card"><div class="team-avatar-photo">许</div></div>
+                      <div class="team-member-content"><div class="team-member-top"><div><h3 class="team-member-name">许曼 <span class="badge primary">案源专员</span></h3><div class="skill-tags"><span class="skill-tag">小红书案源</span><span class="skill-tag">文书需求</span><span class="skill-tag">非诉识别</span></div></div></div><div class="team-meta-grid"><div><span class="team-meta-label">员工号</span><span class="team-meta-value">T1016</span></div><div><span class="team-meta-label">学历 / 年龄</span><span class="team-meta-value">大专 / 28 岁</span></div><div><span class="team-meta-label">入职日期</span><span class="team-meta-value">2023/09/01</span></div><div><span class="team-meta-label">所在地</span><span class="team-meta-value">苏州</span></div></div><div class="team-contact-line"><span>电话：13800013003</span><span>邮箱：xuman@lawfirm.com</span></div><div class="team-intro">负责小红书与私域入口案源初筛，擅长识别合同审核和文书起草需求。</div></div>
+                    </article>
+
+                    <article class="team-member-row" data-role="谈案" data-lawyer-type="" data-member-name="宋然" data-position="谈案专员" data-no="T1017" data-phone="13700014003" data-email="songran@lawfirm.com" data-education="硕士" data-age="33" data-join="2021/07/22" data-city="深圳" data-tags="商事谈案,合同争议,报价方案" data-intro="负责企业客户合同争议与常法顾问类谈案，擅长报价方案拆解。">
+                      <div class="team-avatar-card"><div class="team-avatar-photo">宋</div></div>
+                      <div class="team-member-content"><div class="team-member-top"><div><h3 class="team-member-name">宋然 <span class="badge success">谈案专员</span></h3><div class="skill-tags"><span class="skill-tag">商事谈案</span><span class="skill-tag">合同争议</span><span class="skill-tag">报价方案</span></div></div><div class="load-strip"><span class="load-pill">当前谈案 <strong>6</strong></span><span class="load-pill">历史谈案数量 <strong>164</strong></span></div></div><div class="team-meta-grid"><div><span class="team-meta-label">员工号</span><span class="team-meta-value">T1017</span></div><div><span class="team-meta-label">学历 / 年龄</span><span class="team-meta-value">硕士 / 33 岁</span></div><div><span class="team-meta-label">入职日期</span><span class="team-meta-value">2021/07/22</span></div><div><span class="team-meta-label">所在地</span><span class="team-meta-value">深圳</span></div></div><div class="team-contact-line"><span>电话：13700014003</span><span>邮箱：songran@lawfirm.com</span></div><div class="team-intro">负责企业客户合同争议与常法顾问类谈案，擅长报价方案拆解。</div></div>
+                    </article>
+
+                    <article class="team-member-row" data-role="财务" data-lawyer-type="" data-member-name="沈琪" data-position="财务专员" data-no="T1018" data-phone="13500016002" data-email="shenqi@lawfirm.com" data-education="本科" data-age="31" data-join="2022/04/11" data-city="杭州" data-tags="应收台账,预收台账,开票协同" data-intro="负责应收、预收台账维护和开票申请材料核对。">
+                      <div class="team-avatar-card"><div class="team-avatar-photo">沈</div></div>
+                      <div class="team-member-content"><div class="team-member-top"><div><h3 class="team-member-name">沈琪 <span class="badge info">财务</span></h3><div class="skill-tags"><span class="skill-tag">应收台账</span><span class="skill-tag">预收台账</span><span class="skill-tag">开票协同</span></div></div></div><div class="team-meta-grid"><div><span class="team-meta-label">员工号</span><span class="team-meta-value">T1018</span></div><div><span class="team-meta-label">学历 / 年龄</span><span class="team-meta-value">本科 / 31 岁</span></div><div><span class="team-meta-label">入职日期</span><span class="team-meta-value">2022/04/11</span></div><div><span class="team-meta-label">所在地</span><span class="team-meta-value">杭州</span></div></div><div class="team-contact-line"><span>电话：13500016002</span><span>邮箱：shenqi@lawfirm.com</span></div><div class="team-intro">负责应收、预收台账维护和开票申请材料核对。</div></div>
+                    </article>
+
+                    <article class="team-member-row" data-role="行政" data-lawyer-type="" data-member-name="孙伟" data-position="行政专员" data-no="T1019" data-phone="13500017001" data-email="sunwei@lawfirm.com" data-education="大专" data-age="35" data-join="2021/03/02" data-city="吉林" data-tags="盖章审批,档案流转,会议室管理" data-intro="负责行政审批流转、盖章材料和会议室资源协调。">
+                      <div class="team-avatar-card"><div class="team-avatar-photo">孙</div></div>
+                      <div class="team-member-content"><div class="team-member-top"><div><h3 class="team-member-name">孙伟 <span class="badge info">行政</span></h3><div class="skill-tags"><span class="skill-tag">盖章审批</span><span class="skill-tag">档案流转</span><span class="skill-tag">会议室管理</span></div></div></div><div class="team-meta-grid"><div><span class="team-meta-label">员工号</span><span class="team-meta-value">T1019</span></div><div><span class="team-meta-label">学历 / 年龄</span><span class="team-meta-value">大专 / 35 岁</span></div><div><span class="team-meta-label">入职日期</span><span class="team-meta-value">2021/03/02</span></div><div><span class="team-meta-label">所在地</span><span class="team-meta-value">吉林</span></div></div><div class="team-contact-line"><span>电话：13500017001</span><span>邮箱：sunwei@lawfirm.com</span></div><div class="team-intro">负责行政审批流转、盖章材料和会议室资源协调。</div></div>
+                    </article>
+
+                    <article class="team-member-row" data-role="人事" data-lawyer-type="" data-member-name="马倩" data-position="人事专员" data-no="T1020" data-phone="13500018001" data-email="maqian@lawfirm.com" data-education="本科" data-age="30" data-join="2022/09/15" data-city="苏州" data-tags="入离职,绩效记录,岗位维护" data-intro="负责团队成员入离职、岗位信息维护和基础绩效记录。">
+                      <div class="team-avatar-card"><div class="team-avatar-photo">马</div></div>
+                      <div class="team-member-content"><div class="team-member-top"><div><h3 class="team-member-name">马倩 <span class="badge info">人事</span></h3><div class="skill-tags"><span class="skill-tag">入离职</span><span class="skill-tag">绩效记录</span><span class="skill-tag">岗位维护</span></div></div></div><div class="team-meta-grid"><div><span class="team-meta-label">员工号</span><span class="team-meta-value">T1020</span></div><div><span class="team-meta-label">学历 / 年龄</span><span class="team-meta-value">本科 / 30 岁</span></div><div><span class="team-meta-label">入职日期</span><span class="team-meta-value">2022/09/15</span></div><div><span class="team-meta-label">所在地</span><span class="team-meta-value">苏州</span></div></div><div class="team-contact-line"><span>电话：13500018001</span><span>邮箱：maqian@lawfirm.com</span></div><div class="team-intro">负责团队成员入离职、岗位信息维护和基础绩效记录。</div></div>
+                    </article>
+                  </div>
                 </section>
               </section>
 
-              <aside class="detail-pane" data-create-title="未命名成员">
-                <div class="detail-topbar">
-                  <div class="detail-topbar-actions"><span>⌃</span><span>⌄</span></div>
-                  <div class="detail-topbar-actions"><span>···</span><span>×</span></div>
-                </div>
+              <aside class="detail-pane">
+                <div class="detail-topbar"><div class="detail-topbar-actions"><span>⌃</span><span>⌄</span></div><div class="detail-topbar-actions"><span>···</span><span>×</span></div></div>
                 <div class="detail-scroll">
-                  <h2 class="detail-title">朱浩</h2>
-                  <div class="detail-header-meta">
-                    <span class="detail-meta-item"><span data-detail-field="roleName">案源专员</span></span>
-                    <span class="detail-meta-item">律师类型：<span data-detail-field="lawyerType">-</span></span>
-                    <span class="detail-meta-item">入职日期：<span data-detail-field="joinDate">2022/03/10</span></span>
-                  </div>
-                  <div class="detail-tabs">
-                    <span class="detail-tab active">基本信息</span>
-                    <span class="detail-tab">历史</span>
-                  </div>
-
-                  <section class="detail-group active" data-role="detail">
-                    <div class="team-detail-hero">
+                  <h2 class="detail-title" data-detail-field="memberName">成员详情</h2>
+                  <div class="detail-tabs"><span class="detail-tab active">详情</span><span class="detail-tab">历史</span></div>
+                  <section class="detail-group" data-role="detail">
+                    <div class="detail-card team-detail-profile">
                       <div class="team-detail-avatar">
-                        <img data-detail-avatar-image src="../../image/nan7.png" alt="朱浩" />
-                        <div class="team-detail-avatar-fallback" data-detail-avatar-fallback hidden>朱</div>
+                        <div class="team-detail-avatar-inner" data-detail-avatar>成</div>
                       </div>
-                      <div class="team-detail-main">
-                        <div class="team-role-stack" data-detail-role-stack>
-                          <span class="badge primary">案源专员</span>
+                      <div class="team-detail-profile-main">
+                        <div class="team-detail-role-tags">
+                          <span class="badge primary" data-detail-field="profilePosition">岗位</span>
+                          <span class="badge info" data-detail-field="profileLawyerType">律师分类</span>
                         </div>
-                        <div class="skill-tags" data-detail-tags="specialtyTags"><span class="skill-tag">短视频案源</span><span class="skill-tag">刑事线索</span><span class="skill-tag">客户初筛</span></div>
-                        <div class="team-detail-summary" data-detail-field="intro">负责短视频及直播线索入口管理，擅长判断客户紧急程度并完成首轮筛选。</div>
+                        <div class="skill-tags team-detail-skill-tags" data-detail-skill-tags>
+                          <span class="skill-tag">能力标签</span>
+                        </div>
+                        <div class="team-detail-summary" data-detail-field="profileIntro">成员简介</div>
                       </div>
                     </div>
                     <div class="detail-card">
                       <div class="info-grid">
-                        <div class="info-item"><div class="info-label">姓名</div><div class="info-value" data-detail-field="memberName">朱浩</div></div>
-                        <div class="info-item"><div class="info-label">员工号</div><div class="info-value" data-detail-field="memberNo">T1001</div></div>
-                        <div class="info-item"><div class="info-label">岗位</div><div class="info-value" data-detail-field="roleName">案源专员</div></div>
-                        <div class="info-item"><div class="info-label">律师类型</div><div class="info-value" data-detail-field="lawyerType">-</div></div>
-                        <div class="info-item"><div class="info-label">联系电话</div><div class="info-value" data-detail-field="phone">13800011231</div></div>
-                        <div class="info-item"><div class="info-label">电子邮箱</div><div class="info-value muted" data-detail-field="email">zhuhao@lawfirm.com</div></div>
-                        <div class="info-item"><div class="info-label">年龄</div><div class="info-value" data-detail-field="age">33</div></div>
-                        <div class="info-item"><div class="info-label">学历</div><div class="info-value" data-detail-field="education">本科</div></div>
-                        <div class="info-item"><div class="info-label">入职日期</div><div class="info-value" data-detail-field="joinDate">2022/03/10</div></div>
-                        <div class="info-item"><div class="info-label">所在地</div><div class="info-value" data-detail-field="hometown">长沙</div></div>
-                        <div class="info-item full"><div class="info-label">擅长标签</div><div class="info-value" data-detail-field="specialtyTags">短视频案源、刑事线索、客户初筛</div></div>
-                        <div class="info-item full"><div class="info-label">成员简介</div><div class="info-value" data-detail-field="intro">负责短视频及直播线索入口管理，擅长判断客户紧急程度并完成首轮筛选。</div></div>
+                        <div class="info-item"><div class="info-label">姓名</div><div class="info-value" data-detail-field="memberName">-</div></div>
+                        <div class="info-item"><div class="info-label">员工号</div><div class="info-value" data-detail-field="no">-</div></div>
+                        <div class="info-item"><div class="info-label">岗位</div><div class="info-value" data-detail-field="position">-</div></div>
+                        <div class="info-item"><div class="info-label">律师分类</div><div class="info-value" data-detail-field="lawyerType">-</div></div>
+                        <div class="info-item"><div class="info-label">电话</div><div class="info-value" data-detail-field="phone">-</div></div>
+                        <div class="info-item"><div class="info-label">邮箱</div><div class="info-value muted" data-detail-field="email">-</div></div>
+                        <div class="info-item"><div class="info-label">学历 / 年龄</div><div class="info-value" data-detail-field="educationAge">-</div></div>
+                        <div class="info-item"><div class="info-label">入职日期</div><div class="info-value" data-detail-field="join">-</div></div>
+                        <div class="info-item"><div class="info-label">所在地</div><div class="info-value" data-detail-field="city">-</div></div>
+                        <div class="info-item full"><div class="info-label">擅长标签</div><div class="info-value" data-detail-field="tags">-</div></div>
+                        <div class="info-item full"><div class="info-label">成员简介</div><div class="info-value" data-detail-field="intro">-</div></div>
                       </div>
                     </div>
-                    <div class="detail-metrics">
-                      <div class="metric-card"><div class="metric-card-label">跟进案源</div><div class="metric-card-value" data-detail-field="leadLoad">26</div></div>
-                      <div class="metric-card"><div class="metric-card-label">邀约负载</div><div class="metric-card-value" data-detail-field="inviteLoad">7</div></div>
-                      <div class="metric-card"><div class="metric-card-label">谈案负载</div><div class="metric-card-value" data-detail-field="negotiationLoad">0</div></div>
-                      <div class="metric-card"><div class="metric-card-label">在办案件</div><div class="metric-card-value" data-detail-field="caseLoad">0</div></div>
-                    </div>
                   </section>
-
                   <section class="detail-group" data-role="history">
-                    <div class="detail-group-title"><span>成员历史</span><span>最近 7 天</span></div>
                     <div class="detail-card">
                       <table class="history-table">
-                        <thead>
-                          <tr><th>时间</th><th>字段</th><th>变更前</th><th></th><th>变更后</th></tr>
-                        </thead>
-                        <tbody>
-                          <tr><td>04月24日</td><td>跟进案源</td><td>23</td><td class="history-arrow">→</td><td>26</td></tr>
-                          <tr><td>04月20日</td><td>擅长标签</td><td>短视频案源、刑事线索</td><td class="history-arrow">→</td><td>短视频案源、刑事线索、客户初筛</td></tr>
-                          <tr><td>04月18日</td><td>岗位</td><td>案源助理</td><td class="history-arrow">→</td><td>案源专员</td></tr>
-                        </tbody>
+                        <thead><tr><th>时间</th><th>字段</th><th>变更前</th><th></th><th>变更后</th></tr></thead>
+                        <tbody><tr><td>05月10日</td><td>岗位信息</td><td>-</td><td class="history-arrow">→</td><td>已同步最新团队配置</td></tr></tbody>
                       </table>
                     </div>
                   </section>
-
                   <section class="detail-group" data-role="create">
-                    <div class="detail-group-title"><span>快速新建成员</span><span>头像上传非必填</span></div>
                     <div class="detail-card">
-                      <div class="team-create-head">
-                        <div class="team-create-avatar">
-                          <img data-create-avatar-image hidden alt="成员头像预览" />
-                          <div class="team-create-avatar-fallback" data-create-avatar-fallback>新</div>
-                        </div>
-                        <div class="team-create-head-main">
-                          <h4>成员头像</h4>
-                          <button class="button secondary" type="button">上传头像（可选）</button>
-                          <div class="upload-note">如果不上传头像，系统默认使用成员姓名首字作为头像。</div>
-                        </div>
-                      </div>
                       <form class="drawer-form">
-                        <div class="drawer-form-grid">
-                          <div class="field"><label>成员姓名</label><input class="input" data-create-avatar-name value="请输入成员姓名" /></div>
-                          <div class="field"><label>员工号</label><input class="input" value="请输入员工号" /></div>
+                        <div class="team-create-head">
+                          <div class="team-create-avatar">
+                            <img data-create-avatar-image alt="成员头像预览" hidden />
+                            <div class="team-create-avatar-fallback" data-create-avatar-fallback>新</div>
+                          </div>
+                          <div class="team-create-head-main">
+                            <h4>成员头像</h4>
+                            <label class="button secondary" for="teamAvatarUpload">上传头像</label>
+                            <input id="teamAvatarUpload" type="file" accept="image/*" data-avatar-upload hidden />
+                            <div class="team-create-note">头像非必填，不上传时默认使用成员姓名首字。</div>
+                          </div>
                         </div>
-                        <div class="drawer-form-grid">
-                          <div class="field"><label>岗位</label><select class="select"><option>案源专员</option><option>邀约专员</option><option>谈案专员</option><option>律师</option></select></div>
-                          <div class="field"><label>律师类型</label><select class="select"><option>非律师可留空</option><option>提成律师</option><option>授薪律师</option><option>合伙人</option><option>实习律师</option></select></div>
-                        </div>
-                        <div class="drawer-form-grid">
-                          <div class="field"><label>联系电话</label><input class="input" value="请输入联系电话" /></div>
-                          <div class="field"><label>电子邮箱</label><input class="input" value="请输入电子邮箱" /></div>
-                        </div>
-                        <div class="drawer-form-grid">
-                          <div class="field"><label>年龄</label><input class="input" value="请输入年龄" /></div>
-                          <div class="field"><label>学历</label><select class="select"><option>本科</option><option>硕士</option><option>博士</option><option>大专</option></select></div>
-                        </div>
-                        <div class="drawer-form-grid">
-                          <div class="field"><label>入职日期</label><input class="input" value="年/月/日" /></div>
-                          <div class="field"><label>所在地</label><input class="input" value="请输入所在地" /></div>
-                        </div>
-                        <div class="drawer-form-grid">
-                          <div class="field"><label>跟进案源数</label><input class="input" value="请输入案源负载" /></div>
-                          <div class="field"><label>邀约负载</label><input class="input" value="请输入邀约负载" /></div>
-                        </div>
-                        <div class="drawer-form-grid">
-                          <div class="field"><label>谈案负载</label><input class="input" value="请输入谈案负载" /></div>
-                          <div class="field"><label>在办案件数</label><input class="input" value="请输入在办案件数" /></div>
-                        </div>
+                        <div class="drawer-form-grid"><div class="field"><label>成员姓名</label><input class="input" value="请输入成员姓名" data-create-avatar-name /></div><div class="field"><label>员工号</label><input class="input" value="请输入员工号" /></div></div>
+                        <div class="drawer-form-grid"><div class="field"><label>岗位</label><select class="select"><option>运营</option><option>邀约</option><option>案源</option><option>谈案</option><option>律师</option><option>财务</option><option>行政</option><option>人事</option></select></div><div class="field"><label>律师分类</label><select class="select"><option>非律师可留空</option><option>权益合伙人律师</option><option>高级合伙人律师</option><option>初级合伙人律师</option><option>提成律师</option><option>工薪律师</option></select></div></div>
+                        <div class="drawer-form-grid"><div class="field"><label>联系电话</label><input class="input" value="请输入联系电话" /></div><div class="field"><label>电子邮箱</label><input class="input" value="请输入电子邮箱" /></div></div>
+                        <div class="drawer-form-grid"><div class="field"><label>学历</label><select class="select"><option>本科</option><option>硕士</option><option>博士</option><option>大专</option></select></div><div class="field"><label>年龄</label><input class="input" value="请输入年龄" /></div></div>
+                        <div class="drawer-form-grid"><div class="field"><label>入职日期</label><input class="input" value="年/月/日" /></div><div class="field"><label>所在地</label><input class="input" value="请输入所在地" /></div></div>
                         <div class="field"><label>擅长标签</label><input class="input" value="请输入擅长标签，多个用顿号分隔" /></div>
                         <div class="field"><label>成员简介</label><textarea class="textarea">请输入成员简介</textarea></div>
                         <div class="detail-footer"><button class="button" type="button">提交</button><button class="button secondary" type="button">继续添加</button></div>
@@ -999,5 +534,196 @@
       </div>
     </div>
     <script src="../../assets/scripts/app.js"></script>
+    <script>
+      const roleTabs = document.querySelectorAll("[data-role-filter]");
+      const lawyerTypes = document.querySelector("[data-lawyer-types]");
+      const lawyerTypePills = document.querySelectorAll("[data-lawyer-filter]");
+      const rows = document.querySelectorAll(".team-member-row");
+      const drawer = document.querySelector(".detail-pane");
+      const workspace = document.querySelector(".workspace");
+      const createButton = document.querySelector("[data-open-create]");
+      const closeButtons = document.querySelectorAll(".detail-topbar-actions span");
+      const detailTabs = document.querySelectorAll(".detail-tab");
+      const detailGroups = document.querySelectorAll(".detail-group");
+      const avatarInput = document.querySelector("[data-avatar-upload]");
+      const avatarImage = document.querySelector("[data-create-avatar-image]");
+      const avatarFallback = document.querySelector("[data-create-avatar-fallback]");
+      const avatarNameInput = document.querySelector("[data-create-avatar-name]");
+      let activeRole = "全部";
+      let activeLawyerType = "全部律师";
+      let drawerBackdrop = workspace.querySelector(".drawer-backdrop");
+
+      if (!drawerBackdrop) {
+        drawerBackdrop = document.createElement("div");
+        drawerBackdrop.className = "drawer-backdrop";
+        workspace.appendChild(drawerBackdrop);
+      }
+
+      function refreshTeamRows() {
+        rows.forEach((row) => {
+          const roleMatch = activeRole === "全部" || row.dataset.role === activeRole;
+          const lawyerMatch = activeRole !== "律师" || activeLawyerType === "全部律师" || row.dataset.lawyerType === activeLawyerType;
+          row.hidden = !(roleMatch && lawyerMatch);
+        });
+        lawyerTypes.classList.toggle("is-visible", activeRole === "律师");
+      }
+
+      roleTabs.forEach((tab) => {
+        tab.addEventListener("click", (event) => {
+          event.preventDefault();
+          roleTabs.forEach((item) => item.classList.remove("active"));
+          tab.classList.add("active");
+          activeRole = tab.dataset.roleFilter;
+          refreshTeamRows();
+        });
+      });
+
+      lawyerTypePills.forEach((pill) => {
+        pill.addEventListener("click", () => {
+          lawyerTypePills.forEach((item) => item.classList.remove("active"));
+          pill.classList.add("active");
+          activeLawyerType = pill.dataset.lawyerFilter;
+          refreshTeamRows();
+        });
+      });
+
+      function fillTeamDetail(row) {
+        const values = {
+          memberName: row.dataset.memberName,
+          no: row.dataset.no,
+          position: row.dataset.position,
+          profilePosition: row.dataset.position,
+          profileLawyerType: row.dataset.lawyerType || "",
+          profileIntro: row.dataset.intro,
+          lawyerType: row.dataset.lawyerType || "-",
+          phone: row.dataset.phone,
+          email: row.dataset.email,
+          educationAge: `${row.dataset.education} / ${row.dataset.age} 岁`,
+          join: row.dataset.join,
+          city: row.dataset.city,
+          tags: row.dataset.tags,
+          intro: row.dataset.intro
+        };
+
+        Object.entries(values).forEach(([key, value]) => {
+          document.querySelectorAll(`[data-detail-field="${key}"]`).forEach((node) => {
+            node.textContent = value || "-";
+          });
+        });
+
+        document.querySelectorAll('[data-detail-field="profileLawyerType"]').forEach((node) => {
+          node.hidden = !row.dataset.lawyerType;
+        });
+
+        const skillTags = document.querySelector("[data-detail-skill-tags]");
+        if (skillTags) {
+          skillTags.innerHTML = "";
+          (row.dataset.tags || "")
+            .split(/[,，、]/)
+            .map((tag) => tag.trim())
+            .filter(Boolean)
+            .forEach((tag) => {
+              const tagNode = document.createElement("span");
+              tagNode.className = "skill-tag";
+              tagNode.textContent = tag;
+              skillTags.appendChild(tagNode);
+            });
+        }
+
+        const avatar = document.querySelector("[data-detail-avatar]");
+        if (avatar) {
+          avatar.innerHTML = "";
+          const image = row.querySelector(".team-avatar-photo img");
+          if (image) {
+            const detailImage = document.createElement("img");
+            detailImage.src = image.getAttribute("src");
+            detailImage.alt = row.dataset.memberName || "成员头像";
+            avatar.appendChild(detailImage);
+          } else {
+            avatar.textContent = (row.dataset.memberName || "成").slice(0, 1);
+          }
+        }
+      }
+
+      function activateDrawerPanel(role) {
+        detailGroups.forEach((group) => {
+          group.classList.toggle("active", group.dataset.role === role);
+        });
+        detailTabs.forEach((tab, index) => {
+          const tabRole = index === 0 ? "detail" : "history";
+          tab.classList.toggle("active", tabRole === role);
+        });
+      }
+
+      function openTeamDrawer(mode, row) {
+        drawer.classList.add("is-open");
+        drawerBackdrop.classList.add("is-open");
+        drawer.classList.toggle("is-create", mode === "create");
+
+        if (mode === "create") {
+          document.querySelectorAll('[data-detail-field="memberName"]').forEach((node) => {
+            node.textContent = "新增成员";
+          });
+          activateDrawerPanel("create");
+          return;
+        }
+
+        if (row) {
+          fillTeamDetail(row);
+        }
+        activateDrawerPanel("detail");
+      }
+
+      function closeTeamDrawer() {
+        drawer.classList.remove("is-open", "is-create");
+        drawerBackdrop.classList.remove("is-open");
+      }
+
+      rows.forEach((row) => {
+        row.addEventListener("click", () => {
+          openTeamDrawer("detail", row);
+        });
+      });
+
+      if (createButton) {
+        createButton.addEventListener("click", (event) => {
+          event.preventDefault();
+          openTeamDrawer("create");
+        });
+      }
+
+      closeButtons.forEach((button) => {
+        if (button.textContent.trim() === "×") {
+          button.addEventListener("click", closeTeamDrawer);
+        }
+      });
+
+      drawerBackdrop.addEventListener("click", closeTeamDrawer);
+
+      detailTabs.forEach((tab, index) => {
+        tab.addEventListener("click", () => {
+          activateDrawerPanel(index === 0 ? "detail" : "history");
+        });
+      });
+
+      if (avatarNameInput && avatarFallback) {
+        avatarNameInput.addEventListener("input", () => {
+          const value = avatarNameInput.value.trim();
+          avatarFallback.textContent = value && !value.includes("请输入") ? value.slice(0, 1) : "新";
+        });
+      }
+
+      if (avatarInput && avatarImage && avatarFallback) {
+        avatarInput.addEventListener("change", () => {
+          const file = avatarInput.files && avatarInput.files[0];
+          if (!file) {
+            return;
+          }
+          avatarImage.src = URL.createObjectURL(file);
+          avatarImage.hidden = false;
+          avatarFallback.hidden = true;
+        });
+      }
+    </script>
   </body>
 </html>

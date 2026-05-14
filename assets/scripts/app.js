@@ -5,7 +5,6 @@
     label: "运营管理",
     icon: "operations",
     children: [
-      { id: "operations-home", label: "运营工作台", href: "../operations/operations-home.html" },
       { id: "operation-lead-pool", label: "运营案源池", href: "../operations/operation-lead-pool.html" },
       { id: "invitation-auto-dispatch", label: "邀约自动分发管理", href: "../operations/invitation-auto-dispatch.html" },
       { id: "channel-management", label: "渠道管理", href: "../operations/channel-management.html" },
@@ -102,21 +101,7 @@ function iconMarkup(name) {
 }
 
 function sidebarCardMarkup() {
-  return `
-    <div class="sidebar-card">
-      <div class="sidebar-card-title">本周签约进度</div>
-      <div class="sidebar-mini-chart">
-        <span style="height: 46%"></span>
-        <span style="height: 70%"></span>
-        <span style="height: 58%"></span>
-        <span style="height: 86%"></span>
-      </div>
-      <div class="sidebar-card-foot">
-        <strong>72%</strong>
-        <span>距目标还差 3 单</span>
-      </div>
-    </div>
-  `;
+  return "";
 }
 
 function renderSidebar() {

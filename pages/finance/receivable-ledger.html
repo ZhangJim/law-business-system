@@ -138,6 +138,7 @@
                           <th>案件名称</th>
                           <th>发票金额</th>
                           <th>开票日期</th>
+                          <th>账龄</th>
                           <th>开票申请人</th>
                           <th>开票人</th>
                           <th>状态</th>
@@ -175,6 +176,7 @@
                           <td><a class="receivable-link" href="#">李四土地征收补偿行政案</a></td>
                           <td>80,000</td>
                           <td>2026/04/16</td>
+                          <td data-aging-cell>-</td>
                           <td><span class="person-chip"><span class="person-avatar">王</span>王助理</span></td>
                           <td><span class="person-chip"><span class="person-avatar">徐</span>徐静</span></td>
                           <td><span class="badge warning">待回款</span></td>
@@ -210,6 +212,7 @@
                           <td><a class="receivable-link" href="#">王某装修纠纷代理案</a></td>
                           <td>100,000</td>
                           <td>2026/04/18</td>
+                          <td data-aging-cell>-</td>
                           <td><span class="person-chip"><span class="person-avatar">海</span>海岩</span></td>
                           <td><span class="person-chip"><span class="person-avatar">宋</span>宋妍</span></td>
                           <td><span class="badge success">已到账</span></td>
@@ -245,6 +248,7 @@
                           <td><a class="receivable-link" href="#">张三故意伤害刑事辩护案</a></td>
                           <td>300,000</td>
                           <td>2026/04/22</td>
+                          <td data-aging-cell>-</td>
                           <td><span class="person-chip"><span class="person-avatar">刘</span>刘律师</span></td>
                           <td><span class="person-chip"><span class="person-avatar">徐</span>徐静</span></td>
                           <td><span class="badge warning">待回款</span></td>
@@ -280,6 +284,7 @@
                           <td><a class="receivable-link" href="#">赵六常年法律顾问服务</a></td>
                           <td>50,000</td>
                           <td>2026/04/26</td>
+                          <td data-aging-cell>-</td>
                           <td><span class="person-chip"><span class="person-avatar">陈</span>陈泽</span></td>
                           <td><span class="person-chip"><span class="person-avatar">宋</span>宋妍</span></td>
                           <td><span class="badge warning">待回款</span></td>
@@ -314,6 +319,7 @@
                         <div class="info-item"><div class="info-label">发票金额</div><div class="info-value" data-detail-field="invoiceAmount">80,000</div></div>
                         <div class="info-item"><div class="info-label">开票日期</div><div class="info-value" data-detail-field="invoiceDate">2026/04/16</div></div>
                         <div class="info-item"><div class="info-label">当前状态</div><div class="info-value"><span class="badge warning" data-detail-field="contractStatus" data-detail-type="status-badge">待回款</span></div></div>
+                        <div class="info-item" data-aging-detail-item><div class="info-label">账龄</div><div class="info-value" data-detail-field="aging">-</div></div>
                         <div class="info-item"><div class="info-label">最近更新时间</div><div class="info-value" data-detail-field="lastFollowTime">2026/04/25 09:30</div></div>
                       </div>
                     </div>
@@ -400,6 +406,30 @@
     </div>
     <script src="../../assets/scripts/app.js"></script>
     <script>
+      function calculateReceivableAging(invoiceDate, status) {
+        if (status !== "待回款" || !invoiceDate) {
+          return "-";
+        }
+        const start = new Date(invoiceDate.replace(/\//g, "-") + "T00:00:00");
+        if (Number.isNaN(start.getTime())) {
+          return "-";
+        }
+        const now = new Date();
+        const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        const diffDays = Math.max(0, Math.floor((today - start) / 86400000));
+        return `${diffDays}天`;
+      }
+
+      function refreshReceivableAging(row) {
+        const aging = calculateReceivableAging(row.dataset.invoiceDate, row.dataset.contractStatus);
+        row.dataset.aging = aging;
+        const cell = row.querySelector("[data-aging-cell]");
+        if (cell) {
+          cell.textContent = aging;
+        }
+        return aging;
+      }
+
       function setReceivableField(key, value) {
         document.querySelectorAll(`[data-detail-field="${key}"]`).forEach((node) => {
           if (node.dataset.detailType === "person") {
@@ -429,9 +459,16 @@
       }
 
       document.querySelectorAll('body[data-page="receivable-ledger"] tbody tr[data-customer-name]').forEach((row) => {
+        refreshReceivableAging(row);
+
         row.addEventListener("click", () => {
           const title = document.querySelector(".detail-title");
           if (title) title.textContent = row.dataset.receivableTitle || row.dataset.caseName || "应收详情";
+          const aging = refreshReceivableAging(row);
+          const agingDetailItem = document.querySelector("[data-aging-detail-item]");
+          if (agingDetailItem) {
+            agingDetailItem.hidden = row.dataset.contractStatus !== "待回款";
+          }
 
           [
             "customerName",
@@ -455,10 +492,17 @@
             "registrant",
             "arrivalStatus",
             "attachment",
-            "otherAttachment"
+            "otherAttachment",
+            "aging"
           ].forEach((key) => setReceivableField(key, row.dataset[key]));
+          setReceivableField("aging", aging);
         });
       });
+
+      const firstReceivableRow = document.querySelector('body[data-page="receivable-ledger"] tbody tr[data-customer-name]');
+      if (firstReceivableRow) {
+        setReceivableField("aging", firstReceivableRow.dataset.aging || refreshReceivableAging(firstReceivableRow));
+      }
     </script>
   </body>
 </html>
