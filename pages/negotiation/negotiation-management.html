@@ -40,6 +40,7 @@
                       <thead>
                         <tr>
                           <th>案源信息</th>
+                          <th>用户星级</th>
                           <th>客户类型</th>
                           <th>案件来源</th>
                           <th>案件类型</th>
@@ -84,17 +85,25 @@
                       <div class="info-grid">
                         <div class="info-item"><div class="info-label">客户名称</div><div class="info-value" data-detail-field="customerName">张三</div></div>
                         <div class="info-item"><div class="info-label">客户类型</div><div class="info-value" data-detail-field="customerType" data-detail-type="customer-type-badge"><span class="badge primary">个人</span></div></div>
-                        <div class="info-item"><div class="info-label">电话</div><div class="info-value" data-detail-field="phone">13800001111</div></div>
+                        <div class="info-item"><div class="info-label">用户星级</div><div class="info-value"><select class="select compact-select" data-detail-field="starLevel" data-detail-type="star-select"><option>1星</option><option>2星</option><option>3星</option><option selected>4星</option><option>5星</option></select></div></div>
                         <div class="info-item"><div class="info-label">微信</div><div class="info-value muted" data-detail-field="wechat">zhangsan-law</div></div>
                         <div class="info-item"><div class="info-label">邮箱</div><div class="info-value muted" data-detail-field="email">zhangsan@example.com</div></div>
+                        <div class="info-item"><div class="info-label">电话</div><div class="info-value" data-detail-field="phone">13800001111</div></div>
                         <div class="info-item"><div class="info-label">案源来源</div><div class="info-value" data-detail-field="source" data-detail-type="source-badge"><span class="badge warning">快手</span></div></div>
                         <div class="info-item"><div class="info-label">案件类型</div><div class="info-value" data-detail-field="caseType">刑事诉讼</div></div>
                         <div class="info-item"><div class="info-label">案源阶段</div><div class="info-value" data-detail-field="stage" data-detail-type="stage-badge"><span class="badge warning">跟进中</span></div></div>
                         <div class="info-item"><div class="info-label">最后跟进日期</div><div class="info-value" data-detail-field="lastFollowDate">2026/04/25</div></div>
                         <div class="info-item full"><div class="info-label">案件描述</div><div class="info-value" data-detail-field="description">刑事案件，客户希望尽快安排到所面谈。</div></div>
-                        <div class="info-item"><div class="info-label">案源负责人</div><div class="info-value" data-detail-field="leadOwner" data-detail-type="person"><span class="person-chip"><span class="person-avatar">海</span>海岩</span></div></div>
-                        <div class="info-item"><div class="info-label">邀约负责人</div><div class="info-value" data-detail-field="invitationOwner" data-detail-type="person"><span class="person-chip"><span class="person-avatar">王</span>王助理</span></div></div>
-                        <div class="info-item"><div class="info-label">谈案负责人</div><div class="info-value" data-detail-field="negotiationOwner" data-detail-type="person"><span class="person-chip"><span class="person-avatar">刘</span>刘律师</span></div></div>
+                        <div class="info-item full">
+                          <div class="info-label">人员分工</div>
+                          <div class="info-value">
+                            <div class="case-role-row">
+                              <div class="case-role-item"><span class="case-role-label">案源</span><span data-detail-field="leadOwner" data-detail-type="person"><span class="person-chip"><span class="person-avatar">海</span>海岩</span></span></div>
+                              <div class="case-role-item"><span class="case-role-label">邀约</span><span data-detail-field="invitationOwner" data-detail-type="person"><span class="person-chip"><span class="person-avatar">王</span>王助理</span></span></div>
+                              <div class="case-role-item"><span class="case-role-label">谈案</span><span data-detail-field="negotiationOwner" data-detail-type="person"><span class="person-chip"><span class="person-avatar">刘</span>刘律师</span></span></div>
+                            </div>
+                          </div>
+                        </div>
                         <div class="info-item"><div class="info-label">客户地址</div><div class="info-value" data-detail-field="address">北京市海淀区中关村南大街 18 号</div></div>
                         <div class="info-item"><div class="info-label">职务</div><div class="info-value" data-detail-field="job">企业主</div></div>
                         <div class="info-item"><div class="info-label">距公海回收时间（天）</div><div class="info-value" data-detail-field="recycleDays">12</div></div>

@@ -304,6 +304,7 @@ function leadDatasetAttributes(lead) {
     customerName: lead.customerName,
     leadName: lead.leadName || lead.customerName,
     customerType: lead.customerType,
+    starLevel: lead.starLevel,
     phone: lead.phone,
     wechat: lead.wechat,
     email: lead.email,
@@ -349,7 +350,7 @@ function renderLeadManagementRows(leads) {
         (lead) => `
           <tr ${leadDatasetAttributes(lead)}>
             <td>${leadInfoCellMarkup(lead)}</td>
-            <td><span class="badge ${leadBadgeClass("starLevel", lead.starLevel)}">${escapeHtml(lead.starLevel)}</span></td>
+            <td><span class="badge ${leadBadgeClass("starLevel", lead.starLevel)}" data-lead-star-badge>${escapeHtml(lead.starLevel)}</span></td>
             <td><span class="badge ${leadBadgeClass("customerType", lead.customerType)}">${escapeHtml(lead.customerType)}</span></td>
             <td><span class="badge ${leadBadgeClass("source", lead.source)}">${escapeHtml(lead.source)}</span></td>
             <td>${escapeHtml(lead.caseType)}</td>
@@ -377,6 +378,7 @@ function renderInvitationRows(leads) {
         <tr ${leadDatasetAttributes(lead)}>
           <td><input type="checkbox" /></td>
           <td>${leadInfoCellMarkup(lead)}</td>
+          <td><span class="badge ${leadBadgeClass("starLevel", lead.starLevel)}" data-lead-star-badge>${escapeHtml(lead.starLevel)}</span></td>
           <td><span class="badge ${leadBadgeClass("customerType", lead.customerType)}">${escapeHtml(lead.customerType)}</span></td>
           <td><span class="badge ${leadBadgeClass("source", lead.source)}">${escapeHtml(lead.source)}</span></td>
           <td>${escapeHtml(lead.caseType)}</td>
@@ -401,6 +403,7 @@ function renderNegotiationRows(leads) {
       (lead) => `
         <tr ${leadDatasetAttributes(lead)}>
           <td>${leadInfoCellMarkup(lead)}</td>
+          <td><span class="badge ${leadBadgeClass("starLevel", lead.starLevel)}" data-lead-star-badge>${escapeHtml(lead.starLevel)}</span></td>
           <td><span class="badge ${leadBadgeClass("customerType", lead.customerType)}">${escapeHtml(lead.customerType)}</span></td>
           <td><span class="badge ${leadBadgeClass("source", lead.source)}">${escapeHtml(lead.source)}</span></td>
           <td>${escapeHtml(lead.caseType)}</td>
@@ -442,6 +445,10 @@ function renderLeadTables() {
 function setDetailField(drawer, key, value) {
   drawer.querySelectorAll(`[data-detail-field="${key}"]`).forEach((target) => {
     const type = target.dataset.detailType;
+    if (type === "star-select") {
+      target.value = value || "1星";
+      return;
+    }
     if (type === "person") {
       target.innerHTML = personChipMarkup(value);
       return;
@@ -463,6 +470,22 @@ function setDetailField(drawer, key, value) {
       return;
     }
     target.textContent = value || "-";
+  });
+}
+
+function updateLeadStarLevel(leadId, value) {
+  const normalized = value || "1星";
+  const leads = window.lawSystemData && Array.isArray(window.lawSystemData.leads) ? window.lawSystemData.leads : [];
+  const lead = leads.find((item) => String(item.id) === String(leadId));
+  if (lead) lead.starLevel = normalized;
+
+  const escapedId = window.CSS && CSS.escape ? CSS.escape(String(leadId)) : String(leadId).replace(/"/g, '\\"');
+  document.querySelectorAll(`tr[data-id="${escapedId}"]`).forEach((row) => {
+    row.dataset.starLevel = normalized;
+    row.querySelectorAll("[data-lead-star-badge]").forEach((badge) => {
+      badge.className = `badge ${leadBadgeClass("starLevel", normalized)}`;
+      badge.textContent = normalized;
+    });
   });
 }
 
@@ -835,6 +858,13 @@ function initDrawers() {
         item.style.cursor = "pointer";
         item.addEventListener("click", closeDrawer);
       }
+    });
+
+    drawer.querySelectorAll('[data-detail-type="star-select"]').forEach((field) => {
+      field.addEventListener("change", () => {
+        currentDetailContext.starLevel = field.value;
+        if (currentDetailContext.id) updateLeadStarLevel(currentDetailContext.id, field.value);
+      });
     });
 
     backdrop.addEventListener("click", closeDrawer);
